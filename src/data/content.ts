@@ -31,9 +31,6 @@ export interface CaseStudy {
   href: string
 }
 
-// Case studies still live on the current site until they're rebuilt here.
-const LIVE_SITE = 'https://ashnidave.com'
-
 export const caseStudies: CaseStudy[] = [
   {
     id: 'venue-finder',
@@ -51,7 +48,7 @@ export const caseStudies: CaseStudy[] = [
     focus: ['marketplace', 'ai', 'b2c', 'strategy'],
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 40% shorter journey',
-    href: `${LIVE_SITE}/venue-finder`,
+    href: '#/work/venue-finder',
   },
   {
     id: 'hosthq',
@@ -69,7 +66,7 @@ export const caseStudies: CaseStudy[] = [
     focus: ['marketplace', 'saas', 'strategy'],
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
-    href: `${LIVE_SITE}/hosthq`,
+    href: '#/work/hosthq',
   },
   {
     id: 'treeassist',
@@ -87,7 +84,7 @@ export const caseStudies: CaseStudy[] = [
     focus: ['ai', 'b2c', 'strategy'],
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
-    href: `${LIVE_SITE}/tree-assist`,
+    href: '#/work/treeassist',
   },
 ]
 
@@ -178,7 +175,6 @@ export const fieldNotes = [
 
 export const contact = {
   email: 'ashni.dave111@gmail.com',
-  // Set these once confirmed; links render only when present.
-  linkedin: '',
-  resume: '',
+  linkedin: 'https://www.linkedin.com/in/ashni-dave/',
+  resume: `${import.meta.env.BASE_URL}ashni-dave-resume.pdf`,
 }

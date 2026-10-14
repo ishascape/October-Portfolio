@@ -4,19 +4,32 @@ import { Work } from './components/Work'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { CaseStudy } from './components/CaseStudy'
+import { useRoute } from './useRoute'
 
 export function App() {
+  const route = useRoute()
+
   return (
     <>
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <Nav />
+      <Nav route={route.page} />
       <main id="main">
-        <Hero />
-        <Work />
-        <About />
-        <Contact />
+        {route.page === 'case' ? (
+          <>
+            <CaseStudy key={route.id} id={route.id} />
+            <Contact />
+          </>
+        ) : (
+          <>
+            <Hero />
+            <Work />
+            <About />
+            <Contact />
+          </>
+        )}
       </main>
       <Footer />
     </>

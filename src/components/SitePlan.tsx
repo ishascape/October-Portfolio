@@ -156,7 +156,7 @@ function TreeAssistArt() {
   )
 }
 
-const art: Record<CaseStudyId, () => ReactNode> = {
+export const buildingArt: Record<CaseStudyId, () => ReactNode> = {
   'venue-finder': VenueFinderArt,
   hosthq: HostHQArt,
   treeassist: TreeAssistArt,
@@ -220,7 +220,7 @@ export function SitePlan({ variant, studies, mode, filter, hovered, onHover, onS
 
       {studies.map((s, i) => {
         const p = L.plots[s.id]
-        const Art = art[s.id]
+        const Art = buildingArt[s.id]
         const match = filter ? s.focus.includes(filter) : false
         const side = s.id === 'venue-finder' ? 'DEMAND' : s.id === 'hosthq' ? 'SUPPLY' : 'ACTIVATION'
         return (

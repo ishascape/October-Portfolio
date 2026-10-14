@@ -69,8 +69,8 @@ export function DetailSheet({ study, onClose }: DetailSheetProps) {
             </div>
           </dl>
 
-          <a className="button button--primary sheet__cta" href={study.href} target="_blank" rel="noreferrer">
-            Read case study <span aria-hidden="true">↗</span>
+          <a className="button button--primary sheet__cta" href={study.href}>
+            Read case study <span aria-hidden="true">→</span>
           </a>
         </div>
       )}

@@ -25,7 +25,7 @@ export function Work() {
                     {s.number} · {s.company}
                   </p>
                   <h3 id={`card-${s.id}`} className="card__title">
-                    <a href={s.href} target="_blank" rel="noreferrer" className="card__link">
+                    <a href={s.href} className="card__link">
                       {s.title}
                     </a>
                   </h3>

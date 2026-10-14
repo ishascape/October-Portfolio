@@ -9,7 +9,7 @@ const sections = [
   { id: 'contact', sheet: '03', label: 'Contact', inBar: true },
 ]
 
-export function Nav() {
+export function Nav({ route }: { route: string }) {
   const [current, setCurrent] = useState('top')
   const menu = useRef<HTMLDialogElement>(null)
 
@@ -27,7 +27,7 @@ export function Nav() {
       if (el) io.observe(el)
     }
     return () => io.disconnect()
-  }, [])
+  }, [route])
 
   return (
     <header className="nav">

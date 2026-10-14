@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { capabilities, caseStudies, contact, focusKey, type CaseStudyId, type FocusId } from '../data/content'
 import { SitePlan, type PlanMode } from './SitePlan'
 import { DetailSheet } from './DetailSheet'
+import { ModeSwitch } from './ModeSwitch'
 import './Hero.css'
 
 export function Hero() {
@@ -87,20 +88,7 @@ export function Hero() {
             </div>
 
             <div className="hero__toggle">
-              <button
-                type="button"
-                role="switch"
-                aria-checked={mode === 'proposed'}
-                aria-label="Proposed: show what shipped"
-                className="switch mono"
-                onClick={() => setMode(mode === 'existing' ? 'proposed' : 'existing')}
-              >
-                <span data-on={mode === 'existing'}>Existing</span>
-                <span className="switch__track" aria-hidden="true">
-                  <span className="switch__thumb" />
-                </span>
-                <span data-on={mode === 'proposed'}>Proposed</span>
-              </button>
+              <ModeSwitch mode={mode} onChange={setMode} />
               <p className="hero__helper">Dashed lines show what I found. Solid lines show what shipped.</p>
             </div>
           </div>
