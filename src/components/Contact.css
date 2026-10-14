@@ -1,0 +1,35 @@
+.contact {
+  border-top: var(--line-thin) solid var(--ink);
+}
+.contact__heading {
+  max-width: 14ch;
+  margin-bottom: var(--space-5);
+}
+.contact__body {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.contact__body strong {
+  font-weight: 600;
+}
+
+.contact__links {
+  display: grid;
+  gap: var(--space-3);
+}
+.contact__copy {
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.contact__copy-hint {
+  opacity: 0.7;
+}
+
+@media (min-width: 600px) {
+  .contact__links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

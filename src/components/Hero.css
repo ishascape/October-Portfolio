@@ -1,0 +1,251 @@
+.hero {
+  position: relative;
+  padding-block: var(--space-4) var(--space-6);
+  /* Faint 24px drawing grid, on the hero only */
+  background-image:
+    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+  background-size: 24px 24px;
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+
+.hero__sheet {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--ink);
+  margin-bottom: var(--space-5);
+}
+
+.hero__intro {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.hero__support {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--measure);
+}
+
+.hero__capabilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+}
+.hero__capabilities li + li::before {
+  content: '·';
+  margin-right: var(--space-3);
+  color: var(--graphite);
+}
+.hero__capabilities a {
+  text-decoration: none;
+  border-bottom: var(--line-thin) solid var(--rule);
+  transition: border-color var(--dur-micro) var(--ease-pen);
+}
+.hero__capabilities a:hover {
+  border-color: var(--marker);
+  color: var(--marker);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* ---------- Drawing ---------- */
+
+.hero__drawing {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.hero__controls {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.hero__key {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.hero__key-label {
+  flex: none;
+  line-height: var(--tap);
+}
+.hero__chips {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px;
+  margin: -4px;
+}
+
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  border: var(--line-thin) solid var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+  transition: background-color var(--dur-state) var(--ease-pen);
+}
+.chip__swatch {
+  width: 12px;
+  height: 12px;
+  border: var(--line-thin) solid var(--ink);
+  transition: background-color var(--dur-state) var(--ease-pen);
+}
+.chip[aria-pressed='true'] {
+  background: var(--marker-wash);
+  border-color: var(--marker);
+  color: var(--marker);
+}
+.chip[aria-pressed='true'] .chip__swatch {
+  border-color: var(--marker);
+  background: repeating-linear-gradient(45deg, var(--marker) 0 1.5px, transparent 1.5px 4px);
+}
+
+.hero__toggle {
+  display: grid;
+  gap: var(--space-1);
+}
+.hero__helper {
+  font-size: 14px;
+  color: var(--graphite);
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  border: var(--line-thin) solid var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+}
+.switch [data-on='false'] {
+  color: var(--graphite);
+}
+.switch__track {
+  position: relative;
+  width: 40px;
+  height: 16px;
+  border: var(--line-thin) solid var(--ink);
+}
+.switch__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 10px;
+  background: var(--ink);
+  transition: transform var(--dur-state) var(--ease-pen);
+}
+.switch[aria-checked='true'] .switch__thumb {
+  transform: translateX(18px);
+  background: var(--marker);
+}
+
+.hero__plan--landscape {
+  display: none;
+}
+.hero__plan--portrait {
+  max-width: 440px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.hero__footer {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.hero__annotation {
+  display: none;
+}
+
+.title-block {
+  margin: 0;
+  border: var(--line-thin) solid var(--ink);
+  background: var(--paper-shade);
+}
+.title-block > div {
+  padding: var(--space-2) var(--space-3);
+}
+.title-block > div + div {
+  border-top: var(--line-thin) solid var(--ink);
+}
+.title-block dd {
+  margin: 0;
+}
+.title-block__name dd {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.title-block__rev {
+  color: var(--graphite);
+}
+
+@media (min-width: 600px) {
+  .hero__chips {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+  .hero__plan--landscape {
+    display: block;
+  }
+  .hero__plan--portrait {
+    display: none;
+  }
+  .switch {
+    justify-self: start;
+  }
+  .hero__annotation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+    align-content: start;
+    min-height: 3.6em;
+    color: var(--ink);
+  }
+  .hero__annotation-existing {
+    color: var(--graphite);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__intro {
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+    gap: var(--gutter);
+  }
+  .hero__intro {
+    margin-bottom: var(--space-4);
+  }
+  .hero__controls {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: var(--space-4);
+  }
+  .hero__toggle {
+    justify-items: end;
+    text-align: right;
+  }
+  .hero__footer {
+    grid-template-columns: 7fr 5fr;
+    align-items: start;
+  }
+}

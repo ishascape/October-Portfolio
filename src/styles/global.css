@@ -1,0 +1,139 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--marker);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--margin);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-2) var(--space-3);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-mono);
+}
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--content-max) + 2 * var(--margin));
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  font-weight: 500;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+}
+
+.display {
+  font-size: var(--text-display);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.section {
+  padding-block: var(--space-6) var(--space-7);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding: 0 var(--space-4);
+  border: var(--line-building) solid var(--ink);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-pen), color var(--dur-micro) var(--ease-pen);
+}
+.button--primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.button:hover {
+  background: var(--marker);
+  border-color: var(--marker);
+  color: var(--paper);
+}

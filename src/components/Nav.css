@@ -1,0 +1,90 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.nav__name {
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav__links {
+  display: none;
+}
+.nav__links ul {
+  display: flex;
+  gap: var(--space-4);
+}
+.nav__links a {
+  display: inline-block;
+  padding-block: var(--space-2);
+  text-decoration: none;
+  background: linear-gradient(var(--marker), var(--marker)) left bottom / 0 2px no-repeat;
+  transition: background-size 180ms var(--ease-pen);
+}
+.nav__links a:hover,
+.nav__links a[aria-current] {
+  background-size: 100% 2px;
+}
+
+.nav__menu-button {
+  min-height: var(--tap);
+  padding: 0 var(--space-2);
+  margin-right: calc(-1 * var(--space-2));
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.nav__menu {
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+.nav__menu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 56px;
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+.nav__menu ol a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: var(--line-hair) solid var(--rule);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.nav__menu ol a .mono {
+  color: var(--graphite);
+}
+
+@media (min-width: 600px) {
+  .nav__links {
+    display: block;
+  }
+  .nav__menu-button {
+    display: none;
+  }
+}

@@ -1,0 +1,212 @@
+.about {
+  border-top: var(--line-thin) solid var(--ink);
+}
+
+.about__intro {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.about__heading {
+  font-size: clamp(32px, 5.5vw, 64px);
+  max-width: 16ch;
+}
+.about__body {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--measure);
+}
+.about__note {
+  font-size: 15px;
+  color: var(--graphite);
+}
+
+.about__subhead {
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+  border-bottom: var(--line-thin) solid var(--ink);
+  font-weight: 500;
+}
+
+/* ---------- How I work ---------- */
+
+.principles {
+  display: grid;
+  margin-bottom: var(--space-6);
+}
+.principle {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-bottom: var(--line-hair) solid var(--rule);
+}
+.principle__number {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--marker);
+  font-variant-numeric: tabular-nums;
+}
+.principle__text {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--measure);
+}
+.principle__title {
+  font-size: var(--text-heading);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.principle__evidence {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: 15px;
+  color: var(--graphite);
+}
+.principle__evidence .mono {
+  display: block;
+  color: var(--ink);
+}
+
+/* ---------- Revision table ---------- */
+
+.revisions {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--space-6);
+}
+.revisions thead {
+  display: none;
+}
+.revisions tr {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 0 var(--space-3);
+  padding-block: var(--space-2);
+  border-bottom: var(--line-hair) solid var(--rule);
+  transition: background-color 120ms var(--ease-pen);
+}
+.revisions tr:hover {
+  background: var(--marker-wash);
+}
+.revisions td,
+.revisions th {
+  padding: 0;
+  text-align: left;
+  font-weight: inherit;
+}
+.revisions tbody td:first-child {
+  grid-row: span 3;
+}
+.revisions tbody th {
+  font-weight: 600;
+}
+.revisions tbody td:nth-child(2) {
+  color: var(--graphite);
+}
+
+@media (min-width: 600px) {
+  .revisions thead {
+    display: table-header-group;
+    color: var(--graphite);
+  }
+  .revisions tr {
+    display: table-row;
+  }
+  .revisions th,
+  .revisions td {
+    padding: var(--space-2) var(--space-3) var(--space-2) 0;
+    border-bottom: var(--line-hair) solid var(--rule);
+  }
+}
+
+/* ---------- Field notes ---------- */
+
+.field-notes {
+  display: grid;
+  gap: var(--space-5);
+}
+.field-notes__copy {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+.field-notes__heading {
+  font-size: var(--text-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.field-notes__figures {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.field-notes__group-label {
+  margin-bottom: var(--space-2);
+  color: var(--graphite);
+}
+.field-notes__strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 72%;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding-bottom: var(--space-2);
+}
+.field-notes__strip > li {
+  scroll-snap-align: start;
+}
+
+.figure {
+  display: grid;
+  gap: var(--space-2);
+}
+.figure__frame {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-2);
+  border: var(--line-thin) dashed var(--graphite);
+  background: var(--paper-shade);
+  color: var(--graphite);
+}
+.figure figcaption {
+  color: var(--graphite);
+  transition: color var(--dur-micro) var(--ease-pen);
+}
+.figure:hover figcaption {
+  color: var(--ink);
+}
+
+@media (min-width: 600px) {
+  .field-notes__strip {
+    grid-auto-columns: calc((100% - var(--space-3)) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about__intro {
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+    gap: var(--gutter);
+  }
+  .principle {
+    grid-template-columns: 64px 1fr;
+  }
+  .field-notes {
+    grid-template-columns: 4fr 8fr;
+    gap: var(--gutter);
+  }
+  .field-notes__strip {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: visible;
+    align-items: start;
+  }
+}

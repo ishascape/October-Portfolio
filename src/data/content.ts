@@ -1,0 +1,184 @@
+// All copy and figures come from notes/homepage-content.md (approved 14 Oct 2026).
+// Never add a metric here that isn't in that doc or the CV.
+
+export type FocusId = 'marketplace' | 'saas' | 'ai' | 'b2c' | 'strategy'
+
+export const focusKey: { id: FocusId; label: string }[] = [
+  { id: 'marketplace', label: 'Marketplace' },
+  { id: 'saas', label: 'B2B SaaS' },
+  { id: 'ai', label: 'AI Products' },
+  { id: 'b2c', label: 'B2C Conversion' },
+  { id: 'strategy', label: 'Discovery and strategy' },
+]
+
+export type CaseStudyId = 'venue-finder' | 'hosthq' | 'treeassist'
+
+export interface CaseStudy {
+  id: CaseStudyId
+  number: string
+  title: string
+  summary: string
+  company: string
+  district: 'HeadBox' | 'Findmypast'
+  role: string
+  leadMetric: { value: string; label: string }
+  supporting: string[]
+  system: string
+  tags: string[]
+  focus: FocusId[]
+  existing: string
+  proposed: string
+  href: string
+}
+
+// Case studies still live on the current site until they're rebuilt here.
+const LIVE_SITE = 'https://ashnidave.com'
+
+export const caseStudies: CaseStudy[] = [
+  {
+    id: 'venue-finder',
+    number: '01',
+    title: 'Venue Finder',
+    summary: 'AI-assisted venue discovery that replaced a 13-step brief builder.',
+    company: 'HeadBox',
+    district: 'HeadBox',
+    role: 'Sole product designer, team of 4 engineers · 2 months',
+    leadMetric: { value: '+33%', label: 'high-intent enquiries' },
+    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
+    system:
+      'Guests, hosts, Marketing and account managers · brief-to-lead workflow · AI parsing and automated routing of high-value briefs',
+    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
+    focus: ['marketplace', 'ai', 'b2c', 'strategy'],
+    existing: '13-step brief builder · 83% drop-off',
+    proposed: 'AI-assisted venue finder · 40% shorter journey',
+    href: `${LIVE_SITE}/venue-finder`,
+  },
+  {
+    id: 'hosthq',
+    number: '02',
+    title: 'HostHQ',
+    summary: 'Four siloed host products consolidated into one platform.',
+    company: 'HeadBox',
+    district: 'HeadBox',
+    role: 'Senior Product Designer · 3 months, discovery to release',
+    leadMetric: { value: '-28%', label: 'host churn (Q1)' },
+    supporting: ['55+ new One Platform clients in 3 months', '-25% navigation support tickets'],
+    system:
+      'Hosts, leadership, Sales and Support · four product lines reorganised around host workflows · proposals, dashboards and reporting in one place',
+    tags: ['B2B SaaS', 'Systems thinking', 'Information architecture', 'Product strategy', 'Platform design'],
+    focus: ['marketplace', 'saas', 'strategy'],
+    existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
+    proposed: 'One Platform',
+    href: `${LIVE_SITE}/hosthq`,
+  },
+  {
+    id: 'treeassist',
+    number: '03',
+    title: 'TreeAssist',
+    summary: 'AI-assisted onboarding that cut eight forms to three.',
+    company: 'Findmypast',
+    district: 'Findmypast',
+    role: 'Product Designer · 2 months, 2-week experiment cycles',
+    leadMetric: { value: '+18%', label: 'free-trial starts' },
+    supporting: ['+8% trial-to-subscription conversion', '-13% onboarding drop-off'],
+    system:
+      'PM, data science and engineering · sign-up to subscription funnel · record matching that replaced manual form entry',
+    tags: ['B2C Conversion', 'AI Products', 'Experiment design', 'Mobile first'],
+    focus: ['ai', 'b2c', 'strategy'],
+    existing: '8 onboarding forms · blank tree · 41% dropped off before value',
+    proposed: '3 forms + AI-suggested relatives',
+    href: `${LIVE_SITE}/tree-assist`,
+  },
+]
+
+export const capabilities = [
+  'Systems thinking',
+  'Commercial sense',
+  'Facilitation',
+  'Research → vision',
+  'Data-led decisions',
+]
+
+export interface Principle {
+  number: string
+  title: string
+  body: string
+  evidence: { source: string; text: string }[]
+}
+
+export const principles: Principle[] = [
+  {
+    number: '0',
+    title: 'Design the system, not the project in isolation.',
+    body: "I map the workflows, teams, processes and touch points around a product before designing screens, and automate the steps people shouldn't be doing by hand.",
+    evidence: [
+      { source: 'HostHQ', text: "Reorganised four separately built host products around the way hosts actually work, instead of HeadBox's internal product lines." },
+      { source: 'Venue Finder', text: 'Designed both ends of the brief-to-lead workflow, including automated routing of high-value briefs to account managers.' },
+      { source: 'CV', text: 'Launch in a New City: AI research agents and operational tooling cut launch planning from over 12 weeks to 2.' },
+    ],
+  },
+  {
+    number: '1',
+    title: 'Design with commercial sense.',
+    body: "I treat revenue, retention and marketplace health as design constraints, not someone else's problem.",
+    evidence: [
+      { source: 'Venue Finder', text: 'Spotted that marketing KPIs rewarded brief volume over intent, and introduced a new sponsored-placement revenue model.' },
+      { source: 'HostHQ', text: "Reframed the platform around hosts' revenue and ROI visibility; 55+ new One Platform clients in 3 months." },
+      { source: 'CV', text: 'Gift Subscription MVP, over £500k in first-year revenue.' },
+    ],
+  },
+  {
+    number: '2',
+    title: 'Facilitate and ideate with groups.',
+    body: 'I bring customers, leadership and engineering into the same room and leave with a decision.',
+    evidence: [
+      { source: 'HostHQ', text: 'Ran interactive focus groups with host customers across venue types, and aligned the CEO, CTO, Head of Marketing and Head of Venue Sales on one consolidation strategy.' },
+      { source: 'CV', text: 'Facilitated cross-functional product planning with Product, Engineering and Commercial leadership at HeadBox.' },
+    ],
+  },
+  {
+    number: '3',
+    title: 'Turn research into product vision.',
+    body: 'I go to users first, and the vision comes out of what they actually need.',
+    evidence: [
+      { source: 'Venue Finder', text: 'Interviewed 10 event bookers, found every brief hinged on one non-negotiable requirement, and built the product hypothesis around it.' },
+      { source: 'HostHQ', text: 'Research showed HeadBox was a peripheral lead channel for hosts, which reframed the whole platform vision.' },
+      { source: 'CV', text: "Set up HeadBox's first continuous research programme in over four years." },
+    ],
+  },
+  {
+    number: '4',
+    title: 'Use data to make design and product decisions.',
+    body: 'I run experiments, read the results honestly, and change course when the data says so.',
+    evidence: [
+      { source: 'Venue Finder', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%), so V2 made the prompt optional and softened sign-up, and it shipped.' },
+      { source: 'TreeAssist', text: 'Three onboarding experiments in two-week cycles, aimed at the 41% of new users who left before reaching value.' },
+      { source: 'CV', text: '5× free-trial conversion at Findmypast through behavioural analysis and A/B testing.' },
+    ],
+  },
+]
+
+export const revisions = [
+  { rev: 'D', date: 'Jan 2026', role: 'Senior Product Designer', company: 'HeadBox, London' },
+  { rev: 'C', date: 'Apr 2025', role: 'Product Designer', company: 'HeadBox, London' },
+  { rev: 'B', date: 'Apr 2023', role: 'Product Designer', company: 'Findmypast, London' },
+  { rev: 'A', date: 'Jan 2022', role: 'Junior Product Designer', company: 'Findmypast, London' },
+  { rev: '—', date: '2016–20', role: 'BSc Architecture', company: 'University of Bath' },
+]
+
+// Placeholder figures until Ashni uploads real photos and sketches.
+export const fieldNotes = [
+  { fig: '01', group: 'Portrait', caption: 'FIG. 01 · ASHNI · PHOTO TO COME', ratio: '4 / 5' },
+  { fig: '02', group: 'Sketchbook', caption: 'FIG. 02 · ANIMAL SKETCH · TO COME', ratio: '1 / 1' },
+  { fig: '04', group: 'Sketchbook', caption: 'FIG. 04 · SKETCHBOOK SPREAD · TO COME', ratio: '3 / 2' },
+  { fig: '05', group: 'Concerts', caption: 'FIG. 05 · PERFORMING · TO COME', ratio: '3 / 2' },
+  { fig: '07', group: 'Travel', caption: 'FIG. 07 · SUMMIT · TO COME', ratio: '4 / 5' },
+  { fig: '08', group: 'Travel', caption: 'FIG. 08 · EVEREST BASE CAMP · TO COME', ratio: '3 / 2' },
+]
+
+export const contact = {
+  email: 'ashni.dave111@gmail.com',
+  // Set these once confirmed; links render only when present.
+  linkedin: '',
+  resume: '',
+}

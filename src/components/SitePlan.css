@@ -1,0 +1,178 @@
+.plan {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  cursor: crosshair;
+  fill: none;
+  stroke-linecap: square;
+}
+
+.plan text {
+  fill: var(--ink);
+  stroke: none;
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-mono);
+}
+
+.plan__label {
+  font-size: 12px;
+  font-weight: 500;
+}
+.plan__tiny {
+  font-size: 10px;
+  fill: var(--graphite) !important;
+}
+.plan__name {
+  font-size: 14px;
+  font-weight: 500;
+}
+.plan__metric {
+  font-size: 13px;
+  font-weight: 500;
+  fill: var(--marker) !important;
+}
+
+.plan--portrait .plan__label,
+.plan--portrait .plan__name {
+  font-size: 15px;
+}
+.plan--portrait .plan__metric {
+  font-size: 14px;
+}
+.plan--portrait .plan__tiny {
+  font-size: 12px;
+}
+
+/* District boundaries: chain line, like a site boundary */
+.plan__district rect {
+  stroke: var(--ink);
+  stroke-width: var(--line-thin);
+  stroke-dasharray: 14 4 2 4;
+}
+
+.plan__road line {
+  stroke: var(--graphite);
+  stroke-width: var(--line-thin);
+}
+
+.plan__north circle {
+  stroke: var(--ink);
+  stroke-width: var(--line-thin);
+}
+.plan__north path {
+  fill: var(--ink);
+}
+
+.plan__phase2-outline {
+  stroke: var(--graphite);
+  stroke-width: var(--line-thin);
+  stroke-dasharray: 4 4;
+}
+.plan__phase2-label {
+  paint-order: stroke;
+  stroke: var(--paper) !important;
+  stroke-width: 6px;
+}
+
+.plan__hatch-line {
+  stroke: var(--marker);
+  stroke-width: 1.5;
+}
+.plan__hatch-line--grey {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+/* ---------- Buildings ---------- */
+
+.plan__building {
+  outline: none;
+  transition: opacity var(--dur-state) var(--ease-pen);
+}
+
+.plan__hit {
+  fill: transparent;
+  stroke: none;
+}
+.plan__building:focus-visible .plan__hit {
+  stroke: var(--marker);
+  stroke-width: 2;
+}
+
+.plan__hatch {
+  stroke: none;
+  opacity: 0;
+  transition: opacity var(--dur-state) var(--ease-pen);
+}
+.plan__hatch {
+  fill-opacity: 0.35;
+}
+
+/* Existing: what I found. Dashed graphite. */
+.plan__existing rect,
+.plan__existing line {
+  stroke: var(--graphite);
+  stroke-width: var(--line-thin);
+  stroke-dasharray: 4 4;
+}
+.plan__existing {
+  transition: opacity var(--dur-state) var(--ease-pen);
+}
+
+/* Proposed: what shipped. Solid ink, drawn on with stroke-dashoffset. */
+.plan__proposed :is(rect, line, path, circle) {
+  stroke: var(--ink);
+  stroke-width: var(--line-building);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition:
+    stroke-dashoffset var(--dur-signature) var(--ease-pen),
+    stroke-width var(--dur-micro) var(--ease-pen);
+  animation: plan-draw 800ms var(--ease-pen) backwards;
+  animation-delay: calc(200ms + var(--i, 0) * 180ms);
+}
+.plan__node {
+  fill: var(--paper);
+}
+
+@keyframes plan-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Mode: existing */
+.plan[data-mode='existing'] .plan__proposed :is(rect, line, path, circle) {
+  stroke-dashoffset: 1;
+  transition-duration: calc(var(--dur-signature) * 0.6), var(--dur-micro);
+}
+.plan[data-mode='existing'] .plan__node {
+  fill-opacity: 0;
+}
+
+/* Mode: proposed keeps a faint ghost of what was there */
+.plan[data-mode='proposed'] .plan__existing {
+  opacity: 0.18;
+}
+
+/* Hover or focus: pen weight goes from 1.5 to 3 */
+.plan__building[data-hovered='true'] .plan__proposed :is(rect, line, path, circle) {
+  stroke-width: var(--line-cut);
+}
+.plan__building[data-hovered='true'] .plan__existing :is(rect, line) {
+  stroke: var(--ink);
+}
+
+/* Filter: matches get a blue hatch, others drop back to graphite */
+.plan__building[data-match='true'] .plan__hatch {
+  opacity: 1;
+}
+.plan[data-filtered='true'] .plan__building[data-match='false'] {
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan__proposed :is(rect, line, path, circle) {
+    animation: none;
+  }
+}
