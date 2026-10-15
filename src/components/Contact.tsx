@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { contact } from '../data/content'
+import { availability, contact } from '../data/content'
 import { SheetLabel } from './SheetLabel'
 import './Contact.css'
 
@@ -31,8 +31,7 @@ export function Contact() {
         <div className="contact__body">
           <p>Have a product challenge worth untangling? I'd love to hear about it.</p>
           <p>
-            <strong>I'm looking for a permanent senior product design role in Sydney, with visa sponsorship.</strong>{' '}
-            I'm also open to remote roles and selected consulting projects.
+            <strong>{availability.headline}</strong> {availability.detail}
           </p>
         </div>
 

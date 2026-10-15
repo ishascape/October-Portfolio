@@ -22,7 +22,7 @@ export interface CaseStudy {
   tags: string[]
   existing: string
   proposed: string
-  href: string
+  slug: string // URL path, kept identical to the old site's
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 40% shorter journey',
-    href: '#/work/venue-finder',
+    slug: 'venue-finder',
   },
   {
     id: 'hosthq',
@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ['B2B SaaS', 'Systems thinking', 'Information architecture', 'Product strategy', 'Platform design'],
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
-    href: '#/work/hosthq',
+    slug: 'hosthq',
   },
   {
     id: 'treeassist',
@@ -75,7 +75,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ['B2C Conversion', 'AI Products', 'Experiment design', 'Mobile first'],
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
-    href: '#/work/treeassist',
+    slug: 'tree-assist',
   },
 ]
 
@@ -203,6 +203,13 @@ export const fieldNotes: FieldNote[] = [
   { fig: '07', group: 'Travel', caption: 'Fig. 07. Summit, to come', ratio: '4 / 5' },
   { fig: '08', group: 'Travel', caption: 'Fig. 08. Everest Base Camp, to come', ratio: '3 / 2' },
 ]
+
+// Ashni, 15 Oct 2026: no mention of visa sponsorship; permanent senior roles first, contracts too.
+export const availability = {
+  headline: "I'm open to permanent Senior Product Designer roles.",
+  detail: "I'm also open to contracts.",
+  short: 'Open to permanent senior roles and contracts',
+}
 
 export const contact = {
   email: 'ashni.dave111@gmail.com',

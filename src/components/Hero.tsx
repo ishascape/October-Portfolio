@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { capabilities, caseStudies, contact, type CaseStudyId } from '../data/content'
+import { availability, capabilities, caseStudies, contact, type CaseStudyId } from '../data/content'
 import { SitePlan, type PlanMode } from './SitePlan'
 import { DetailSheet } from './DetailSheet'
 import { ModeSwitch } from './ModeSwitch'
@@ -119,7 +119,7 @@ export function Hero() {
               </div>
               <div>
                 <dt className="visually-hidden">Location and availability</dt>
-                <dd>Sydney, Australia · Seeking a permanent role (visa sponsorship) · Remote considered</dd>
+                <dd>Sydney, Australia · {availability.short}</dd>
               </div>
               <div className="title-block__rev">
                 <dt className="visually-hidden">Revision</dt>

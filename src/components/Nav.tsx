@@ -1,3 +1,4 @@
+import { sectionHref } from '../links'
 import { useEffect, useRef, useState } from 'react'
 import { contact } from '../data/content'
 import './Nav.css'
@@ -9,7 +10,7 @@ const sections = [
   { id: 'contact', sheet: '03', label: 'Contact', inBar: true },
 ]
 
-export function Nav({ route }: { route: string }) {
+export function Nav({ onHome }: { onHome: boolean }) {
   const [current, setCurrent] = useState('top')
   const menu = useRef<HTMLDialogElement>(null)
 
@@ -27,12 +28,12 @@ export function Nav({ route }: { route: string }) {
       if (el) io.observe(el)
     }
     return () => io.disconnect()
-  }, [route])
+  }, [onHome])
 
   return (
     <header className="nav">
       <div className="container nav__inner">
-        <a className="nav__name" href="#top">
+        <a className="nav__name" href={sectionHref('top', onHome)}>
           Ashni Dave
         </a>
 
@@ -42,7 +43,7 @@ export function Nav({ route }: { route: string }) {
               .filter((s) => s.inBar)
               .map((s) => (
                 <li key={s.id}>
-                  <a href={`#${s.id}`} aria-current={current === s.id ? 'location' : undefined}>
+                  <a href={sectionHref(s.id, onHome)} aria-current={current === s.id ? 'location' : undefined}>
                     {s.label}
                   </a>
                 </li>
@@ -80,7 +81,7 @@ export function Nav({ route }: { route: string }) {
           <ol>
             {sections.map((s) => (
               <li key={s.id}>
-                <a href={`#${s.id}`}>
+                <a href={sectionHref(s.id, onHome)}>
                   <span className="label">{s.sheet}</span>
                   {s.label}
                 </a>

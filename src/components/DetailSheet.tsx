@@ -1,3 +1,4 @@
+import { caseHref } from '../links'
 import { useEffect, useRef } from 'react'
 import type { CaseStudy } from '../data/content'
 import './DetailSheet.css'
@@ -69,7 +70,7 @@ export function DetailSheet({ study, onClose }: DetailSheetProps) {
             </div>
           </dl>
 
-          <a className="button button--primary sheet__cta" href={study.href}>
+          <a className="button button--primary sheet__cta" href={caseHref(study.slug)}>
             Read case study <span aria-hidden="true">→</span>
           </a>
         </div>

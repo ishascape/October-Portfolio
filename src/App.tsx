@@ -5,13 +5,16 @@ import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { CaseStudy } from './components/CaseStudy'
-import { useRoute } from './useRoute'
 import { useSheetStack } from './useSheetStack'
 import { SketchDefs } from './components/Sketch'
+import { caseStudies } from './data/content'
+import type { Page } from './links'
 
-export function App() {
-  const route = useRoute()
-  useSheetStack([route])
+// Each page is its own HTML file (pre-rendered at build time), so crawlers and AI tools
+// read the full content without running any JavaScript.
+export function App({ page }: { page: Page }) {
+  useSheetStack([page])
+  const study = page === 'home' ? undefined : caseStudies.find((s) => s.slug === page.caseSlug)
 
   return (
     <>
@@ -19,11 +22,11 @@ export function App() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <Nav route={route.page} />
+      <Nav onHome={!study} />
       <main id="main">
-        {route.page === 'case' ? (
+        {study ? (
           <>
-            <CaseStudy key={route.id} id={route.id} />
+            <CaseStudy id={study.id} />
             <Contact />
           </>
         ) : (
@@ -35,7 +38,7 @@ export function App() {
           </>
         )}
       </main>
-      <Footer />
+      <Footer onHome={!study} />
     </>
   )
 }

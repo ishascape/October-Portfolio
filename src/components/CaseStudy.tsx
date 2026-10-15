@@ -1,3 +1,4 @@
+import { caseHref, homeHref } from '../links'
 import { useState } from 'react'
 import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
@@ -19,7 +20,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       <header className="case__header">
         <div className="container">
           <p className="label case__sheet">
-            <a href="#work">← Selected work</a>
+            <a href={homeHref('#work')}>← Selected work</a>
             <span>Drawing {study.number} · Case study</span>
           </p>
 
@@ -138,7 +139,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
 
       <nav className="case__next" aria-label="Next case study">
         <div className="container">
-          <a href={next.href} className="case__next-link">
+          <a href={caseHref(next.slug)} className="case__next-link">
             <PartiTransition from={id} to={next.id} />
             <span className="case__next-text">
               <span className="label">Next · Drawing {next.number}</span>

@@ -1,3 +1,4 @@
+import { caseHref } from '../links'
 import { caseStudies } from '../data/content'
 import { SheetLabel } from './SheetLabel'
 import './Work.css'
@@ -25,7 +26,7 @@ export function Work() {
                     {s.number} · {s.company}
                   </p>
                   <h3 id={`card-${s.id}`} className="card__title">
-                    <a href={s.href} className="card__link">
+                    <a href={caseHref(s.slug)} className="card__link">
                       {s.title}
                     </a>
                   </h3>

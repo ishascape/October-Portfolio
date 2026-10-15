@@ -1,6 +1,7 @@
+import { sectionHref } from '../links'
 import './Footer.css'
 
-export function Footer() {
+export function Footer({ onHome }: { onHome: boolean }) {
   return (
     <footer className="footer">
       <div className="container">
@@ -9,16 +10,16 @@ export function Footer() {
           <nav aria-label="Sheet index">
             <ul className="footer__index">
               <li>
-                <a href="#top">00 Site plan</a>
+                <a href={sectionHref('top', onHome)}>00 Site plan</a>
               </li>
               <li>
-                <a href="#work">01 Work</a>
+                <a href={sectionHref('work', onHome)}>01 Work</a>
               </li>
               <li>
-                <a href="#about">02 About</a>
+                <a href={sectionHref('about', onHome)}>02 About</a>
               </li>
               <li>
-                <a href="#contact">03 Contact</a>
+                <a href={sectionHref('contact', onHome)}>03 Contact</a>
               </li>
             </ul>
           </nav>
