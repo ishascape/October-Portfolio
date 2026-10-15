@@ -166,6 +166,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       {
         label: '01 · Research',
         heading: 'HeadBox was a peripheral lead channel, not the hosts’ operating system.',
+        eyebrow: 'Research insight',
         body: [
           'I ran interactive focus groups across venue types. Hosts wanted clear growth signals and ROI visibility, not more features.',
           'Revenue clarity became the primary goal, shaping the consolidation strategy.',
