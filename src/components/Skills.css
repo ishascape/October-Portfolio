@@ -14,7 +14,7 @@
 .skill {
   position: relative;
   display: grid;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 72px 1fr;
   gap: var(--space-1) var(--space-3);
   align-items: start;
 }
@@ -58,7 +58,7 @@
   }
   .skill__parti {
     grid-row: auto;
-    max-width: 180px;
+    max-width: 120px;
     margin-bottom: calc(24px - var(--space-1)); /* 24px from drawing to title, with the row gap */
   }
 }
