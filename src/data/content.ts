@@ -207,7 +207,7 @@ export const fieldNotes: FieldNote[] = [
   {
     fig: '06',
     group: 'Sketchbook',
-    caption: 'Fig. 06. Silverback gorilla, drawn on the flight back home',
+    caption: 'Fig. 06. Silverback gorilla, drawn on the flight back from gorilla trekking in Rwanda',
     ratio: '3 / 4',
     src: gorilla,
     alt: 'A hand holding a sketchbook on a plane tray table, open to a ballpoint pen drawing of a silverback gorilla.',
