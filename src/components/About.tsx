@@ -1,7 +1,6 @@
 import { education, fieldNotes, principles, revisions } from '../data/content'
 import { SheetLabel } from './SheetLabel'
 import { PrincipleParti } from './PrinciplePartis'
-import { SystemsDiagram } from './SystemsDiagram'
 import './About.css'
 
 export function About() {
@@ -33,8 +32,6 @@ export function About() {
             </p>
           </div>
         </div>
-
-        <SystemsDiagram />
 
         <h3 id="design-ethos" className="label about__subhead">
           Design ethos

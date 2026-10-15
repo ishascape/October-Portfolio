@@ -5,6 +5,7 @@ import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
 import { ModeSwitch } from './ModeSwitch'
 import { PartiTransition } from './Parti'
+import { SystemsDiagram } from './SystemsDiagram'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -134,6 +135,11 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
+          {s.diagram && (
+            <div className="container case__diagram">
+              <SystemsDiagram />
+            </div>
+          )}
         </section>
       ))}
 

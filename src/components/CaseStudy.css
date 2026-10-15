@@ -292,3 +292,7 @@
     gap: var(--gutter);
   }
 }
+
+.case__diagram {
+  padding-bottom: var(--space-4);
+}

@@ -23,6 +23,7 @@ export interface Section {
   list?: { title?: string; text: string }[]
   experiments?: Experiment[]
   figure?: string // placeholder caption until real images arrive
+  diagram?: boolean // the animated systems diagram, shown full width under the section
 }
 
 export interface CaseStudyPage {
@@ -116,9 +117,18 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '05 · Reflections',
         heading: 'Disruption is a learning tool when framed in economics.',
         list: [
-          { title: 'The challenges', text: 'Executive attachment to Lead Feed, volume-based marketing KPIs, limited recommendation quality.' },
-          { title: 'What worked', text: 'Marketplace-economics framing, explicit trade-offs, letting experiments decide.' },
-          { title: 'Next', text: 'Conversion-weighted ranking, shortlist-first flow for repeat users, agent-assisted city launch mode, separate marketing-volume and marketplace-health metrics.' },
+          {
+            title: 'The challenges',
+            text: 'Executive attachment to Lead Feed, volume-based marketing KPIs, limited recommendation quality.',
+          },
+          {
+            title: 'What worked',
+            text: 'Marketplace-economics framing, explicit trade-offs, letting experiments decide.',
+          },
+          {
+            title: 'Next',
+            text: 'Conversion-weighted ranking, shortlist-first flow for repeat users, agent-assisted city launch mode, separate marketing-volume and marketplace-health metrics.',
+          },
         ],
       },
     ],
@@ -127,8 +137,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
   hosthq: {
     id: 'hosthq',
     kicker: 'HeadBox · Supply side',
-    subtitle:
-      'Consolidating supply workflows and performance visibility to lift retention and cross-product adoption.',
+    subtitle: 'Consolidating supply workflows and performance visibility to lift retention and cross-product adoption.',
     meta: [
       { label: 'Role', value: 'Senior Product Designer: design strategy, execution, IA and workflow redesign' },
       { label: 'Stakeholders', value: 'Platform clients, CEO, CTO, Head of Marketing, Head of Venue Sales' },
@@ -164,6 +173,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { text: 'Build modular architecture ready for automation, AI and integrations.' },
         ],
         figure: 'Before and after information architecture',
+        diagram: true,
       },
       {
         label: '03 · The MVP',
@@ -172,7 +182,10 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'With three months before peak season, I prioritised structure over completeness: unified navigation and IA, consolidated workflows, action-led dashboards and a stronger proposal builder as the core revenue lever.',
         ],
         list: [
-          { title: '3D Studio', text: 'Legacy dependencies blocked integration. Embedded in the proposal flow; migration deferred.' },
+          {
+            title: '3D Studio',
+            text: 'Legacy dependencies blocked integration. Embedded in the proposal flow; migration deferred.',
+          },
           { title: 'Reporting', text: 'Needed a data clean-up first. Shipped marketplace reporting only.' },
           { title: 'Performance', text: 'Data migration slowed v1 load times for large-dataset hosts.' },
           { title: 'Mobile', text: 'Desktop-only MVP; hosts work primarily on desktop.' },
@@ -260,9 +273,18 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '03 · Trade-offs',
         heading: 'Momentum over completeness.',
         list: [
-          { title: 'Activation over data completeness', text: 'Fewer upfront steps meant less profile data short term.' },
-          { title: 'Record availability', text: 'Suggestions relied on historical record matches; best for British ancestry.' },
-          { title: 'Advanced users', text: 'Experienced genealogists reached advanced search and editing more slowly.' },
+          {
+            title: 'Activation over data completeness',
+            text: 'Fewer upfront steps meant less profile data short term.',
+          },
+          {
+            title: 'Record availability',
+            text: 'Suggestions relied on historical record matches; best for British ancestry.',
+          },
+          {
+            title: 'Advanced users',
+            text: 'Experienced genealogists reached advanced search and editing more slowly.',
+          },
         ],
       },
       {
