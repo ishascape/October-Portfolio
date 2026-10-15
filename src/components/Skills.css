@@ -1,0 +1,82 @@
+.skills {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.skill {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--space-1) var(--space-3);
+  align-items: start;
+  padding: var(--space-3);
+  border: var(--line-thin) solid var(--rule);
+  outline-offset: 3px;
+}
+.skill__parti {
+  grid-row: span 2;
+}
+.skill__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.skill__points {
+  display: grid;
+  gap: 2px;
+  font-size: 15px;
+  color: var(--graphite);
+}
+.skill__points li {
+  position: relative;
+  padding-left: var(--space-3);
+}
+.skill__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border: 1.25px solid var(--ink);
+}
+
+/* On screens that can hover, the drawing leads and the skills draw in underneath it. */
+@media (hover: hover) and (min-width: 600px) {
+  .skills {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+  }
+  .skill {
+    grid-template-columns: 1fr;
+    align-content: start;
+    border-color: transparent;
+    transition: border-color var(--dur-micro) var(--ease-pen);
+  }
+  .skill__parti {
+    grid-row: auto;
+    max-width: 180px;
+  }
+  .skill__points {
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      opacity var(--dur-state) var(--ease-pen),
+      transform var(--dur-state) var(--ease-pen);
+  }
+  .skill:hover,
+  .skill:focus-visible {
+    border-color: var(--ink);
+  }
+  .skill:hover .skill__points,
+  .skill:focus-visible .skill__points,
+  .skill:focus-within .skill__points {
+    opacity: 1;
+    transform: none;
+  }
+  .skill:hover .parti [pathLength],
+  .skill:focus-visible .parti [pathLength] {
+    stroke-dasharray: 1;
+    animation: parti-draw 700ms var(--ease-pen) backwards;
+  }
+}

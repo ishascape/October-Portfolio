@@ -8,7 +8,7 @@ export function Work() {
       <div className="container">
         <SheetLabel sheet="01 / 03" title="Selected work" />
         <h2 id="work-heading" className="display work__heading">
-          Three products, one habit: design the system first, then the surface.
+          Form follows function: design the system first.
         </h2>
 
         <ol className="work__list">

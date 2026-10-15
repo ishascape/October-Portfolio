@@ -154,6 +154,38 @@ body::after {
   cursor: pointer;
   transition: background-color var(--dur-micro) var(--ease-pen), color var(--dur-micro) var(--ease-pen);
 }
+/* Hover: the same registration corners as the cards, in a lighter grey. */
+.button {
+  position: relative;
+}
+.button::before,
+.button::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-micro) var(--ease-pen);
+}
+.button::before {
+  top: -6px;
+  left: -6px;
+  border-top: var(--line-building) solid rgb(97 94 88 / 0.45);
+  border-left: var(--line-building) solid rgb(97 94 88 / 0.45);
+}
+.button::after {
+  bottom: -6px;
+  right: -6px;
+  border-bottom: var(--line-building) solid rgb(97 94 88 / 0.45);
+  border-right: var(--line-building) solid rgb(97 94 88 / 0.45);
+}
+.button:hover::before,
+.button:hover::after,
+.button:focus-visible::before,
+.button:focus-visible::after {
+  opacity: 1;
+}
 .button--primary {
   background: var(--ink);
   color: var(--paper);

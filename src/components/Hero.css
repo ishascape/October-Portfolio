@@ -23,6 +23,27 @@
   margin-bottom: var(--space-5);
 }
 
+.hero__portrait {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 420px;
+}
+.hero__portrait-frame {
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 4 / 5;
+  padding: var(--space-3);
+  border: var(--line-thin) dashed var(--graphite);
+  background: var(--paper-shade);
+  color: var(--graphite);
+}
+.hero__portrait figcaption {
+  color: var(--graphite);
+}
+.hero__skills {
+  margin-top: var(--space-4);
+}
+
 .hero__support {
   display: grid;
   gap: var(--space-4);
@@ -189,12 +210,26 @@
     align-items: end;
     gap: var(--space-5) var(--gutter);
   }
+  .hero__intro {
+    grid-template-areas:
+      'title portrait'
+      'support portrait'
+      'skills skills';
+    align-items: start;
+  }
   .hero__intro h1 {
-    grid-column: 1 / -1;
-    max-width: 16ch;
+    grid-area: title;
+  }
+  .hero__portrait {
+    grid-area: portrait;
+    justify-self: end;
+    width: 100%;
   }
   .hero__support {
-    grid-column: 2;
+    grid-area: support;
+  }
+  .hero__skills {
+    grid-area: skills;
   }
   .hero__intro {
     margin-bottom: var(--space-4);

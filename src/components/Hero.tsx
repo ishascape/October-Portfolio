@@ -3,6 +3,7 @@ import { capabilities, caseStudies, contact, type CaseStudyId } from '../data/co
 import { SitePlan, type PlanMode } from './SitePlan'
 import { DetailSheet } from './DetailSheet'
 import { ModeSwitch } from './ModeSwitch'
+import { Skills } from './Skills'
 import './Hero.css'
 
 export function Hero() {
@@ -35,8 +36,14 @@ export function Hero() {
 
         <div className="hero__intro">
           <h1 id="hero-heading" className="display">
-            I design coherent, scalable products for complex businesses.
+            I design coherent &amp; scalable products for complex businesses.
           </h1>
+          <figure className="hero__portrait">
+            <div className="hero__portrait-frame" aria-hidden="true">
+              <span className="label">Photo of Ashni to come</span>
+            </div>
+            <figcaption className="annotation">Fig. 00. Ashni Dave, Sydney</figcaption>
+          </figure>
           <div className="hero__support">
             <p>
               Senior Product Designer for B2B SaaS, marketplaces and AI products. I design the system around a
@@ -60,6 +67,9 @@ export function Hero() {
                 </a>
               )}
             </div>
+          </div>
+          <div className="hero__skills">
+            <Skills />
           </div>
         </div>
 
