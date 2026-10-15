@@ -1,44 +1,246 @@
+/* ---------- Title sheet ----------
+   Laid out like the legend panel on an architectural drawing: a ruled frame, small field
+   labels over each value, a key plan with a north point, and a sign-off box. */
 .footer {
-  padding-bottom: var(--space-5);
-}
-.footer__block {
-  display: grid;
-  border: var(--line-thin) solid var(--ink);
-  background: var(--paper-shade);
-}
-.footer__block > * {
-  padding: var(--space-3);
-}
-.footer__block > * + * {
+  position: relative;
+  padding-block: var(--space-6) var(--space-5);
+  background: var(--paper);
   border-top: var(--line-thin) solid var(--ink);
 }
-.footer__index {
+
+.titlesheet {
+  display: grid;
+  border: var(--line-building) solid var(--ink);
+  outline: var(--line-thin) solid var(--ink);
+  outline-offset: 4px; /* the double border of a drawing frame */
+  background: var(--paper-shade);
+}
+
+.titlesheet__field {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.titlesheet__plan {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+
+.titlesheet__key {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1) var(--space-4);
 }
-.footer__index a {
-  display: inline-block;
-  padding-block: var(--space-2);
-  text-decoration: none;
+.titlesheet__key li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
 }
-.footer__index a:hover {
+.titlesheet__key svg {
+  width: 24px;
+  height: 12px;
+  overflow: visible;
+}
+
+.keyplan {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--paper);
+}
+.keyplan__coast {
+  stroke: var(--ink);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+}
+.keyplan__hatch {
+  stroke: rgb(28 27 25 / 0.28);
+  stroke-width: 0.75;
+}
+.keyplan__grid {
+  stroke: var(--rule);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 4;
+}
+.keyplan__road {
+  fill: none;
+  stroke: var(--graphite);
+  stroke-width: 0.9;
+  stroke-dasharray: 6 3;
+}
+.keyplan__block {
+  fill: rgb(28 27 25 / 0.12);
+  stroke: var(--ink);
+  stroke-width: 0.75;
+}
+.keyplan__frame {
+  fill: none;
+  stroke: var(--ink);
+}
+.keyplan__ref,
+.keyplan__label,
+.keyplan__north text,
+.keyplan__scale text {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  fill: var(--ink);
+}
+.keyplan__ref {
+  fill: var(--graphite);
+  letter-spacing: 0;
+}
+.keyplan__north circle,
+.keyplan__north path {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+.keyplan__north .keyplan__north-fill {
+  fill: var(--ink);
+}
+.keyplan__north text {
+  text-anchor: middle;
+  font-size: 11px;
+  font-weight: 600;
+}
+.keyplan__scale path {
+  fill: none;
+  stroke: var(--ink);
+}
+.keyplan__scale text {
+  letter-spacing: 0.04em;
+}
+.keyplan__pin {
+  fill: var(--marker);
+  stroke: var(--paper);
+  stroke-width: 1;
+}
+.keyplan__pin-dot {
+  fill: var(--paper);
+}
+.keyplan__leader {
+  stroke: var(--ink);
+  stroke-width: 0.75;
+}
+.keyplan__label--pin {
+  font-weight: 600;
+}
+
+.titlesheet__legend {
+  display: grid;
+  margin: 0;
+}
+.titlesheet__legend dd {
+  margin: 0;
+}
+.titlesheet__row {
+  padding: var(--space-2) var(--space-3);
+}
+.titlesheet__row + .titlesheet__row {
+  border-top: var(--line-thin) solid var(--ink);
+}
+.titlesheet__name {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.titlesheet__legend a {
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.titlesheet__legend a:hover {
   color: var(--marker);
+  text-decoration-color: currentColor;
 }
-.footer__rev {
+
+/* Rows split into ruled cells, like the boxes of a title block. */
+.titlesheet__row--split,
+.titlesheet__row--meta {
+  display: grid;
+  padding: 0;
+}
+.titlesheet__row--split {
+  grid-template-columns: 1fr;
+}
+.titlesheet__row--split > div,
+.titlesheet__row--meta > div {
+  padding: var(--space-2) var(--space-3);
+}
+.titlesheet__row--split > div + div {
+  border-top: var(--line-thin) solid var(--ink);
+}
+.titlesheet__row--meta {
+  grid-template-columns: repeat(4, 1fr);
+}
+.titlesheet__row--meta > div + div {
+  border-left: var(--line-thin) solid var(--ink);
+}
+
+.titlesheet__index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+}
+.titlesheet__index a {
+  display: inline-block;
+  padding-block: var(--space-1);
+}
+
+.titlesheet__row--sign dd {
+  display: grid;
+  gap: 2px;
+}
+.titlesheet__signature {
+  font-family: var(--font-hand);
+  font-size: 34px;
+  line-height: 1;
+  padding-bottom: 2px;
+  border-bottom: var(--line-thin) solid var(--ink);
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+  width: max-content;
+  min-width: 60%;
+}
+.titlesheet__signatory {
+  font-weight: 600;
+}
+.titlesheet__title {
+  font-weight: 400;
   color: var(--graphite);
 }
 
-@media (min-width: 1024px) {
-  .footer__block {
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+.footer__copy {
+  margin-top: var(--space-3);
+  color: var(--graphite);
+}
+
+@media (min-width: 600px) {
+  .titlesheet__row--split {
+    grid-template-columns: 1fr 1fr;
   }
-  .footer__block > * + * {
+  .titlesheet__row--split > div + div {
     border-top: 0;
     border-left: var(--line-thin) solid var(--ink);
   }
-  .footer__rev {
-    text-align: right;
+}
+
+@media (min-width: 900px) {
+  .titlesheet {
+    grid-template-columns: 7fr 5fr;
+  }
+  .titlesheet__plan {
+    border-bottom: 0;
+    border-right: var(--line-thin) solid var(--ink);
   }
 }

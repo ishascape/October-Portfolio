@@ -1,4 +1,4 @@
-import { availability, capabilities, contact } from '../data/content'
+import { capabilities, contact } from '../data/content'
 import { Skills } from './Skills'
 import portrait from '../assets/ashni-portrait.webp'
 import './Hero.css'
@@ -55,31 +55,6 @@ export function Hero() {
           <div className="hero__skills">
             <Skills />
           </div>
-        </div>
-
-        <div className="hero__footer">
-          <dl className="title-block label">
-            <div className="title-block__name">
-              <dt className="visually-hidden">Name</dt>
-              <dd>Ashni Dave</dd>
-            </div>
-            <div>
-              <dt className="visually-hidden">Role</dt>
-              <dd>Senior Product Designer</dd>
-            </div>
-            <div>
-              <dt className="visually-hidden">Location</dt>
-              <dd>{availability.location.replace(/\.$/, '')}</dd>
-            </div>
-            <div>
-              <dt className="visually-hidden">Availability</dt>
-              <dd>{availability.short}</dd>
-            </div>
-            <div className="title-block__rev">
-              <dt className="visually-hidden">Revision</dt>
-              <dd>Drawn 2026 · Rev E</dd>
-            </div>
-          </dl>
         </div>
       </div>
     </section>

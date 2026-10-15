@@ -81,34 +81,6 @@
 
 /* ---------- Title block ---------- */
 
-.hero__footer {
-  display: grid;
-}
-
-.title-block {
-  margin: 0;
-  border: var(--line-thin) solid var(--ink);
-  background: var(--paper-shade);
-}
-.title-block > div {
-  padding: var(--space-2) var(--space-3);
-}
-.title-block > div + div {
-  border-top: var(--line-thin) solid var(--ink);
-}
-.title-block dd {
-  margin: 0;
-}
-.title-block__name dd {
-  font-family: var(--font-sans);
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0;
-}
-.title-block__rev {
-  color: var(--graphite);
-}
-
 @media (min-width: 1024px) {
   .hero__intro {
     grid-template-columns: 7fr 5fr;
@@ -139,12 +111,5 @@
   }
   .hero__intro {
     margin-bottom: var(--space-4);
-  }
-  .hero__footer {
-    grid-template-columns: 7fr 5fr;
-    column-gap: var(--gutter);
-  }
-  .hero__footer .title-block {
-    grid-column: 2;
   }
 }

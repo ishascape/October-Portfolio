@@ -26,10 +26,9 @@ export function Contact() {
       <div className="container">
         <SheetLabel sheet="03 / 03" title="Contact" />
         <h2 id="contact-heading" className="display contact__heading">
-          Let's make the complicated feel obvious.
+          Got an interesting problem? Let's work together!
         </h2>
         <div className="contact__body">
-          <p>Got a complex product problem? Let's talk.</p>
           <p>
             <strong>{availability.headline}</strong> {availability.location}
           </p>
