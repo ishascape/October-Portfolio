@@ -291,7 +291,7 @@ function paperStyle(d: number, drag: number, dragging: boolean): CSSProperties {
 
 // Tools from Ashni's CV.
 const toolkit = [
-  { group: 'Design', tools: ['Figma'] },
+  { group: 'Design', tools: ['Figma', 'Sketch'] },
   { group: 'Research and testing', tools: ['Dovetail', 'Maze', 'Useberry', 'Hotjar'] },
   { group: 'Data', tools: ['PostHog', 'Looker'] },
   { group: 'Delivery', tools: ['Jira', 'Confluence', 'Notion'] },
