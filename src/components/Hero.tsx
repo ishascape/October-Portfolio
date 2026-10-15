@@ -123,7 +123,7 @@ export function Hero() {
               </div>
               <div className="title-block__rev">
                 <dt className="visually-hidden">Revision</dt>
-                <dd>Drawn 2026 · Rev D</dd>
+                <dd>Drawn 2026 · Rev E</dd>
               </div>
             </dl>
           </div>

@@ -147,10 +147,11 @@ export const principles: Principle[] = [
 ]
 
 export const revisions = [
-  { rev: 'D', date: 'Jan 2026', role: 'Senior Product Designer', company: 'HeadBox, London' },
-  { rev: 'C', date: 'Apr 2025', role: 'Product Designer', company: 'HeadBox, London' },
-  { rev: 'B', date: 'Apr 2023', role: 'Product Designer', company: 'Findmypast, London' },
-  { rev: 'A', date: 'Jan 2022', role: 'Junior Product Designer', company: 'Findmypast, London' },
+  { rev: 'E', date: 'Jan 2026', role: 'Senior Product Designer', company: 'HeadBox, London' },
+  { rev: 'D', date: 'Apr 2025', role: 'Product Designer', company: 'HeadBox, London' },
+  { rev: 'C', date: 'Apr 2023', role: 'Product Designer', company: 'Findmypast, London' },
+  { rev: 'B', date: 'Jan 2022', role: 'Junior Product Designer', company: 'Findmypast, London' },
+  { rev: 'A', date: 'Jun 2020–21', role: 'Sales and marketing', company: 'HealthCare Direct, Kenya' },
   { rev: '—', date: '2016–20', role: 'BSc Architecture', company: 'University of Bath' },
 ]
 
