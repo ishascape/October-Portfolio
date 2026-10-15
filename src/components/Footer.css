@@ -8,12 +8,26 @@
   border-top: var(--line-thin) solid var(--ink);
 }
 
+/* Printed as a blueprint: the palette flips to white linework on cyanotype blue, so every
+   rule below (and the key plan) picks it up through the same tokens. */
 .titlesheet {
+  --blueprint: #1d4e89;
+  --paper: var(--blueprint);
+  --paper-shade: var(--blueprint);
+  --ink: #f2f6fb;
+  --graphite: rgb(242 246 251 / 0.75);
+  --rule: rgb(242 246 251 / 0.45);
+  --marker: #ffffff;
   display: grid;
+  color: var(--ink);
   border: var(--line-building) solid var(--ink);
-  outline: var(--line-thin) solid var(--ink);
-  outline-offset: 4px; /* the double border of a drawing frame */
-  background: var(--paper-shade);
+  outline: 6px solid var(--blueprint); /* the blue margin round the drawing frame */
+  background-color: var(--blueprint);
+  background-image:
+    linear-gradient(rgb(242 246 251 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(242 246 251 / 0.07) 1px, transparent 1px);
+  background-size: 16px 16px;
+  margin: 6px;
 }
 
 .footer .titlesheet__field {
@@ -72,33 +86,33 @@
   stroke-linejoin: round;
 }
 .keyplan__hatch {
-  stroke: rgb(28 27 25 / 0.28);
+  stroke: rgb(242 246 251 / 0.35);
   stroke-width: 0.75;
 }
 /* Light topography: 20 m contours, every second one slightly heavier. */
 .keyplan__contour {
   fill: none;
-  stroke: rgb(97 94 88 / 0.22);
+  stroke: rgb(242 246 251 / 0.22);
   stroke-width: 0.6;
 }
 .keyplan__contour--index {
-  stroke: rgb(97 94 88 / 0.38);
+  stroke: rgb(242 246 251 / 0.38);
 }
 /* Suburb boundaries in a see-through grey. */
 .keyplan__suburbs {
   fill: none;
-  stroke: rgb(97 94 88 / 0.45);
+  stroke: rgb(242 246 251 / 0.45);
   stroke-width: 0.5;
   stroke-dasharray: 3 1.5;
 }
 .keyplan__suburb {
   font-family: var(--font-sans);
   font-size: 7px;
-  fill: rgb(97 94 88 / 0.85);
+  fill: rgb(242 246 251 / 0.85);
   text-anchor: middle;
 }
 .keyplan__grid {
-  stroke: rgb(28 27 25 / 0.18);
+  stroke: rgb(242 246 251 / 0.25);
   stroke-width: 0.75;
   stroke-dasharray: 2 4;
 }
