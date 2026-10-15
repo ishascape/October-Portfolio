@@ -17,7 +17,7 @@ export function About() {
             <span>A designer&rsquo;s eye.</span> <span>A business mind.</span>
           </h2>
           <div className="about__body">
-            <p>I trained as an architect at Bath. Turns out, I never stopped thinking like one.</p>
+            <p>I trained as an architect in the UK. Turns out, I never stopped thinking like one.</p>
             <p className="about__mantra">Understand the site. Question the brief. Design for the people who use it.</p>
             <p>
               Today, I apply that thinking to digital products — untangling complex workflows, connecting user needs
