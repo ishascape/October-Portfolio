@@ -87,9 +87,6 @@
 .hero__portrait figcaption {
   color: var(--graphite);
 }
-.hero__skills {
-  margin-top: var(--space-4);
-}
 
 .hero__support {
   display: grid;
@@ -145,9 +142,8 @@
   .hero__intro {
     grid-template-areas:
       'title portrait'
-      'support portrait'
-      'skills skills';
-    grid-template-rows: 1fr 1fr auto;
+      'support portrait';
+    grid-template-rows: 1fr 1fr;
     row-gap: 0;
   }
   .hero__title {
@@ -163,12 +159,6 @@
   .hero__support {
     grid-area: support;
     align-self: start;
-  }
-  .hero__skills {
-    margin-top: var(--space-6);
-  }
-  .hero__skills {
-    grid-area: skills;
   }
   .hero__intro {
     margin-bottom: var(--space-4);

@@ -1,5 +1,4 @@
 import { contact } from '../data/content'
-import { Skills } from './Skills'
 import portrait from '../assets/ashni-portrait.webp'
 import portraitSketch from '../assets/ashni-portrait-sketch.webp'
 import { revealAt, revealEnd } from './reveal'
@@ -68,9 +67,6 @@ export function Hero() {
                 </a>
               )}
             </div>
-          </div>
-          <div className="hero__skills">
-            <Skills />
           </div>
         </div>
       </div>

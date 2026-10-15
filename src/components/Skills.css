@@ -139,6 +139,7 @@
 /* Toolkit: small and to the point. */
 .toolkit {
   margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
 }
 .toolkit__list {
   display: grid;
