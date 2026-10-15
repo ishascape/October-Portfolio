@@ -123,7 +123,7 @@ export function Footer({ onHome }: { onHome: boolean }) {
                   </svg>
                 </span>
                 <span className="titlesheet__signatory">
-                  Ashni Dave <span className="titlesheet__title">[Lead Designer]</span>
+                  Ashni Dave <span className="titlesheet__title">[Project Lead]</span>
                 </span>
               </dd>
             </div>
