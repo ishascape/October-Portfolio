@@ -1,6 +1,7 @@
 import { education, fieldNotes, principles, revisions } from '../data/content'
 import { SheetLabel } from './SheetLabel'
 import { PrincipleParti } from './PrinciplePartis'
+import { DesignerSketch } from './DesignerSketch'
 import './About.css'
 
 export function About() {
@@ -30,6 +31,9 @@ export function About() {
             <p className="about__note">
               And this portfolio? Designed by me. Built with React, TypeScript and a lot of help from AI.
             </p>
+          </div>
+          <div className="about__sketch">
+            <DesignerSketch />
           </div>
         </div>
 

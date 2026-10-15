@@ -1,0 +1,74 @@
+/* The designer sketch's idle motion: it starts once the drawing is in and loops quietly. */
+.designer {
+  margin: 0;
+  max-width: 560px;
+}
+.designer figcaption {
+  margin-top: var(--space-2);
+  color: var(--graphite);
+}
+
+.designer__block,
+.designer__cursor,
+.designer__typing {
+  transform-box: fill-box;
+}
+.designer__block {
+  transform-origin: left center;
+  animation: designer-build 9s var(--ease-pen) infinite;
+}
+.designer__cursor {
+  animation: designer-cursor 9s ease-in-out infinite;
+}
+.designer__typing {
+  transform-origin: left top;
+  animation: designer-type 0.34s ease-in-out infinite alternate;
+}
+
+@keyframes designer-build {
+  0%,
+  3% {
+    transform: scaleX(0);
+  }
+  10%,
+  86% {
+    transform: scaleX(1);
+  }
+  96%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+@keyframes designer-cursor {
+  0% {
+    translate: 0 0;
+  }
+  20% {
+    translate: 36px -6px;
+  }
+  40% {
+    translate: 0 26px;
+  }
+  60% {
+    translate: 44px 28px;
+  }
+  80% {
+    translate: -12px 4px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+@keyframes designer-type {
+  to {
+    translate: 0 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .designer__block,
+  .designer__cursor,
+  .designer__typing {
+    animation: none;
+  }
+}
