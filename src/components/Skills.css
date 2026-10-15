@@ -61,10 +61,6 @@
     max-width: 180px;
     margin-bottom: calc(24px - var(--space-1)); /* 24px from drawing to title, with the row gap */
   }
-  .skill:hover .parti [pathLength] {
-    stroke-dasharray: 1;
-    animation: parti-draw 700ms var(--ease-pen) backwards;
-  }
 }
 
 @media (hover: hover) and (min-width: 1024px) {

@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import { SketchRect } from './Sketch'
 import { principleDrawings } from './PrinciplePartis'
+import { DrawOnScroll } from './DrawOnScroll'
+import { useRef, type PointerEvent } from 'react'
 import './Parti.css'
 import './Skills.css'
 
@@ -147,6 +149,7 @@ interface Skill {
   title: string
   drawing: () => ReactNode
   points: string[]
+  onScroll?: boolean // draws in with the scroll; the rest redraw when hovered
 }
 
 const skills: Skill[] = [
@@ -163,6 +166,7 @@ const skills: Skill[] = [
   {
     title: 'Experimentation',
     drawing: ExperimentationParti,
+    onScroll: true,
     points: ['Iterative A/B experiments', 'Conversion and time to value', 'B2C onboarding'],
   },
   {
@@ -173,6 +177,7 @@ const skills: Skill[] = [
   {
     title: 'Growth and monetisation',
     drawing: principleDrawings['4'],
+    onScroll: true,
     points: ['Pricing and revenue models', 'Conversion and retention experiments', 'Marketplace health'],
   },
   {
@@ -192,6 +197,34 @@ const skills: Skill[] = [
   },
 ]
 
+// Redraws a drawing line by line when the pointer enters it. Uses the Web Animations API
+// rather than a CSS :hover rule, which Chrome does not reliably restyle on SVG children.
+function HoverParti({ children }: { children: ReactNode }) {
+  const ref = useRef<SVGSVGElement>(null)
+  const redraw = (e: PointerEvent) => {
+    const svg = ref.current
+    if (!svg || e.pointerType === 'touch') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    svg.querySelectorAll<SVGElement>('[pathLength]').forEach((el, i) => {
+      el.style.strokeDasharray = '1'
+      el.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
+        duration: 700,
+        delay: i * 40,
+        easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)',
+        fill: 'backwards',
+      })
+    })
+    svg.querySelectorAll<SVGElement>('.draw-late').forEach((el) => {
+      el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 500, fill: 'backwards' })
+    })
+  }
+  return (
+    <svg ref={ref} className="parti skill__parti" viewBox="0 0 160 120" aria-hidden="true" onPointerEnter={redraw}>
+      {children}
+    </svg>
+  )
+}
+
 export function Skills() {
   return (
     <section className="skills-block" aria-labelledby="core-expertise">
@@ -202,10 +235,16 @@ export function Skills() {
         {skills.map((s) => {
           const Drawing = s.drawing
           return (
-              <li key={s.title} className="skill">
-              <svg className="parti skill__parti" viewBox="0 0 160 120" aria-hidden="true">
-                <Drawing />
-              </svg>
+            <li key={s.title} className="skill">
+              {s.onScroll ? (
+                <DrawOnScroll viewBox="0 0 160 120" className="skill__parti">
+                  <Drawing />
+                </DrawOnScroll>
+              ) : (
+                <HoverParti>
+                  <Drawing />
+                </HoverParti>
+              )}
               <h3 className="skill__title">{s.title}</h3>
               <ul className="skill__points">
                 {s.points.map((p) => (

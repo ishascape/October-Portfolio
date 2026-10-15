@@ -3,7 +3,7 @@
    labels over each value, a key plan with a north point, and a sign-off box. */
 .footer {
   position: relative;
-  padding-block: var(--space-6) var(--space-5);
+  padding-block: var(--space-4) var(--space-3);
   background: var(--paper);
   border-top: var(--line-thin) solid var(--ink);
 }
@@ -16,10 +16,10 @@
   background: var(--paper-shade);
 }
 
-.titlesheet__field {
+.footer .titlesheet__field {
   display: block;
-  margin-bottom: 2px;
-  font-size: 11px;
+  margin-bottom: 1px;
+  font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--graphite);
@@ -30,14 +30,15 @@
   align-content: start;
   gap: var(--space-2);
   margin: 0;
-  padding: var(--space-3);
+  padding: var(--space-2);
   border-bottom: var(--line-thin) solid var(--ink);
 }
 
-.titlesheet__key {
+.footer .titlesheet__key {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
+  gap: 2px var(--space-3);
+  font-size: 10px;
 }
 .titlesheet__key li {
   display: flex;
@@ -45,8 +46,8 @@
   gap: var(--space-1);
 }
 .titlesheet__credit {
-  margin-top: var(--space-1);
-  font-size: 11px;
+  margin-top: 0;
+  font-size: 10px;
   color: var(--graphite);
 }
 .titlesheet__key svg {
@@ -170,18 +171,20 @@
 .titlesheet__legend {
   display: grid;
   margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
 }
 .titlesheet__legend dd {
   margin: 0;
 }
 .titlesheet__row {
-  padding: var(--space-2) var(--space-3);
+  padding: 6px var(--space-2);
 }
 .titlesheet__row + .titlesheet__row {
   border-top: var(--line-thin) solid var(--ink);
 }
 .titlesheet__name {
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -196,12 +199,13 @@
 }
 
 /* Rows split into ruled cells, like the boxes of a title block. */
-.titlesheet__row--meta {
+.footer .titlesheet__row--meta {
   display: grid;
   padding: 0;
+  font-size: 10px;
 }
 .titlesheet__row--meta > div {
-  padding: var(--space-2) var(--space-3);
+  padding: 6px var(--space-2);
 }
 .titlesheet__row--meta {
   grid-template-columns: repeat(4, 1fr);
@@ -217,7 +221,7 @@
 }
 .titlesheet__index a {
   display: inline-block;
-  padding-block: var(--space-1);
+  padding-block: 2px;
 }
 
 .titlesheet__row--sign dd {
@@ -226,14 +230,24 @@
 }
 .titlesheet__signature {
   font-family: var(--font-hand);
-  font-size: 34px;
+  font-size: 24px;
   line-height: 1;
   padding-bottom: 2px;
   border-bottom: var(--line-thin) solid var(--ink);
   transform: rotate(-2deg);
   transform-origin: left bottom;
   width: max-content;
-  min-width: 60%;
+}
+.titlesheet__smile {
+  display: inline-block;
+  width: 1em;
+  height: 0.75em;
+  margin-left: 0.2em;
+  vertical-align: -0.05em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
 }
 .titlesheet__signatory {
   font-weight: 600;
@@ -243,8 +257,9 @@
   color: var(--graphite);
 }
 
-.footer__copy {
-  margin-top: var(--space-3);
+.footer .footer__copy {
+  margin-top: var(--space-2);
+  font-size: 10px;
   color: var(--graphite);
 }
 .footer__ai {
@@ -257,7 +272,7 @@
 
 @media (min-width: 900px) {
   .titlesheet {
-    grid-template-columns: 7fr 5fr;
+    grid-template-columns: 5fr 7fr;
   }
   .titlesheet__plan {
     border-bottom: 0;

@@ -18,7 +18,14 @@ export function Footer({ onHome }: { onHome: boolean }) {
               <ul className="titlesheet__key label">
                 <li>
                   <svg viewBox="0 0 24 12" aria-hidden="true">
-                    <rect x="0.5" y="0.5" width="23" height="11" fill="url(#keyplan-water)" className="keyplan__coast" />
+                    <rect
+                      x="0.5"
+                      y="0.5"
+                      width="23"
+                      height="11"
+                      fill="url(#keyplan-water)"
+                      className="keyplan__coast"
+                    />
                   </svg>
                   Water
                 </li>
@@ -50,7 +57,7 @@ export function Footer({ onHome }: { onHome: boolean }) {
           <dl className="titlesheet__legend">
             <div className="titlesheet__row titlesheet__row--name">
               <dt className="label titlesheet__field">Drawn by</dt>
-              <dd className="titlesheet__name">Ashni Dave</dd>
+              <dd className="titlesheet__name">Ashni Dave &amp; Claude</dd>
             </div>
             <div className="titlesheet__row">
               <dt className="label titlesheet__field">Role</dt>
@@ -108,7 +115,12 @@ export function Footer({ onHome }: { onHome: boolean }) {
               <dt className="label titlesheet__field">Signed off by</dt>
               <dd>
                 <span className="titlesheet__signature" aria-hidden="true">
-                  Ashni Dave
+                  Ashni
+                  <svg className="titlesheet__smile" viewBox="0 0 32 24">
+                    <path d="M15 1.8 C8 1.6 4.8 6.6 5.2 12.4 C5.6 18.6 10.4 22.4 16.4 22.1 C22.8 21.8 27 17.4 26.6 11.4 C26.3 5.6 22 1.9 16.8 1.6 C14.6 1.5 12.8 2.2 11.4 3.2" />
+                    <path d="M11.5 9.5 v1.4 M20.5 9.5 v1.4" />
+                    <path d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />
+                  </svg>
                 </span>
                 <span className="titlesheet__signatory">
                   Ashni Dave <span className="titlesheet__title">[Lead Designer]</span>
