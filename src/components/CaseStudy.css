@@ -253,6 +253,20 @@
 .case__next-link:hover {
   background: var(--marker-wash);
 }
+.case__next-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+.case__next-image--placeholder {
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-3);
+  border: var(--line-thin) dashed var(--graphite);
+  background: var(--paper-shade);
+  color: var(--graphite);
+}
 .case__next-text {
   display: grid;
   gap: var(--space-2);
@@ -278,7 +292,7 @@
 
 @media (min-width: 1024px) {
   .case__next-link {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: var(--space-6);
     padding: var(--space-5);
   }

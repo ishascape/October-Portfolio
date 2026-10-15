@@ -4,7 +4,6 @@ import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
 import { ModeSwitch } from './ModeSwitch'
-import { PartiTransition } from './Parti'
 import { SystemsDiagram } from './SystemsDiagram'
 import './CaseStudy.css'
 
@@ -174,7 +173,13 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       <nav className="case__next" aria-label="Next case study">
         <div className="container">
           <a href={caseHref(next.slug)} className="case__next-link">
-            <PartiTransition from={id} to={next.id} />
+            {next.images?.[0] ? (
+              <img className="case__next-image" src={next.images[0].src} alt="" loading="lazy" decoding="async" />
+            ) : (
+              <span className="case__next-image case__next-image--placeholder" aria-hidden="true">
+                <span className="label">Product image to come</span>
+              </span>
+            )}
             <span className="case__next-text">
               <span className="label">Next · Drawing {next.number}</span>
               <span className="case__next-title">
