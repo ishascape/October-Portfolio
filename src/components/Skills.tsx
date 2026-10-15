@@ -90,6 +90,59 @@ function ExperimentationParti() {
   )
 }
 
+// End-to-end UX and UI: discovery to release, screen by screen, along one blue line.
+function EndToEndParti() {
+  return (
+    <>
+      {[12, 62, 112].map((x) => (
+        <SketchRect key={x} x={x} y={22} width={36} height={52} o={2} className="parti__heavy" />
+      ))}
+      {[12, 62, 112].map((x) => (
+        <path
+          key={`c${x}`}
+          {...P}
+          d={`M${x + 6} 34 H${x + 30} M${x + 6} 44 H${x + 24} M${x + 6} 62 H${x + 20}`}
+          className="parti__fine"
+        />
+      ))}
+      <path {...P} d="M48 48 H62 M98 48 H112" className="parti__fine" />
+      <path {...P} d="M12 98 H148" className="parti__key" />
+      <path d="M12 92 V104 M142 92 L148 98 L142 104" className="parti__key" />
+    </>
+  )
+}
+
+// Design systems: one source token in blue, carried into every component built from it.
+function DesignSystemParti() {
+  const tiles = [
+    [72, 14],
+    [118, 14],
+    [26, 56],
+    [72, 56],
+    [118, 56],
+    [26, 98],
+    [72, 98],
+    [118, 98],
+  ]
+  return (
+    <>
+      {tiles.map(([x, y]) => (
+        <line key={`l${x}-${y}`} {...P} x1={40} y1={26} x2={x + 8} y2={y + 4} className="parti__fine" />
+      ))}
+      <rect x={26} y={12} width={28} height={28} className="parti__key" fill="none" />
+      {tiles.map(([x, y], i) =>
+        i % 3 === 0 ? (
+          <circle key={`${x}-${y}`} {...P} cx={x + 8} cy={y + 4} r={7} className="parti__heavy" />
+        ) : i % 3 === 1 ? (
+          <rect key={`${x}-${y}`} {...P} x={x} y={y - 3} width={16} height={14} className="parti__heavy" />
+        ) : (
+          <rect key={`${x}-${y}`} {...P} x={x - 4} y={y} width={24} height={8} rx={4} className="parti__heavy" />
+        ),
+      )}
+    </>
+  )
+}
+
 interface Skill {
   title: string
   drawing: () => ReactNode
@@ -118,24 +171,24 @@ const skills: Skill[] = [
     points: ['Workflow and touchpoint mapping', 'Design across business departments', 'Automating manual operations'],
   },
   {
-    title: 'Commercial sense',
-    drawing: principleDrawings['1'],
-    points: ['Revenue and retention as design constraints', 'Monetisation models', 'Marketplace health'],
-  },
-  {
-    title: 'Facilitation',
-    drawing: principleDrawings['2'],
-    points: ['Customer focus groups', 'Leadership alignment', 'Cross-functional planning'],
-  },
-  {
-    title: 'Research → vision',
-    drawing: principleDrawings['3'],
-    points: ['User interviews', 'Continuous research programmes', 'Hypotheses that shape the roadmap'],
-  },
-  {
-    title: 'Data-led decisions',
+    title: 'Growth and monetisation',
     drawing: principleDrawings['4'],
-    points: ['Behavioural analysis', 'Honest experiment readouts', 'Changing course on evidence'],
+    points: ['Pricing and revenue models', 'Conversion and retention experiments', 'Marketplace health'],
+  },
+  {
+    title: 'User research and analysis',
+    drawing: principleDrawings['3'],
+    points: ['User interviews and focus groups', 'Behavioural and funnel analysis', 'Continuous research programmes'],
+  },
+  {
+    title: 'End-to-end UX & UI design',
+    drawing: EndToEndParti,
+    points: ['Discovery through to release', 'Journeys, flows and wireframes', 'High-fidelity UI and prototypes'],
+  },
+  {
+    title: 'Design systems and documentation',
+    drawing: DesignSystemParti,
+    points: ['Components and tokens', 'Usage guidelines', 'Specs and engineering handover'],
   },
 ]
 
@@ -149,8 +202,7 @@ export function Skills() {
         {skills.map((s) => {
           const Drawing = s.drawing
           return (
-            // tabIndex lets keyboard users reveal the skills the same way hover does
-            <li key={s.title} className="skill" tabIndex={0}>
+              <li key={s.title} className="skill">
               <svg className="parti skill__parti" viewBox="0 0 160 120" aria-hidden="true">
                 <Drawing />
               </svg>

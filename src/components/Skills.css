@@ -17,9 +17,6 @@
   grid-template-columns: 96px 1fr;
   gap: var(--space-1) var(--space-3);
   align-items: start;
-  padding: var(--space-3);
-  border: var(--line-thin) solid var(--rule);
-  outline-offset: 3px;
 }
 .skill__parti {
   grid-row: span 2;
@@ -58,19 +55,13 @@
   .skill {
     grid-template-columns: 1fr;
     align-content: start;
-    border-color: transparent;
-    transition: border-color var(--dur-micro) var(--ease-pen);
   }
   .skill__parti {
     grid-row: auto;
     max-width: 180px;
+    margin-bottom: calc(24px - var(--space-1)); /* 24px from drawing to title, with the row gap */
   }
-  .skill:hover,
-  .skill:focus-visible {
-    border-color: var(--ink);
-  }
-  .skill:hover .parti [pathLength],
-  .skill:focus-visible .parti [pathLength] {
+  .skill:hover .parti [pathLength] {
     stroke-dasharray: 1;
     animation: parti-draw 700ms var(--ease-pen) backwards;
   }
