@@ -204,19 +204,9 @@
   margin: calc(-1 * var(--space-2)) 0 0;
   padding: 0;
   list-style: none;
-  font-weight: 500;
-  color: var(--graphite);
 }
 .hero__support p {
   text-wrap: pretty;
-}
-@media (max-width: 599px) {
-  .hero__focus {
-    font-size: 14px;
-  }
-  .hero__focus li:not(:last-child)::after {
-    margin-inline: var(--space-1);
-  }
 }
 .hero__focus li:not(:last-child)::after {
   content: '';
@@ -226,6 +216,15 @@
   margin-inline: var(--space-2);
   vertical-align: -0.1em;
   background: var(--rule);
+}
+/* On phones the row wraps, so the dividers give way to plain spacing. */
+@media (max-width: 599px) {
+  .hero__focus {
+    gap: var(--space-1) var(--space-3);
+  }
+  .hero__focus li:not(:last-child)::after {
+    display: none;
+  }
 }
 
 .hero__actions {
