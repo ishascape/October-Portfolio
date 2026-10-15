@@ -99,7 +99,6 @@
   stroke-width: 2;
 }
 
-
 /* Existing: what I found. Dashed graphite. */
 .plan__existing :is(rect, line, path) {
   stroke: var(--graphite);
@@ -153,7 +152,6 @@
 .plan__building[data-hovered='true'] .plan__existing :is(rect, line, path) {
   stroke: var(--ink);
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   .plan__proposed :is(rect, line, path, circle) {

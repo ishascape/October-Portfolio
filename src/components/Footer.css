@@ -8,26 +8,37 @@
   border-top: var(--line-thin) solid var(--ink);
 }
 
-/* Printed as a blueprint: the palette flips to white linework on cyanotype blue, so every
-   rule below (and the key plan) picks it up through the same tokens. */
 .titlesheet {
+  --tint-ink: 28 27 25; /* hatching and grid on paper */
+  --tint-soft: 97 94 88; /* contours and suburb lines on paper */
+  display: grid;
+  border: var(--line-building) solid var(--ink);
+  outline: var(--line-thin) solid var(--ink);
+  outline-offset: 4px; /* the double border of a drawing frame */
+  background: var(--paper-shade);
+  margin: 6px;
+}
+
+/* Printed as a blueprint (home page only): the palette flips to white linework on cyanotype
+   blue, so every rule below, and the key plan, picks it up through the same tokens. */
+.titlesheet--blueprint {
   --blueprint: #1d4e89;
+  --tint-ink: 242 246 251;
+  --tint-soft: 242 246 251;
   --paper: var(--blueprint);
   --paper-shade: var(--blueprint);
   --ink: #f2f6fb;
   --graphite: rgb(242 246 251 / 0.75);
   --rule: rgb(242 246 251 / 0.45);
   --marker: #ffffff;
-  display: grid;
   color: var(--ink);
-  border: var(--line-building) solid var(--ink);
   outline: 6px solid var(--blueprint); /* the blue margin round the drawing frame */
+  outline-offset: 0;
   background-color: var(--blueprint);
   background-image:
     linear-gradient(rgb(242 246 251 / 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgb(242 246 251 / 0.07) 1px, transparent 1px);
   background-size: 16px 16px;
-  margin: 6px;
 }
 
 .footer .titlesheet__field {
@@ -86,33 +97,33 @@
   stroke-linejoin: round;
 }
 .keyplan__hatch {
-  stroke: rgb(242 246 251 / 0.35);
+  stroke: rgb(var(--tint-ink) / 0.3);
   stroke-width: 0.75;
 }
 /* Light topography: 20 m contours, every second one slightly heavier. */
 .keyplan__contour {
   fill: none;
-  stroke: rgb(242 246 251 / 0.22);
+  stroke: rgb(var(--tint-soft) / 0.22);
   stroke-width: 0.6;
 }
 .keyplan__contour--index {
-  stroke: rgb(242 246 251 / 0.38);
+  stroke: rgb(var(--tint-soft) / 0.38);
 }
 /* Suburb boundaries in a see-through grey. */
 .keyplan__suburbs {
   fill: none;
-  stroke: rgb(242 246 251 / 0.45);
+  stroke: rgb(var(--tint-soft) / 0.45);
   stroke-width: 0.5;
   stroke-dasharray: 3 1.5;
 }
 .keyplan__suburb {
   font-family: var(--font-sans);
   font-size: 7px;
-  fill: rgb(242 246 251 / 0.85);
+  fill: rgb(var(--tint-soft) / 0.85);
   text-anchor: middle;
 }
 .keyplan__grid {
-  stroke: rgb(242 246 251 / 0.25);
+  stroke: rgb(var(--tint-ink) / 0.2);
   stroke-width: 0.75;
   stroke-dasharray: 2 4;
 }

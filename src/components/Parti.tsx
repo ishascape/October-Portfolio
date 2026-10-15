@@ -68,7 +68,11 @@ function TreeAssistParti() {
       ))}
       <line {...P} x1={68} y1={93} x2={112} y2={93} className="parti__heavy" />
       <circle cx={112} cy={60} r={42} className="parti__ghost" />
-      <path {...P} d="M112 93 V62 M112 62 L92 40 M112 62 L132 40 M92 40 L82 24 M92 40 L100 24 M132 40 L140 24" className="parti__heavy" />
+      <path
+        {...P}
+        d="M112 93 V62 M112 62 L92 40 M112 62 L132 40 M92 40 L82 24 M92 40 L100 24 M132 40 L140 24"
+        className="parti__heavy"
+      />
       {[
         [112, 62],
         [92, 40],

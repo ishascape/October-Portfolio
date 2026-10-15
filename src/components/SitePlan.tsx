@@ -77,7 +77,9 @@ function VenueFinderArt() {
         {Array.from({ length: rooms - 1 }, (_, i) => (
           <line key={i} x1={6 + w * (i + 1)} y1={70} x2={6 + w * (i + 1)} y2={130} />
         ))}
-        <text x={6} y={150} className="plan__tiny">13-step brief builder</text>
+        <text x={6} y={150} className="plan__tiny">
+          13-step brief builder
+        </text>
       </Ex>
       <Pr>
         <SketchRect {...P} x={70} y={24} width={160} height={140} />
@@ -102,7 +104,9 @@ function HostHQArt() {
         {blocks.map((b) => (
           <g key={b.label}>
             <SketchRect x={b.x} y={b.y} width={128} height={74} />
-            <text x={b.x + 8} y={b.y + 18} className="plan__tiny">{b.label}</text>
+            <text x={b.x + 8} y={b.y + 18} className="plan__tiny">
+              {b.label}
+            </text>
           </g>
         ))}
       </Ex>
@@ -139,7 +143,9 @@ function TreeAssistArt() {
           <SketchRect key={i} x={f.x} y={f.y} width={40} height={46} />
         ))}
         <SketchRect x={190} y={14} width={102} height={172} />
-        <text x={198} y={34} className="plan__tiny">Blank tree</text>
+        <text x={198} y={34} className="plan__tiny">
+          Blank tree
+        </text>
       </Ex>
       <Pr>
         {[14, 76, 138].map((y) => (
@@ -194,7 +200,13 @@ export function SitePlan({ variant, studies, mode, hovered, onHover, onSelect }:
       aria-label="Site plan of selected work. Each building is a case study."
     >
       <defs>
-        <pattern id={`hatch-grey-${variant}`} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <pattern
+          id={`hatch-grey-${variant}`}
+          width="6"
+          height="6"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(45)"
+        >
           <line x1="0" y1="0" x2="0" y2="6" className="plan__hatch-line plan__hatch-line--grey" />
         </pattern>
       </defs>
@@ -202,14 +214,21 @@ export function SitePlan({ variant, studies, mode, hovered, onHover, onSelect }:
       {L.districts.map((d) => (
         <g key={d.label} className="plan__district">
           <SketchRect x={d.x} y={d.y} width={d.w} height={d.h} />
-          <text x={d.x} y={d.y - 10} className="plan__label">{d.label}</text>
+          <text x={d.x} y={d.y - 10} className="plan__label">
+            {d.label}
+          </text>
         </g>
       ))}
 
       <g className="plan__road" aria-hidden="true">
         <line x1={L.road.x1} y1={L.road.y - 12} x2={L.road.x2} y2={L.road.y - 12} />
         <line x1={L.road.x1} y1={L.road.y + 12} x2={L.road.x2} y2={L.road.y + 12} />
-        <text x={(L.road.x1 + L.road.x2) / 2} y={L.road.y + 4} textAnchor="middle" className="plan__tiny plan__road-label">
+        <text
+          x={(L.road.x1 + L.road.x2) / 2}
+          y={L.road.y + 4}
+          textAnchor="middle"
+          className="plan__tiny plan__road-label"
+        >
           {portrait ? 'Brief → lead → booking' : 'Brief → lead → proposal → booking'}
         </text>
       </g>
@@ -242,7 +261,9 @@ export function SitePlan({ variant, studies, mode, hovered, onHover, onSelect }:
               <line x1={0} y1={-18} x2={0} y2={PLOT_H + 18} />
               <line x1={PLOT_W} y1={-18} x2={PLOT_W} y2={PLOT_H + 18} />
             </g>
-            <text x={0} y={-8} className="plan__tiny">{side}</text>
+            <text x={0} y={-8} className="plan__tiny">
+              {side}
+            </text>
             <g className="plan__art">
               <Art />
             </g>
@@ -257,7 +278,13 @@ export function SitePlan({ variant, studies, mode, hovered, onHover, onSelect }:
       })}
 
       <g className="plan__phase2" aria-hidden="true">
-        <rect x={L.phase2.x} y={L.phase2.y} width={L.phase2.w} height={L.phase2.h} fill={`url(#hatch-grey-${variant})`} />
+        <rect
+          x={L.phase2.x}
+          y={L.phase2.y}
+          width={L.phase2.w}
+          height={L.phase2.h}
+          fill={`url(#hatch-grey-${variant})`}
+        />
         <rect x={L.phase2.x} y={L.phase2.y} width={L.phase2.w} height={L.phase2.h} className="plan__phase2-outline" />
         <text x={L.phase2.x + 10} y={L.phase2.y + L.phase2.h / 2 + 4} className="plan__tiny plan__phase2-label">
           Phase 2: more work on request
@@ -276,7 +303,9 @@ export function SitePlan({ variant, studies, mode, hovered, onHover, onSelect }:
       <g className="plan__north" transform={`translate(${L.north.x} ${L.north.y})`} aria-hidden="true">
         <circle r="14" />
         <path d="M0 -10 L6 8 L0 4 L-6 8 Z" />
-        <text y="-20" textAnchor="middle" className="plan__tiny">N</text>
+        <text y="-20" textAnchor="middle" className="plan__tiny">
+          N
+        </text>
       </g>
     </svg>
   )

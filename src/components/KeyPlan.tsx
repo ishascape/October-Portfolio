@@ -80,16 +80,24 @@ export function KeyPlan() {
         <circle r="18" />
         <path d="M0 -24 L7 8 L0 3 L-7 8 Z" />
         <path d="M0 -24 L0 3 L-7 8 Z" className="keyplan__north-fill" />
-        <text x="0" y="-29">N</text>
+        <text x="0" y="-29">
+          N
+        </text>
       </g>
 
       {/* Scale bar, 0 to 2 km */}
       <g transform={`translate(20 ${h - 26})`} className="keyplan__scale">
         <rect x="0" y="-3" width={PX_PER_KM} height="6" className="keyplan__scale-fill" />
         <rect x="0" y="-3" width={PX_PER_KM * 2} height="6" />
-        <text x="0" y="16">0</text>
-        <text x={PX_PER_KM} y="16">1</text>
-        <text x={PX_PER_KM * 2} y="16">2 km</text>
+        <text x="0" y="16">
+          0
+        </text>
+        <text x={PX_PER_KM} y="16">
+          1
+        </text>
+        <text x={PX_PER_KM * 2} y="16">
+          2 km
+        </text>
       </g>
 
       {/* Zetland pin, the one blue mark */}

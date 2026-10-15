@@ -29,7 +29,9 @@
   height: 100%;
   border: var(--line-thin) solid var(--rule);
   background: var(--paper);
-  transition: border-color var(--dur-micro) var(--ease-pen), box-shadow var(--dur-micro) var(--ease-pen);
+  transition:
+    border-color var(--dur-micro) var(--ease-pen),
+    box-shadow var(--dur-micro) var(--ease-pen);
 }
 .card::before,
 .card::after {

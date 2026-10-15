@@ -258,24 +258,10 @@
 }
 
 @media (min-width: 1024px) {
-  /* Heading and sketch stack in the left column; the copy runs the full height of the right. */
   .about__intro {
     grid-template-columns: 7fr 5fr;
-    grid-template-areas:
-      'heading body'
-      'sketch body';
-    grid-template-rows: auto 1fr;
     align-items: start;
-    gap: var(--space-4) var(--gutter);
-  }
-  .about__heading {
-    grid-area: heading;
-  }
-  .about__body {
-    grid-area: body;
-  }
-  .about__sketch {
-    grid-area: sketch;
+    gap: var(--gutter);
   }
   .principle {
     grid-template-columns: 64px minmax(0, 1fr) 220px;

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { SketchRect } from './Sketch'
 import { principleDrawings } from './PrinciplePartis'
 import { DrawOnScroll } from './DrawOnScroll'
-import { useRef, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
 import './Parti.css'
 import './Skills.css'
 
@@ -225,36 +225,169 @@ function HoverParti({ children }: { children: ReactNode }) {
   )
 }
 
+// On a phone the eight disciplines are a stack of papers: swipe the top sheet away (or use the
+// arrows) and the next one comes up from the pile.
+const FAN = [
+  { x: 0, r: 0 },
+  { x: 7, r: 1.8 },
+  { x: -6, r: -1.6 },
+  { x: 5, r: 1.2 },
+]
+function paperStyle(d: number, drag: number, dragging: boolean): CSSProperties {
+  const transition = dragging && d === 0 ? 'none' : 'transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 320ms'
+  if (d < 0) {
+    return {
+      transform: 'translateX(-118%) rotate(-10deg)',
+      opacity: 0,
+      pointerEvents: 'none',
+      zIndex: 100 + d,
+      transition,
+    }
+  }
+  if (d === 0) {
+    return { transform: `translateX(${drag}px) rotate(${drag / 18}deg)`, zIndex: 100, transition }
+  }
+  const k = Math.min(d, 3)
+  const { x, r } = FAN[k]
+  return {
+    transform: `translate(${x}px, ${k * 11}px) rotate(${r}deg) scale(${1 - k * 0.04})`,
+    opacity: d > 3 ? 0 : 1,
+    zIndex: 100 - d,
+    transition,
+  }
+}
+
+// Tools from Ashni's CV.
+const toolkit = [
+  { group: 'Design', tools: ['Figma'] },
+  { group: 'Research and testing', tools: ['Dovetail', 'Maze', 'Useberry', 'Hotjar'] },
+  { group: 'Data', tools: ['PostHog', 'Looker'] },
+  { group: 'Delivery', tools: ['Jira', 'Confluence'] },
+  { group: 'AI and build', tools: ['Claude', 'Cursor'] },
+]
+
 export function Skills() {
+  const [deck, setDeck] = useState(false)
+  const [index, setIndex] = useState(0)
+  const [drag, setDrag] = useState(0)
+  const [dragging, setDragging] = useState(false)
+  const from = useRef<{ x: number; t: number } | null>(null)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 599px)')
+    const sync = () => setDeck(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  const go = (n: number) => setIndex(Math.min(skills.length - 1, Math.max(0, n)))
+  const onDown = (e: PointerEvent) => {
+    if (!deck) return
+    from.current = { x: e.clientX, t: performance.now() }
+    setDragging(true)
+  }
+  const onMove = (e: PointerEvent) => {
+    if (from.current) setDrag(e.clientX - from.current.x)
+  }
+  const onUp = (e: PointerEvent) => {
+    const start = from.current
+    from.current = null
+    setDragging(false)
+    setDrag(0)
+    if (!start) return
+    const dx = e.clientX - start.x
+    const fast = Math.abs(dx) / Math.max(1, performance.now() - start.t) > 0.4
+    if (Math.abs(dx) > 70 || (fast && Math.abs(dx) > 24)) go(index + (dx < 0 ? 1 : -1))
+  }
+
   return (
-    <section className="skills-block" aria-labelledby="core-expertise">
-      <h2 id="core-expertise" className="label skills__heading">
-        Core Expertise
-      </h2>
-      <ul className="skills">
-        {skills.map((s) => {
-          const Drawing = s.drawing
-          return (
-            <li key={s.title} className="skill">
-              {s.onScroll ? (
-                <DrawOnScroll viewBox="0 0 160 120" className="skill__parti">
-                  <Drawing />
-                </DrawOnScroll>
-              ) : (
-                <HoverParti>
-                  <Drawing />
-                </HoverParti>
-              )}
-              <h3 className="skill__title">{s.title}</h3>
-              <ul className="skill__points">
-                {s.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </li>
-          )
-        })}
-      </ul>
-    </section>
+    <>
+      <section className="skills-block" aria-labelledby="core-expertise">
+        <h2 id="core-expertise" className="label skills__heading">
+          Core Expertise
+        </h2>
+        <ul
+          className={`skills${deck ? ' skills--deck' : ''}`}
+          onPointerDown={onDown}
+          onPointerMove={onMove}
+          onPointerUp={onUp}
+          onPointerCancel={onUp}
+          onKeyDown={(e) => {
+            if (deck && e.key === 'ArrowRight') go(index + 1)
+            if (deck && e.key === 'ArrowLeft') go(index - 1)
+          }}
+          tabIndex={deck ? 0 : undefined}
+          aria-roledescription={deck ? 'carousel' : undefined}
+          aria-label={deck ? 'Core expertise, swipe or use the arrows' : undefined}
+        >
+          {skills.map((s, i) => {
+            const Drawing = s.drawing
+            return (
+              <li
+                key={s.title}
+                className="skill"
+                style={deck ? paperStyle(i - index, i === index ? drag : 0, dragging) : undefined}
+                aria-hidden={deck && i !== index ? true : undefined}
+              >
+                {s.onScroll ? (
+                  <DrawOnScroll viewBox="0 0 160 120" className="skill__parti">
+                    <Drawing />
+                  </DrawOnScroll>
+                ) : (
+                  <HoverParti>
+                    <Drawing />
+                  </HoverParti>
+                )}
+                <h3 className="skill__title">{s.title}</h3>
+                <ul className="skill__points">
+                  {s.points.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              </li>
+            )
+          })}
+        </ul>
+        {deck && (
+          <div className="deck__nav">
+            <button
+              type="button"
+              className="deck__button"
+              onClick={() => go(index - 1)}
+              disabled={index === 0}
+              aria-label="Previous"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <p className="annotation deck__count" aria-live="polite">
+              {index + 1} of {skills.length}, swipe the sheet
+            </p>
+            <button
+              type="button"
+              className="deck__button"
+              onClick={() => go(index + 1)}
+              disabled={index === skills.length - 1}
+              aria-label="Next"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        )}
+      </section>
+      <section className="toolkit" aria-labelledby="toolkit">
+        <h2 id="toolkit" className="label skills__heading">
+          Toolkit
+        </h2>
+        <dl className="toolkit__list">
+          {toolkit.map((t) => (
+            <div key={t.group} className="toolkit__group">
+              <dt>{t.group}</dt>
+              <dd>{t.tools.join(', ')}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </>
   )
 }

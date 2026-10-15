@@ -9,7 +9,7 @@ export function Footer({ onHome }: { onHome: boolean }) {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="titlesheet">
+        <div className={`titlesheet${onHome ? ' titlesheet--blueprint' : ''}`}>
           <figure className="titlesheet__plan">
             <p className="label titlesheet__field">Key plan · Currently based in Sydney, Australia</p>
             <KeyPlan />

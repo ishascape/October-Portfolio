@@ -49,7 +49,6 @@ export function Nav({ onHome }: { onHome: boolean }) {
       <div className="container nav__inner">
         <a className="nav__name" href={sectionHref('top', onHome)}>
           Ashni Dave
-          <span className="nav__role">Senior Product Designer</span>
         </a>
 
         <nav aria-label="Main" className="nav__links">
@@ -59,9 +58,6 @@ export function Nav({ onHome }: { onHome: boolean }) {
               .map((s) => (
                 <li key={s.id}>
                   <a href={sectionHref(s.id, onHome)} aria-current={current === s.id ? 'location' : undefined}>
-                    <span className="nav__no" aria-hidden="true">
-                      {s.sheet}
-                    </span>
                     {s.label}
                   </a>
                 </li>
