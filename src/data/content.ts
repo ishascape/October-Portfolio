@@ -1,7 +1,7 @@
 import wolf from '../assets/sketches/wolf.webp'
 import tiger from '../assets/sketches/tiger.webp'
 import owl from '../assets/sketches/owl.webp'
-import warrior from '../assets/sketches/warrior.webp'
+import gorilla from '../assets/sketches/gorilla.webp'
 import riding from '../assets/ashni-riding.webp'
 
 // All copy and figures come from notes/homepage-content.md (approved 14 Oct 2026).
@@ -206,10 +206,10 @@ export const fieldNotes: FieldNote[] = [
   {
     fig: '05',
     group: 'Sketchbook',
-    caption: 'Fig. 05. Warrior, with the pens that drew it',
+    caption: 'Fig. 05. Silverback gorilla, drawn on the flight back home',
     ratio: '3 / 4',
-    src: warrior,
-    alt: 'A sketchbook page with an ink and marker drawing of an armoured warrior holding an axe, with the pens and markers laid beside it.',
+    src: gorilla,
+    alt: 'A hand holding a sketchbook on a plane tray table, open to a ballpoint pen drawing of a silverback gorilla.',
   },
   { fig: '06', group: 'Concerts', caption: 'Fig. 06. Performing, to come', ratio: '3 / 2' },
   { fig: '07', group: 'Travel', caption: 'Fig. 07. Summit, to come', ratio: '4 / 5' },
