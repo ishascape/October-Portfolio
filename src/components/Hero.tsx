@@ -26,7 +26,7 @@ export function Hero() {
               </svg>
             </p>
             <h1 id="hero-heading" className="display">
-              I design coherent &amp; scalable products for complex businesses.
+              Product designer obsessed with how things fit together.
             </h1>
           </div>
           <figure className="hero__portrait">
@@ -40,15 +40,24 @@ export function Hero() {
                 fetchPriority="high"
                 decoding="async"
               />
-              <img className="hero__portrait-sketch" src={portraitSketch} alt="" width={960} height={1200} decoding="async" />
+              <img
+                className="hero__portrait-sketch"
+                src={portraitSketch}
+                alt=""
+                width={960}
+                height={1200}
+                decoding="async"
+              />
             </div>
             <figcaption className="annotation">Fig. 00. Ashni Dave</figcaption>
           </figure>
           <div className="hero__support">
-            <p>
-              Senior Product Designer for B2B SaaS, marketplaces and AI. I design the whole system, not just
-              screens. Research, data and commercial impact decide what ships.
-            </p>
+            <p>I design digital products where user needs, business goals and technology meet.</p>
+            <ul className="hero__focus" aria-label="Focus areas">
+              {['B2B SaaS', 'Marketplace', 'Platform', 'Mobile', 'B2C'].map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
             <div className="hero__actions">
               <a className="button button--primary" href="#work">
                 Selected work <span aria-hidden="true">↓</span>

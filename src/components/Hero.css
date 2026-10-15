@@ -92,6 +92,38 @@
   max-width: var(--measure);
 }
 
+/* Focus areas, as one line divided by thin rules. */
+.hero__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) 0;
+  margin: calc(-1 * var(--space-2)) 0 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 500;
+  color: var(--graphite);
+}
+.hero__support p {
+  text-wrap: pretty;
+}
+@media (max-width: 599px) {
+  .hero__focus {
+    font-size: 14px;
+  }
+  .hero__focus li:not(:last-child)::after {
+    margin-inline: var(--space-1);
+  }
+}
+.hero__focus li:not(:last-child)::after {
+  content: '';
+  display: inline-block;
+  width: var(--line-thin);
+  height: 0.9em;
+  margin-inline: var(--space-2);
+  vertical-align: -0.1em;
+  background: var(--rule);
+}
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;

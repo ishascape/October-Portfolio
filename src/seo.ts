@@ -7,7 +7,7 @@ import { SITE_URL, type Page } from './links'
 
 const NAME = 'Ashni Dave'
 const JOB = 'Senior Product Designer'
-const TAGLINE = 'I design coherent and scalable products for complex businesses.'
+const TAGLINE = 'I design digital products where user needs, business goals and technology meet.'
 const SUMMARY = `${NAME} is a ${JOB}, currently based in Sydney, Australia, working on B2B SaaS, marketplaces and AI products. ${availability.headline.replace("I'm", 'She is')}`
 
 const pathFor = (page: Page) => (page === 'home' ? '/' : `/${page.caseSlug}`)
