@@ -114,7 +114,10 @@
 @media (hover: hover) and (min-width: 600px) {
   .skills {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-4) var(--gutter);
+    gap: calc(var(--space-4) + 16px) calc(var(--gutter) + 16px);
+  }
+  .skill__title {
+    min-height: 2.6em; /* two lines, so every card's points start at the same height */
   }
   .skill {
     grid-template-columns: 1fr;
