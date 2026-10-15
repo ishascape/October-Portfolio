@@ -13,10 +13,26 @@
   min-height: 56px;
 }
 
+/* The bar reads as the title strip of a drawing: ruled cells, sheet references in circles, and a
+   dimension line (a rule with 45 degree ticks) drawn under the sheet you are on. */
+.nav__inner {
+  align-items: stretch;
+}
 .nav__name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: var(--space-4);
   font-weight: 600;
+  line-height: 1.2;
   text-decoration: none;
   letter-spacing: -0.01em;
+}
+.nav__role {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--graphite);
+  letter-spacing: 0;
 }
 
 .nav__links {
@@ -24,18 +40,67 @@
 }
 .nav__links ul {
   display: flex;
-  gap: var(--space-4);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav__links li {
+  display: flex;
 }
 .nav__links a {
-  display: inline-block;
-  padding-block: var(--space-2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  border-left: var(--line-thin) solid var(--ink);
   text-decoration: none;
-  background: linear-gradient(var(--marker), var(--marker)) left bottom / 0 2px no-repeat;
-  transition: background-size 180ms var(--ease-pen);
 }
-.nav__links a:hover,
-.nav__links a[aria-current] {
-  background-size: 100% 2px;
+.nav__links li:last-child a {
+  padding-right: 0;
+}
+.nav__no {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: var(--line-thin) solid var(--ink);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  transition:
+    background-color 180ms var(--ease-pen),
+    color 180ms var(--ease-pen),
+    border-color 180ms var(--ease-pen);
+}
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: 6px;
+  height: 8px;
+  background:
+    linear-gradient(var(--marker), var(--marker)) center / 100% 1px no-repeat,
+    linear-gradient(135deg, transparent 42%, var(--marker) 42% 58%, transparent 58%) left / 8px 8px no-repeat,
+    linear-gradient(135deg, transparent 42%, var(--marker) 42% 58%, transparent 58%) right / 8px 8px no-repeat;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 260ms var(--ease-pen);
+}
+.nav__links li:last-child a::after {
+  right: 0;
+}
+.nav__links a:hover::after,
+.nav__links a[aria-current]::after {
+  clip-path: inset(0 0 0 0);
+}
+.nav__links a:hover .nav__no,
+.nav__links a[aria-current] .nav__no {
+  border-color: var(--marker);
+  background: var(--marker);
+  color: var(--paper);
 }
 
 .nav__menu-button {
