@@ -29,8 +29,22 @@ export interface Section {
   diagram?: boolean // the animated systems diagram, shown full width under the section
 }
 
+// One cell of the top summary box. `gap` marks something only Ashni can fill in; it is shown on
+// the page as "To confirm" until she answers, so nothing is guessed.
+export interface SummaryCell {
+  text: string
+  gap?: string
+}
+
+export interface CaseSummary {
+  role: SummaryCell
+  decision: SummaryCell
+  outcome: SummaryCell
+}
+
 export interface CaseStudyPage {
   id: CaseStudyId
+  summary: CaseSummary
   kicker: string
   subtitle: string
   meta: { label: string; value: string }[]
@@ -43,6 +57,20 @@ export interface CaseStudyPage {
 export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
   'venue-finder': {
     id: 'venue-finder',
+    summary: {
+      role: {
+        text: 'Sole product designer, with 4 engineers, over 2 months. I interviewed 10 event bookers and designed both the V1 and V2 brief journeys.',
+        gap: 'Anything else you personally owned, such as the experiment plan, the Spotlight Partner model or stakeholder calls.',
+      },
+      decision: {
+        text: 'V1, with the AI prompt up front, cut Lead Feed volume by 40%. We moved to a moderate V2 instead: optional prompt, magic-link sign-up, and recommendations gated behind sign-up.',
+        gap: 'What you argued for, and with whom, for example executives attached to Lead Feed.',
+      },
+      outcome: {
+        text: '40% shorter user journey. Measured against the legacy 13-step builder (83% drop-off) in 2-week experiment cycles.',
+        gap: 'How the 40% was measured, and which enquiry figure is right: +33% (this site) or +30% (CV, Direct Enquiry). Held back until you confirm.',
+      },
+    },
     kicker: 'HeadBox · Demand side',
     subtitle:
       'Rebalancing a two-sided events marketplace: capture guest intent earlier, send hosts fewer, better leads.',
@@ -146,6 +174,20 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
 
   hosthq: {
     id: 'hosthq',
+    summary: {
+      role: {
+        text: 'Senior Product Designer, 0→1 in 3 months. I ran the host focus groups, set the consolidation strategy and scoped the MVP across four products.',
+        gap: 'Team size, who you worked with day to day, and what you owned versus the PM and engineering.',
+      },
+      decision: {
+        text: 'Structure over completeness. With 3 months before peak season I shipped unified navigation, consolidated workflows, action-led dashboards and a stronger proposal builder, and deferred the 3D Studio migration, full reporting and mobile.',
+        gap: 'Whether you had to fight for this, and who pushed back.',
+      },
+      outcome: {
+        text: '55+ new One Platform clients in 3 months and 25% fewer navigation support tickets.',
+        gap: 'How these were measured (baseline, period, source). Held back until you confirm: host churn (-28% here, but the CV credits it to guest booking journeys) and +32% hosts reporting closed bookings.',
+      },
+    },
     kicker: 'HeadBox · Supply side',
     subtitle: 'Consolidating supply workflows and performance visibility to lift retention and cross-product adoption.',
     meta: [
@@ -227,6 +269,20 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
 
   treeassist: {
     id: 'treeassist',
+    summary: {
+      role: {
+        text: 'Product Designer, alongside the Lead Product Designer, PM, data science and engineering, over 2 months.',
+        gap: 'Which of the three experiments and screens you personally owned.',
+      },
+      decision: {
+        text: 'Activation over data completeness. We cut onboarding from 8 forms to 3 and moved to AI-assisted tree building, accepting less profile data up front.',
+        gap: 'Whether this was your call or the team’s, and who you had to convince.',
+      },
+      outcome: {
+        text: '+18% free-trial starts, +8% trial-to-subscription conversion and -13% onboarding drop-off, across three two-week experiments. Baseline: 41% of new users dropped off before value.',
+        gap: 'How these were measured: A/B test, sample size and comparison period.',
+      },
+    },
     kicker: 'Findmypast · Activation',
     subtitle:
       'Value-first onboarding with AI-powered relative suggestions to accelerate activation and free-trial conversion.',

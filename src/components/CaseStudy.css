@@ -327,3 +327,57 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* ---------- Top summary: the case in 30 seconds ---------- */
+
+.case__summary {
+  padding-block: var(--space-5);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+.case__summary-title {
+  margin-bottom: var(--space-3);
+  font-size: 15px;
+  font-weight: 600;
+}
+.case__summary-grid {
+  display: grid;
+  gap: var(--line-thin);
+  margin: 0;
+  border: var(--line-thin) solid var(--ink);
+  background: var(--ink); /* shows through the 1px gaps as rules */
+}
+.case__summary-cell {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  padding: var(--space-3);
+  background: var(--paper-shade);
+}
+.case__summary-cell dt {
+  color: var(--graphite);
+  font-size: 14px;
+}
+.case__summary-cell dd {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+}
+/* Something only Ashni can fill in. Visible on purpose, so nothing gets guessed. */
+.case__gap {
+  padding: var(--space-1) var(--space-2);
+  border: var(--line-thin) dashed var(--marker);
+  color: var(--marker);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.case__gap strong {
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .case__summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
