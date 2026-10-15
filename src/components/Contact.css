@@ -2,7 +2,6 @@
   border-top: var(--line-thin) solid var(--ink);
 }
 .contact__heading {
-  max-width: 14ch;
   margin-bottom: var(--space-5);
 }
 .contact__body {

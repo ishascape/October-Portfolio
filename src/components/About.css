@@ -9,7 +9,6 @@
 }
 .about__heading {
   font-size: clamp(28px, 3.5vw, 44px);
-  max-width: 16ch;
 }
 .about__body {
   display: grid;
@@ -50,6 +49,7 @@
 }
 .principle__text {
   display: grid;
+  align-content: start;
   gap: var(--space-2);
   max-width: var(--measure);
 }
@@ -66,10 +66,11 @@
     grid-column: 3;
     grid-row: 1;
     max-width: none;
-    align-self: start;
+    align-self: center; /* the parti sits at the vertical middle of its row */
   }
 }
 .principle__title {
+  margin: 0;
   font-size: var(--text-heading);
   font-weight: 600;
   line-height: 1.15;
@@ -257,7 +258,7 @@
     gap: var(--gutter);
   }
   .principle {
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 64px minmax(0, 1fr) 220px;
   }
   .field-notes {
     grid-template-columns: 4fr 8fr;

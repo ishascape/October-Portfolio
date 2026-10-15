@@ -2,6 +2,7 @@ import wolf from '../assets/sketches/wolf.webp'
 import tiger from '../assets/sketches/tiger.webp'
 import owl from '../assets/sketches/owl.webp'
 import warrior from '../assets/sketches/warrior.webp'
+import riding from '../assets/ashni-riding.webp'
 
 // All copy and figures come from notes/homepage-content.md (approved 14 Oct 2026).
 // Never add a metric here that isn't in that doc or the CV.
@@ -168,9 +169,16 @@ export interface FieldNote {
   alt?: string
 }
 
-// Sketches are Ashni's own (uploaded 15 Oct 2026, EXIF stripped). Photos still to come.
+// Sketches and Fig. 01 are Ashni's own (uploaded 15 Oct 2026, EXIF stripped). Other photos still to come.
 export const fieldNotes: FieldNote[] = [
-  { fig: '01', group: 'Portrait', caption: 'Fig. 01. Portrait, to come', ratio: '4 / 5' },
+  {
+    fig: '01',
+    group: 'Portrait',
+    caption: 'Fig. 01. Ashni, out riding',
+    ratio: '3 / 4',
+    src: riding,
+    alt: 'Ashni smiling beside a saddled dark bay horse at a wooden rail, with grassy hills behind.',
+  },
   {
     fig: '02',
     group: 'Sketchbook',

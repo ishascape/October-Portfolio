@@ -29,13 +29,16 @@
   max-width: 420px;
 }
 .hero__portrait-frame {
-  display: flex;
-  align-items: flex-end;
   aspect-ratio: 4 / 5;
-  padding: var(--space-3);
-  border: var(--line-thin) dashed var(--graphite);
+  border: var(--line-thin) solid var(--ink);
   background: var(--paper-shade);
-  color: var(--graphite);
+  overflow: hidden;
+}
+.hero__portrait-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .hero__portrait figcaption {
   color: var(--graphite);

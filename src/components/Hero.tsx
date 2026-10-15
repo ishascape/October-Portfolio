@@ -1,5 +1,6 @@
 import { availability, capabilities, contact } from '../data/content'
 import { Skills } from './Skills'
+import portrait from '../assets/ashni-portrait.webp'
 import './Hero.css'
 
 export function Hero() {
@@ -16,10 +17,17 @@ export function Hero() {
             I design coherent &amp; scalable products for complex businesses.
           </h1>
           <figure className="hero__portrait">
-            <div className="hero__portrait-frame" aria-hidden="true">
-              <span className="label">Photo of Ashni to come</span>
+            <div className="hero__portrait-frame">
+              <img
+                src={portrait}
+                alt="Ashni Dave smiling, with long dark hair, in a blue denim top, standing in a garden."
+                width={960}
+                height={1200}
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
-            <figcaption className="annotation">Fig. 00. Ashni Dave, Sydney</figcaption>
+            <figcaption className="annotation">Fig. 00. Ashni Dave</figcaption>
           </figure>
           <div className="hero__support">
             <p>

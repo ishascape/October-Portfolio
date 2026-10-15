@@ -1,6 +1,7 @@
 import { sectionHref } from '../links'
 import { useEffect, useRef, useState } from 'react'
 import { contact } from '../data/content'
+import { sheetTop, NAV_HEIGHT } from '../sheetNav'
 import './Nav.css'
 
 const sections = [
@@ -14,20 +15,33 @@ export function Nav({ onHome }: { onHome: boolean }) {
   const [current, setCurrent] = useState('top')
   const menu = useRef<HTMLDialogElement>(null)
 
-  // Underline the section currently in view.
+  // Underline the sheet on top of the stack. Sticky sheets overlap, so this works from each
+  // sheet's place in the flow rather than from what intersects the viewport.
   useEffect(() => {
-    if (!('IntersectionObserver' in window)) return
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) if (e.isIntersecting) setCurrent(e.target.id)
-      },
-      { rootMargin: '-45% 0px -50% 0px' },
-    )
-    for (const s of sections) {
-      const el = document.getElementById(s.id)
-      if (el) io.observe(el)
+    if (!onHome) return
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const line = window.scrollY + NAV_HEIGHT + window.innerHeight * 0.3
+      let on = 'top'
+      for (const s of sections) {
+        const el = document.getElementById(s.id)
+        if (el && sheetTop(el) <= line) on = s.id
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) on = 'contact'
+      setCurrent(on)
     }
-    return () => io.disconnect()
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [onHome])
 
   return (
