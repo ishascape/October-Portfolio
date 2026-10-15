@@ -50,9 +50,8 @@ export function Nav({ onHome }: { onHome: boolean }) {
         <a className="nav__name" href={sectionHref('top', onHome)}>
           {/* A pen-drawn mountain, for the peaks she has climbed. */}
           <svg className="nav__icon" viewBox="0 0 28 20" aria-hidden="true">
-            <path d="M1.5 18.2 L9.8 4.6 L14.2 11.4 L17.6 6.8 L26.8 18.4 L0.8 18.3" />
-            <path d="M7.4 8.4 L9.6 10.4 L11.2 8.2 M15.8 9.2 L17.8 11 L19.4 9" />
-            <path d="M9.8 4.6 L9.9 3.2" />
+            <path d="M1.2 18.3 L13.6 3.4 L26.8 18.5 L0.8 18.2" />
+            <path d="M9.6 8.6 L11.8 10.8 L13.6 8.8 L15.8 11 L17.6 8.8" />
           </svg>
           Ashni Dave
         </a>
