@@ -1,14 +1,18 @@
-import { education, fieldNotes, principles, revisions } from '../data/content'
-import { SheetLabel } from './SheetLabel'
-import { PrincipleParti } from './PrinciplePartis'
-import { Skills } from './Skills'
-import './About.css'
+import { education, fieldNotes, principles, revisions } from "../data/content";
+import { SheetLabel } from "./SheetLabel";
+import { PrincipleParti } from "./PrinciplePartis";
+import { Skills } from "./Skills";
+import "./About.css";
 
 export function About() {
-  const groups = [...new Set(fieldNotes.map((f) => f.group))]
+  const groups = [...new Set(fieldNotes.map((f) => f.group))];
 
   return (
-    <section id="about" className="section about paper-sheet" aria-labelledby="about-heading">
+    <section
+      id="about"
+      className="section about paper-sheet"
+      aria-labelledby="about-heading"
+    >
       <div className="container">
         <SheetLabel sheet="02 / 03" title="About" />
 
@@ -18,23 +22,80 @@ export function About() {
             <span>A designer&rsquo;s eye.</span> <span>A business mind.</span>
           </h2>
           <div className="about__body">
-            <p>I trained as an architect in the UK. Turns out, I never stopped thinking like one.</p>
-            <p className="about__mantra">Understand the site. Question the brief. Design for the people who use it.</p>
             <p>
-              Today, I apply that thinking to digital products — untangling complex workflows, connecting user needs
-              with business goals, and making the complicated feel effortless.
+              I trained as an architect in the UK. Turns out, I never stopped
+              thinking like one.
+            </p>
+            <p className="about__mantra">
+              Understand the site. Question the brief. Design for the people who
+              use it.
             </p>
             <p>
-              Most recently, I shaped B2B and marketplace experiences at HeadBox, following work across growth, core
-              product and monetisation at Findmypast.
+              Today, I apply that thinking to digital products — untangling
+              complex workflows, connecting user needs with business goals, and
+              making the complicated feel effortless.
+            </p>
+            <p>
+              Most recently, I shaped B2B and marketplace experiences at
+              HeadBox, following work across growth, core product and
+              monetisation at Findmypast.
             </p>
             <p className="about__note">
-              And this portfolio? Designed by me. Built with React, TypeScript and a lot of help from AI.
+              And this portfolio? Designed by me. Built with React, TypeScript
+              and a lot of help from AI.
             </p>
           </div>
         </div>
 
         <Skills />
+
+        <h3 className="label about__subhead">Work history</h3>
+        <table className="revisions">
+          <caption className="visually-hidden">
+            Work history, most recent first
+          </caption>
+          <thead className="label">
+            <tr>
+              <th scope="col">Rev</th>
+              <th scope="col">Date</th>
+              <th scope="col">Role</th>
+              <th scope="col">Company</th>
+            </tr>
+          </thead>
+          <tbody>
+            {revisions.map((r) => (
+              <tr key={r.date}>
+                <td className="label">{r.rev}</td>
+                <td className="label">{r.date}</td>
+                <th scope="row">{r.role}</th>
+                <td>{r.company}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <h3 className="label about__subhead">Education</h3>
+        <table className="revisions revisions--education">
+          <caption className="visually-hidden">
+            Education and courses, most recent first
+          </caption>
+          <thead className="label">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Course</th>
+              <th scope="col">Institution</th>
+            </tr>
+          </thead>
+          <tbody>
+            {education.map((e) => (
+              <tr key={e.course}>
+                <td className="label">{e.date}</td>
+                <th scope="row">{e.course}</th>
+                <td>{e.school}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
         <h3 id="design-ethos" className="label about__subhead">
           Design ethos
@@ -62,61 +123,19 @@ export function About() {
           ))}
         </ol>
 
-        <h3 className="label about__subhead">Work history</h3>
-        <table className="revisions">
-          <caption className="visually-hidden">Work history, most recent first</caption>
-          <thead className="label">
-            <tr>
-              <th scope="col">Rev</th>
-              <th scope="col">Date</th>
-              <th scope="col">Role</th>
-              <th scope="col">Company</th>
-            </tr>
-          </thead>
-          <tbody>
-            {revisions.map((r) => (
-              <tr key={r.date}>
-                <td className="label">{r.rev}</td>
-                <td className="label">{r.date}</td>
-                <th scope="row">{r.role}</th>
-                <td>{r.company}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <h3 className="label about__subhead">Education</h3>
-        <table className="revisions revisions--education">
-          <caption className="visually-hidden">Education and courses, most recent first</caption>
-          <thead className="label">
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Course</th>
-              <th scope="col">Institution</th>
-            </tr>
-          </thead>
-          <tbody>
-            {education.map((e) => (
-              <tr key={e.course}>
-                <td className="label">{e.date}</td>
-                <th scope="row">{e.course}</th>
-                <td>{e.school}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
         <div className="field-notes">
           <div className="field-notes__copy">
             <h3 className="display field-notes__heading">Field notes</h3>
             <p>Outside work: drawing, music and travel.</p>
             <p>
-              My sketchbook is mostly animals. Same muscle as product design: look closely, then cut what isn't needed.
+              My sketchbook is mostly animals. Same muscle as product design:
+              look closely, then cut what isn't needed.
             </p>
             <p>
-              I play piano and flute at gigs every few weeks. 39 countries, Kilimanjaro and Mt Kenya summits, and
-              Everest Base Camp so far. On the Amara Charitable Trust committee since 2011, and a reforestation
-              volunteer with FOECT in Kenya.
+              I play piano and flute at gigs every few weeks. 39 countries,
+              Kilimanjaro and Mt Kenya summits, and Everest Base Camp so far. On
+              the Amara Charitable Trust committee since 2011, and a
+              reforestation volunteer with FOECT in Kenya.
             </p>
           </div>
 
@@ -131,15 +150,29 @@ export function About() {
                       <li key={f.fig}>
                         <figure className="figure">
                           {f.src ? (
-                            <div className="figure__photo" style={{ aspectRatio: f.ratio }}>
-                              <img src={f.src} alt={f.alt} loading="lazy" decoding="async" />
+                            <div
+                              className="figure__photo"
+                              style={{ aspectRatio: f.ratio }}
+                            >
+                              <img
+                                src={f.src}
+                                alt={f.alt}
+                                loading="lazy"
+                                decoding="async"
+                              />
                             </div>
                           ) : (
-                            <div className="figure__frame" style={{ aspectRatio: f.ratio }} aria-hidden="true">
+                            <div
+                              className="figure__frame"
+                              style={{ aspectRatio: f.ratio }}
+                              aria-hidden="true"
+                            >
                               <span className="label">Fig. {f.fig}</span>
                             </div>
                           )}
-                          <figcaption className="annotation">{f.caption}</figcaption>
+                          <figcaption className="annotation">
+                            {f.caption}
+                          </figcaption>
                         </figure>
                       </li>
                     ))}
@@ -150,5 +183,5 @@ export function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }
