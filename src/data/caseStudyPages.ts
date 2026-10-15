@@ -20,6 +20,7 @@ export interface Section {
   label: string // small kicker, like a drawing title
   heading: string
   eyebrow?: string // hand-lettered note above the heading, with a line-drawn light bulb
+  eyebrowIcon?: 'bulb' | 'sword' // line-drawn icon before the note (default: bulb)
   body?: string[]
   list?: { title?: string; text: string }[]
   experiments?: Experiment[]
@@ -300,6 +301,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       {
         label: '04 · Descope dungeon',
         heading: 'Designing for a 2 to 30 second wait.',
+        eyebrow: 'Descoped, not forgotten',
+        eyebrowIcon: 'sword',
         body: [
           'Suggestions took 2 to 30 seconds. I proposed progressive, personalised content for the wait, like newspaper headlines from your birthday. Descoped so the team could prioritise core improvements and release speed.',
         ],
