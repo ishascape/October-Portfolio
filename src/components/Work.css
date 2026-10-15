@@ -8,11 +8,17 @@
   display: grid;
   gap: var(--space-4);
 }
+/* Cards in a row share one height and width; the call to action sits on the bottom edge. */
+.work__list > li {
+  display: grid;
+}
 
 /* The whole card is the tap target: the title link stretches over it. */
 .card {
   position: relative;
   display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
   border: var(--line-thin) solid var(--rule);
   background: var(--paper);
   transition: border-color var(--dur-micro) var(--ease-pen), box-shadow var(--dur-micro) var(--ease-pen);
@@ -84,9 +90,9 @@
 }
 
 .card__body {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
-  align-content: start;
   padding: var(--space-4) var(--space-3);
 }
 
@@ -158,12 +164,48 @@
   color: var(--graphite);
 }
 
+.card__cta {
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+/* The CTA reads as a secondary button until the card is hovered, then becomes primary. */
+.card:hover .card__cta .button,
+.card:focus-within .card__cta .button {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.card:hover .card__cta .button::before,
+.card:hover .card__cta .button::after,
+.card:focus-within .card__cta .button::before,
+.card:focus-within .card__cta .button::after {
+  opacity: 1;
+}
+
 .card__arrow {
   display: inline-block;
   transition: transform var(--dur-micro) var(--ease-pen);
 }
 .card:hover .card__arrow,
-.card:focus-within .card__arrow {
+.card:focus-within .card__cta {
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+/* The CTA reads as a secondary button until the card is hovered, then becomes primary. */
+.card:hover .card__cta .button,
+.card:focus-within .card__cta .button {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.card:hover .card__cta .button::before,
+.card:hover .card__cta .button::after,
+.card:focus-within .card__cta .button::before,
+.card:focus-within .card__cta .button::after {
+  opacity: 1;
+}
+
+.card__arrow {
   transform: translateX(4px);
 }
 

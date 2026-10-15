@@ -53,8 +53,10 @@ export function Work() {
                     ))}
                   </ul>
 
-                  <p className="card__cta label" aria-hidden="true">
-                    Read case study <span className="card__arrow">→</span>
+                  <p className="card__cta" aria-hidden="true">
+                    <span className="button">
+                      Read case study <span className="card__arrow">→</span>
+                    </span>
                   </p>
                 </div>
               </article>
