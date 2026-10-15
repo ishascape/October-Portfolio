@@ -1,36 +1,13 @@
-import { useRef, useState } from 'react'
-import { availability, capabilities, caseStudies, contact, type CaseStudyId } from '../data/content'
-import { SitePlan, type PlanMode } from './SitePlan'
-import { DetailSheet } from './DetailSheet'
-import { ModeSwitch } from './ModeSwitch'
+import { availability, capabilities, contact } from '../data/content'
 import { Skills } from './Skills'
 import './Hero.css'
 
 export function Hero() {
-  const [mode, setMode] = useState<PlanMode>('proposed')
-  const [hovered, setHovered] = useState<CaseStudyId | null>(null)
-  const [selected, setSelected] = useState<CaseStudyId | null>(null)
-  const returnFocus = useRef<Element | null>(null)
-
-  const active = caseStudies.find((s) => s.id === hovered)
-  const selectedStudy = caseStudies.find((s) => s.id === selected) ?? null
-
-  const planProps = {
-    studies: caseStudies,
-    mode,
-    hovered,
-    onHover: setHovered,
-    onSelect: (id: CaseStudyId, el: Element) => {
-      returnFocus.current = el
-      setSelected(id)
-    },
-  }
-
   return (
     <section id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
       <div className="container">
         <p className="label hero__sheet">
-          <span>Sheet 00 / 03 · Site plan</span>
+          <span>Sheet 00 / 03 · Introduction</span>
           <span aria-hidden="true">Scale NTS</span>
         </p>
 
@@ -73,72 +50,27 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero__drawing">
-          <div className="hero__controls">
-            <div className="hero__toggle">
-              <div className="hero__toggle-row">
-                <span className="margin-note" aria-hidden="true">
-                  try it →
-                </span>
-                <ModeSwitch mode={mode} onChange={setMode} />
-              </div>
-              <p className="hero__helper">Dashed lines show what I found. Solid lines show what shipped.</p>
+        <div className="hero__footer">
+          <dl className="title-block label">
+            <div className="title-block__name">
+              <dt className="visually-hidden">Name</dt>
+              <dd>Ashni Dave</dd>
             </div>
-          </div>
-
-          <div className="hero__plan hero__plan--landscape">
-            <SitePlan variant="landscape" {...planProps} />
-          </div>
-          <div className="hero__plan hero__plan--portrait">
-            <SitePlan variant="portrait" {...planProps} />
-          </div>
-
-          <div className="hero__footer">
-            <p className="hero__annotation label" aria-hidden="true">
-              {active ? (
-                <>
-                  <span>
-                    {active.number} · {active.title}
-                  </span>
-                  <span className="hero__annotation-existing">Existing: {active.existing}</span>
-                  <span>Proposed: {active.proposed}</span>
-                </>
-              ) : (
-                <span>Select a building to open the project</span>
-              )}
-            </p>
-
-            <dl className="title-block label">
-              <div className="title-block__name">
-                <dt className="visually-hidden">Name</dt>
-                <dd>Ashni Dave</dd>
-              </div>
-              <div>
-                <dt className="visually-hidden">Role</dt>
-                <dd>Senior Product Designer</dd>
-              </div>
-              <div>
-                <dt className="visually-hidden">Location and availability</dt>
-                <dd>Sydney, Australia · {availability.short}</dd>
-              </div>
-              <div className="title-block__rev">
-                <dt className="visually-hidden">Revision</dt>
-                <dd>Drawn 2026 · Rev E</dd>
-              </div>
-            </dl>
-          </div>
+            <div>
+              <dt className="visually-hidden">Role</dt>
+              <dd>Senior Product Designer</dd>
+            </div>
+            <div>
+              <dt className="visually-hidden">Location and availability</dt>
+              <dd>Sydney, Australia · {availability.short}</dd>
+            </div>
+            <div className="title-block__rev">
+              <dt className="visually-hidden">Revision</dt>
+              <dd>Drawn 2026 · Rev E</dd>
+            </div>
+          </dl>
         </div>
       </div>
-
-      <DetailSheet
-        study={selectedStudy}
-        onClose={() => {
-          setSelected(null)
-          if (returnFocus.current instanceof SVGElement || returnFocus.current instanceof HTMLElement) {
-            returnFocus.current.focus()
-          }
-        }}
-      />
     </section>
   )
 }

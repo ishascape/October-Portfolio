@@ -4,7 +4,7 @@ import { contact } from '../data/content'
 import './Nav.css'
 
 const sections = [
-  { id: 'top', sheet: '00', label: 'Site plan', inBar: false },
+  { id: 'top', sheet: '00', label: 'Introduction', inBar: false },
   { id: 'work', sheet: '01', label: 'Work', inBar: true },
   { id: 'about', sheet: '02', label: 'About', inBar: true },
   { id: 'contact', sheet: '03', label: 'Contact', inBar: true },

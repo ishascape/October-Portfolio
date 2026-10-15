@@ -1,11 +1,12 @@
 import type { PlanMode } from './SitePlan'
+import './ModeSwitch.css'
 
 interface ModeSwitchProps {
   mode: PlanMode
   onChange: (mode: PlanMode) => void
 }
 
-// Existing ⇄ proposed: the architectural before/after convention. Styles live in Hero.css.
+// Existing ⇄ proposed: the architectural before/after convention.
 export function ModeSwitch({ mode, onChange }: ModeSwitchProps) {
   return (
     <button

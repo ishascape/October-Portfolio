@@ -10,7 +10,7 @@ export function Footer({ onHome }: { onHome: boolean }) {
           <nav aria-label="Sheet index">
             <ul className="footer__index">
               <li>
-                <a href={sectionHref('top', onHome)}>00 Site plan</a>
+                <a href={sectionHref('top', onHome)}>00 Introduction</a>
               </li>
               <li>
                 <a href={sectionHref('work', onHome)}>01 Work</a>

@@ -76,85 +76,10 @@
   gap: var(--space-3);
 }
 
-/* ---------- Drawing ---------- */
-
-.hero__drawing {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.hero__controls {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.hero__toggle {
-  display: grid;
-  gap: var(--space-1);
-}
-.hero__toggle-row {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-.hero__toggle-row .switch {
-  flex: 1;
-}
-.hero__helper {
-  font-size: 14px;
-  color: var(--graphite);
-}
-
-.switch {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  min-height: var(--tap);
-  padding: 0 var(--space-3);
-  border: var(--line-thin) solid var(--ink);
-  background: var(--paper);
-  cursor: pointer;
-}
-.switch [data-on='false'] {
-  color: var(--graphite);
-}
-.switch__track {
-  position: relative;
-  width: 40px;
-  height: 16px;
-  border: var(--line-thin) solid var(--ink);
-}
-.switch__thumb {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 10px;
-  background: var(--ink);
-  transition: transform var(--dur-state) var(--ease-pen);
-}
-.switch[aria-checked='true'] .switch__thumb {
-  transform: translateX(18px);
-  background: var(--marker);
-}
-
-.hero__plan--landscape {
-  display: none;
-}
-.hero__plan--portrait {
-  max-width: 440px;
-  margin-inline: auto;
-  width: 100%;
-}
+/* ---------- Title block ---------- */
 
 .hero__footer {
   display: grid;
-  gap: var(--space-4);
-}
-
-.hero__annotation {
-  display: none;
 }
 
 .title-block {
@@ -179,29 +104,6 @@
 }
 .title-block__rev {
   color: var(--graphite);
-}
-
-@media (min-width: 600px) {
-  .hero__plan--landscape {
-    display: block;
-  }
-  .hero__plan--portrait {
-    display: none;
-  }
-  .hero__toggle-row .switch {
-    flex: none;
-  }
-  .hero__annotation {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1) var(--space-4);
-    align-content: start;
-    min-height: 3.6em;
-    color: var(--ink);
-  }
-  .hero__annotation-existing {
-    color: var(--graphite);
-  }
 }
 
 @media (min-width: 1024px) {
@@ -234,17 +136,11 @@
   .hero__intro {
     margin-bottom: var(--space-4);
   }
-  .hero__controls {
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    gap: var(--space-4);
-  }
-  .hero__toggle {
-    justify-items: end;
-    text-align: right;
-  }
   .hero__footer {
     grid-template-columns: 7fr 5fr;
-    align-items: start;
+    column-gap: var(--gutter);
+  }
+  .hero__footer .title-block {
+    grid-column: 2;
   }
 }
