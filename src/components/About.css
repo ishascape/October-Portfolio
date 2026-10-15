@@ -10,10 +10,16 @@
 .about__heading {
   font-size: clamp(28px, 3.5vw, 44px);
 }
+.about__heading span {
+  display: block;
+}
 .about__body {
   display: grid;
   gap: var(--space-3);
   max-width: var(--measure);
+}
+.about__mantra {
+  font-weight: 600;
 }
 .about__note {
   font-size: 15px;
@@ -254,7 +260,7 @@
 @media (min-width: 1024px) {
   .about__intro {
     grid-template-columns: 7fr 5fr;
-    align-items: end;
+    align-items: start;
     gap: var(--gutter);
   }
   .principle {

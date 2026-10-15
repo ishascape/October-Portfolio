@@ -13,17 +13,22 @@ export function About() {
 
         <div className="about__intro">
           <h2 id="about-heading" className="display about__heading">
-            Trained as an architect. Practising as a product designer.
+            {/* One sentence per line. */}
+            <span>Part designer.</span> <span>Part strategist.</span> <span>All about impact.</span>
           </h2>
           <div className="about__body">
+            <p>I trained as an architect at Bath. Turns out, I never stopped thinking like one.</p>
+            <p className="about__mantra">Understand the site. Question the brief. Design for the people who use it.</p>
             <p>
-              I studied architecture at Bath and still work like an architect: understand the site before drawing
-              the building. I turn complex marketplaces and B2B platforms into simple products that drive business
-              results, most recently as Senior Product Designer at HeadBox, before that across growth, core product
-              and monetisation at Findmypast.
+              Today, I apply that thinking to digital products — untangling complex workflows, connecting user needs
+              with business goals, and making the complicated feel effortless.
+            </p>
+            <p>
+              Most recently, I shaped B2B and marketplace experiences at HeadBox, following work across growth, core
+              product and monetisation at Findmypast.
             </p>
             <p className="about__note">
-              I designed and built this site with AI-assisted code in React and TypeScript.
+              And this portfolio? Designed by me. Built with React, TypeScript and a lot of help from AI.
             </p>
           </div>
         </div>
@@ -103,8 +108,7 @@ export function About() {
             <h3 className="display field-notes__heading">Field notes</h3>
             <p>Outside work: drawing, music and travel.</p>
             <p>
-              My sketchbook is mostly animals. Same muscle as product design: look closely, then cut what isn't
-              needed.
+              My sketchbook is mostly animals. Same muscle as product design: look closely, then cut what isn't needed.
             </p>
             <p>
               I play piano and flute at gigs every few weeks. 39 countries, Kilimanjaro and Mt Kenya summits, and
