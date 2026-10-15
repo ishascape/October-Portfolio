@@ -57,7 +57,7 @@ export function Nav({ route }: { route: string }) {
           </ul>
         </nav>
 
-        <button type="button" className="nav__menu-button mono" onClick={() => menu.current?.showModal()}>
+        <button type="button" className="nav__menu-button label" onClick={() => menu.current?.showModal()}>
           Menu
         </button>
       </div>
@@ -72,8 +72,8 @@ export function Nav({ route }: { route: string }) {
       >
         <div className="container nav__menu-inner">
           <div className="nav__menu-head">
-            <p className="mono">Drawing list</p>
-            <button type="button" className="nav__menu-button mono" onClick={() => menu.current?.close()}>
+            <p className="label">Drawing list</p>
+            <button type="button" className="nav__menu-button label" onClick={() => menu.current?.close()}>
               Close
             </button>
           </div>
@@ -81,7 +81,7 @@ export function Nav({ route }: { route: string }) {
             {sections.map((s) => (
               <li key={s.id}>
                 <a href={`#${s.id}`}>
-                  <span className="mono">{s.sheet}</span>
+                  <span className="label">{s.sheet}</span>
                   {s.label}
                 </a>
               </li>
@@ -89,7 +89,7 @@ export function Nav({ route }: { route: string }) {
             {contact.resume && (
               <li>
                 <a href={contact.resume} target="_blank" rel="noreferrer">
-                  <span className="mono">↗</span>
+                  <span className="label">↗</span>
                   Resume
                 </a>
               </li>

@@ -22,7 +22,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="section contact" aria-labelledby="contact-heading">
+    <section id="contact" className="section contact paper-sheet" aria-labelledby="contact-heading">
       <div className="container">
         <SheetLabel sheet="03 / 03" title="Contact" />
         <h2 id="contact-heading" className="display contact__heading">
@@ -38,8 +38,8 @@ export function Contact() {
 
         <div className="contact__links">
           <button type="button" className="button button--primary contact__copy" onClick={copy}>
-            <span className={copied ? 'mono' : undefined}>{copied ? 'Copied ✓' : contact.email}</span>
-            {!copied && <span className="mono contact__copy-hint">Copy</span>}
+            <span className={copied ? 'label' : undefined}>{copied ? 'Copied ✓' : contact.email}</span>
+            {!copied && <span className="label contact__copy-hint">Copy</span>}
           </button>
           <span className="visually-hidden" aria-live="polite">
             {copied ? 'Email address copied' : ''}

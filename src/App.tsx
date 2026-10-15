@@ -6,12 +6,16 @@ import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { CaseStudy } from './components/CaseStudy'
 import { useRoute } from './useRoute'
+import { useSheetStack } from './useSheetStack'
+import { SketchDefs } from './components/Sketch'
 
 export function App() {
   const route = useRoute()
+  useSheetStack([route])
 
   return (
     <>
+      <SketchDefs />
       <a className="skip-link" href="#main">
         Skip to content
       </a>

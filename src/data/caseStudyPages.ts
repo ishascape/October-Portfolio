@@ -17,7 +17,7 @@ export interface Experiment {
 }
 
 export interface Section {
-  label: string // mono kicker, like a drawing title
+  label: string // small kicker, like a drawing title
   heading: string
   body?: string[]
   list?: { title?: string; text: string }[]

@@ -25,7 +25,7 @@
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-4);
   border-bottom: var(--line-thin) solid var(--ink);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* ---------- How I work ---------- */
@@ -66,7 +66,7 @@
   font-size: 15px;
   color: var(--graphite);
 }
-.principle__evidence .mono {
+.principle__evidence .label {
   display: block;
   color: var(--ink);
 }

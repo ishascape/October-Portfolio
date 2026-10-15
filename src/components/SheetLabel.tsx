@@ -31,7 +31,7 @@ export function SheetLabel({ sheet, title }: SheetLabelProps) {
   }, [])
 
   return (
-    <p ref={ref} className="sheet-label mono" data-drawn={drawn}>
+    <p ref={ref} className="sheet-label label" data-drawn={drawn}>
       Sheet {sheet} · {title}
     </p>
   )

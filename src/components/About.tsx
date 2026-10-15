@@ -6,7 +6,7 @@ export function About() {
   const groups = [...new Set(fieldNotes.map((f) => f.group))]
 
   return (
-    <section id="about" className="section about" aria-labelledby="about-heading">
+    <section id="about" className="section about paper-sheet" aria-labelledby="about-heading">
       <div className="container">
         <SheetLabel sheet="02 / 03" title="About" />
 
@@ -28,7 +28,7 @@ export function About() {
           </div>
         </div>
 
-        <h3 id="how-i-work" className="mono about__subhead">
+        <h3 id="how-i-work" className="label about__subhead">
           How I work
         </h3>
         <ol className="principles">
@@ -43,7 +43,7 @@ export function About() {
                 <ul className="principle__evidence">
                   {p.evidence.map((e) => (
                     <li key={e.text}>
-                      <span className="mono">{e.source}</span>
+                      <span className="label">{e.source}</span>
                       {e.text}
                     </li>
                   ))}
@@ -53,10 +53,10 @@ export function About() {
           ))}
         </ol>
 
-        <h3 className="mono about__subhead">Revision history</h3>
+        <h3 className="label about__subhead">Revision history</h3>
         <table className="revisions">
           <caption className="visually-hidden">Career history, most recent first</caption>
-          <thead className="mono">
+          <thead className="label">
             <tr>
               <th scope="col">Rev</th>
               <th scope="col">Date</th>
@@ -67,8 +67,8 @@ export function About() {
           <tbody>
             {revisions.map((r) => (
               <tr key={r.date}>
-                <td className="mono">{r.rev}</td>
-                <td className="mono">{r.date}</td>
+                <td className="label">{r.rev}</td>
+                <td className="label">{r.date}</td>
                 <th scope="row">{r.role}</th>
                 <td>{r.company}</td>
               </tr>
@@ -94,7 +94,7 @@ export function About() {
           <div className="field-notes__figures">
             {groups.map((g) => (
               <div key={g} className="field-notes__group">
-                <p className="mono field-notes__group-label">{g}</p>
+                <p className="label field-notes__group-label">{g}</p>
                 <ul className="field-notes__strip">
                   {fieldNotes
                     .filter((f) => f.group === g)
@@ -102,9 +102,9 @@ export function About() {
                       <li key={f.fig}>
                         <figure className="figure">
                           <div className="figure__frame" style={{ aspectRatio: f.ratio }} aria-hidden="true">
-                            <span className="mono">Fig. {f.fig}</span>
+                            <span className="label">Fig. {f.fig}</span>
                           </div>
-                          <figcaption className="mono">{f.caption}</figcaption>
+                          <figcaption className="label">{f.caption}</figcaption>
                         </figure>
                       </li>
                     ))}

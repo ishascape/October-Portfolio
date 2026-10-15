@@ -165,12 +165,12 @@ export const revisions = [
 
 // Placeholder figures until Ashni uploads real photos and sketches.
 export const fieldNotes = [
-  { fig: '01', group: 'Portrait', caption: 'FIG. 01 · ASHNI · PHOTO TO COME', ratio: '4 / 5' },
-  { fig: '02', group: 'Sketchbook', caption: 'FIG. 02 · ANIMAL SKETCH · TO COME', ratio: '1 / 1' },
-  { fig: '04', group: 'Sketchbook', caption: 'FIG. 04 · SKETCHBOOK SPREAD · TO COME', ratio: '3 / 2' },
-  { fig: '05', group: 'Concerts', caption: 'FIG. 05 · PERFORMING · TO COME', ratio: '3 / 2' },
-  { fig: '07', group: 'Travel', caption: 'FIG. 07 · SUMMIT · TO COME', ratio: '4 / 5' },
-  { fig: '08', group: 'Travel', caption: 'FIG. 08 · EVEREST BASE CAMP · TO COME', ratio: '3 / 2' },
+  { fig: '01', group: 'Portrait', caption: 'Fig. 01. Portrait, to come', ratio: '4 / 5' },
+  { fig: '02', group: 'Sketchbook', caption: 'Fig. 02. Animal sketch, to come', ratio: '1 / 1' },
+  { fig: '04', group: 'Sketchbook', caption: 'Fig. 04. Sketchbook spread, to come', ratio: '3 / 2' },
+  { fig: '05', group: 'Concerts', caption: 'Fig. 05. Performing, to come', ratio: '3 / 2' },
+  { fig: '07', group: 'Travel', caption: 'Fig. 07. Summit, to come', ratio: '4 / 5' },
+  { fig: '08', group: 'Travel', caption: 'Fig. 08. Everest Base Camp, to come', ratio: '3 / 2' },
 ]
 
 export const contact = {

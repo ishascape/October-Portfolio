@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { CaseStudyId } from '../data/content'
+import { SketchRect } from './Sketch'
 import './Parti.css'
 
 // A parti is the one-idea diagram an architect draws before anything else.
@@ -50,7 +51,7 @@ function HostHQParti() {
         [34, 64],
         [86, 64],
       ].map(([x, y]) => (
-        <rect key={`${x}-${y}`} x={x} y={y} width={40} height={30} className="parti__ghost" />
+        <SketchRect key={`${x}-${y}`} x={x} y={y} width={40} height={30} className="parti__ghost" />
       ))}
       <path {...P} d="M72 108 H22 V12 H138 V108 H88" className="parti__heavy" />
       <line {...P} x1={80} y1={118} x2={80} y2={20} className="parti__axis" />
@@ -63,7 +64,7 @@ function TreeAssistParti() {
   return (
     <>
       {[8, 30, 52].map((x) => (
-        <rect key={x} {...P} x={x} y={86} width={16} height={14} className="parti__heavy" />
+        <SketchRect key={x} {...P} x={x} y={86} width={16} height={14} className="parti__heavy" />
       ))}
       <line {...P} x1={68} y1={93} x2={112} y2={93} className="parti__heavy" />
       <circle cx={112} cy={60} r={42} className="parti__ghost" />
@@ -108,14 +109,14 @@ export function PartiTransition({ from, to }: PartiTransitionProps) {
     <div className="parti-transition">
       <figure className="parti-transition__item parti-transition__item--from">
         <Parti id={from} />
-        <figcaption className="mono">{partiIdeas[from]}</figcaption>
+        <figcaption className="label">{partiIdeas[from]}</figcaption>
       </figure>
       <svg className="parti-transition__link" viewBox="0 0 80 20" aria-hidden="true" preserveAspectRatio="none">
         <path pathLength={1} d="M2 10 H74 M68 4 L76 10 L68 16" />
       </svg>
       <figure className="parti-transition__item parti-transition__item--to">
         <Parti id={to} />
-        <figcaption className="mono">{partiIdeas[to]}</figcaption>
+        <figcaption className="label">{partiIdeas[to]}</figcaption>
       </figure>
     </div>
   )

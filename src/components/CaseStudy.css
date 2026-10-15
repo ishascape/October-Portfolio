@@ -103,7 +103,7 @@
 }
 .case__ps h2,
 .case__impact-label {
-  font-weight: 500;
+  font-weight: 400;
   color: var(--graphite);
 }
 .case__impact-label {
@@ -192,7 +192,7 @@
   border: var(--line-thin) solid var(--rule);
 }
 .case__experiments h3 {
-  font-weight: 500;
+  font-weight: 400;
   padding-bottom: var(--space-2);
   border-bottom: var(--line-thin) solid var(--ink);
 }

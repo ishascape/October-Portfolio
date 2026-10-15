@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer__block mono">
+        <div className="footer__block label">
           <p className="footer__name">Ashni Dave · Senior Product Designer · Sydney</p>
           <nav aria-label="Sheet index">
             <ul className="footer__index">

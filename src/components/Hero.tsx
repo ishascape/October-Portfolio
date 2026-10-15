@@ -28,9 +28,9 @@ export function Hero() {
   }
 
   return (
-    <section id="top" className="hero" aria-labelledby="hero-heading">
+    <section id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
       <div className="container">
-        <p className="mono hero__sheet">
+        <p className="label hero__sheet">
           <span>Sheet 00 / 03 · Site plan</span>
           <span aria-hidden="true">Scale NTS</span>
         </p>
@@ -45,7 +45,7 @@ export function Hero() {
               product, not just the product: the workflows, automation, teams and processes it touches. Research,
               workshops, data and commercial sense decide what ships.
             </p>
-            <ul className="hero__capabilities mono" aria-label="How I work">
+            <ul className="hero__capabilities label" aria-label="How I work">
               {capabilities.map((c) => (
                 <li key={c}>
                   <a href="#how-i-work">{c}</a>
@@ -68,7 +68,7 @@ export function Hero() {
         <div className="hero__drawing">
           <div className="hero__controls">
             <div className="hero__key" role="group" aria-label="Drawing key: filter the plan by focus">
-              <span className="mono hero__key-label" aria-hidden="true">
+              <span className="label hero__key-label" aria-hidden="true">
                 Key
               </span>
               <div className="hero__chips">
@@ -76,7 +76,7 @@ export function Hero() {
                   <button
                     key={k.id}
                     type="button"
-                    className="chip mono"
+                    className="chip label"
                     aria-pressed={filter === k.id}
                     onClick={() => setFilter(filter === k.id ? null : k.id)}
                   >
@@ -88,7 +88,12 @@ export function Hero() {
             </div>
 
             <div className="hero__toggle">
-              <ModeSwitch mode={mode} onChange={setMode} />
+              <div className="hero__toggle-row">
+                <span className="hand-note" aria-hidden="true">
+                  try it →
+                </span>
+                <ModeSwitch mode={mode} onChange={setMode} />
+              </div>
               <p className="hero__helper">Dashed lines show what I found. Solid lines show what shipped.</p>
             </div>
           </div>
@@ -101,7 +106,7 @@ export function Hero() {
           </div>
 
           <div className="hero__footer">
-            <p className="hero__annotation mono" aria-hidden="true">
+            <p className="hero__annotation label" aria-hidden="true">
               {active ? (
                 <>
                   <span>
@@ -115,7 +120,7 @@ export function Hero() {
               )}
             </p>
 
-            <dl className="title-block mono">
+            <dl className="title-block label">
               <div className="title-block__name">
                 <dt className="visually-hidden">Name</dt>
                 <dd>Ashni Dave</dd>

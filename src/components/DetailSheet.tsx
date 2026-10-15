@@ -33,10 +33,10 @@ export function DetailSheet({ study, onClose }: DetailSheetProps) {
       {study && (
         <div className="sheet__body">
           <div className="sheet__head">
-            <p className="mono sheet__number">
+            <p className="label sheet__number">
               Drawing {study.number} · {study.company}
             </p>
-            <button type="button" className="sheet__close mono" onClick={() => ref.current?.close()}>
+            <button type="button" className="sheet__close label" onClick={() => ref.current?.close()}>
               Close <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -47,24 +47,24 @@ export function DetailSheet({ study, onClose }: DetailSheetProps) {
 
           <p className="sheet__metric">
             <span className="sheet__metric-value">{study.leadMetric.value}</span>
-            <span className="mono">{study.leadMetric.label}</span>
+            <span className="label">{study.leadMetric.label}</span>
           </p>
 
           <dl className="sheet__states">
             <div>
-              <dt className="mono">Existing</dt>
+              <dt className="label">Existing</dt>
               <dd>{study.existing}</dd>
             </div>
             <div>
-              <dt className="mono">Proposed</dt>
+              <dt className="label">Proposed</dt>
               <dd>{study.proposed}</dd>
             </div>
             <div>
-              <dt className="mono">Role</dt>
+              <dt className="label">Role</dt>
               <dd>{study.role}</dd>
             </div>
             <div>
-              <dt className="mono">System</dt>
+              <dt className="label">System</dt>
               <dd>{study.system}</dd>
             </div>
           </dl>

@@ -10,41 +10,42 @@
 .plan text {
   fill: var(--ink);
   stroke: none;
-  font-family: var(--font-mono);
-  letter-spacing: var(--tracking-mono);
+  font-family: var(--font-hand);
 }
 
 .plan__label {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 400;
 }
 .plan__tiny {
-  font-size: 10px;
+  font-size: 15px;
   fill: var(--graphite) !important;
 }
 .plan__name {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 23px;
+  font-weight: 600;
 }
 .plan__metric {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 400;
   fill: var(--marker) !important;
 }
 
-.plan--portrait .plan__label,
+.plan--portrait .plan__label {
+  font-size: 20px;
+}
 .plan--portrait .plan__name {
-  font-size: 15px;
+  font-size: 24px;
 }
 .plan--portrait .plan__metric {
-  font-size: 14px;
+  font-size: 21px;
 }
 .plan--portrait .plan__tiny {
-  font-size: 12px;
+  font-size: 17px;
 }
 
 /* District boundaries: chain line, like a site boundary */
-.plan__district rect {
+.plan__district path {
   stroke: var(--ink);
   stroke-width: var(--line-thin);
   stroke-dasharray: 14 4 2 4;
@@ -109,8 +110,7 @@
 }
 
 /* Existing: what I found. Dashed graphite. */
-.plan__existing rect,
-.plan__existing line {
+.plan__existing :is(rect, line, path) {
   stroke: var(--graphite);
   stroke-width: var(--line-thin);
   stroke-dasharray: 4 4;
@@ -159,7 +159,7 @@
 .plan__building[data-hovered='true'] .plan__proposed :is(rect, line, path, circle) {
   stroke-width: var(--line-cut);
 }
-.plan__building[data-hovered='true'] .plan__existing :is(rect, line) {
+.plan__building[data-hovered='true'] .plan__existing :is(rect, line, path) {
   stroke: var(--ink);
 }
 
@@ -175,4 +175,33 @@
   .plan__proposed :is(rect, line, path, circle) {
     animation: none;
   }
+}
+
+/* ---------- Hand-drawn feel ---------- */
+
+/* Pencil wobble on all linework (not on text, which stays crisp). */
+.plan__art,
+.plan__district path,
+.plan__road line,
+.plan__phase2-outline,
+.plan__construct {
+  filter: url(#pencil);
+}
+
+/* Faint construction lines that run past each building, like guide lines left in a sketch. */
+.plan__construct line {
+  stroke: var(--graphite);
+  stroke-width: 0.5;
+  opacity: 0.35;
+}
+
+.plan__note {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  fill: var(--marker) !important;
+}
+.plan__note-arrow {
+  stroke: var(--marker);
+  stroke-width: 1.25;
+  fill: none;
 }

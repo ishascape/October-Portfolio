@@ -118,6 +118,14 @@
   display: grid;
   gap: var(--space-1);
 }
+.hero__toggle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.hero__toggle-row .switch {
+  flex: 1;
+}
 .hero__helper {
   font-size: 14px;
   color: var(--graphite);
@@ -210,8 +218,8 @@
   .hero__plan--portrait {
     display: none;
   }
-  .switch {
-    justify-self: start;
+  .hero__toggle-row .switch {
+    flex: none;
   }
   .hero__annotation {
     display: flex;

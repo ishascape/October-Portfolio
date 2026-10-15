@@ -4,7 +4,7 @@ import './Work.css'
 
 export function Work() {
   return (
-    <section id="work" className="section" aria-labelledby="work-heading">
+    <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
         <SheetLabel sheet="01 / 03" title="Selected work" />
         <h2 id="work-heading" className="display work__heading">
@@ -16,12 +16,12 @@ export function Work() {
             <li key={s.id}>
               <article className="card" aria-labelledby={`card-${s.id}`}>
                 <div className="card__image" aria-hidden="true">
-                  <span className="mono">Drawing {s.number}</span>
-                  <span className="mono card__image-note">System diagram to come</span>
+                  <span className="label">Drawing {s.number}</span>
+                  <span className="label card__image-note">System diagram to come</span>
                 </div>
 
                 <div className="card__body">
-                  <p className="mono card__meta">
+                  <p className="label card__meta">
                     {s.number} · {s.company}
                   </p>
                   <h3 id={`card-${s.id}`} className="card__title">
@@ -34,7 +34,7 @@ export function Work() {
 
                   <p className="card__metric">
                     <span className="card__metric-value">{s.leadMetric.value}</span>
-                    <span className="mono">{s.leadMetric.label}</span>
+                    <span className="label">{s.leadMetric.label}</span>
                   </p>
                   <ul className="card__supporting">
                     {s.supporting.map((m) => (
@@ -43,16 +43,16 @@ export function Work() {
                   </ul>
 
                   <p className="card__system">
-                    <span className="mono">System</span> {s.system}
+                    <span className="label">System</span> {s.system}
                   </p>
 
-                  <ul className="card__tags mono" aria-label="Tags">
+                  <ul className="card__tags label" aria-label="Tags">
                     {s.tags.map((t) => (
                       <li key={t}>{t}</li>
                     ))}
                   </ul>
 
-                  <p className="card__cta mono" aria-hidden="true">
+                  <p className="card__cta label" aria-hidden="true">
                     Read case study <span className="card__arrow">→</span>
                   </p>
                 </div>

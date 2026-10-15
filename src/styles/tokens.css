@@ -10,14 +10,13 @@
   --marker-wash: rgb(47 95 179 / 0.12);
 
   /* Type */
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --text-display: clamp(40px, 8vw, 80px);
+  --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hand: 'Caveat', 'Bradley Hand', 'Segoe Print', cursive; /* marker lettering for labels and drawings */
+  --text-display: clamp(36px, 7vw, 76px);
   --text-heading: clamp(22px, 2.4vw, 28px);
   --text-body: clamp(16px, 1.4vw, 18px);
   --text-metric: clamp(40px, 4.4vw, 56px);
-  --text-mono: 12px;
-  --tracking-mono: 0.06em;
+  --text-label: 20px;
   --measure: 64ch;
 
   /* Space: 8px scale */

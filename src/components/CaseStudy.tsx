@@ -18,14 +18,14 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
     <article className="case" aria-labelledby="case-title">
       <header className="case__header">
         <div className="container">
-          <p className="mono case__sheet">
+          <p className="label case__sheet">
             <a href="#work">← Selected work</a>
             <span>Drawing {study.number} · Case study</span>
           </p>
 
           <div className="case__intro">
             <div className="case__titles">
-              <p className="mono case__kicker">{page.kicker}</p>
+              <p className="label case__kicker">{page.kicker}</p>
               <h1 id="case-title" className="display" tabIndex={-1}>
                 {study.title}
               </h1>
@@ -40,7 +40,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               </svg>
               <figcaption>
                 <ModeSwitch mode={mode} onChange={setMode} />
-                <span className="mono case__state">{mode === 'existing' ? study.existing : study.proposed}</span>
+                <span className="label case__state">{mode === 'existing' ? study.existing : study.proposed}</span>
               </figcaption>
             </figure>
           </div>
@@ -48,7 +48,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
           <dl className="case__meta">
             {page.meta.map((m) => (
               <div key={m.label}>
-                <dt className="mono">{m.label}</dt>
+                <dt className="label">{m.label}</dt>
                 <dd>{m.value}</dd>
               </div>
             ))}
@@ -60,20 +60,20 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         <div className="container">
           <div className="case__ps">
             <div>
-              <h2 className="mono">Problem</h2>
+              <h2 className="label">Problem</h2>
               <p>{page.problem}</p>
             </div>
             <div>
-              <h2 className="mono">Solution</h2>
+              <h2 className="label">Solution</h2>
               <p>{page.solution}</p>
             </div>
           </div>
-          <h2 className="mono case__impact-label">Impact</h2>
+          <h2 className="label case__impact-label">Impact</h2>
           <ul className="case__impact">
             {page.impact.map((m) => (
               <li key={m.label}>
                 <span className="case__impact-value">{m.value}</span>
-                <span className="mono">{m.label}</span>
+                <span className="label">{m.label}</span>
               </li>
             ))}
           </ul>
@@ -83,7 +83,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       {page.sections.map((s) => (
         <section key={s.label} className="case__section">
           <div className="container case__section-grid">
-            <p className="mono case__section-label">{s.label}</p>
+            <p className="label case__section-label">{s.label}</p>
             <div className="case__section-body">
               <h2 className="case__section-heading">{s.heading}</h2>
               {s.body?.map((p) => (
@@ -103,22 +103,22 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                 <ol className="case__experiments">
                   {s.experiments.map((e) => (
                     <li key={e.name}>
-                      <h3 className="mono">{e.name}</h3>
+                      <h3 className="label">{e.name}</h3>
                       <dl>
                         <div>
-                          <dt className="mono">Intent</dt>
+                          <dt className="label">Intent</dt>
                           <dd>{e.intent}</dd>
                         </div>
                         <div>
-                          <dt className="mono">Change</dt>
+                          <dt className="label">Change</dt>
                           <dd>{e.change}</dd>
                         </div>
                         <div>
-                          <dt className="mono">Result</dt>
+                          <dt className="label">Result</dt>
                           <dd>{e.result}</dd>
                         </div>
                       </dl>
-                      {e.verdict && <p className="mono case__verdict">{e.verdict}</p>}
+                      {e.verdict && <p className="label case__verdict">{e.verdict}</p>}
                     </li>
                   ))}
                 </ol>
@@ -126,9 +126,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               {s.figure && (
                 <figure className="case__figure">
                   <div className="case__figure-frame" aria-hidden="true">
-                    <span className="mono">Image to come</span>
+                    <span className="label">Image to come</span>
                   </div>
-                  <figcaption className="mono">{s.figure}</figcaption>
+                  <figcaption className="label">{s.figure}</figcaption>
                 </figure>
               )}
             </div>
@@ -141,7 +141,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
           <a href={next.href} className="case__next-link">
             <PartiTransition from={id} to={next.id} />
             <span className="case__next-text">
-              <span className="mono">Next · Drawing {next.number}</span>
+              <span className="label">Next · Drawing {next.number}</span>
               <span className="case__next-title">
                 {next.title} <span aria-hidden="true">→</span>
               </span>
