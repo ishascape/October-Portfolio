@@ -30,7 +30,7 @@ export function Contact() {
         </h2>
         <div className="contact__body">
           <p>
-            <strong>{availability.headline}</strong> {availability.location}
+            {availability.headline} {availability.location}
           </p>
         </div>
 

@@ -10,9 +10,6 @@
   max-width: var(--measure);
   margin-bottom: var(--space-5);
 }
-.contact__body strong {
-  font-weight: 600;
-}
 
 .contact__links {
   display: grid;
