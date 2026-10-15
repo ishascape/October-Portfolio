@@ -1,4 +1,4 @@
-import { fieldNotes, principles, revisions } from '../data/content'
+import { education, fieldNotes, principles, revisions } from '../data/content'
 import { SheetLabel } from './SheetLabel'
 import './About.css'
 
@@ -53,9 +53,9 @@ export function About() {
           ))}
         </ol>
 
-        <h3 className="label about__subhead">Revision history</h3>
+        <h3 className="label about__subhead">Work history</h3>
         <table className="revisions">
-          <caption className="visually-hidden">Career history, most recent first</caption>
+          <caption className="visually-hidden">Work history, most recent first</caption>
           <thead className="label">
             <tr>
               <th scope="col">Rev</th>
@@ -71,6 +71,27 @@ export function About() {
                 <td className="label">{r.date}</td>
                 <th scope="row">{r.role}</th>
                 <td>{r.company}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <h3 className="label about__subhead">Education</h3>
+        <table className="revisions revisions--education">
+          <caption className="visually-hidden">Education and courses, most recent first</caption>
+          <thead className="label">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Course</th>
+              <th scope="col">Institution</th>
+            </tr>
+          </thead>
+          <tbody>
+            {education.map((e) => (
+              <tr key={e.course}>
+                <td className="label">{e.date}</td>
+                <th scope="row">{e.course}</th>
+                <td>{e.school}</td>
               </tr>
             ))}
           </tbody>

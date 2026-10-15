@@ -152,9 +152,15 @@ export const revisions = [
   { rev: 'C', date: 'Apr 2023', role: 'Product Designer', company: 'Findmypast, London' },
   { rev: 'B', date: 'Jan 2022', role: 'Junior Product Designer', company: 'Findmypast, London' },
   { rev: 'A', date: 'Jun 2020–21', role: 'Sales and marketing', company: 'HealthCare Direct, Kenya' },
-  { rev: '—', date: '2016–20', role: 'BSc Architecture', company: 'University of Bath' },
 ]
 
+
+// From the CV, most recent first.
+export const education = [
+  { date: 'Mar 2026', course: 'AI Coding for Designers', school: 'Memorisely' },
+  { date: '2020–21', course: 'UX Immersion and UI Specification', school: 'CareerFoundry' },
+  { date: '2016–20', course: 'BSc Architecture', school: 'University of Bath' },
+]
 
 export interface FieldNote {
   fig: string

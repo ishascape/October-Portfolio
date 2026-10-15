@@ -108,6 +108,18 @@
   color: var(--graphite);
 }
 
+/* Education has no rev letter, so on small screens the date sits above the course. */
+.revisions--education tr {
+  grid-template-columns: 1fr;
+}
+.revisions--education tbody td:first-child {
+  grid-row: auto;
+  color: var(--graphite);
+}
+.revisions--education tbody td:nth-child(3) {
+  color: var(--graphite);
+}
+
 @media (min-width: 600px) {
   .revisions thead {
     display: table-header-group;

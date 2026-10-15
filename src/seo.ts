@@ -1,4 +1,4 @@
-import { availability, capabilities, caseStudies, contact, revisions } from './data/content'
+import { availability, capabilities, caseStudies, contact, education, revisions } from './data/content'
 import { caseStudyPages } from './data/caseStudyPages'
 import { SITE_URL, type Page } from './links'
 
@@ -159,9 +159,13 @@ export function llmsTxt() {
     '',
     work.join('\n\n'),
     '',
-    '## Career',
+    '## Work history',
     '',
     ...career,
+    '',
+    '## Education',
+    '',
+    ...education.map((e) => `- ${e.date}: ${e.course}, ${e.school}`),
     '',
   ].join('\n')
 }
