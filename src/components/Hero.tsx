@@ -16,7 +16,15 @@ export function Hero() {
 
         <div className="hero__intro">
           <div className="hero__title">
-            <p className="annotation hero__hello">hey! I'm Ashni 🙂</p>
+            <p className="annotation hero__hello">
+              Hey! I'm Ashni
+              {/* A pen-drawn smile in place of an emoji. */}
+              <svg className="hero__smile" viewBox="0 0 32 24" aria-hidden="true">
+                <path d="M15 1.8 C8 1.6 4.8 6.6 5.2 12.4 C5.6 18.6 10.4 22.4 16.4 22.1 C22.8 21.8 27 17.4 26.6 11.4 C26.3 5.6 22 1.9 16.8 1.6 C14.6 1.5 12.8 2.2 11.4 3.2" />
+                <path d="M11.5 9.5 v1.4 M20.5 9.5 v1.4" />
+                <path d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />
+              </svg>
+            </p>
             <h1 id="hero-heading" className="display">
               I design coherent &amp; scalable products for complex businesses.
             </h1>
