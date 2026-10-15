@@ -10,7 +10,7 @@ export function Hero() {
     <section id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
       <div className="container">
         <p className="label hero__sheet">
-          <span>Sheet 00 / 03 · Introduction</span>
+          <span>Sheet 00 / 03 · Introduction · Senior Product Designer</span>
           <span aria-hidden="true">Scale NTS</span>
         </p>
 
@@ -34,7 +34,7 @@ export function Hero() {
               </svg>
             </p>
             <h1 id="hero-heading" className="display">
-              Product designer obsessed with how things fit together.
+              I solve product puzzles with design and strategy.
             </h1>
           </div>
           <figure className="hero__portrait">

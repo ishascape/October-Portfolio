@@ -134,6 +134,7 @@
 }
 
 .hero__smile {
+  color: var(--marker);
   display: inline-block;
   width: 1.05em;
   height: 0.8em;
@@ -271,5 +272,12 @@
   }
   .hero__intro {
     margin-bottom: var(--space-4);
+  }
+}
+
+/* On phones the label has room for the role or the scale, not both. */
+@media (max-width: 599px) {
+  .hero__sheet span[aria-hidden='true'] {
+    display: none;
   }
 }
