@@ -101,9 +101,11 @@ svg {
 /* Hand lettering is only for figure annotations and embellishment, never for functional text. */
 .annotation {
   font-family: var(--font-hand);
-  font-size: 21px;
-  font-weight: 500;
-  line-height: 1.15;
+  font-size: 22px;
+  font-weight: 400;
+  font-synthesis: none; /* one drawn weight; never fake a bold */
+  letter-spacing: 0.01em;
+  line-height: 1.2;
 }
 
 /* Margin notes: the blue marker voice, used sparingly (two per screen at most). */
