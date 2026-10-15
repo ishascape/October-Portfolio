@@ -1,13 +1,3 @@
-/* Ashni Hand: traced from Ashni's handwriting sample (Oct 2026). Source and build scripts
-   live in the project files under fonts/ashni-hand. */
-@font-face {
-  font-family: 'Ashni Hand';
-  src: url('../assets/fonts/ashni-hand.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* Design tokens. Values from notes/homepage-content.md › Look and feel. */
 :root {
   /* Colour: drawing on paper, one accent */
@@ -22,8 +12,7 @@
   /* Type */
   --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif; /* condensed, inked headlines */
   --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  /* Ashni's own handwriting, for figure annotations only. Caveat covers any character it lacks. */
-  --font-hand: 'Ashni Hand', 'Caveat', 'Bradley Hand', 'Segoe Print', cursive;
+  --font-hand: 'Caveat', 'Bradley Hand', 'Segoe Print', cursive; /* marker lettering for labels and drawings */
   --text-display: clamp(48px, 8vw, 96px);
   --text-heading: clamp(22px, 2.4vw, 28px);
   --text-body: clamp(16px, 1.4vw, 18px);
