@@ -10,7 +10,7 @@ export function Hero() {
       <div className="container">
         <p className="label hero__sheet">
           <span>Sheet 00 / 03 · Introduction · Senior Product Designer</span>
-          <span aria-hidden="true">Scale NTS</span>
+          <span aria-hidden="true">Scale: Responsive NTS</span>
         </p>
 
         <div className="hero__intro">

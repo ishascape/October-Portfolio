@@ -139,7 +139,7 @@ export function Footer({ onHome }: { onHome: boolean }) {
                 </div>
                 <div>
                   <dt className="titlesheet__field">Scale</dt>
-                  <dd>NTS</dd>
+                  <dd>Responsive NTS</dd>
                 </div>
                 <div>
                   <dt className="titlesheet__field">Sheet</dt>
