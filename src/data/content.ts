@@ -96,50 +96,41 @@ export interface Principle {
   evidence: { source: string; text: string }[]
 }
 
+// Design ethos (Ashni, 15 Oct 2026). Evidence lines reuse facts already on the site.
 export const principles: Principle[] = [
   {
-    number: '0',
-    title: 'Design the system, not the screen.',
-    body: "I map workflows, teams and touchpoints before designing screens, and automate what people shouldn't do by hand.",
-    evidence: [
-      { source: 'HostHQ', text: "Rebuilt four separate host products around how hosts work, not HeadBox's internal product lines." },
-      { source: 'CV', text: 'Launch in a New City: AI research agents and ops tooling cut launch planning from 12+ weeks to 2.' },
-    ],
-  },
-  {
     number: '1',
-    title: 'Design with commercial sense.',
-    body: "Revenue, retention and marketplace health are design constraints, not someone else's problem.",
+    title: "Show, don't tell.",
+    body: 'A prototype people can click settles more than a deck. I build to show the idea, then let people react to the real thing.',
     evidence: [
-      { source: 'Venue Finder', text: 'Found marketing KPIs rewarded brief volume over intent; introduced a sponsored-placement revenue model.' },
-      { source: 'CV', text: 'Gift Subscription MVP, over £500k in first-year revenue.' },
+      { source: 'This site', text: 'Designed and built with AI-assisted code in React and TypeScript.' },
     ],
   },
   {
     number: '2',
-    title: 'Facilitate groups to a decision.',
-    body: 'Customers, leadership and engineering in one room, leaving with one decision.',
+    title: 'Let the data and research decide.',
+    body: 'Opinions start the conversation; evidence ends it.',
     evidence: [
-      { source: 'HostHQ', text: 'Ran focus groups with hosts across venue types; aligned the CEO, CTO, Head of Marketing and Head of Venue Sales on one consolidation strategy.' },
-      { source: 'CV', text: 'Facilitated cross-functional planning with Product, Engineering and Commercial leadership.' },
+      { source: 'Venue Finder', text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.' },
+      { source: 'CV', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
     ],
   },
   {
     number: '3',
-    title: 'Turn research into product vision.',
-    body: 'Users first. The vision comes from what they actually need.',
+    title: 'Iterative development.',
+    body: 'Ship, measure, refine. Each version earns the next.',
     evidence: [
-      { source: 'Venue Finder', text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.' },
-      { source: 'CV', text: "Set up HeadBox's first continuous research programme in over four years." },
+      { source: 'Venue Finder', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.' },
+      { source: 'TreeAssist', text: 'Two-week experiment cycles took onboarding from eight forms to three.' },
     ],
   },
   {
     number: '4',
-    title: 'Let the data decide.',
-    body: 'I run experiments, read results honestly and change course when the data says so.',
+    title: 'Stay curious, stay ambitious.',
+    body: 'From architecture to product, and from Kilimanjaro to AI tooling, I keep learning the next thing.',
     evidence: [
-      { source: 'Venue Finder', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.' },
-      { source: 'CV', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
+      { source: 'CV', text: 'Launch in a New City: AI research agents and ops tooling cut launch planning from 12+ weeks to 2.' },
+      { source: 'Memorisely', text: 'AI Coding for Designers, March 2026.' },
     ],
   },
 ]

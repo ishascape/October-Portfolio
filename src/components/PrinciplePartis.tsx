@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { SketchRect } from './Sketch'
 import { DrawOnScroll } from './DrawOnScroll'
 
-// One parti per "How I work" principle, in the same pen as the case-study partis.
+// Partis for the Design ethos (and the Core Expertise row), in the same pen as the case-study partis.
 // at(n) sets the order each line is drawn in as you scroll.
 
 const P = { pathLength: 1 }
@@ -130,11 +130,95 @@ function Data() {
   )
 }
 
-// Also used by the Core Expertise row in the hero.
-export const principleDrawings: Record<string, () => ReactNode> = { '0': System, '1': Commercial, '2': Facilitation, '3': Research, '4': Data }
+// Used by the Core Expertise row in the hero.
+export const principleDrawings: Record<string, () => ReactNode> = {
+  '0': System,
+  '1': Commercial,
+  '2': Facilitation,
+  '3': Research,
+  '4': Data,
+}
+
+// 1 · Show, don't tell: a working screen, and the hand that clicks it.
+function Show() {
+  return (
+    <>
+      <SketchRect {...P} x={18} y={14} width={124} height={80} o={4} className="parti__heavy" {...at(0)} />
+      <path {...P} d="M18 28 H142" className="parti__fine" {...at(0.6)} />
+      <path {...P} d="M32 44 H86 M32 56 H74 M32 76 H62" className="parti__fine" {...at(1)} />
+      <SketchRect {...P} x={96} y={66} width={34} height={16} o={2} className="parti__heavy" {...at(1.4)} />
+      <path
+        {...P}
+        d="M112 74 L112 110 L120 102 L127 116 L132 113 L125 99 L136 99 Z"
+        className="parti__key"
+        {...at(2.4)}
+      />
+      <path d="M100 62 L96 56 M113 60 V53 M126 62 L130 56" className="parti__fine draw-late" />
+    </>
+  )
+}
+
+// 2 · Let the data and research decide: two paths open, the evidence points down one.
+function Decide() {
+  const evidence = [
+    [20, 30],
+    [34, 46],
+    [24, 70],
+    [44, 84],
+    [52, 34],
+  ]
+  return (
+    <>
+      <path {...P} d="M10 60 H72" className="parti__heavy" {...at(0)} />
+      <path {...P} d="M72 60 L150 102" className="parti__ghost" {...at(1)} />
+      <path {...P} d="M72 60 L150 18" className="parti__key" {...at(1.6)} />
+      <path d="M142 14 L150 18 L144 25" className="parti__key draw-late" />
+      {evidence.map(([x, y], n) => (
+        <circle key={n} cx={x} cy={y} r={2.5} className="parti__dot draw-late" />
+      ))}
+      <circle cx={72} cy={60} r={5} className="parti__node draw-late" />
+    </>
+  )
+}
+
+// 3 · Iterative development: rough draft to resolved shape, one pass at a time.
+function Iterate() {
+  return (
+    <>
+      <path {...P} d="M14 96 C18 70 26 60 22 44 S40 30 44 50 S30 92 14 96" className="parti__fine" {...at(0)} />
+      <path {...P} d="M58 96 C60 70 66 56 66 44 S86 34 88 52 S76 90 58 96" className="parti__ghost" {...at(1)} />
+      <SketchRect {...P} x={104} y={40} width={44} height={56} o={4} className="parti__key" {...at(2)} />
+      <path {...P} d="M46 70 H54 M90 70 H100" className="parti__fine" {...at(1.5)} />
+      <path d="M50 66 L54 70 L50 74 M96 66 L100 70 L96 74" className="parti__fine draw-late" />
+      <text x={14} y={114} className="parti__tag draw-late">
+        v1
+      </text>
+      <text x={60} y={114} className="parti__tag draw-late">
+        v2
+      </text>
+      <text x={110} y={114} className="parti__tag draw-late">
+        v3
+      </text>
+    </>
+  )
+}
+
+// 4 · Stay curious, stay ambitious: a long route up, and a flag at the top.
+function Summit() {
+  return (
+    <>
+      <path {...P} d="M6 108 L52 52 L68 70 L100 22 L154 108" className="parti__heavy" {...at(0)} />
+      <path {...P} d="M20 108 L44 86 L62 92 L80 66 L92 58 L100 34" className="parti__ghost" {...at(1)} />
+      <path {...P} d="M100 22 V4 M100 4 L114 9 L100 14" className="parti__key" {...at(2)} />
+      <path d="M86 36 L92 42 M110 34 L116 44" className="parti__fine draw-late" />
+    </>
+  )
+}
+
+const ethosDrawings: Record<string, () => ReactNode> = { '1': Show, '2': Decide, '3': Iterate, '4': Summit }
 
 export function PrincipleParti({ number }: { number: string }) {
-  const Drawing = principleDrawings[number]
+  const Drawing = ethosDrawings[number]
   if (!Drawing) return null
   return (
     <DrawOnScroll viewBox="0 0 160 120" className="principle__parti">

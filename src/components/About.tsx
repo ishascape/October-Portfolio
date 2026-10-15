@@ -28,8 +28,8 @@ export function About() {
           </div>
         </div>
 
-        <h3 id="how-i-work" className="label about__subhead">
-          How I work
+        <h3 id="design-ethos" className="label about__subhead">
+          Design ethos
         </h3>
         <ol className="principles">
           {principles.map((p) => (
