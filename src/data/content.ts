@@ -141,7 +141,7 @@ export const revisions = [
   { rev: 'D', date: 'Apr 2025', role: 'Product Designer', company: 'HeadBox, London' },
   { rev: 'C', date: 'Apr 2023', role: 'Product Designer', company: 'Findmypast, London' },
   { rev: 'B', date: 'Jan 2022', role: 'Junior Product Designer', company: 'Findmypast, London' },
-  { rev: 'A', date: 'Jun 2020–21', role: 'Sales and marketing', company: 'HealthCare Direct, Kenya' },
+  { rev: 'A', date: '2020–21', role: 'Sales & Marketing Associate', company: 'HealthCare Direct, Nairobi' },
 ]
 
 
