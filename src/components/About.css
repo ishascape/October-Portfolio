@@ -8,7 +8,7 @@
   margin-bottom: var(--space-6);
 }
 .about__heading {
-  font-size: clamp(32px, 5.5vw, 64px);
+  font-size: clamp(44px, 7vw, 88px);
   max-width: 16ch;
 }
 .about__body {
@@ -175,6 +175,40 @@
   border: var(--line-thin) dashed var(--graphite);
   background: var(--paper-shade);
   color: var(--graphite);
+}
+.figure__photo {
+  position: relative;
+}
+.figure__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Crop marks at the corners, drawn in on hover like a print being trimmed. */
+.figure__photo::before,
+.figure__photo::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition: opacity var(--dur-micro) var(--ease-pen);
+}
+.figure__photo::before {
+  top: -6px;
+  left: -6px;
+  border-top: var(--line-thin) solid var(--ink);
+  border-left: var(--line-thin) solid var(--ink);
+}
+.figure__photo::after {
+  bottom: -6px;
+  right: -6px;
+  border-bottom: var(--line-thin) solid var(--ink);
+  border-right: var(--line-thin) solid var(--ink);
+}
+.figure:hover .figure__photo::before,
+.figure:hover .figure__photo::after {
+  opacity: 1;
 }
 .figure figcaption {
   color: var(--graphite);

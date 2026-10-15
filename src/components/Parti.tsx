@@ -109,14 +109,14 @@ export function PartiTransition({ from, to }: PartiTransitionProps) {
     <div className="parti-transition">
       <figure className="parti-transition__item parti-transition__item--from">
         <Parti id={from} />
-        <figcaption className="label">{partiIdeas[from]}</figcaption>
+        <figcaption className="annotation">{partiIdeas[from]}</figcaption>
       </figure>
       <svg className="parti-transition__link" viewBox="0 0 80 20" aria-hidden="true" preserveAspectRatio="none">
         <path pathLength={1} d="M2 10 H74 M68 4 L76 10 L68 16" />
       </svg>
       <figure className="parti-transition__item parti-transition__item--to">
         <Parti id={to} />
-        <figcaption className="label">{partiIdeas[to]}</figcaption>
+        <figcaption className="annotation">{partiIdeas[to]}</figcaption>
       </figure>
     </div>
   )

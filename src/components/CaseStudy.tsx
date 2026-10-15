@@ -128,7 +128,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <div className="case__figure-frame" aria-hidden="true">
                     <span className="label">Image to come</span>
                   </div>
-                  <figcaption className="label">{s.figure}</figcaption>
+                  <figcaption className="annotation">{s.figure}</figcaption>
                 </figure>
               )}
             </div>

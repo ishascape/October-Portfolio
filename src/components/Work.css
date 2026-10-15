@@ -1,7 +1,7 @@
 .work__heading {
   max-width: 18ch;
   margin-bottom: var(--space-6);
-  font-size: clamp(32px, 5.5vw, 64px);
+  font-size: clamp(44px, 7vw, 88px);
 }
 
 .work__list {
@@ -124,9 +124,18 @@
   gap: var(--space-1);
   font-size: 15px;
 }
+.card__supporting li {
+  position: relative;
+  padding-left: var(--space-4);
+}
 .card__supporting li::before {
-  content: '— ';
-  color: var(--graphite);
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border: 1.25px solid var(--ink);
 }
 
 .card__system {

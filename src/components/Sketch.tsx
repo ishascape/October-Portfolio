@@ -37,6 +37,10 @@ export function SketchDefs() {
           <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="noise" />
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" />
         </filter>
+        <filter id="ink" x="-2%" y="-2%" width="104%" height="104%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="3" result="grain" />
+          <feDisplacementMap in="SourceGraphic" in2="grain" scale="1.4" />
+        </filter>
       </defs>
     </svg>
   )

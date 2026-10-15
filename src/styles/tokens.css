@@ -10,13 +10,14 @@
   --marker-wash: rgb(47 95 179 / 0.12);
 
   /* Type */
+  --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif; /* condensed, inked headlines */
   --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-hand: 'Caveat', 'Bradley Hand', 'Segoe Print', cursive; /* marker lettering for labels and drawings */
-  --text-display: clamp(36px, 7vw, 76px);
+  --text-display: clamp(48px, 9vw, 104px);
   --text-heading: clamp(22px, 2.4vw, 28px);
   --text-body: clamp(16px, 1.4vw, 18px);
   --text-metric: clamp(40px, 4.4vw, 56px);
-  --text-label: 20px;
+  --text-label: 14px;
   --measure: 64ch;
 
   /* Space: 8px scale */

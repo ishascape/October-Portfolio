@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { capabilities, caseStudies, contact, focusKey, type CaseStudyId, type FocusId } from '../data/content'
+import { capabilities, caseStudies, contact, type CaseStudyId } from '../data/content'
 import { SitePlan, type PlanMode } from './SitePlan'
 import { DetailSheet } from './DetailSheet'
 import { ModeSwitch } from './ModeSwitch'
@@ -7,7 +7,6 @@ import './Hero.css'
 
 export function Hero() {
   const [mode, setMode] = useState<PlanMode>('proposed')
-  const [filter, setFilter] = useState<FocusId | null>(null)
   const [hovered, setHovered] = useState<CaseStudyId | null>(null)
   const [selected, setSelected] = useState<CaseStudyId | null>(null)
   const returnFocus = useRef<Element | null>(null)
@@ -18,7 +17,6 @@ export function Hero() {
   const planProps = {
     studies: caseStudies,
     mode,
-    filter,
     hovered,
     onHover: setHovered,
     onSelect: (id: CaseStudyId, el: Element) => {
@@ -67,29 +65,9 @@ export function Hero() {
 
         <div className="hero__drawing">
           <div className="hero__controls">
-            <div className="hero__key" role="group" aria-label="Drawing key: filter the plan by focus">
-              <span className="label hero__key-label" aria-hidden="true">
-                Key
-              </span>
-              <div className="hero__chips">
-                {focusKey.map((k) => (
-                  <button
-                    key={k.id}
-                    type="button"
-                    className="chip label"
-                    aria-pressed={filter === k.id}
-                    onClick={() => setFilter(filter === k.id ? null : k.id)}
-                  >
-                    <span className="chip__swatch" aria-hidden="true" />
-                    {k.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <div className="hero__toggle">
               <div className="hero__toggle-row">
-                <span className="hand-note" aria-hidden="true">
+                <span className="margin-note" aria-hidden="true">
                   try it →
                 </span>
                 <ModeSwitch mode={mode} onChange={setMode} />

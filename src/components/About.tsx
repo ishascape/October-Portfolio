@@ -101,10 +101,16 @@ export function About() {
                     .map((f) => (
                       <li key={f.fig}>
                         <figure className="figure">
-                          <div className="figure__frame" style={{ aspectRatio: f.ratio }} aria-hidden="true">
-                            <span className="label">Fig. {f.fig}</span>
-                          </div>
-                          <figcaption className="label">{f.caption}</figcaption>
+                          {f.src ? (
+                            <div className="figure__photo" style={{ aspectRatio: f.ratio }}>
+                              <img src={f.src} alt={f.alt} loading="lazy" decoding="async" />
+                            </div>
+                          ) : (
+                            <div className="figure__frame" style={{ aspectRatio: f.ratio }} aria-hidden="true">
+                              <span className="label">Fig. {f.fig}</span>
+                            </div>
+                          )}
+                          <figcaption className="annotation">{f.caption}</figcaption>
                         </figure>
                       </li>
                     ))}

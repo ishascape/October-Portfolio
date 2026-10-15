@@ -1,15 +1,10 @@
+import wolf from '../assets/sketches/wolf.webp'
+import tiger from '../assets/sketches/tiger.webp'
+import owl from '../assets/sketches/owl.webp'
+import warrior from '../assets/sketches/warrior.webp'
+
 // All copy and figures come from notes/homepage-content.md (approved 14 Oct 2026).
 // Never add a metric here that isn't in that doc or the CV.
-
-export type FocusId = 'marketplace' | 'saas' | 'ai' | 'b2c' | 'strategy'
-
-export const focusKey: { id: FocusId; label: string }[] = [
-  { id: 'marketplace', label: 'Marketplace' },
-  { id: 'saas', label: 'B2B SaaS' },
-  { id: 'ai', label: 'AI Products' },
-  { id: 'b2c', label: 'B2C Conversion' },
-  { id: 'strategy', label: 'Discovery and strategy' },
-]
 
 export type CaseStudyId = 'venue-finder' | 'hosthq' | 'treeassist'
 
@@ -25,7 +20,6 @@ export interface CaseStudy {
   supporting: string[]
   system: string
   tags: string[]
-  focus: FocusId[]
   existing: string
   proposed: string
   href: string
@@ -45,7 +39,6 @@ export const caseStudies: CaseStudy[] = [
     system:
       'Guests, hosts, Marketing and account managers · brief-to-lead workflow · AI parsing and automated routing of high-value briefs',
     tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
-    focus: ['marketplace', 'ai', 'b2c', 'strategy'],
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 40% shorter journey',
     href: '#/work/venue-finder',
@@ -63,7 +56,6 @@ export const caseStudies: CaseStudy[] = [
     system:
       'Hosts, leadership, Sales and Support · four product lines reorganised around host workflows · proposals, dashboards and reporting in one place',
     tags: ['B2B SaaS', 'Systems thinking', 'Information architecture', 'Product strategy', 'Platform design'],
-    focus: ['marketplace', 'saas', 'strategy'],
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
     href: '#/work/hosthq',
@@ -81,7 +73,6 @@ export const caseStudies: CaseStudy[] = [
     system:
       'PM, data science and engineering · sign-up to subscription funnel · record matching that replaced manual form entry',
     tags: ['B2C Conversion', 'AI Products', 'Experiment design', 'Mobile first'],
-    focus: ['ai', 'b2c', 'strategy'],
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
     href: '#/work/treeassist',
@@ -163,12 +154,52 @@ export const revisions = [
   { rev: '—', date: '2016–20', role: 'BSc Architecture', company: 'University of Bath' },
 ]
 
-// Placeholder figures until Ashni uploads real photos and sketches.
-export const fieldNotes = [
+
+export interface FieldNote {
+  fig: string
+  group: string
+  caption: string
+  ratio: string
+  src?: string // no src = placeholder until Ashni sends the photo
+  alt?: string
+}
+
+// Sketches are Ashni's own (uploaded 15 Oct 2026, EXIF stripped). Photos still to come.
+export const fieldNotes: FieldNote[] = [
   { fig: '01', group: 'Portrait', caption: 'Fig. 01. Portrait, to come', ratio: '4 / 5' },
-  { fig: '02', group: 'Sketchbook', caption: 'Fig. 02. Animal sketch, to come', ratio: '1 / 1' },
-  { fig: '04', group: 'Sketchbook', caption: 'Fig. 04. Sketchbook spread, to come', ratio: '3 / 2' },
-  { fig: '05', group: 'Concerts', caption: 'Fig. 05. Performing, to come', ratio: '3 / 2' },
+  {
+    fig: '02',
+    group: 'Sketchbook',
+    caption: 'Fig. 02. Wolf',
+    ratio: '1 / 1',
+    src: wolf,
+    alt: 'Pen drawing of a wolf’s head, with a scar running over one eye.',
+  },
+  {
+    fig: '03',
+    group: 'Sketchbook',
+    caption: 'Fig. 03. Tiger',
+    ratio: '1 / 1',
+    src: tiger,
+    alt: 'Pen drawing of a tiger lying down, front paws forward, looking at the viewer.',
+  },
+  {
+    fig: '04',
+    group: 'Sketchbook',
+    caption: 'Fig. 04. Owl, in the sketchbook',
+    ratio: '3 / 4',
+    src: owl,
+    alt: 'An open spiral sketchbook on a desk, with a pen drawing of an owl perched on a branch.',
+  },
+  {
+    fig: '05',
+    group: 'Sketchbook',
+    caption: 'Fig. 05. Warrior, with the pens that drew it',
+    ratio: '3 / 4',
+    src: warrior,
+    alt: 'A sketchbook page with an ink and marker drawing of an armoured warrior holding an axe, with the pens and markers laid beside it.',
+  },
+  { fig: '06', group: 'Concerts', caption: 'Fig. 06. Performing, to come', ratio: '3 / 2' },
   { fig: '07', group: 'Travel', caption: 'Fig. 07. Summit, to come', ratio: '4 / 5' },
   { fig: '08', group: 'Travel', caption: 'Fig. 08. Everest Base Camp, to come', ratio: '3 / 2' },
 ]

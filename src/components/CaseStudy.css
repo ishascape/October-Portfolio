@@ -172,10 +172,11 @@
 .case__list li::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0.75em;
-  width: 12px;
-  border-top: var(--line-thin) solid var(--ink);
+  left: 2px;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border: 1.25px solid var(--ink);
 }
 .case__list strong {
   font-weight: 600;

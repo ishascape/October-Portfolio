@@ -1,5 +1,5 @@
 import type { KeyboardEvent, ReactNode } from 'react'
-import type { CaseStudy, CaseStudyId, FocusId } from '../data/content'
+import type { CaseStudy, CaseStudyId } from '../data/content'
 import { SketchRect } from './Sketch'
 import './SitePlan.css'
 
@@ -169,13 +169,12 @@ interface SitePlanProps {
   variant: 'landscape' | 'portrait'
   studies: CaseStudy[]
   mode: PlanMode
-  filter: FocusId | null
   hovered: CaseStudyId | null
   onHover: (id: CaseStudyId | null) => void
   onSelect: (id: CaseStudyId, el: Element) => void
 }
 
-export function SitePlan({ variant, studies, mode, filter, hovered, onHover, onSelect }: SitePlanProps) {
+export function SitePlan({ variant, studies, mode, hovered, onHover, onSelect }: SitePlanProps) {
   const L = layouts[variant]
   const portrait = variant === 'portrait'
 
@@ -190,15 +189,11 @@ export function SitePlan({ variant, studies, mode, filter, hovered, onHover, onS
     <svg
       className={`plan plan--${variant}`}
       data-mode={mode}
-      data-filtered={filter ? 'true' : 'false'}
       viewBox={L.viewBox}
       role="group"
       aria-label="Site plan of selected work. Each building is a case study."
     >
       <defs>
-        <pattern id={`hatch-${variant}`} width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="8" className="plan__hatch-line" />
-        </pattern>
         <pattern id={`hatch-grey-${variant}`} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="6" className="plan__hatch-line plan__hatch-line--grey" />
         </pattern>
@@ -222,13 +217,11 @@ export function SitePlan({ variant, studies, mode, filter, hovered, onHover, onS
       {studies.map((s, i) => {
         const p = L.plots[s.id]
         const Art = buildingArt[s.id]
-        const match = filter ? s.focus.includes(filter) : false
         const side = s.id === 'venue-finder' ? 'Demand' : s.id === 'hosthq' ? 'Supply' : 'Activation'
         return (
           <g
             key={s.id}
             className="plan__building"
-            data-match={match ? 'true' : 'false'}
             data-hovered={hovered === s.id ? 'true' : 'false'}
             style={{ ['--i' as string]: i }}
             transform={`translate(${p.x} ${p.y})`}
@@ -249,7 +242,6 @@ export function SitePlan({ variant, studies, mode, filter, hovered, onHover, onS
               <line x1={0} y1={-18} x2={0} y2={PLOT_H + 18} />
               <line x1={PLOT_W} y1={-18} x2={PLOT_W} y2={PLOT_H + 18} />
             </g>
-            <rect className="plan__hatch" width={PLOT_W} height={PLOT_H} fill={`url(#hatch-${variant})`} />
             <text x={0} y={-8} className="plan__tiny">{side}</text>
             <g className="plan__art">
               <Art />
