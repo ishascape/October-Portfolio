@@ -156,44 +156,76 @@ const skills: Skill[] = [
   {
     title: 'Marketplaces',
     drawing: MarketplaceParti,
-    points: ['Supply and demand optimisation', 'Improving match rate', 'Two-sided journeys'],
+    points: [
+      'Two-sided marketplace strategy and optimisation',
+      'Supply-demand matching and conversion',
+      'Buyer and supplier experience design',
+    ],
   },
   {
-    title: 'Platform design',
+    title: 'B2B SaaS & platform design',
     drawing: PlatformParti,
-    points: ['Feature consolidation', 'Information architecture and navigation', 'User research'],
+    points: [
+      'Complex workflows and platform simplification',
+      'Information architecture and navigation',
+      'Feature consolidation and product scalability',
+    ],
   },
   {
-    title: 'Experimentation',
+    title: 'Experimentation & optimisation',
     drawing: ExperimentationParti,
     onScroll: true,
-    points: ['Iterative A/B experiments', 'Conversion and time to value', 'B2C onboarding'],
+    points: [
+      'A/B testing and hypothesis-driven design',
+      'Conversion funnel and drop-off optimisation',
+      'Onboarding, activation and time to value',
+    ],
   },
   {
-    title: 'Systems thinking',
+    title: 'Product strategy & systems thinking',
     drawing: principleDrawings['0'],
-    points: ['Workflow and touchpoint mapping', 'Design across business departments', 'Automating manual operations'],
+    points: [
+      'Product discovery and opportunity prioritisation',
+      'Connecting user needs with commercial goals',
+      'Cross-functional workflows and automation',
+    ],
   },
   {
-    title: 'Growth and monetisation',
+    title: 'Growth & monetisation',
     drawing: principleDrawings['4'],
     onScroll: true,
-    points: ['Pricing and revenue models', 'Conversion and retention experiments', 'Marketplace health'],
+    points: [
+      'Acquisition, conversion and retention',
+      'Revenue optimisation and monetisation journeys',
+      'Product-led growth and lifecycle experiences',
+    ],
   },
   {
-    title: 'User research and analysis',
+    title: 'User research & analytics',
     drawing: principleDrawings['3'],
-    points: ['User interviews and focus groups', 'Behavioural and funnel analysis', 'Continuous research programmes'],
+    points: [
+      'Qualitative research and customer discovery',
+      'Behavioural analysis and product analytics',
+      'Insight synthesis and opportunity identification',
+    ],
   },
   {
-    title: 'End-to-end UX & UI design',
+    title: 'End-to-end UX/UI',
     drawing: EndToEndParti,
-    points: ['Discovery through to release', 'Journeys, flows and wireframes', 'High-fidelity UI and prototypes'],
+    points: [
+      'Discovery, definition, design and delivery',
+      'User journeys, interaction design and prototyping',
+      'Engineering collaboration and product delivery',
+    ],
   },
   {
-    title: 'Design systems and documentation',
+    title: 'Design systems & scalability',
     drawing: DesignSystemParti,
-    points: ['Components and tokens', 'Usage guidelines', 'Specs and engineering handover'],
+    points: [
+      'Reusable components and design patterns',
+      'Design tokens and UI consistency',
+      'Documentation and developer handoff',
+    ],
   },
 ]
 
