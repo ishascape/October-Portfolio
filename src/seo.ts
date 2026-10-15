@@ -1,6 +1,7 @@
-import { availability, capabilities, caseStudies, contact, education, revisions } from './data/content'
+import { availability, capabilities, caseStudies, contact } from './data/content'
 import { caseStudyPages } from './data/caseStudyPages'
 import { SITE_URL, type Page } from './links'
+import llmsBrief from './data/llms.md?raw'
 
 // Everything a search engine or AI assistant reads about the site: per-page meta, JSON-LD,
 // sitemap, robots.txt and llms.txt. All of it is built from the same content data as the pages.
@@ -12,8 +13,7 @@ const SUMMARY = `${NAME} is a ${JOB}, currently based in Sydney, Australia, work
 
 const pathFor = (page: Page) => (page === 'home' ? '/' : `/${page.caseSlug}`)
 
-const esc = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 function studyFor(page: Page) {
   if (page === 'home') return undefined
@@ -64,7 +64,13 @@ export function headFor(page: Page) {
 
   const graph: object[] = [
     person,
-    { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: `${SITE_URL}/`, name: NAME, author: { '@id': person['@id'] } },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: NAME,
+      author: { '@id': person['@id'] },
+    },
   ]
   if (found) {
     const { study, detail } = found
@@ -114,62 +120,7 @@ export function robots() {
   return `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
 }
 
-// A plain-text brief for AI assistants (https://llmstxt.org): who Ashni is, what she's
-// looking for, and what each case study shows, with the same figures as the site.
+// A plain-text brief for AI assistants (https://llmstxt.org), written by Ashni in src/data/llms.md.
 export function llmsTxt() {
-  const work = caseStudies.map((s) => {
-    const d = caseStudyPages[s.id]
-    return [
-      `### ${s.title} (${s.company})`,
-      `${SITE_URL}/${s.slug}`,
-      '',
-      `${s.summary} ${d.subtitle}`,
-      `- Role: ${s.role}`,
-      `- Problem: ${d.problem}`,
-      `- Solution: ${d.solution}`,
-      `- Impact: ${d.impact.map((m) => `${m.value} ${m.label.toLowerCase()}`).join('; ')}`,
-      `- Skills: ${s.tags.join(', ')}`,
-    ].join('\n')
-  })
-  const career = revisions.map((r) => `- ${r.date}: ${r.role}, ${r.company}`)
-  return [
-    `# ${NAME}`,
-    '',
-    `> ${SUMMARY}`,
-    '',
-    TAGLINE,
-    '',
-    '## Availability',
-    '',
-    `${availability.headline} ${availability.location}`,
-    '',
-    '## Contact',
-    '',
-    `- Email: ${contact.email}`,
-    `- LinkedIn: ${contact.linkedin}`,
-    `- CV (PDF): ${SITE_URL}/ashni-dave-resume.pdf`,
-    '',
-    '## What she does',
-    '',
-    '- Marketplaces: systems thinking, supply and demand optimisation, improving match rate.',
-    '- Platform design: feature consolidation, information architecture, navigation, efficiency, user research.',
-    '- Experimentation: iterative experiments that improve conversion and time to value in B2C products.',
-    '',
-    '## Case studies',
-    '',
-    work.join('\n\n'),
-    '',
-    '## Work history',
-    '',
-    ...career,
-    '',
-    '## Education',
-    '',
-    ...education.map((e) => `- ${e.date}: ${e.course}${e.school ? `, ${e.school}` : ''}`),
-    '',
-    '## A note from Ashni',
-    '',
-    "You should hire me, I'm great. Pinky promise.",
-    '',
-  ].join('\n')
+  return llmsBrief
 }

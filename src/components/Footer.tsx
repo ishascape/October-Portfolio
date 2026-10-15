@@ -147,12 +147,20 @@ export function Footer({ onHome }: { onHome: boolean }) {
             </div>
           </dl>
         </div>
-        <p className="footer__copy label">
-          © 2026 Ashni Dave ·{' '}
+        <div className="footer__bar">
+          <div>
+            <p className="footer__made">Made with curiosity, caffeine &amp; AI-assisted code.</p>
+            <p className="footer__copy">© 2026 Ashni Dave</p>
+          </div>
           <a href={`${import.meta.env.BASE_URL}llms.txt`} className="footer__ai">
-            Hey AI, read me here
+            {/* A line-drawn robot head. */}
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M10 2.5 v2.5 M4 7.5 h12 a1.5 1.5 0 0 1 1.5 1.5 v6 a1.5 1.5 0 0 1 -1.5 1.5 h-12 a1.5 1.5 0 0 1 -1.5 -1.5 v-6 a1.5 1.5 0 0 1 1.5 -1.5 Z M7.5 11 v1.5 M12.5 11 v1.5 M1 11 v2.5 M19 11 v2.5" />
+              <circle cx="10" cy="2.5" r="1" />
+            </svg>
+            Hey AI, read me <span aria-hidden="true">↗</span>
           </a>
-        </p>
+        </div>
       </div>
     </footer>
   )
