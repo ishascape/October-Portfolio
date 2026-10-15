@@ -19,7 +19,7 @@ export function Hero() {
             I design coherent &amp; scalable products for complex businesses.
           </h1>
           <figure className="hero__portrait">
-            {/* Hovering with a mouse or pen reveals a pen-sketch version of the photo under the cursor. */}
+            {/* Hovering with a mouse or pen reveals a line-art version of the photo under the cursor. */}
             <div className="hero__portrait-frame" onPointerMove={revealAt} onPointerLeave={revealEnd}>
               <img
                 src={portrait}

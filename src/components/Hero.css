@@ -41,14 +41,14 @@
   height: 100%;
   object-fit: cover;
 }
-/* The sketch sits over the photo, masked to a 60px circle at the pointer. */
+/* The line drawing sits over the photo, masked to a 40px circle at the pointer. */
 .hero__portrait-sketch {
   position: absolute;
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(circle 60px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
-  mask-image: radial-gradient(circle 60px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 40px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
+  mask-image: radial-gradient(circle 40px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
   transition: opacity var(--dur-micro) var(--ease-pen);
 }
 .hero__portrait-frame[data-reveal] {
