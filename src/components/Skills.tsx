@@ -295,7 +295,7 @@ const toolkit = [
   { group: 'Research and testing', tools: ['Dovetail', 'Maze', 'Useberry', 'Hotjar'] },
   { group: 'Data', tools: ['PostHog', 'Looker'] },
   { group: 'Delivery', tools: ['Jira', 'Confluence', 'Notion'] },
-  { group: 'AI and build', tools: ['Claude', 'Cursor'] },
+  { group: 'AI and build', tools: ['Claude', 'ChatGPT', 'Cursor'] },
 ]
 
 export function Skills() {
