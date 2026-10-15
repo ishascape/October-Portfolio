@@ -25,6 +25,7 @@ export interface CaseStudy {
   existing: string
   proposed: string
   slug: string // URL path, kept identical to the old site's
+  images?: { src: string; alt: string }[] // 2–3 card carousel images; placeholders until Ashni sends them
 }
 
 export const caseStudies: CaseStudy[] = [

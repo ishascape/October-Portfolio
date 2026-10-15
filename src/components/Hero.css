@@ -23,6 +23,16 @@
   margin-bottom: var(--space-5);
 }
 
+/* Hand lettering, Ashni's own hello above the headline. */
+.hero__title .hero__hello {
+  margin-bottom: var(--space-2);
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.1;
+  color: var(--ink);
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+}
+
 .hero__portrait {
   display: grid;
   gap: var(--space-2);
@@ -92,7 +102,7 @@
     grid-template-rows: 1fr 1fr auto;
     row-gap: 0;
   }
-  .hero__intro h1 {
+  .hero__title {
     grid-area: title;
     align-self: end;
     padding-bottom: var(--space-4);

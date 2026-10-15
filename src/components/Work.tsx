@@ -1,6 +1,7 @@
 import { caseHref } from '../links'
 import { caseStudies } from '../data/content'
 import { SheetLabel } from './SheetLabel'
+import { CardCarousel } from './CardCarousel'
 import './Work.css'
 
 export function Work() {
@@ -16,10 +17,7 @@ export function Work() {
           {caseStudies.map((s) => (
             <li key={s.id}>
               <article className="card" aria-labelledby={`card-${s.id}`}>
-                <div className="card__image" aria-hidden="true">
-                  <span className="label">Drawing {s.number}</span>
-                  <span className="label card__image-note">System diagram to come</span>
-                </div>
+                <CardCarousel number={s.number} images={s.images} />
 
                 <div className="card__body">
                   <p className="label card__meta">

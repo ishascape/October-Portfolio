@@ -82,11 +82,9 @@
 }
 
 .card__image {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: relative;
   aspect-ratio: 16 / 10;
-  padding: var(--space-3);
+  overflow: hidden;
   background:
     linear-gradient(to right, rgb(216 210 196 / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
     linear-gradient(to bottom, rgb(216 210 196 / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
@@ -95,6 +93,43 @@
 }
 .card__image-note {
   color: var(--graphite);
+}
+/* Slides stack in the frame and cross-fade; only the active one is visible. */
+.card__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-3);
+  opacity: 0;
+  transition: opacity var(--dur-state) var(--ease-pen);
+}
+.card__slide[data-active] {
+  opacity: 1;
+}
+.card__slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card__dots {
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  display: flex;
+  gap: 6px;
+}
+.card__dots span {
+  width: 8px;
+  height: 8px;
+  border: 1.25px solid var(--ink);
+  transition: background-color var(--dur-micro) var(--ease-pen);
+}
+.card__dots span[data-active] {
+  background: var(--ink);
 }
 
 .card__body {
@@ -226,9 +261,19 @@
   }
 }
 
-@media (min-width: 1024px) {
+/* Wide screens: each card is a horizontal row, image first and large. */
+@media (min-width: 900px) {
   .work__list {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gutter);
+    gap: var(--space-5);
+  }
+  .card {
+    grid-template-columns: 7fr 5fr;
+    grid-template-rows: none;
+  }
+  .card__image {
+    aspect-ratio: auto;
+    min-height: 100%;
+    border-bottom: 0;
+    border-right: var(--line-thin) solid var(--rule);
   }
 }

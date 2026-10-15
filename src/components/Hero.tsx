@@ -15,9 +15,12 @@ export function Hero() {
         </p>
 
         <div className="hero__intro">
-          <h1 id="hero-heading" className="display">
-            I design coherent &amp; scalable products for complex businesses.
-          </h1>
+          <div className="hero__title">
+            <p className="annotation hero__hello">hey! I'm Ashni 🙂</p>
+            <h1 id="hero-heading" className="display">
+              I design coherent &amp; scalable products for complex businesses.
+            </h1>
+          </div>
           <figure className="hero__portrait">
             {/* Hovering with a mouse or pen reveals a line-art version of the photo under the cursor. */}
             <div className="hero__portrait-frame" onPointerMove={revealAt} onPointerLeave={revealEnd}>
