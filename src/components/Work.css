@@ -1,7 +1,16 @@
+/* Selected work sits on a darker, cold-press watercolour sheet. The texture is an SVG
+   relief multiplied over the base colour, so it shades the paper without washing it out. */
+#work.paper-sheet {
+  background-color: var(--paper-deep);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='5' seed='11' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' surfaceScale='2.6' lighting-color='%23fff' result='l'%3E%3CfeDistantLight azimuth='225' elevation='58'/%3E%3C/feDiffuseLighting%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.22' intercept='0.8'/%3E%3CfeFuncG type='linear' slope='0.22' intercept='0.8'/%3E%3CfeFuncB type='linear' slope='0.22' intercept='0.8'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23w%29'/%3E%3C/svg%3E");
+  background-size: 360px 360px;
+  background-blend-mode: multiply;
+}
+
 .work__heading {
   max-width: 18ch;
   margin-bottom: var(--space-6);
-  font-size: clamp(44px, 7vw, 88px);
+  font-size: clamp(28px, 3.5vw, 44px);
 }
 
 .work__list {

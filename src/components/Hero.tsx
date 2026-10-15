@@ -23,9 +23,8 @@ export function Hero() {
           </figure>
           <div className="hero__support">
             <p>
-              Senior Product Designer for B2B SaaS, marketplaces and AI products. I design the system around a
-              product, not just the product: the workflows, automation, teams and processes it touches. Research,
-              workshops, data and commercial sense decide what ships.
+              Senior Product Designer for B2B SaaS, marketplaces and AI. I design the whole system, not just
+              screens. Research, data and commercial impact decide what ships.
             </p>
             <ul className="hero__capabilities label" aria-label="How I work">
               {capabilities.map((c) => (

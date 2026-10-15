@@ -43,12 +43,8 @@ export function Work() {
                     ))}
                   </ul>
 
-                  <p className="card__system">
-                    <span className="label">System</span> {s.system}
-                  </p>
-
                   <ul className="card__tags label" aria-label="Tags">
-                    {s.tags.map((t) => (
+                    {s.tags.slice(0, 3).map((t) => (
                       <li key={t}>{t}</li>
                     ))}
                   </ul>
@@ -64,7 +60,7 @@ export function Work() {
           ))}
         </ol>
 
-        <p className="work__footer">More work, including growth and monetisation experiments, available on request.</p>
+        <p className="work__footer">More work, including growth and monetisation experiments, on request.</p>
       </div>
     </section>
   )

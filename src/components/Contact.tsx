@@ -29,7 +29,7 @@ export function Contact() {
           Let's make the complicated feel obvious.
         </h2>
         <div className="contact__body">
-          <p>Have a product challenge worth untangling? I'd love to hear about it.</p>
+          <p>Got a complex product problem? Let's talk.</p>
           <p>
             <strong>{availability.headline}</strong> {availability.location}
           </p>

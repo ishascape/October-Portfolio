@@ -117,6 +117,7 @@
       'title portrait'
       'support portrait'
       'skills skills';
+    grid-template-rows: auto 1fr auto; /* support sits right under the headline */
     align-items: start;
   }
   .hero__intro h1 {

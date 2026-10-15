@@ -17,14 +17,13 @@ export function About() {
           </h2>
           <div className="about__body">
             <p>
-              I studied architecture at the University of Bath, and I still think like one: understand the site
-              before drawing the building. Today I turn complex marketplaces and B2B platforms into simple products
-              that drive business results, most recently as Senior Product Designer at HeadBox, and before that across
-              growth, core product and monetisation squads at Findmypast.
+              I studied architecture at Bath and still work like an architect: understand the site before drawing
+              the building. I turn complex marketplaces and B2B platforms into simple products that drive business
+              results, most recently as Senior Product Designer at HeadBox, before that across growth, core product
+              and monetisation at Findmypast.
             </p>
             <p className="about__note">
-              This site is designed and built with AI-assisted code in React and TypeScript, after Memorisely's AI
-              Coding for Designers (2026).
+              I designed and built this site with AI-assisted code in React and TypeScript.
             </p>
           </div>
         </div>
@@ -102,15 +101,15 @@ export function About() {
         <div className="field-notes">
           <div className="field-notes__copy">
             <h3 className="display field-notes__heading">Field notes</h3>
-            <p>Outside work I'm usually drawing, playing music or planning the next trip.</p>
+            <p>Outside work: drawing, music and travel.</p>
             <p>
-              My sketchbook is mostly animals. Drawing them uses the same muscle as product design: look closely, then
-              leave out everything that isn't needed.
+              My sketchbook is mostly animals. Same muscle as product design: look closely, then cut what isn't
+              needed.
             </p>
             <p>
-              I play piano and flute and perform at gigs every few weeks. I've travelled to 39 countries, summited
-              Kilimanjaro and Mt Kenya, and trekked to Everest Base Camp. Since 2011 I've been a committee member at
-              the Amara Charitable Trust, and I volunteer with FOECT on reforestation in Kenya.
+              I play piano and flute at gigs every few weeks. 39 countries, Kilimanjaro and Mt Kenya summits, and
+              Everest Base Camp so far. On the Amara Charitable Trust committee since 2011, and a reforestation
+              volunteer with FOECT in Kenya.
             </p>
           </div>
 

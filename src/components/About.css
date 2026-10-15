@@ -8,7 +8,7 @@
   margin-bottom: var(--space-6);
 }
 .about__heading {
-  font-size: clamp(44px, 7vw, 88px);
+  font-size: clamp(28px, 3.5vw, 44px);
   max-width: 16ch;
 }
 .about__body {

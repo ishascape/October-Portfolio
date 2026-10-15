@@ -37,7 +37,7 @@ export const caseStudies: CaseStudy[] = [
     leadMetric: { value: '+33%', label: 'high-intent enquiries' },
     supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
     system:
-      'Guests, hosts, Marketing and account managers · brief-to-lead workflow · AI parsing and automated routing of high-value briefs',
+      'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
     tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 40% shorter journey',
@@ -54,7 +54,7 @@ export const caseStudies: CaseStudy[] = [
     leadMetric: { value: '-28%', label: 'host churn (Q1)' },
     supporting: ['55+ new One Platform clients in 3 months', '-25% navigation support tickets'],
     system:
-      'Hosts, leadership, Sales and Support · four product lines reorganised around host workflows · proposals, dashboards and reporting in one place',
+      'Hosts, leadership, Sales, Support · four product lines rebuilt around host workflows · proposals, dashboards and reporting in one place',
     tags: ['B2B SaaS', 'Systems thinking', 'Information architecture', 'Product strategy', 'Platform design'],
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
@@ -71,7 +71,7 @@ export const caseStudies: CaseStudy[] = [
     leadMetric: { value: '+18%', label: 'free-trial starts' },
     supporting: ['+8% trial-to-subscription conversion', '-13% onboarding drop-off'],
     system:
-      'PM, data science and engineering · sign-up to subscription funnel · record matching that replaced manual form entry',
+      'PM, data science, engineering · sign-up-to-subscription funnel · record matching replaces manual entry',
     tags: ['B2C Conversion', 'AI Products', 'Experiment design', 'Mobile first'],
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
@@ -97,51 +97,47 @@ export interface Principle {
 export const principles: Principle[] = [
   {
     number: '0',
-    title: 'Design the system, not the project in isolation.',
-    body: "I map the workflows, teams, processes and touch points around a product before designing screens, and automate the steps people shouldn't be doing by hand.",
+    title: 'Design the system, not the screen.',
+    body: "I map workflows, teams and touchpoints before designing screens, and automate what people shouldn't do by hand.",
     evidence: [
-      { source: 'HostHQ', text: "Reorganised four separately built host products around the way hosts actually work, instead of HeadBox's internal product lines." },
-      { source: 'Venue Finder', text: 'Designed both ends of the brief-to-lead workflow, including automated routing of high-value briefs to account managers.' },
-      { source: 'CV', text: 'Launch in a New City: AI research agents and operational tooling cut launch planning from over 12 weeks to 2.' },
+      { source: 'HostHQ', text: "Rebuilt four separate host products around how hosts work, not HeadBox's internal product lines." },
+      { source: 'CV', text: 'Launch in a New City: AI research agents and ops tooling cut launch planning from 12+ weeks to 2.' },
     ],
   },
   {
     number: '1',
     title: 'Design with commercial sense.',
-    body: "I treat revenue, retention and marketplace health as design constraints, not someone else's problem.",
+    body: "Revenue, retention and marketplace health are design constraints, not someone else's problem.",
     evidence: [
-      { source: 'Venue Finder', text: 'Spotted that marketing KPIs rewarded brief volume over intent, and introduced a new sponsored-placement revenue model.' },
-      { source: 'HostHQ', text: "Reframed the platform around hosts' revenue and ROI visibility; 55+ new One Platform clients in 3 months." },
+      { source: 'Venue Finder', text: 'Found marketing KPIs rewarded brief volume over intent; introduced a sponsored-placement revenue model.' },
       { source: 'CV', text: 'Gift Subscription MVP, over £500k in first-year revenue.' },
     ],
   },
   {
     number: '2',
-    title: 'Facilitate and ideate with groups.',
-    body: 'I bring customers, leadership and engineering into the same room and leave with a decision.',
+    title: 'Facilitate groups to a decision.',
+    body: 'Customers, leadership and engineering in one room, leaving with one decision.',
     evidence: [
-      { source: 'HostHQ', text: 'Ran interactive focus groups with host customers across venue types, and aligned the CEO, CTO, Head of Marketing and Head of Venue Sales on one consolidation strategy.' },
-      { source: 'CV', text: 'Facilitated cross-functional product planning with Product, Engineering and Commercial leadership at HeadBox.' },
+      { source: 'HostHQ', text: 'Ran focus groups with hosts across venue types; aligned the CEO, CTO, Head of Marketing and Head of Venue Sales on one consolidation strategy.' },
+      { source: 'CV', text: 'Facilitated cross-functional planning with Product, Engineering and Commercial leadership.' },
     ],
   },
   {
     number: '3',
     title: 'Turn research into product vision.',
-    body: 'I go to users first, and the vision comes out of what they actually need.',
+    body: 'Users first. The vision comes from what they actually need.',
     evidence: [
-      { source: 'Venue Finder', text: 'Interviewed 10 event bookers, found every brief hinged on one non-negotiable requirement, and built the product hypothesis around it.' },
-      { source: 'HostHQ', text: 'Research showed HeadBox was a peripheral lead channel for hosts, which reframed the whole platform vision.' },
+      { source: 'Venue Finder', text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.' },
       { source: 'CV', text: "Set up HeadBox's first continuous research programme in over four years." },
     ],
   },
   {
     number: '4',
-    title: 'Use data to make design and product decisions.',
-    body: 'I run experiments, read the results honestly, and change course when the data says so.',
+    title: 'Let the data decide.',
+    body: 'I run experiments, read results honestly and change course when the data says so.',
     evidence: [
-      { source: 'Venue Finder', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%), so V2 made the prompt optional and softened sign-up, and it shipped.' },
-      { source: 'TreeAssist', text: 'Three onboarding experiments in two-week cycles, aimed at the 41% of new users who left before reaching value.' },
-      { source: 'CV', text: '5× free-trial conversion at Findmypast through behavioural analysis and A/B testing.' },
+      { source: 'Venue Finder', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.' },
+      { source: 'CV', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
     ],
   },
 ]
