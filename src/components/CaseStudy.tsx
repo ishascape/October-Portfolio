@@ -87,6 +87,16 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
           <div className="container case__section-grid">
             <p className="label case__section-label">{s.label}</p>
             <div className="case__section-body">
+              {s.eyebrow && (
+                <p className="annotation case__eyebrow">
+                  <svg viewBox="0 0 24 28" aria-hidden="true">
+                    <path d="M12 2.5 C7.2 2.4 4 6 4.2 10.4 C4.4 13.4 6 15 7.6 17 C8.4 18 8.6 18.8 8.6 20.2 H15.4 C15.4 18.8 15.6 18 16.4 17 C18 15 19.6 13.4 19.8 10.4 C20 6 16.8 2.6 12 2.5 Z" />
+                    <path d="M9 23 H15 M10.2 26 H13.8" />
+                    <path d="M10 12 L12 15 L14 12" />
+                  </svg>
+                  {s.eyebrow}
+                </p>
+              )}
               <h2 className="case__section-heading">{s.heading}</h2>
               {s.body?.map((p) => (
                 <p key={p}>{p}</p>

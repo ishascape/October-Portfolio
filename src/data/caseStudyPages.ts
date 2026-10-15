@@ -19,6 +19,7 @@ export interface Experiment {
 export interface Section {
   label: string // small kicker, like a drawing title
   heading: string
+  eyebrow?: string // hand-lettered note above the heading, with a line-drawn light bulb
   body?: string[]
   list?: { title?: string; text: string }[]
   experiments?: Experiment[]
@@ -69,6 +70,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       {
         label: '02 · Research',
         heading: 'Every brief hinged on one non-negotiable.',
+        eyebrow: 'Research insight',
         body: [
           'No guest research in over four years, so I interviewed 10 event bookers. Every brief had one fixed requirement; venues missing it were rejected instantly.',
           'Hypothesis: capture intent and encourage shortlisting before submission to cut low-quality briefs and lift host ROI.',

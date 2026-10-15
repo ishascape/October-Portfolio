@@ -296,3 +296,22 @@
 .case__diagram {
   padding-bottom: var(--space-4);
 }
+
+/* Hand-lettered note above a section heading, with a line-drawn light bulb. */
+.case__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0 0 var(--space-1);
+  color: var(--marker);
+}
+.case__eyebrow svg {
+  width: 22px;
+  height: 26px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
