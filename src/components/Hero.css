@@ -26,9 +26,10 @@
 .hero__portrait {
   display: grid;
   gap: var(--space-2);
-  max-width: 420px;
+  max-width: 300px;
 }
 .hero__portrait-frame {
+  position: relative;
   aspect-ratio: 4 / 5;
   border: var(--line-thin) solid var(--ink);
   background: var(--paper-shade);
@@ -39,6 +40,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* The sketch sits over the photo, masked to a 60px circle at the pointer. */
+.hero__portrait-sketch {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle 60px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
+  mask-image: radial-gradient(circle 60px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
+  transition: opacity var(--dur-micro) var(--ease-pen);
+}
+.hero__portrait-frame[data-reveal] {
+  cursor: crosshair;
+}
+.hero__portrait-frame[data-reveal] .hero__portrait-sketch {
+  opacity: 1;
 }
 .hero__portrait figcaption {
   color: var(--graphite);
@@ -63,20 +80,22 @@
 
 @media (min-width: 1024px) {
   .hero__intro {
-    grid-template-columns: 7fr 5fr;
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr) 340px;
     gap: var(--space-5) var(--gutter);
   }
+  /* Headline and support text sit as one block, centred against the portrait. */
   .hero__intro {
     grid-template-areas:
       'title portrait'
       'support portrait'
       'skills skills';
-    grid-template-rows: auto 1fr auto; /* support sits right under the headline */
-    align-items: start;
+    grid-template-rows: 1fr 1fr auto;
+    row-gap: 0;
   }
   .hero__intro h1 {
     grid-area: title;
+    align-self: end;
+    padding-bottom: var(--space-4);
   }
   .hero__portrait {
     grid-area: portrait;
@@ -85,6 +104,10 @@
   }
   .hero__support {
     grid-area: support;
+    align-self: start;
+  }
+  .hero__skills {
+    margin-top: var(--space-6);
   }
   .hero__skills {
     grid-area: skills;

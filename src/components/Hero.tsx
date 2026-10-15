@@ -1,6 +1,8 @@
 import { contact } from '../data/content'
 import { Skills } from './Skills'
 import portrait from '../assets/ashni-portrait.webp'
+import portraitSketch from '../assets/ashni-portrait-sketch.webp'
+import { revealAt, revealEnd } from './reveal'
 import './Hero.css'
 
 export function Hero() {
@@ -17,7 +19,8 @@ export function Hero() {
             I design coherent &amp; scalable products for complex businesses.
           </h1>
           <figure className="hero__portrait">
-            <div className="hero__portrait-frame">
+            {/* Hovering with a mouse or pen reveals a pen-sketch version of the photo under the cursor. */}
+            <div className="hero__portrait-frame" onPointerMove={revealAt} onPointerLeave={revealEnd}>
               <img
                 src={portrait}
                 alt="Ashni Dave smiling, with long dark hair, in a blue denim top, standing in a garden."
@@ -26,6 +29,7 @@ export function Hero() {
                 fetchPriority="high"
                 decoding="async"
               />
+              <img className="hero__portrait-sketch" src={portraitSketch} alt="" width={960} height={1200} decoding="async" />
             </div>
             <figcaption className="annotation">Fig. 00. Ashni Dave</figcaption>
           </figure>
