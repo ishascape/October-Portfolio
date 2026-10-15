@@ -109,15 +109,23 @@ export function About() {
         <div className="field-notes">
           <div className="field-notes__copy">
             <h3 className="display field-notes__heading">Field notes</h3>
-            <p>Outside work: drawing, music and travel.</p>
+            <p>Outside work, I'm usually drawing, consuming art, food &amp; music, or plotting my next trip.</p>
             <p>
-              My sketchbook is mostly animals. Same muscle as product design: look closely, then cut what isn't needed.
+              I love sketching animals, there's something satisfying about capturing a personality in just a few lines.
+              I've played piano and flute for years, and absolutely love live music, from metalcore gigs to orchestras
+              and pretty much everything in between.
             </p>
             <p>
-              I play piano and flute at gigs every few weeks. 38 countries, Kilimanjaro and Mt Kenya summits, and
-              Everest Base Camp so far. On the Amara Charitable Trust committee since 2011, and a reforestation
-              volunteer with FOECT in Kenya.
+              I've explored 38 countries and counting, summited Kilimanjaro and Mt Kenya, and trekked to Everest Base
+              Camp. I'm always up for an adventure, especially if it involves mountains, wildlife or a slightly
+              questionable amount of walking.
             </p>
+            <p>
+              Giving back has always been important to me, too. I've been on the Amara Charitable Trust committee since
+              2011, volunteered on reforestation projects with FOECT in Kenya, and helped build a sand dam in Machakos
+              with my high school friends, bringing better access to water to over 1,000 people.
+            </p>
+            <p>Mostly, I just like being curious, trying new things and collecting good stories along the way.</p>
           </div>
 
           <div className="field-notes__figures">
