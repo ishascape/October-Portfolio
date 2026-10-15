@@ -11,7 +11,7 @@ const rows = ['1', '2', '3']
 export function KeyPlan() {
   return (
     <svg className="keyplan" viewBox={`0 0 ${w} ${h}`} role="img" aria-labelledby="keyplan-title">
-      <title id="keyplan-title">Key plan of inner Sydney with a pin on Zetland</title>
+      <title id="keyplan-title">Key plan of inner and eastern Sydney with a pin on Zetland</title>
       <defs>
         <pattern id="keyplan-water" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="6" className="keyplan__hatch" />
@@ -50,28 +50,30 @@ export function KeyPlan() {
         </text>
       ))}
 
-      {SUBURB_LABELS.filter(([name]) => name !== 'Sydney').map(([name, x, y]) => (
+      {SUBURB_LABELS.filter(([name]) => !['Sydney', 'Waterloo'].includes(name)).map(([name, x, y]) => (
         <text key={name} x={x} y={y} className="keyplan__suburb">
           {name}
         </text>
       ))}
-      <text x={PLACES.harbour[0]} y={PLACES.harbour[1]} className="keyplan__label">
-        PORT JACKSON
-      </text>
-      <text x={PLACES.cbd[0]} y={PLACES.cbd[1]} className="keyplan__label">
-        CBD
-      </text>
-      <text x={PLACES.botany[0]} y={PLACES.botany[1]} className="keyplan__label">
-        BOTANY BAY
-      </text>
-      <text
-        x={PLACES.sea[0]}
-        y={PLACES.sea[1]}
-        className="keyplan__label"
-        transform={`rotate(-90 ${PLACES.sea[0]} ${PLACES.sea[1]})`}
-      >
-        TASMAN SEA
-      </text>
+      {[
+        ['harbour', 'PORT JACKSON', 0],
+        ['cbd', 'CBD', 0],
+        ['sea', 'TASMAN SEA', -90],
+      ].map(([key, label, angle]) => {
+        const at = PLACES[key as string]
+        if (!at) return null
+        return (
+          <text
+            key={key}
+            x={at[0]}
+            y={at[1]}
+            className="keyplan__label"
+            transform={angle ? `rotate(${angle} ${at[0]} ${at[1]})` : undefined}
+          >
+            {label}
+          </text>
+        )
+      })}
 
       {/* North point */}
       <g transform={`translate(40 ${h - 92})`} className="keyplan__north">

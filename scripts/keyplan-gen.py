@@ -5,7 +5,7 @@ import json, math, numpy as np, sys
 from shapely.geometry import shape, box, Polygon, MultiPolygon, LineString, Point
 from shapely.ops import unary_union
 from skimage import measure, filters
-W,E,N,S=151.06,151.30,-33.825,-34.0
+W,E,N,S=151.145,151.285,-33.846,-33.948
 VW=480; VH=round(VW*(N-S)/((E-W)*math.cos(math.radians((N+S)/2))))
 def P(lon,lat): return ((lon-W)/(E-W)*VW, (N-lat)/(N-S)*VH)
 bb=box(W,S,E,N)
@@ -57,7 +57,7 @@ for lvl in range(20,141,20):
 con_d={}
 for lvl,s in cont: con_d.setdefault(lvl,[]).append(s)
 zc=names['ZETLAND'].representative_point()
-labels={k:P(*names[k].representative_point().coords[0]) for k in ['SURRY HILLS','NEWTOWN','BONDI','RANDWICK','MASCOT','MARRICKVILLE','BALMAIN','MOSMAN','NORTH SYDNEY','GLEBE','ALEXANDRIA','LEICHHARDT','REDFERN','SYDNEY'] if k in names}
+labels={k:P(*names[k].representative_point().coords[0]) for k in ['SURRY HILLS','NEWTOWN','BONDI','BONDI JUNCTION','RANDWICK','KENSINGTON','KINGSFORD','ROSEBERY','WATERLOO','ERSKINEVILLE','DARLINGHURST','PADDINGTON','WOOLLAHRA','ALEXANDRIA','REDFERN','GLEBE','CENTENNIAL PARK','MASCOT','SYDNEY'] if k in names and bb.contains(names[k].representative_point())}
 km=VW/((E-W)*111.32*math.cos(math.radians((N+S)/2)))
 out=f'''// Generated from NSW suburb boundaries (tonywr71/GeoJson-Data) and Terrarium elevation tiles.
 // Bounds {W},{N} to {E},{S}; equirectangular, north up. Regenerate rather than hand-edit.
@@ -68,7 +68,7 @@ export const SUBURBS = '{sub_d}'
 export const CONTOURS: [number, string][] = {json.dumps([[k,' '.join(v)] for k,v in sorted(con_d.items())])}
 export const ZETLAND = {{ x: {P(*zc.coords[0])[0]:.1f}, y: {P(*zc.coords[0])[1]:.1f} }}
 export const SUBURB_LABELS: [string, number, number][] = {json.dumps([[k.title(),round(x,1),round(y,1)] for k,(x,y) in labels.items()])}
-export const PLACES = {json.dumps({k:[round(v,1) for v in P(*ll)] for k,ll in {'harbour':(151.232,-33.846),'botany':(151.165,-33.992),'sea':(151.29,-33.90),'cbd':(151.207,-33.870)}.items()})}
+export const PLACES: Record<string, [number, number]> = {json.dumps({k:[round(v,1) for v in P(*ll)] for k,ll in {'harbour':(151.232,-33.849),'sea':(151.279,-33.925),'cbd':(151.207,-33.872)}.items() if bb.contains(Point(*ll))})}
 '''
 open(sys.argv[1],'w').write(out)
 print(VH, km, len(out), {k:len(v) for k,v in con_d.items()}, labels.keys())

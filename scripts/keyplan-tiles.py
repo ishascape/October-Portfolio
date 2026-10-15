@@ -2,7 +2,7 @@
 import math, urllib.request, io, numpy as np
 from PIL import Image
 Z=12
-W,E,N,S=151.06,151.30,-33.825,-34.0
+W,E,N,S=151.145,151.285,-33.846,-33.948
 def tile(lon,lat):
     n=2**Z; x=(lon+180)/360*n; y=(1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*n; return x,y
 x0,y0=tile(W,N); x1,y1=tile(E,S)
