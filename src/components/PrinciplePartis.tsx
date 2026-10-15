@@ -130,10 +130,11 @@ function Data() {
   )
 }
 
-const drawings: Record<string, () => ReactNode> = { '0': System, '1': Commercial, '2': Facilitation, '3': Research, '4': Data }
+// Also used by the Core Expertise row in the hero.
+export const principleDrawings: Record<string, () => ReactNode> = { '0': System, '1': Commercial, '2': Facilitation, '3': Research, '4': Data }
 
 export function PrincipleParti({ number }: { number: string }) {
-  const Drawing = drawings[number]
+  const Drawing = principleDrawings[number]
   if (!Drawing) return null
   return (
     <DrawOnScroll viewBox="0 0 160 120" className="principle__parti">

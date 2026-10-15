@@ -11,7 +11,7 @@ export function Footer({ onHome }: { onHome: boolean }) {
       <div className="container">
         <div className="titlesheet">
           <figure className="titlesheet__plan">
-            <p className="label titlesheet__field">Key plan · Sydney</p>
+            <p className="label titlesheet__field">Key plan · Currently based in Sydney, Australia</p>
             <KeyPlan />
             <figcaption>
               <p className="label titlesheet__field">Legend</p>
@@ -24,15 +24,15 @@ export function Footer({ onHome }: { onHome: boolean }) {
                 </li>
                 <li>
                   <svg viewBox="0 0 24 12" aria-hidden="true">
-                    <path d="M0 6 H24" className="keyplan__road" />
+                    <path d="M0 6 H24" className="keyplan__suburbs" />
                   </svg>
-                  Main road
+                  Suburb boundary
                 </li>
                 <li>
                   <svg viewBox="0 0 24 12" aria-hidden="true">
-                    <rect x="5" y="1" width="14" height="10" className="keyplan__block" />
+                    <path d="M0 9 C6 2 12 2 24 6" className="keyplan__contour keyplan__contour--index" />
                   </svg>
-                  City centre
+                  20 m contour
                 </li>
                 <li>
                   <svg viewBox="0 0 24 12" aria-hidden="true">
@@ -41,6 +41,9 @@ export function Footer({ onHome }: { onHome: boolean }) {
                   Zetland, where I'm based
                 </li>
               </ul>
+              <p className="titlesheet__credit">
+                Suburb boundaries: NSW Spatial Services (CC BY 4.0). Terrain: Mapzen Terrain Tiles.
+              </p>
             </figcaption>
           </figure>
 
@@ -54,31 +57,25 @@ export function Footer({ onHome }: { onHome: boolean }) {
               <dd>Senior Product Designer</dd>
             </div>
             <div className="titlesheet__row">
-              <dt className="label titlesheet__field">Location</dt>
-              <dd>{availability.location.replace(/\.$/, '')}</dd>
-            </div>
-            <div className="titlesheet__row">
               <dt className="label titlesheet__field">Availability</dt>
               <dd>{availability.short}</dd>
             </div>
-            <div className="titlesheet__row titlesheet__row--split">
-              <div>
-                <dt className="label titlesheet__field">Email</dt>
+            <div className="titlesheet__row">
+              <dt className="label titlesheet__field">Email</dt>
+              <dd>
+                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              </dd>
+            </div>
+            {contact.linkedin && (
+              <div className="titlesheet__row">
+                <dt className="label titlesheet__field">LinkedIn</dt>
                 <dd>
-                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                  <a href={contact.linkedin} target="_blank" rel="noreferrer">
+                    {linkedinHandle} <span aria-hidden="true">↗</span>
+                  </a>
                 </dd>
               </div>
-              {contact.linkedin && (
-                <div>
-                  <dt className="label titlesheet__field">LinkedIn</dt>
-                  <dd>
-                    <a href={contact.linkedin} target="_blank" rel="noreferrer">
-                      {linkedinHandle} <span aria-hidden="true">↗</span>
-                    </a>
-                  </dd>
-                </div>
-              )}
-            </div>
+            )}
             <div className="titlesheet__row">
               <dt className="label titlesheet__field">Sheets</dt>
               <dd>

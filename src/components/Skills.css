@@ -1,6 +1,14 @@
+.skills__heading {
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
 .skills {
   display: grid;
   gap: var(--space-4);
+}
+.skill__title {
+  margin: 0;
 }
 
 .skill {
@@ -41,11 +49,11 @@
   border: 1.25px solid var(--ink);
 }
 
-/* On screens that can hover, the drawing leads and the skills draw in underneath it. */
+/* On wider screens the drawing leads, with its points listed underneath. */
 @media (hover: hover) and (min-width: 600px) {
   .skills {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gutter);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4) var(--gutter);
   }
   .skill {
     grid-template-columns: 1fr;
@@ -57,26 +65,19 @@
     grid-row: auto;
     max-width: 180px;
   }
-  .skill__points {
-    opacity: 0;
-    transform: translateY(4px);
-    transition:
-      opacity var(--dur-state) var(--ease-pen),
-      transform var(--dur-state) var(--ease-pen);
-  }
   .skill:hover,
   .skill:focus-visible {
     border-color: var(--ink);
-  }
-  .skill:hover .skill__points,
-  .skill:focus-visible .skill__points,
-  .skill:focus-within .skill__points {
-    opacity: 1;
-    transform: none;
   }
   .skill:hover .parti [pathLength],
   .skill:focus-visible .parti [pathLength] {
     stroke-dasharray: 1;
     animation: parti-draw 700ms var(--ease-pen) backwards;
+  }
+}
+
+@media (hover: hover) and (min-width: 1024px) {
+  .skills {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

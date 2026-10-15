@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react'
 import { SketchRect } from './Sketch'
+import { principleDrawings } from './PrinciplePartis'
 import './Parti.css'
 import './Skills.css'
 
-// Hero skill partis: one idea per discipline. The skills underneath are always in the
-// DOM (so screen readers and touch users get them); on hover-capable screens they draw in.
+// Core Expertise partis: one idea per discipline, each with its points listed underneath.
 
 const P = { pathLength: 1 }
 
@@ -100,40 +100,70 @@ const skills: Skill[] = [
   {
     title: 'Marketplaces',
     drawing: MarketplaceParti,
-    points: ['Systems thinking', 'Supply and demand optimisation', 'Improving match rate'],
+    points: ['Supply and demand optimisation', 'Improving match rate', 'Two-sided journeys'],
   },
   {
     title: 'Platform design',
     drawing: PlatformParti,
-    points: ['Feature consolidation', 'Information architecture', 'Navigation', 'Efficiency', 'User research'],
+    points: ['Feature consolidation', 'Information architecture and navigation', 'User research'],
   },
   {
     title: 'Experimentation',
     drawing: ExperimentationParti,
-    points: ['Iterative experiments that improve conversion and time to value in B2C products'],
+    points: ['Iterative A/B experiments', 'Conversion and time to value', 'B2C onboarding'],
+  },
+  {
+    title: 'Systems thinking',
+    drawing: principleDrawings['0'],
+    points: ['Workflow and touchpoint mapping', 'Design across business departments', 'Automating manual operations'],
+  },
+  {
+    title: 'Commercial sense',
+    drawing: principleDrawings['1'],
+    points: ['Revenue and retention as design constraints', 'Monetisation models', 'Marketplace health'],
+  },
+  {
+    title: 'Facilitation',
+    drawing: principleDrawings['2'],
+    points: ['Customer focus groups', 'Leadership alignment', 'Cross-functional planning'],
+  },
+  {
+    title: 'Research → vision',
+    drawing: principleDrawings['3'],
+    points: ['User interviews', 'Continuous research programmes', 'Hypotheses that shape the roadmap'],
+  },
+  {
+    title: 'Data-led decisions',
+    drawing: principleDrawings['4'],
+    points: ['Behavioural analysis', 'Honest experiment readouts', 'Changing course on evidence'],
   },
 ]
 
 export function Skills() {
   return (
-    <ul className="skills" aria-label="What I do">
-      {skills.map((s) => {
-        const Drawing = s.drawing
-        return (
-          // tabIndex lets keyboard users reveal the skills the same way hover does
-          <li key={s.title} className="skill" tabIndex={0}>
-            <svg className="parti skill__parti" viewBox="0 0 160 120" aria-hidden="true">
-              <Drawing />
-            </svg>
-            <h2 className="skill__title">{s.title}</h2>
-            <ul className="skill__points">
-              {s.points.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
-          </li>
-        )
-      })}
-    </ul>
+    <section className="skills-block" aria-labelledby="core-expertise">
+      <h2 id="core-expertise" className="label skills__heading">
+        Core Expertise
+      </h2>
+      <ul className="skills">
+        {skills.map((s) => {
+          const Drawing = s.drawing
+          return (
+            // tabIndex lets keyboard users reveal the skills the same way hover does
+            <li key={s.title} className="skill" tabIndex={0}>
+              <svg className="parti skill__parti" viewBox="0 0 160 120" aria-hidden="true">
+                <Drawing />
+              </svg>
+              <h3 className="skill__title">{s.title}</h3>
+              <ul className="skill__points">
+                {s.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
   )
 }

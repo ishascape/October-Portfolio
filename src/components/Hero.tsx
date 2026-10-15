@@ -1,4 +1,4 @@
-import { capabilities, contact } from '../data/content'
+import { contact } from '../data/content'
 import { Skills } from './Skills'
 import portrait from '../assets/ashni-portrait.webp'
 import './Hero.css'
@@ -34,13 +34,6 @@ export function Hero() {
               Senior Product Designer for B2B SaaS, marketplaces and AI. I design the whole system, not just
               screens. Research, data and commercial impact decide what ships.
             </p>
-            <ul className="hero__capabilities label" aria-label="How I work">
-              {capabilities.map((c) => (
-                <li key={c}>
-                  <a href="#how-i-work">{c}</a>
-                </li>
-              ))}
-            </ul>
             <div className="hero__actions">
               <a className="button button--primary" href="#work">
                 Selected work <span aria-hidden="true">↓</span>

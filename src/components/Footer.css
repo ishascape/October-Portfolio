@@ -44,6 +44,11 @@
   align-items: center;
   gap: var(--space-1);
 }
+.titlesheet__credit {
+  margin-top: var(--space-1);
+  font-size: 11px;
+  color: var(--graphite);
+}
 .titlesheet__key svg {
   width: 24px;
   height: 12px;
@@ -56,30 +61,45 @@
   height: auto;
   background: var(--paper);
 }
+.keyplan__land {
+  fill: var(--paper);
+}
 .keyplan__coast {
+  fill: none;
   stroke: var(--ink);
-  stroke-width: 1.25;
+  stroke-width: 1.1;
   stroke-linejoin: round;
 }
 .keyplan__hatch {
   stroke: rgb(28 27 25 / 0.28);
   stroke-width: 0.75;
 }
+/* Light topography: 20 m contours, every second one slightly heavier. */
+.keyplan__contour {
+  fill: none;
+  stroke: rgb(97 94 88 / 0.22);
+  stroke-width: 0.6;
+}
+.keyplan__contour--index {
+  stroke: rgb(97 94 88 / 0.38);
+}
+/* Suburb boundaries in a see-through grey. */
+.keyplan__suburbs {
+  fill: none;
+  stroke: rgb(97 94 88 / 0.45);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 1.5;
+}
+.keyplan__suburb {
+  font-family: var(--font-sans);
+  font-size: 7px;
+  fill: rgb(97 94 88 / 0.85);
+  text-anchor: middle;
+}
 .keyplan__grid {
-  stroke: var(--rule);
+  stroke: rgb(28 27 25 / 0.18);
   stroke-width: 0.75;
   stroke-dasharray: 2 4;
-}
-.keyplan__road {
-  fill: none;
-  stroke: var(--graphite);
-  stroke-width: 0.9;
-  stroke-dasharray: 6 3;
-}
-.keyplan__block {
-  fill: rgb(28 27 25 / 0.12);
-  stroke: var(--ink);
-  stroke-width: 0.75;
 }
 .keyplan__frame {
   fill: none;
@@ -94,6 +114,13 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   fill: var(--ink);
+}
+/* A paper halo keeps labels legible where they cross linework. */
+.keyplan text {
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
 .keyplan__ref {
   fill: var(--graphite);
@@ -113,9 +140,13 @@
   font-size: 11px;
   font-weight: 600;
 }
-.keyplan__scale path {
-  fill: none;
+.keyplan__scale rect {
+  fill: var(--paper);
   stroke: var(--ink);
+  stroke-width: 0.75;
+}
+.keyplan__scale .keyplan__scale-fill {
+  fill: var(--ink);
 }
 .keyplan__scale text {
   letter-spacing: 0.04em;
@@ -165,20 +196,12 @@
 }
 
 /* Rows split into ruled cells, like the boxes of a title block. */
-.titlesheet__row--split,
 .titlesheet__row--meta {
   display: grid;
   padding: 0;
 }
-.titlesheet__row--split {
-  grid-template-columns: 1fr;
-}
-.titlesheet__row--split > div,
 .titlesheet__row--meta > div {
   padding: var(--space-2) var(--space-3);
-}
-.titlesheet__row--split > div + div {
-  border-top: var(--line-thin) solid var(--ink);
 }
 .titlesheet__row--meta {
   grid-template-columns: repeat(4, 1fr);
@@ -223,16 +246,6 @@
 .footer__copy {
   margin-top: var(--space-3);
   color: var(--graphite);
-}
-
-@media (min-width: 600px) {
-  .titlesheet__row--split {
-    grid-template-columns: 1fr 1fr;
-  }
-  .titlesheet__row--split > div + div {
-    border-top: 0;
-    border-left: var(--line-thin) solid var(--ink);
-  }
 }
 
 @media (min-width: 900px) {
