@@ -60,15 +60,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     summary: {
       role: {
         text: 'Sole product designer, with 4 engineers, over 2 months. I interviewed 10 event bookers and designed both the V1 and V2 brief journeys.',
-        gap: 'Anything else you personally owned, such as the experiment plan, the Spotlight Partner model or stakeholder calls.',
       },
       decision: {
-        text: 'V1, with the AI prompt up front, cut Lead Feed volume by 40%. We moved to a moderate V2 instead: optional prompt, magic-link sign-up, and recommendations gated behind sign-up.',
-        gap: 'What you argued for, and with whom, for example executives attached to Lead Feed.',
+        text: 'I fought to keep Venue Finder alive and to measure it differently: lead volume was a poor measure of quality, and it left customers on both sides of the marketplace disappointed. V1 cut Lead Feed volume by 40%, so we moved to a moderate V2 with an optional prompt, magic-link sign-up and recommendations gated behind sign-up.',
       },
       outcome: {
-        text: '40% shorter user journey. Measured against the legacy 13-step builder (83% drop-off) in 2-week experiment cycles.',
-        gap: 'How the 40% was measured, and which enquiry figure is right: +33% (this site) or +30% (CV, Direct Enquiry). Held back until you confirm.',
+        text: '+33% high-intent enquiries and a 40% shorter user journey. Measured with A/B testing in 2-week experiment cycles, against the legacy 13-step builder (83% drop-off), and by monitoring engagement patterns.',
       },
     },
     kicker: 'HeadBox · Demand side',
@@ -177,15 +174,14 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     summary: {
       role: {
         text: 'Senior Product Designer, 0→1 in 3 months. I ran the host focus groups, set the consolidation strategy and scoped the MVP across four products.',
-        gap: 'Team size, who you worked with day to day, and what you owned versus the PM and engineering.',
+        gap: 'Team size and who you worked with day to day.',
       },
       decision: {
-        text: 'Structure over completeness. With 3 months before peak season I shipped unified navigation, consolidated workflows, action-led dashboards and a stronger proposal builder, and deferred the 3D Studio migration, full reporting and mobile.',
-        gap: 'Whether you had to fight for this, and who pushed back.',
+        text: 'I fought for round-table research over a redesign based purely on stakeholder opinion and support tickets. The research set the MVP scope, the essential workflows to ship in 3 months, and the sequence for what comes next. We shipped structure over completeness and deferred the 3D Studio migration, full reporting and mobile.',
       },
       outcome: {
-        text: '55+ new One Platform clients in 3 months and 25% fewer navigation support tickets.',
-        gap: 'How these were measured (baseline, period, source). Held back until you confirm: host churn (-28% here, but the CV credits it to guest booking journeys) and +32% hosts reporting closed bookings.',
+        text: '-28% host churn (Q1), 55+ new One Platform clients in 3 months, +32% of hosts reporting closed bookings and 25% fewer navigation support tickets.',
+        gap: 'How these were measured (baseline, period, source).',
       },
     },
     kicker: 'HeadBox · Supply side',
@@ -271,16 +267,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     id: 'treeassist',
     summary: {
       role: {
-        text: 'Product Designer, alongside the Lead Product Designer, PM, data science and engineering, over 2 months.',
-        gap: 'Which of the three experiments and screens you personally owned.',
+        text: 'Product Designer, with the Lead Product Designer, PM, data science and engineering, over 2 months. I owned the UI and the experiment design for the three tests below; the team lead guided strategy.',
       },
       decision: {
-        text: 'Activation over data completeness. We cut onboarding from 8 forms to 3 and moved to AI-assisted tree building, accepting less profile data up front.',
-        gap: 'Whether this was your call or the team’s, and who you had to convince.',
+        text: 'I fought for interactive states on the desktop onboarding, rather than the view-only state engineers proposed to speed up development. The three tests then cut onboarding from 8 forms to 3 and moved to AI-assisted tree building.',
       },
       outcome: {
-        text: '+18% free-trial starts, +8% trial-to-subscription conversion and -13% onboarding drop-off, across three two-week experiments. Baseline: 41% of new users dropped off before value.',
-        gap: 'How these were measured: A/B test, sample size and comparison period.',
+        text: '+18% free-trial starts, +8% trial-to-subscription conversion and -13% onboarding drop-off, from a baseline where 41% of new users dropped off before value. Measured with A/B tests in 2-week experiment cycles and by monitoring engagement patterns.',
       },
     },
     kicker: 'Findmypast · Activation',
