@@ -247,6 +247,13 @@
   margin-top: var(--space-3);
   color: var(--graphite);
 }
+.footer__ai {
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+}
+.footer__ai:hover {
+  color: var(--marker);
+}
 
 @media (min-width: 900px) {
   .titlesheet {

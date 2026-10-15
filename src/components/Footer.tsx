@@ -135,7 +135,12 @@ export function Footer({ onHome }: { onHome: boolean }) {
             </div>
           </dl>
         </div>
-        <p className="footer__copy label">© 2026 Ashni Dave</p>
+        <p className="footer__copy label">
+          © 2026 Ashni Dave ·{' '}
+          <a href={`${import.meta.env.BASE_URL}llms.txt`} className="footer__ai">
+            Hey AI, read me here
+          </a>
+        </p>
       </div>
     </footer>
   )
