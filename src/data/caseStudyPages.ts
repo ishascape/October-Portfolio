@@ -41,7 +41,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     id: 'venue-finder',
     kicker: 'HeadBox · Demand side',
     subtitle:
-      'Rebalancing a two-sided events marketplace by capturing guest intent earlier, so hosts get fewer, better leads.',
+      'Rebalancing a two-sided events marketplace: capture guest intent earlier, send hosts fewer, better leads.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
       { label: 'Team', value: '4 engineers' },
@@ -49,9 +49,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Marketplace', value: 'Guests and events (demand) · venue hosts (supply)' },
     ],
     problem:
-      'The legacy model rewarded brief volume over booking intent. Unqualified briefs flooded hosts, and hosts churned: Lead Feed churn was 55%.',
+      'The legacy model rewarded brief volume over booking intent. Unqualified briefs flooded hosts, and Lead Feed churn hit 55%.',
     solution:
-      'An AI-powered brief journey with venue recommendations, plus a new Spotlight Partner sponsored-placement model.',
+      'AI-powered brief journey with venue recommendations, plus a Spotlight Partner sponsored-placement model.',
     impact: [
       { value: '+33%', label: 'High-intent enquiries' },
       { value: '40%', label: 'Shorter user journey' },
@@ -60,17 +60,17 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     sections: [
       {
         label: '01 · The systemic problem',
-        heading: 'The marketplace was optimised for the wrong number.',
+        heading: 'Optimised for the wrong metric.',
         body: [
-          'Marketing KPIs were tied to how many briefs were submitted, not how many turned into bookings. Hosts paid the price: closing a single booking often took 27 or more messages.',
+          'Marketing KPIs tracked briefs submitted, not bookings. Closing one booking often took hosts 27 or more messages.',
         ],
       },
       {
         label: '02 · Research',
         heading: 'Every brief hinged on one non-negotiable.',
         body: [
-          'There had been no guest research in over four years, so I interviewed 10 event bookers. Each brief had one requirement that could not move, and any venue missing it was rejected straight away.',
-          'That gave us the hypothesis: capture intent earlier and encourage shortlisting before submission, and we reduce low-quality briefs and improve host ROI.',
+          'No guest research in over four years, so I interviewed 10 event bookers. Every brief had one fixed requirement; venues missing it were rejected instantly.',
+          'Hypothesis: capture intent and encourage shortlisting before submission to cut low-quality briefs and lift host ROI.',
         ],
         figure: 'Research synthesis',
       },
@@ -78,35 +78,35 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '03 · The system',
         heading: 'The lifecycle of an event brief.',
         body: [
-          'Venue Finder parses guest requirements with an LLM, ranks venues from vectorised inventory, and lets guests compare quotes before booking. The brief then lands in the host’s Lead Feed, so the same workflow runs through both sides of the marketplace.',
+          'Venue Finder parses requirements with an LLM, ranks venues from vectorised inventory and lets guests compare quotes. The brief then lands in the host’s Lead Feed: one workflow across both sides.',
         ],
         figure: 'Brief-to-lead system diagram',
       },
       {
         label: '04 · Experiments',
-        heading: 'Control, a failed V1, and the V2 that shipped.',
+        heading: 'Control, failed V1, shipped V2.',
         experiments: [
           {
             name: 'Control · Legacy brief builder',
             intent: 'The baseline.',
-            change: 'A 13-step builder made of preset options.',
+            change: '13-step builder of preset options.',
             result: '83% drop-off.',
           },
           {
             name: 'V1 · Disruptive',
-            intent: 'Capture intent up front and show venues before submission.',
-            change: 'An AI prompt, pre-submission recommendations, gated account creation and multi-venue selection.',
+            intent: 'Capture intent up front; show venues before submission.',
+            change: 'AI prompt, pre-submission recommendations, gated account creation, multi-venue selection.',
             result:
-              'Lead Feed volume fell 40%, with drop-off at the AI input (38%) and account creation (27%). Direct enquiries rose 26% and guests shortlisted 2.2 venues on average.',
-            verdict: 'Failed, and taught us the most.',
+              'Lead Feed volume fell 40%. Drop-off at AI input (38%) and account creation (27%). Direct enquiries rose 26%; guests shortlisted 2.2 venues on average.',
+            verdict: 'Failed. Taught us the most.',
           },
           {
             name: 'V2 · Moderate',
-            intent: 'Keep the intent signal, remove the friction.',
+            intent: 'Keep the intent signal, cut the friction.',
             change:
-              'The prompt became optional, sign-up softened to a magic link, and recommendations were gated behind sign-up to deter scraping. Load times improved.',
+              'Optional prompt, magic-link sign-up, recommendations gated behind sign-up to deter scraping, faster load times.',
             result:
-              'Kept in high-inventory regions. Lead Feed stays as the fallback where inventory is low, and high-value briefs outside active regions route to a human account manager.',
+              'Kept in high-inventory regions. Lead Feed covers low-inventory areas; high-value briefs outside active regions go to an account manager.',
             verdict: 'Shipped.',
           },
         ],
@@ -114,11 +114,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '05 · Reflections',
-        heading: 'Disruption is a learning tool, if you frame it in economics.',
+        heading: 'Disruption is a learning tool when framed in economics.',
         list: [
-          { title: 'The challenges', text: 'Executive attachment to Lead Feed, marketing KPIs tied to submission volume, and limits on recommendation quality.' },
-          { title: 'What worked', text: 'Framing debates around marketplace economics, making trade-offs explicit, and letting experiments make the call.' },
-          { title: 'Next', text: 'Conversion-weighted ranking, a shortlist-first flow for repeat users, an agent-assisted city launch mode, and separating marketing volume from marketplace-health metrics.' },
+          { title: 'The challenges', text: 'Executive attachment to Lead Feed, volume-based marketing KPIs, limited recommendation quality.' },
+          { title: 'What worked', text: 'Marketplace-economics framing, explicit trade-offs, letting experiments decide.' },
+          { title: 'Next', text: 'Conversion-weighted ranking, shortlist-first flow for repeat users, agent-assisted city launch mode, separate marketing-volume and marketplace-health metrics.' },
         ],
       },
     ],
@@ -128,16 +128,16 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     id: 'hosthq',
     kicker: 'HeadBox · Supply side',
     subtitle:
-      'Consolidating supply workflows and performance visibility to improve retention and cross-product adoption.',
+      'Consolidating supply workflows and performance visibility to lift retention and cross-product adoption.',
     meta: [
-      { label: 'Role', value: 'Senior Product Designer: design strategy and execution, IA and workflow redesign' },
+      { label: 'Role', value: 'Senior Product Designer: design strategy, execution, IA and workflow redesign' },
       { label: 'Stakeholders', value: 'Platform clients, CEO, CTO, Head of Marketing, Head of Venue Sales' },
       { label: 'Timescale', value: '3 months, 0→1, discovery to full release' },
     ],
     problem:
-      'HeadBox’s host platform had grown into four siloed products: Lead Feed, PowerHost, HeadBox for Business and 3D Studio. We were shipping the org chart to customers, with fragmented navigation, duplicated workflows, inconsistent data and limited cross-product adoption.',
+      'HeadBox’s host platform was four siloed products: Lead Feed, PowerHost, HeadBox for Business and 3D Studio. We were shipping the org chart: fragmented navigation, duplicated workflows, inconsistent data, limited cross-product adoption.',
     solution:
-      'One Platform: a single supply-side system organised around host workflows rather than internal product lines, and repositioned as a structured revenue engine.',
+      'One Platform: a single supply-side system built around host workflows, repositioned as a structured revenue engine.',
     impact: [
       { value: '-28%', label: 'Host churn (Q1)' },
       { value: '55+', label: 'New One Platform clients in 3 months' },
@@ -149,19 +149,19 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '01 · Research',
         heading: 'HeadBox was a peripheral lead channel, not the hosts’ operating system.',
         body: [
-          'I ran interactive focus groups with hosts across venue types, to see how they work beyond our product. They didn’t want more features. They wanted clear growth signals and ROI visibility.',
-          'That made revenue clarity the primary goal, and it shaped the whole consolidation strategy.',
+          'I ran interactive focus groups across venue types. Hosts wanted clear growth signals and ROI visibility, not more features.',
+          'Revenue clarity became the primary goal, shaping the consolidation strategy.',
         ],
         figure: 'Host focus groups',
       },
       {
         label: '02 · Strategy',
-        heading: 'From improving usability to a supply-side growth engine.',
+        heading: 'From usability fix to supply-side growth engine.',
         list: [
-          { text: 'Collapse fragmented tools into a single system of entry.' },
+          { text: 'Collapse fragmented tools into one system of entry.' },
           { text: 'Re-architect around host goals, not product lines.' },
           { text: 'Centralise performance data into an outcome-driven ROI story.' },
-          { text: 'Build a modular architecture ready for automation, AI and integrations.' },
+          { text: 'Build modular architecture ready for automation, AI and integrations.' },
         ],
         figure: 'Before and after information architecture',
       },
@@ -169,13 +169,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '03 · The MVP',
         heading: 'System coherence, not surface polish.',
         body: [
-          'We had a fixed three-month runway before peak season, so I prioritised structural impact over completeness: unified navigation and IA, consolidated workflows, action-led dashboards, and a stronger proposal builder as the core revenue lever.',
+          'With three months before peak season, I prioritised structure over completeness: unified navigation and IA, consolidated workflows, action-led dashboards and a stronger proposal builder as the core revenue lever.',
         ],
         list: [
-          { title: '3D Studio', text: 'Legacy dependencies blocked full integration, so it was embedded in the proposal flow and full migration deferred.' },
-          { title: 'Reporting', text: 'A unified reporting layer needed a data clean-up first, so only marketplace reporting shipped.' },
-          { title: 'Performance', text: 'Data migration slowed v1 load times for hosts with large datasets.' },
-          { title: 'Mobile', text: 'Desktop-only for the MVP, because hosts work primarily on desktop.' },
+          { title: '3D Studio', text: 'Legacy dependencies blocked integration. Embedded in the proposal flow; migration deferred.' },
+          { title: 'Reporting', text: 'Needed a data clean-up first. Shipped marketplace reporting only.' },
+          { title: 'Performance', text: 'Data migration slowed v1 load times for large-dataset hosts.' },
+          { title: 'Mobile', text: 'Desktop-only MVP; hosts work primarily on desktop.' },
         ],
         figure: 'One Platform dashboard and proposal builder',
       },
@@ -184,18 +184,18 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         heading: 'What comes next.',
         list: [
           { text: 'Segment hosts by maturity and revenue band.' },
-          { text: 'Predictive performance insights, and risk and opportunity scoring for event briefs.' },
+          { text: 'Predictive performance insights; risk/opportunity scoring for event briefs.' },
           { text: 'Automated listing-optimisation recommendations.' },
-          { text: 'AI-powered demand signals in the dashboard.' },
-          { text: 'A supply-side North Star beyond churn, such as host LTV uplift.' },
+          { text: 'AI-powered dashboard demand signals.' },
+          { text: 'Supply-side North Star beyond churn, such as host LTV uplift.' },
           { text: 'Consolidated reporting on a clean data layer.' },
         ],
       },
       {
         label: '05 · Reflections',
-        heading: 'Platform debt is an alignment problem before it is a design problem.',
+        heading: 'Platform debt is an alignment problem first.',
         body: [
-          'The fragmentation came from reactive growth. The fix was reframing the problem around clearer growth signals for hosts. Strong marketplaces are built on structural clarity and on features that improve existing workflows, not on feature velocity.',
+          'Reactive growth caused the fragmentation; the fix was reframing around clearer growth signals for hosts. Strong marketplaces run on structural clarity and workflow-improving features, not feature velocity.',
         ],
       },
     ],
@@ -205,7 +205,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     id: 'treeassist',
     kicker: 'Findmypast · Activation',
     subtitle:
-      'Designing value-first onboarding with AI-powered relative suggestions to accelerate activation and free-trial conversion.',
+      'Value-first onboarding with AI-powered relative suggestions to accelerate activation and free-trial conversion.',
     meta: [
       { label: 'Role', value: 'Product Designer, with the Lead Product Designer' },
       { label: 'Team', value: 'PM, data science and engineering' },
@@ -213,9 +213,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Timescale', value: '2 months, 2-week experiment cycles' },
     ],
     problem:
-      '41% of new users dropped off before experiencing any product value. They were overwhelmed by admin-heavy onboarding and a blank family-tree canvas.',
+      '41% of new users dropped off before reaching value, overwhelmed by admin-heavy onboarding and a blank family-tree canvas.',
     solution:
-      'AI-assisted onboarding that replaced form-heavy setup with in-product relative suggestions and progressive guidance.',
+      'AI-assisted onboarding: in-product relative suggestions and progressive guidance replaced form-heavy setup.',
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },
@@ -227,31 +227,31 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '01 · The problem',
         heading: 'Value arrived too late.',
         body: [
-          'The business needed better early activation to lift free-trial starts and downstream subscriptions. Users needed to reach value before the admin wore them out.',
-          'Hypothesis: replace form-heavy onboarding with AI-assisted suggestions and guided building, and activation, tree depth and free-trial conversion all go up.',
+          'Business goal: stronger early activation to lift free-trial starts and subscriptions. User goal: reach value before admin wears them out.',
+          'Hypothesis: swap form-heavy onboarding for AI-assisted suggestions and guided building to lift activation, tree depth and free-trial conversion.',
         ],
       },
       {
         label: '02 · Experiments',
-        heading: 'Three onboarding experiments, two weeks each.',
+        heading: 'Three experiments, two weeks each.',
         experiments: [
           {
             name: 'Experiment 1 · Reveal immediate value',
-            intent: 'Reinforce product value immediately after sign-up.',
-            change: 'Surfaced a likely birth record from sign-up data, for users with British or Irish ancestry.',
+            intent: 'Show value right after sign-up.',
+            change: 'Surfaced a likely birth record from sign-up data for users with British or Irish ancestry.',
             result: '60% task acceptance.',
           },
           {
             name: 'Experiment 2 · Guide the next action',
-            intent: 'Reduce confusion after onboarding.',
-            change: 'Suggested mothers and spouses directly on the tree canvas.',
-            result: '+32% hint engagement, and more tree expansion.',
+            intent: 'Reduce post-onboarding confusion.',
+            change: 'Suggested mothers and spouses on the tree canvas.',
+            result: '+32% hint engagement; more tree expansion.',
           },
           {
             name: 'Experiment 3 · Interactive onboarding',
-            intent: 'Get users to the core product faster.',
-            change: 'Cut onboarding from 8 forms to 3, then moved users into AI-assisted tree building with suggested relatives.',
-            result: '-13% onboarding drop-off and higher activation.',
+            intent: 'Reach the core product faster.',
+            change: 'Cut onboarding from 8 forms to 3, then into AI-assisted tree building with suggested relatives.',
+            result: '-13% onboarding drop-off; higher activation.',
           },
         ],
         figure: 'Onboarding before and after',
@@ -260,24 +260,24 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '03 · Trade-offs',
         heading: 'Momentum over completeness.',
         list: [
-          { title: 'Activation over data completeness', text: 'Fewer steps up front meant less profile information in the short term.' },
-          { title: 'Record availability', text: 'Suggestions relied on historical record matches, so they worked best for British ancestry.' },
-          { title: 'Advanced users', text: 'Experienced genealogists found the simpler onboarding slowed their route to advanced search and editing.' },
+          { title: 'Activation over data completeness', text: 'Fewer upfront steps meant less profile data short term.' },
+          { title: 'Record availability', text: 'Suggestions relied on historical record matches; best for British ancestry.' },
+          { title: 'Advanced users', text: 'Experienced genealogists reached advanced search and editing more slowly.' },
         ],
       },
       {
         label: '04 · Descope dungeon',
         heading: 'Designing for a 2 to 30 second wait.',
         body: [
-          'Suggestions took anywhere from 2 to 30 seconds to generate. I proposed progressive, personalised content during the wait, such as newspaper headlines from your birthday. The team prioritised the core improvements for release speed, so it was descoped.',
+          'Suggestions took 2 to 30 seconds. I proposed progressive, personalised content for the wait, like newspaper headlines from your birthday. Descoped so the team could prioritise core improvements and release speed.',
         ],
         figure: 'Wait-state concepts',
       },
       {
         label: '05 · Reflections',
-        heading: 'Help people feel value before you ask for data.',
+        heading: 'Deliver value before asking for data.',
         body: [
-          'Helping users experience value early is often more impactful than collecting perfect data up front, and designing for momentum can unlock both engagement and monetisation. Next, I’d add a personalised task list on the tree canvas to guide people through their free trial.',
+          'Early value often beats perfect upfront data; designing for momentum can unlock engagement and monetisation. Next: a personalised tree-canvas task list to guide users through their free trial.',
         ],
       },
     ],
