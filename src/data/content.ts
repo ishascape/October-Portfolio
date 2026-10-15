@@ -160,6 +160,7 @@ export const education = [
   { date: 'Mar 2026', course: 'AI Coding for Designers', school: 'Memorisely' },
   { date: '2020–21', course: 'UX Immersion and UI Specification', school: 'CareerFoundry' },
   { date: '2016–20', course: 'BSc Architecture', school: 'University of Bath' },
+  { date: '2014–16', course: 'IB Diploma', school: '' }, // school name to come from Ashni
 ]
 
 export interface FieldNote {

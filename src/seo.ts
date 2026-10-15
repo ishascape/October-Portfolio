@@ -165,7 +165,7 @@ export function llmsTxt() {
     '',
     '## Education',
     '',
-    ...education.map((e) => `- ${e.date}: ${e.course}, ${e.school}`),
+    ...education.map((e) => `- ${e.date}: ${e.course}${e.school ? `, ${e.school}` : ''}`),
     '',
   ].join('\n')
 }
