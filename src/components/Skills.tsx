@@ -294,7 +294,7 @@ const toolkit = [
   { group: 'Design', tools: ['Figma'] },
   { group: 'Research and testing', tools: ['Dovetail', 'Maze', 'Useberry', 'Hotjar'] },
   { group: 'Data', tools: ['PostHog', 'Looker'] },
-  { group: 'Delivery', tools: ['Jira', 'Confluence'] },
+  { group: 'Delivery', tools: ['Jira', 'Confluence', 'Notion'] },
   { group: 'AI and build', tools: ['Claude', 'Cursor'] },
 ]
 
