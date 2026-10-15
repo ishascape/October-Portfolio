@@ -14,7 +14,7 @@ export function About() {
         <div className="about__intro">
           <h2 id="about-heading" className="display about__heading">
             {/* One sentence per line. */}
-            <span>Part designer.</span> <span>Part strategist.</span> <span>All about impact.</span>
+            <span>A designer&rsquo;s eye.</span> <span>A business mind.</span>
           </h2>
           <div className="about__body">
             <p>I trained as an architect at Bath. Turns out, I never stopped thinking like one.</p>
