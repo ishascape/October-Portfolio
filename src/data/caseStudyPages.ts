@@ -24,6 +24,7 @@ export interface Section {
   list?: { title?: string; text: string }[]
   experiments?: Experiment[]
   figure?: string // placeholder caption until real images arrive
+  figures?: string[] // several placeholder frames, one per selected screen
   diagram?: boolean // the animated systems diagram, shown full width under the section
 }
 
@@ -116,7 +117,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         figure: 'V1 and V2 flows',
       },
       {
-        label: '05 · Reflections',
+        label: '05 · Selected screens',
+        heading: 'Key moments in the journey.',
+        body: ['Selected screens, with a note on what each key moment is doing for the guest.'],
+        figures: ['Key moment one', 'Key moment two', 'Key moment three'],
+      },
+      {
+        label: '06 · Reflections',
         heading: 'Disruption is a learning tool when framed in economics.',
         list: [
           {

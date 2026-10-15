@@ -135,6 +135,14 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   ))}
                 </ol>
               )}
+              {s.figures?.map((f) => (
+                <figure key={f} className="case__figure">
+                  <div className="case__figure-frame" aria-hidden="true">
+                    <span className="label">Image to come</span>
+                  </div>
+                  <figcaption className="annotation">{f}</figcaption>
+                </figure>
+              ))}
               {s.figure && (
                 <figure className="case__figure">
                   <div className="case__figure-frame" aria-hidden="true">
