@@ -112,7 +112,7 @@ export const principles: Principle[] = [
     title: 'Let the data and research decide.',
     body: 'Opinions start the conversation; evidence ends it.',
     evidence: [
-      { source: 'Venue Finder', text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.' },
+      { source: 'HeadBox', text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.' },
       { source: 'CV', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
     ],
   },
@@ -121,8 +121,8 @@ export const principles: Principle[] = [
     title: 'Iterative development.',
     body: 'Ship, measure, refine. Each version earns the next.',
     evidence: [
-      { source: 'Venue Finder', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.' },
-      { source: 'TreeAssist', text: 'Two-week experiment cycles took onboarding from eight forms to three.' },
+      { source: 'HeadBox', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.' },
+      { source: 'Findmypast', text: 'Two-week experiment cycles took onboarding from eight forms to three.' },
     ],
   },
   {
