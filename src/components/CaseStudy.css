@@ -42,6 +42,8 @@
 }
 
 .case__drawing {
+  width: 100%;
+  max-width: 640px; /* stacked under the title on every screen size; capped so it doesn't swell on desktop */
   display: grid;
   gap: var(--space-3);
   padding: var(--space-4);
@@ -279,10 +281,6 @@
     grid-template-columns: auto 1fr;
     gap: var(--space-6);
     padding: var(--space-5);
-  }
-  .case__intro {
-    grid-template-columns: 7fr 5fr;
-    gap: var(--gutter);
   }
   .case__impact {
     grid-template-columns: repeat(4, 1fr);
