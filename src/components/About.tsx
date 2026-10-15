@@ -1,5 +1,6 @@
 import { education, fieldNotes, principles, revisions } from '../data/content'
 import { SheetLabel } from './SheetLabel'
+import { PrincipleParti } from './PrinciplePartis'
 import './About.css'
 
 export function About() {
@@ -49,6 +50,7 @@ export function About() {
                   ))}
                 </ul>
               </div>
+              <PrincipleParti number={p.number} />
             </li>
           ))}
         </ol>
@@ -99,7 +101,7 @@ export function About() {
 
         <div className="field-notes">
           <div className="field-notes__copy">
-            <h3 className="field-notes__heading">Field notes</h3>
+            <h3 className="display field-notes__heading">Field notes</h3>
             <p>Outside work I'm usually drawing, playing music or planning the next trip.</p>
             <p>
               My sketchbook is mostly animals. Drawing them uses the same muscle as product design: look closely, then

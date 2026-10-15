@@ -31,7 +31,7 @@ export function Contact() {
         <div className="contact__body">
           <p>Have a product challenge worth untangling? I'd love to hear about it.</p>
           <p>
-            <strong>{availability.headline}</strong> {availability.detail}
+            <strong>{availability.headline}</strong> {availability.location}
           </p>
         </div>
 

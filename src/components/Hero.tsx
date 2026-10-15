@@ -61,8 +61,12 @@ export function Hero() {
               <dd>Senior Product Designer</dd>
             </div>
             <div>
-              <dt className="visually-hidden">Location and availability</dt>
-              <dd>Sydney, Australia · {availability.short}</dd>
+              <dt className="visually-hidden">Location</dt>
+              <dd>{availability.location.replace(/\.$/, '')}</dd>
+            </div>
+            <div>
+              <dt className="visually-hidden">Availability</dt>
+              <dd>{availability.short}</dd>
             </div>
             <div className="title-block__rev">
               <dt className="visually-hidden">Revision</dt>

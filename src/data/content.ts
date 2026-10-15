@@ -212,11 +212,11 @@ export const fieldNotes: FieldNote[] = [
   { fig: '08', group: 'Travel', caption: 'Fig. 08. Everest Base Camp, to come', ratio: '3 / 2' },
 ]
 
-// Ashni, 15 Oct 2026: no mention of visa sponsorship; permanent senior roles first, contracts too.
+// Ashni, 15 Oct 2026: permanent or contract; design, product or operator roles. No mention of visa sponsorship.
 export const availability = {
-  headline: "I'm open to permanent Senior Product Designer roles.",
-  detail: "I'm also open to contracts.",
-  short: 'Open to permanent senior roles and contracts',
+  headline: "I'm open to permanent and contract Senior Product Designer, Product Manager or operator roles.",
+  location: 'Currently based in Sydney, Australia.',
+  short: 'Open to permanent and contract roles in design, product or operations',
 }
 
 export const contact = {

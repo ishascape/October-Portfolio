@@ -28,6 +28,10 @@
   stroke-width: 1.25;
   stroke-dasharray: 8 3 2 3;
 }
+.parti__marker {
+  stroke: var(--marker);
+  stroke-width: 1.5;
+}
 .parti__node {
   fill: var(--paper);
   stroke: var(--ink);
@@ -90,4 +94,27 @@ a:focus-visible .parti-transition__item--to [pathLength] {
     grid-template-columns: minmax(0, 200px) 80px minmax(0, 200px);
     gap: var(--space-4);
   }
+}
+
+/* ---------- Draw on scroll ---------- */
+/* Lines sketch in one after another; dots and fills settle in after. The state rules select
+   elements by tag: Chrome doesn't restyle on an ancestor change when the selector is [pathLength]. */
+.draw-on-scroll [pathLength] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.draw-on-scroll[data-draw='pending'] :is(path, line, circle, rect) {
+  stroke-dashoffset: 1;
+}
+.draw-on-scroll[data-draw='pending'] .draw-late {
+  opacity: 0;
+}
+.draw-on-scroll[data-draw='drawing'] :is(path, line, circle, rect) {
+  /* the delay is set per line, inline, to draw them in order */
+  transition-property: stroke-dashoffset;
+  transition-duration: 900ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+.draw-on-scroll .draw-late {
+  transition: opacity 400ms var(--ease-pen) 700ms;
 }

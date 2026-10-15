@@ -8,7 +8,7 @@ import { SITE_URL, type Page } from './links'
 const NAME = 'Ashni Dave'
 const JOB = 'Senior Product Designer'
 const TAGLINE = 'I design coherent and scalable products for complex businesses.'
-const SUMMARY = `${NAME} is a ${JOB} based in Sydney, Australia, working on B2B SaaS, marketplaces and AI products. ${availability.headline.replace("I'm", 'She is')} She is also open to contracts.`
+const SUMMARY = `${NAME} is a ${JOB}, currently based in Sydney, Australia, working on B2B SaaS, marketplaces and AI products. ${availability.headline.replace("I'm", 'She is')}`
 
 const pathFor = (page: Page) => (page === 'home' ? '/' : `/${page.caseSlug}`)
 
@@ -60,7 +60,7 @@ export function headFor(page: Page) {
   const title = found ? `${found.study.title}, a case study by ${NAME}` : `${NAME} · ${JOB}`
   const description = found
     ? `${found.detail.subtitle} ${found.study.role}.`
-    : `${NAME}, ${JOB} in Sydney for B2B SaaS, marketplaces and AI products. ${TAGLINE} ${availability.short}.`
+    : `${NAME}, ${JOB} currently based in Sydney, Australia, for B2B SaaS, marketplaces and AI products. ${TAGLINE} ${availability.short}.`
 
   const graph: object[] = [
     person,
@@ -141,7 +141,7 @@ export function llmsTxt() {
     '',
     '## Availability',
     '',
-    `${availability.headline} ${availability.detail} Based in Sydney, Australia.`,
+    `${availability.headline} ${availability.location}`,
     '',
     '## Contact',
     '',
