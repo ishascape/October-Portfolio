@@ -26,7 +26,7 @@ I'm not particularly attached to job titles. I care more about the problems I'm 
 
 Redesigned venue discovery for a two-sided marketplace, replacing a 13-step briefing flow with an AI-assisted experience. The bigger challenge wasn't just conversion; it was balancing customer intent, host lead quality and marketplace revenue.
 
-+33% high-intent enquiries · 40% shorter journey · New sponsored-placement revenue opportunity
++30% qualified inbound enquiries · 40% shorter journey · New sponsored-placement revenue opportunity
 
 ### HostHQ — HeadBox
 
@@ -34,7 +34,7 @@ Redesigned venue discovery for a two-sided marketplace, replacing a 13-step brie
 
 Consolidated four fragmented host-facing products into one B2B platform. A product architecture and business problem disguised as a navigation problem.
 
-−28% host churn · 55+ new platform clients · +32% hosts reporting closed bookings · −25% navigation support tickets
+55+ new platform clients · +32% hosts reporting closed bookings · −25% navigation support tickets
 
 ### TreeAssist — Findmypast
 

@@ -1,6 +1,6 @@
 // Case-study pages, rebuilt from the live ashnidave.com pages (read 14 Oct 2026).
-// Every figure is from the live page or Ashni's confirmed corrections. The Venue Finder
-// match-rate claims and its "-28% churn" are deliberately left out (see homepage-content.md).
+// The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
+// the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
 
 export interface Metric {
@@ -65,7 +65,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         text: 'I fought to keep Venue Finder alive and to measure it differently: lead volume was a poor measure of quality, and it left customers on both sides of the marketplace disappointed. V1 cut Lead Feed volume by 40%, so we moved to a moderate V2 with an optional prompt, magic-link sign-up and recommendations gated behind sign-up.',
       },
       outcome: {
-        text: '+33% high-intent enquiries and a 40% shorter user journey. Measured with A/B testing in 2-week experiment cycles, against the legacy 13-step builder (83% drop-off), and by monitoring engagement patterns.',
+        text: '+30% qualified inbound enquiries and a 40% shorter user journey. Measured with A/B testing in 2-week experiment cycles, against the legacy 13-step builder (83% drop-off), and by monitoring engagement patterns.',
       },
     },
     kicker: 'HeadBox · Demand side',
@@ -82,7 +82,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     solution:
       'AI-powered brief journey with venue recommendations, plus a Spotlight Partner sponsored-placement model.',
     impact: [
-      { value: '+33%', label: 'High-intent enquiries' },
+      { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '40%', label: 'Shorter user journey' },
       { value: 'New', label: 'Sponsored-placement revenue' },
     ],
@@ -180,12 +180,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         text: 'I fought for round-table research over a redesign based purely on stakeholder opinion and support tickets. The research set the MVP scope, the essential workflows to ship in 3 months, and the sequence for what comes next. We shipped structure over completeness and deferred the 3D Studio migration, full reporting and mobile.',
       },
       outcome: {
-        text: '-28% host churn (Q1), 55+ new One Platform clients in 3 months, +32% of hosts reporting closed bookings and 25% fewer navigation support tickets.',
+        text: '55+ new One Platform clients in 3 months, +32% of hosts reporting closed bookings and 25% fewer navigation support tickets.',
         gap: 'How these were measured (baseline, period, source).',
       },
     },
     kicker: 'HeadBox · Supply side',
-    subtitle: 'Consolidating supply workflows and performance visibility to lift retention and cross-product adoption.',
+    subtitle: 'Consolidating supply workflows and performance visibility to lift revenue clarity and cross-product adoption.',
     meta: [
       { label: 'Role', value: 'Senior Product Designer: design strategy, execution, IA and workflow redesign' },
       { label: 'Stakeholders', value: 'Platform clients, CEO, CTO, Head of Marketing, Head of Venue Sales' },
@@ -196,7 +196,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     solution:
       'One Platform: a single supply-side system built around host workflows, repositioned as a structured revenue engine.',
     impact: [
-      { value: '-28%', label: 'Host churn (Q1)' },
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
       { value: '-25%', label: 'Navigation support tickets' },

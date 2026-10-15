@@ -37,7 +37,7 @@ export const caseStudies: CaseStudy[] = [
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Sole product designer, team of 4 engineers · 2 months',
-    leadMetric: { value: '+33%', label: 'high-intent enquiries' },
+    leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
     supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
     system:
       'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
@@ -54,8 +54,8 @@ export const caseStudies: CaseStudy[] = [
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Senior Product Designer · 3 months, discovery to release',
-    leadMetric: { value: '-28%', label: 'host churn (Q1)' },
-    supporting: ['55+ new One Platform clients in 3 months', '-25% navigation support tickets'],
+    leadMetric: { value: '55+', label: 'new One Platform clients in 3 months' },
+    supporting: ['+32% hosts reporting closed bookings', '-25% navigation support tickets'],
     system:
       'Hosts, leadership, Sales, Support · four product lines rebuilt around host workflows · proposals, dashboards and reporting in one place',
     tags: ['B2B SaaS', 'Systems thinking', 'Information architecture', 'Product strategy', 'Platform design'],

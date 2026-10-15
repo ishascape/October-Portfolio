@@ -114,7 +114,7 @@ export function About() {
               My sketchbook is mostly animals. Same muscle as product design: look closely, then cut what isn't needed.
             </p>
             <p>
-              I play piano and flute at gigs every few weeks. 39 countries, Kilimanjaro and Mt Kenya summits, and
+              I play piano and flute at gigs every few weeks. 38 countries, Kilimanjaro and Mt Kenya summits, and
               Everest Base Camp so far. On the Amara Charitable Trust committee since 2011, and a reforestation
               volunteer with FOECT in Kenya.
             </p>
