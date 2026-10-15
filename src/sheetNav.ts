@@ -50,7 +50,8 @@ export function handleAnchorClick(e: MouseEvent) {
   const a = (e.target as HTMLElement).closest('a')
   if (!a || !a.hash || a.target) return
   const url = new URL(a.href)
-  if (url.pathname !== location.pathname) return
+  const page = (path: string) => path.replace(/\/index\.html$/, '/')
+  if (page(url.pathname) !== page(location.pathname)) return
   const target = document.getElementById(decodeURIComponent(a.hash.slice(1)))
   if (!target) return
   e.preventDefault()
