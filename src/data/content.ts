@@ -3,6 +3,7 @@ import tiger from '../assets/sketches/tiger.webp'
 import owl from '../assets/sketches/owl.webp'
 import gorilla from '../assets/sketches/gorilla.webp'
 import riding from '../assets/ashni-riding.webp'
+import planting from '../assets/ashni-planting.webp'
 
 // All copy and figures come from notes/homepage-content.md (approved 14 Oct 2026).
 // Never add a metric here that isn't in that doc or the CV.
@@ -169,7 +170,7 @@ export interface FieldNote {
   alt?: string
 }
 
-// Sketches and Fig. 01 are Ashni's own (uploaded 15 Oct 2026, EXIF stripped). Other photos still to come.
+// Sketches and Figs. 01–02 are Ashni's own (uploaded 15 Oct 2026, EXIF stripped). Other photos still to come.
 export const fieldNotes: FieldNote[] = [
   {
     fig: '01',
@@ -181,39 +182,47 @@ export const fieldNotes: FieldNote[] = [
   },
   {
     fig: '02',
+    group: 'Portrait',
+    caption: 'Fig. 02. Planting trees (to hug later)',
+    ratio: '3 / 4',
+    src: planting,
+    alt: 'Ashni kneeling on grass in gardening gloves, smiling as she presses soil around a newly planted sapling.',
+  },
+  {
+    fig: '03',
     group: 'Sketchbook',
-    caption: 'Fig. 02. Wolf',
+    caption: 'Fig. 03. Wolf',
     ratio: '1 / 1',
     src: wolf,
     alt: 'Pen drawing of a wolf’s head, with a scar running over one eye.',
   },
   {
-    fig: '03',
+    fig: '04',
     group: 'Sketchbook',
-    caption: 'Fig. 03. Tiger',
+    caption: 'Fig. 04. Tiger',
     ratio: '1 / 1',
     src: tiger,
     alt: 'Pen drawing of a tiger lying down, front paws forward, looking at the viewer.',
   },
   {
-    fig: '04',
+    fig: '05',
     group: 'Sketchbook',
-    caption: 'Fig. 04. Owl, in the sketchbook',
+    caption: 'Fig. 05. Owl, in the sketchbook',
     ratio: '3 / 4',
     src: owl,
     alt: 'An open spiral sketchbook on a desk, with a pen drawing of an owl perched on a branch.',
   },
   {
-    fig: '05',
+    fig: '06',
     group: 'Sketchbook',
-    caption: 'Fig. 05. Silverback gorilla, drawn on the flight back home',
+    caption: 'Fig. 06. Silverback gorilla, drawn on the flight back home',
     ratio: '3 / 4',
     src: gorilla,
     alt: 'A hand holding a sketchbook on a plane tray table, open to a ballpoint pen drawing of a silverback gorilla.',
   },
-  { fig: '06', group: 'Concerts', caption: 'Fig. 06. Performing, to come', ratio: '3 / 2' },
-  { fig: '07', group: 'Travel', caption: 'Fig. 07. Summit, to come', ratio: '4 / 5' },
-  { fig: '08', group: 'Travel', caption: 'Fig. 08. Everest Base Camp, to come', ratio: '3 / 2' },
+  { fig: '07', group: 'Concerts', caption: 'Fig. 07. Performing, to come', ratio: '3 / 2' },
+  { fig: '08', group: 'Travel', caption: 'Fig. 08. Summit, to come', ratio: '4 / 5' },
+  { fig: '09', group: 'Travel', caption: 'Fig. 09. Everest Base Camp, to come', ratio: '3 / 2' },
 ]
 
 // Ashni, 15 Oct 2026: permanent or contract; design, product or operator roles. No mention of visa sponsorship.
