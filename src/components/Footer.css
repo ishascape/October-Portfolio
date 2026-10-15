@@ -301,26 +301,24 @@
 .footer__ai {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: 10px 18px;
-  border: var(--line-thin) solid var(--ink);
-  border-radius: 999px;
+  gap: var(--space-1);
   text-decoration: none;
-  transition:
-    color 150ms,
-    border-color 150ms;
+  transition: color 150ms;
 }
 .footer__ai svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.4;
   stroke-linecap: round;
 }
-.footer__ai:hover {
+.footer__ai:hover,
+.footer__ai:focus-visible {
   color: var(--marker);
-  border-color: currentColor;
+}
+.footer .footer__bar--plain {
+  margin-top: 0;
 }
 
 @media (min-width: 900px) {
