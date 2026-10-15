@@ -3,6 +3,7 @@ import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
 import { ModeSwitch } from './ModeSwitch'
+import { PartiTransition } from './Parti'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -138,11 +139,14 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       <nav className="case__next" aria-label="Next case study">
         <div className="container">
           <a href={next.href} className="case__next-link">
-            <span className="mono">Next · Drawing {next.number}</span>
-            <span className="case__next-title">
-              {next.title} <span aria-hidden="true">→</span>
+            <PartiTransition from={id} to={next.id} />
+            <span className="case__next-text">
+              <span className="mono">Next · Drawing {next.number}</span>
+              <span className="case__next-title">
+                {next.title} <span aria-hidden="true">→</span>
+              </span>
+              <span className="case__next-summary">{next.summary}</span>
             </span>
-            <span className="case__next-summary">{next.summary}</span>
           </a>
         </div>
       </nav>
