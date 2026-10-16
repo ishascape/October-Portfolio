@@ -60,7 +60,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       <section className="case__summary" aria-labelledby="case-summary-title">
         <div className="container">
           <h2 id="case-summary-title" className="case__summary-title">
-            The case in 30 seconds
+            TL;DR
           </h2>
           <dl className="case__summary-grid">
             {(
