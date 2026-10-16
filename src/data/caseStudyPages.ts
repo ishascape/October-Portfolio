@@ -349,7 +349,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '04 · Descope dungeon',
-        heading: 'Designing for a 2 to 30 second wait.',
+        heading: 'Latency: Designing for a 2 to 30 second wait.',
         eyebrow: 'Descoped, not forgotten',
         eyebrowIcon: 'sword',
         body: [
