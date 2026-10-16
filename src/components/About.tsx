@@ -13,13 +13,10 @@ export function About() {
         <SheetLabel sheet="02 / 03" title="About" />
 
         <div className="about__intro">
-          <h2 id="about-heading" className="display about__heading">
-            {/* One sentence per line. */}
-            <span>Build something people love.</span> <span>Make it commercially viable.</span>{' '}
-            {/* Hand lettering with a pen-drawn wink that closes one eye and flashes a sparkle on hover. */}
-            <span className="annotation about__wink">
-              Otherwise, you&rsquo;re likely running a charity or a scam.
-              <svg className="wink" viewBox="0 0 40 30" aria-hidden="true">
+          <div className="about__title">
+            {/* A pen-drawn face above the heading. On hover it winks, smirks and flashes a sparkle. */}
+            <span className="about__wink" aria-hidden="true">
+              <svg className="wink" viewBox="0 0 40 30">
                 <path className="wink__eye" d="M12 5.5 v6" />
                 <path className="wink__eye wink__eye--open" d="M26 5.5 v6" />
                 <path className="wink__eye wink__eye--shut" d="M22.5 11.5 Q26 5.5 30 11" />
@@ -28,7 +25,11 @@ export function About() {
                 <path className="wink__spark" d="M34 4 v6 M31 7 h6 M32 5 l4 4 M36 5 l-4 4" />
               </svg>
             </span>
-          </h2>
+            <h2 id="about-heading" className="display about__heading">
+              {/* One sentence per line. */}
+              <span>Build something people love.</span> <span>Make it commercially viable.</span>
+            </h2>
+          </div>
           <div className="about__body">
             <p>I trained as an architect in the UK. Turns out, I never stopped thinking like one.</p>
             <p className="about__mantra">Understand the site. Question the brief. Design for the people who use it.</p>

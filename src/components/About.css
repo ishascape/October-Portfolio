@@ -13,21 +13,20 @@
 .about__heading span {
   display: block;
 }
-.about__heading .about__wink {
-  margin-top: var(--space-2);
-  font-size: clamp(30px, 3.8vw, 46px);
-  font-weight: 500;
-  line-height: 1.1;
-  transform: rotate(-1.5deg);
-  transform-origin: left bottom;
+.about__title {
+  display: grid;
+  gap: var(--space-2);
+}
+.about__wink {
   width: fit-content;
+  font-size: 48px;
+  padding: var(--space-1) var(--space-2) var(--space-1) 0;
 }
 .wink {
   display: inline-block;
   width: 1.4em;
   height: 1.05em;
-  margin-left: 0.3em;
-  vertical-align: -0.1em;
+  vertical-align: top;
   color: var(--marker);
   fill: none;
   stroke: currentColor;
