@@ -18,7 +18,7 @@ export function About() {
             <span>Build something people love.</span> <span>Make it commercially viable.</span>{' '}
             {/* Hand lettering with a pen-drawn wink that closes one eye and flashes a sparkle on hover. */}
             <span className="annotation about__wink">
-              Otherwise, you&rsquo;re running a charity or a scam.
+              Otherwise, you&rsquo;re likely running a charity or a scam.
               <svg className="wink" viewBox="0 0 40 30" aria-hidden="true">
                 <path className="wink__eye" d="M12 5.5 v6" />
                 <path className="wink__eye wink__eye--open" d="M26 5.5 v6" />
