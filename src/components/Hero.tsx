@@ -35,7 +35,7 @@ export function Hero() {
           <div className="hero__support">
             <div className="hero__copy">
               <p>
-                Clunky workflows? Disconnected systems? A marketplace that needs to grow? A product ready to scale?
+                Clunky workflows? Disconnected systems? A marketplace that needs to grow? An MVP that needs to scale?
                 Baffling user behaviour that needs investigation?
               </p>
               <p className="hero__scene">That's my scene.</p>
