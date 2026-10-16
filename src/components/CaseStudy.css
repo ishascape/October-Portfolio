@@ -65,6 +65,22 @@
   color: var(--graphite);
 }
 
+.case__visual {
+  display: grid;
+  gap: var(--space-4);
+}
+/* On desktop the drawing and the facts sit side by side, the facts in a compact column. */
+@media (min-width: 900px) {
+  .case__visual {
+    grid-template-columns: minmax(0, 640px) minmax(220px, 300px);
+    align-items: start;
+    gap: var(--space-5);
+  }
+  .case__visual .case__meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .case__meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

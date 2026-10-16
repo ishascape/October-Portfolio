@@ -33,27 +33,28 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <p className="case__subtitle">{page.subtitle}</p>
             </div>
 
-            <figure className="case__drawing">
-              <svg className="plan" data-mode={mode} viewBox="-12 -12 324 224" aria-hidden="true">
-                <g className="plan__art">
-                  <Art />
-                </g>
-              </svg>
-              <figcaption>
-                <ModeSwitch mode={mode} onChange={setMode} />
-                <span className="label case__state">{mode === 'existing' ? study.existing : study.proposed}</span>
-              </figcaption>
-            </figure>
+            <div className="case__visual">
+              <figure className="case__drawing">
+                <svg className="plan" data-mode={mode} viewBox="-12 -12 324 224" aria-hidden="true">
+                  <g className="plan__art">
+                    <Art />
+                  </g>
+                </svg>
+                <figcaption>
+                  <ModeSwitch mode={mode} onChange={setMode} />
+                  <span className="label case__state">{mode === 'existing' ? study.existing : study.proposed}</span>
+                </figcaption>
+              </figure>
+              <dl className="case__meta">
+                {page.meta.map((m) => (
+                  <div key={m.label}>
+                    <dt className="label">{m.label}</dt>
+                    <dd>{m.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
-
-          <dl className="case__meta">
-            {page.meta.map((m) => (
-              <div key={m.label}>
-                <dt className="label">{m.label}</dt>
-                <dd>{m.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </header>
 
