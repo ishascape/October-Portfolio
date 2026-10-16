@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding-block: var(--space-4) var(--space-6);
+  padding-block: var(--space-4) calc(var(--space-6) + 24px);
   /* Faint 24px drawing grid, on the hero only */
   background-image:
     linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
@@ -14,7 +14,7 @@
   justify-content: space-between;
   padding-bottom: var(--space-2);
   border-bottom: var(--line-thin) solid var(--ink);
-  margin-bottom: var(--space-5);
+  margin-bottom: calc(var(--space-5) + 16px);
 }
 
 .hero__intro {
@@ -173,7 +173,7 @@
 }
 .hero__support {
   display: grid;
-  gap: calc(var(--space-4) + 16px); /* tagline, focus areas and buttons, 16px further apart */
+  gap: calc(var(--space-4) + 24px); /* tagline, focus areas and buttons, 16px further apart */
   max-width: var(--measure);
 }
 
@@ -191,7 +191,7 @@
 }
 .hero__copy {
   display: grid;
-  gap: var(--space-3);
+  gap: calc(var(--space-3) + 8px);
 }
 .hero__support .hero__scene {
   font-weight: 600;
@@ -248,7 +248,7 @@
   .hero__title {
     grid-area: title;
     align-self: start;
-    padding-bottom: calc(var(--space-4) + 16px);
+    padding-bottom: calc(var(--space-4) + 32px);
   }
   .hero__portrait {
     grid-area: portrait;
@@ -271,5 +271,113 @@
 @media (max-width: 599px) {
   .hero__sheet span[aria-hidden='true'] {
     display: none;
+  }
+}
+
+/* ---------- Load: a stack of sheets fans out and settles, then the page comes in ---------- */
+.hero {
+  overflow-x: clip;
+}
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.hero__stack i {
+  position: absolute;
+  inset: 14px;
+  background: var(--paper);
+  border: var(--line-thin) solid var(--rule);
+  box-shadow: 0 6px 18px -10px rgb(28 27 25 / 0.35);
+  animation: hero-sheet 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  pointer-events: none;
+}
+.hero__stack i:nth-child(1) {
+  --from: translate(12px, 10px) rotate(1.6deg);
+}
+.hero__stack i:nth-child(2) {
+  --from: translate(-10px, 16px) rotate(-1.3deg);
+  animation-delay: 90ms;
+}
+@keyframes hero-sheet {
+  from {
+    opacity: 1;
+    transform: var(--from);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: none;
+  }
+}
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+.hero__sheet,
+.hero__hello,
+.hero__title .display,
+.hero__copy > *,
+.hero__focus,
+.hero__actions,
+.hero__piece {
+  animation: hero-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--in, 0) * 70ms + 450ms);
+}
+.hero__sheet {
+  --in: 0;
+}
+.hero__hello {
+  --in: 1;
+}
+.hero__title .display {
+  --in: 2;
+}
+.hero__copy > :nth-child(1) {
+  --in: 3;
+}
+.hero__copy > :nth-child(2) {
+  --in: 4;
+}
+.hero__copy > :nth-child(3) {
+  --in: 5;
+}
+.hero__focus {
+  --in: 6;
+}
+.hero__actions {
+  --in: 7;
+}
+.hero__piece {
+  animation-name: hero-in-fade;
+  --in: 4;
+}
+@keyframes hero-in-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__stack {
+    display: none;
+  }
+  .hero__sheet,
+  .hero__hello,
+  .hero__title .display,
+  .hero__copy > *,
+  .hero__focus,
+  .hero__actions,
+  .hero__piece {
+    animation: none;
   }
 }

@@ -5,6 +5,11 @@ import './Hero.css'
 export function Hero() {
   return (
     <section id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
+      {/* Loose sheets that fan out behind the page on load, then settle into it. */}
+      <span className="hero__stack" aria-hidden="true">
+        <i />
+        <i />
+      </span>
       <div className="container">
         <p className="label hero__sheet">
           <span>Sheet 00 / 03 · Introduction · Senior Product Designer, Sydney, AU</span>
