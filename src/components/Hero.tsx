@@ -16,7 +16,7 @@ export function Hero() {
         <div className="hero__intro">
           <div className="hero__title">
             <p className="annotation hero__hello">
-              Hey, I'm Ashni!
+              Hey, I'm Ashni
               {/* A pen-drawn smile, eyes and mouth only. On hover it winks and smirks. */}
               <svg className="hero__smile" viewBox="0 0 32 24" aria-hidden="true">
                 <path className="smile__eye" d="M11.5 6.8 v3.2" />
