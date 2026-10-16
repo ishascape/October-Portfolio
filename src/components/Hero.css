@@ -109,6 +109,13 @@
 .hero__support p {
   text-wrap: pretty;
 }
+.hero__copy {
+  display: grid;
+  gap: var(--space-3);
+}
+.hero__support .hero__scene {
+  font-weight: 600;
+}
 .hero__focus li:not(:last-child)::after {
   content: '';
   display: inline-block;
@@ -146,7 +153,7 @@
     grid-template-areas:
       'title portrait'
       'support portrait';
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
     row-gap: 0;
   }
   .hero__title {
@@ -156,6 +163,7 @@
   }
   .hero__portrait {
     grid-area: portrait;
+    align-self: start;
     justify-self: end;
     width: 100%;
   }

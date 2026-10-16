@@ -8,7 +8,8 @@ import llmsBrief from './data/llms.md?raw'
 
 const NAME = 'Ashni Dave'
 const JOB = 'Senior Product Designer'
-const TAGLINE = 'I design digital products where user needs, business goals and technology meet.'
+const TAGLINE =
+  "I'm a product designer blending design, strategy and commercial thinking to make complex products simpler, smarter and more successful."
 const SUMMARY = `${NAME} is a ${JOB}, currently based in Sydney, Australia, working on B2B SaaS, marketplaces and AI products. ${availability.headline.replace("I'm", 'She is')}`
 
 const pathFor = (page: Page) => (page === 'home' ? '/' : `/${page.caseSlug}`)

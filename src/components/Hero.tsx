@@ -16,16 +16,16 @@ export function Hero() {
         <div className="hero__intro">
           <div className="hero__title">
             <p className="annotation hero__hello">
-              Hey! I'm Ashni
-              {/* A pen-drawn smile in place of an emoji. */}
-              <svg className="hero__smile" viewBox="0 0 32 24" aria-hidden="true">
-                <path d="M15 1.8 C8 1.6 4.8 6.6 5.2 12.4 C5.6 18.6 10.4 22.4 16.4 22.1 C22.8 21.8 27 17.4 26.6 11.4 C26.3 5.6 22 1.9 16.8 1.6 C14.6 1.5 12.8 2.2 11.4 3.2" />
-                <path d="M11.5 9.5 v1.4 M20.5 9.5 v1.4" />
-                <path d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />
+              Hey, I'm Ashni!
+              {/* A pen-drawn asterisk in place of an emoji. */}
+              <svg className="hero__smile" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3.2 L12.4 20.6" />
+                <path d="M4.2 7.6 L19.8 16.2" />
+                <path d="M19.6 7.2 L4.6 16.6" />
               </svg>
             </p>
             <h1 id="hero-heading" className="display">
-              I solve product puzzles with design and strategy.
+              I love a good product puzzle. Especially a messy one.
             </h1>
           </div>
           <figure className="hero__portrait">
@@ -51,7 +51,17 @@ export function Hero() {
             <figcaption className="annotation">Fig. 00. Ashni Dave</figcaption>
           </figure>
           <div className="hero__support">
-            <p>I design digital products where user needs, business goals and technology meet.</p>
+            <div className="hero__copy">
+              <p>
+                Clunky workflows? Disconnected systems? A marketplace that needs to grow? A product ready to scale?
+                Baffling user behaviour that needs investigation?
+              </p>
+              <p className="hero__scene">That's my scene.</p>
+              <p>
+                I'm a product designer blending design, strategy and commercial thinking to make complex products
+                simpler, smarter and more successful.
+              </p>
+            </div>
             <ul className="hero__focus" aria-label="Focus areas">
               {['B2B SaaS', 'Marketplace', 'Platform', 'Mobile', 'B2C'].map((f) => (
                 <li key={f}>{f}</li>
