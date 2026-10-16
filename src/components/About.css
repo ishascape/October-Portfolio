@@ -13,6 +13,63 @@
 .about__heading span {
   display: block;
 }
+.about__heading .about__wink {
+  margin-top: var(--space-2);
+  font-size: clamp(30px, 3.8vw, 46px);
+  font-weight: 500;
+  line-height: 1.1;
+  transform: rotate(-1.5deg);
+  transform-origin: left bottom;
+  width: fit-content;
+}
+.wink {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.05em;
+  margin-left: 0.3em;
+  vertical-align: -0.1em;
+  color: var(--marker);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  overflow: visible;
+}
+.wink__eye--shut,
+.wink__mouth--smirk,
+.wink__spark {
+  opacity: 0;
+}
+.wink__eye--open,
+.wink__eye--shut,
+.wink__mouth,
+.wink__spark {
+  transition: opacity 140ms var(--ease-pen);
+}
+.wink__spark {
+  transform-origin: 34px 7px;
+  transform: scale(0.4) rotate(-30deg);
+  transition:
+    opacity 160ms var(--ease-pen),
+    transform 260ms var(--ease-pen);
+}
+.about__wink:hover .wink__eye--open,
+.about__wink:hover .wink__mouth--grin {
+  opacity: 0;
+}
+.about__wink:hover .wink__eye--shut,
+.about__wink:hover .wink__mouth--smirk,
+.about__wink:hover .wink__spark {
+  opacity: 1;
+}
+.about__wink:hover .wink__spark {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wink__spark {
+    transition: opacity 140ms linear;
+  }
+}
 .about__body {
   display: grid;
   gap: var(--space-3);

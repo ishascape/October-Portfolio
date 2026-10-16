@@ -16,7 +16,18 @@ export function About() {
           <h2 id="about-heading" className="display about__heading">
             {/* One sentence per line. */}
             <span>Build something people love.</span> <span>Make it commercially viable.</span>{' '}
-            <span>Otherwise, you&rsquo;re running a charity or a scam.</span>
+            {/* Hand lettering with a pen-drawn wink that closes one eye and flashes a sparkle on hover. */}
+            <span className="annotation about__wink">
+              Otherwise, you&rsquo;re running a charity or a scam.
+              <svg className="wink" viewBox="0 0 40 30" aria-hidden="true">
+                <path className="wink__eye" d="M12 5.5 v6" />
+                <path className="wink__eye wink__eye--open" d="M26 5.5 v6" />
+                <path className="wink__eye wink__eye--shut" d="M22.5 11.5 Q26 5.5 30 11" />
+                <path className="wink__mouth wink__mouth--grin" d="M10.5 17.5 C14 23 23 23 27 16.5" />
+                <path className="wink__mouth wink__mouth--smirk" d="M10.8 19.5 C15 22.5 23 22 29 14.5" />
+                <path className="wink__spark" d="M34 4 v6 M31 7 h6 M32 5 l4 4 M36 5 l-4 4" />
+              </svg>
+            </span>
           </h2>
           <div className="about__body">
             <p>I trained as an architect in the UK. Turns out, I never stopped thinking like one.</p>
