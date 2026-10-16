@@ -78,79 +78,48 @@
   position: relative;
   width: min(100%, 270px);
   margin-left: 28px;
-  touch-action: manipulation;
   margin-bottom: var(--space-3);
-  aspect-ratio: 1;
-}
-.hero__puzzle-defs {
-  position: absolute;
-  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  touch-action: manipulation;
 }
 .hero__piece {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--paper-shade);
+  border: 1.5px solid var(--ink);
   transform: var(--from);
   transition: transform 750ms cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: calc(var(--n) * 70ms);
 }
-.hero__puzzle[data-joined] .hero__piece {
-  transform: none;
+.hero__piece--tl {
+  --from: translate(-9%, -7%) rotate(-4deg);
 }
 .hero__piece--tr {
-  --from: translate(9%, -9%) rotate(6deg);
-}
-.hero__piece--br {
-  --from: translate(9%, 10%) rotate(-5deg);
+  --from: translate(9%, -6%) rotate(5deg);
 }
 .hero__piece--bl {
-  --from: translate(-9%, 10%) rotate(5deg);
+  --from: translate(-8%, 7%) rotate(4deg);
 }
-.hero__piece--photo {
-  --from: translate(-9%, -9%) rotate(-4deg);
+.hero__piece--br {
+  --from: translate(9%, 8%) rotate(-5deg);
+}
+.hero__puzzle[data-joined] .hero__piece {
+  transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__piece {
     transition: none;
   }
 }
-.hero__piece-outline {
+.hero__piece-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 2.5px;
-  stroke-linejoin: round;
-  pointer-events: none;
-}
-.hero__piece-label {
-  position: absolute;
-  width: 28%;
-  display: grid;
-  gap: 2px;
-  justify-items: center;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  line-height: 1.25;
-}
-.hero__piece-label strong {
-  font-size: 14px;
-  font-weight: 600;
-}
-.hero__piece-label span {
-  font-size: 12px;
-  color: var(--graphite);
-}
-/* The portrait is cropped so the face sits in the piece's own quarter of the square. */
-.hero__piece-photo {
-  position: absolute;
-  left: -20%;
-  top: -12%;
-  width: 90%;
-  height: auto;
+  object-fit: cover;
+  object-position: 50% 12%;
   display: block;
 }
 /* The line drawing sits over the photo, masked to a 40px circle at the pointer. */
@@ -167,11 +136,40 @@
   mask-image: radial-gradient(circle 40px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
   transition: opacity var(--dur-micro) var(--ease-pen);
 }
-.hero__piece--photo[data-reveal] {
+.hero__piece--tl[data-reveal] {
   cursor: crosshair;
 }
-.hero__piece--photo[data-reveal] .hero__piece-sketch {
+.hero__piece--tl[data-reveal] .hero__piece-sketch {
   opacity: 1;
+}
+.hero__piece-todo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: var(--graphite);
+}
+.hero__piece-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 6px 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 200ms var(--ease-pen),
+    transform 200ms var(--ease-pen);
+}
+.hero__puzzle[data-hover] .hero__piece-label {
+  opacity: 1;
+  transform: none;
 }
 .hero__portrait figcaption {
   color: var(--graphite);

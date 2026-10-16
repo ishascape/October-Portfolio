@@ -30,7 +30,7 @@ export function Hero() {
           </div>
           <figure className="hero__portrait">
             <HeroPuzzle />
-            <figcaption className="annotation">Fig. 00. The puzzle, in progress</figcaption>
+            <figcaption className="annotation">Fig. 00. Ashni Dave</figcaption>
           </figure>
           <div className="hero__support">
             <div className="hero__copy">
