@@ -1,0 +1,383 @@
+.hero {
+  position: relative;
+  padding-block: var(--space-4) calc(var(--space-6) + 24px);
+  /* Faint 24px drawing grid, on the hero only */
+  background-image:
+    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+  background-size: 24px 24px;
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+
+.hero__sheet {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--ink);
+  margin-bottom: calc(var(--space-5) + 16px);
+}
+
+.hero__intro {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+/* Hand lettering, Ashni's own hello above the headline. */
+.hero__title .hero__hello {
+  margin-bottom: calc(var(--space-2) + 16px);
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.1;
+  color: var(--ink);
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+}
+
+.hero__smile {
+  color: var(--marker);
+  display: inline-block;
+  width: 1.05em;
+  height: 0.8em;
+  margin-left: 0.25em;
+  vertical-align: -0.05em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+/* Winks and smirks when the pointer is on the hello. */
+.hero__title .hero__hello {
+  width: fit-content;
+}
+.hero__smile .smile__eye--wink,
+.hero__smile .smile__mouth--smirk {
+  opacity: 0;
+}
+.hero__smile .smile__eye--open,
+.hero__smile .smile__mouth--grin,
+.hero__smile .smile__eye--wink,
+.hero__smile .smile__mouth--smirk {
+  transition: opacity 140ms var(--ease-pen);
+}
+.hero__hello:hover .smile__eye--open,
+.hero__hello:hover .smile__mouth--grin {
+  opacity: 0;
+}
+.hero__hello:hover .smile__eye--wink,
+.hero__hello:hover .smile__mouth--smirk {
+  opacity: 1;
+}
+
+.hero__portrait {
+  margin: 0;
+  position: relative;
+}
+.hero__puzzle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-width: 0;
+  touch-action: manipulation;
+}
+.hero__piece {
+  position: relative;
+  aspect-ratio: 1 / 1.1;
+  overflow: hidden;
+  background: var(--paper-shade);
+  border: 1.5px solid var(--ink);
+  transform: var(--from);
+  transition: transform 750ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--n) * 70ms);
+}
+.hero__piece--tl {
+  --from: translate(-9%, -7%) rotate(-4deg);
+}
+.hero__piece--tr {
+  --from: translate(9%, -6%) rotate(5deg);
+}
+.hero__piece--bl {
+  --from: translate(-8%, 7%) rotate(4deg);
+}
+.hero__piece--br {
+  --from: translate(9%, 8%) rotate(-5deg);
+}
+.hero__puzzle[data-joined] .hero__piece {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__piece {
+    transition: none;
+  }
+}
+.hero__piece-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  display: block;
+}
+/* The line drawing sits over the photo, masked to a 40px circle at the pointer. */
+.hero__piece-sketch {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(
+    circle 40px at var(--reveal-x, 50%) var(--reveal-y, 50%),
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(circle 40px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
+  transition: opacity var(--dur-micro) var(--ease-pen);
+}
+.hero__piece--tl[data-reveal] {
+  cursor: crosshair;
+}
+.hero__piece--tl[data-reveal] .hero__piece-sketch {
+  opacity: 1;
+}
+.hero__piece-todo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: var(--graphite);
+}
+.hero__piece-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 6px 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 200ms var(--ease-pen),
+    transform 200ms var(--ease-pen);
+}
+.hero__puzzle[data-hover] .hero__piece-label {
+  opacity: 1;
+  transform: none;
+}
+
+.hero__title {
+  padding-bottom: 16px; /* headline to whatever follows it */
+}
+.hero__support {
+  display: grid;
+  gap: calc(var(--space-4) + 24px); /* tagline, focus areas and buttons, 16px further apart */
+  max-width: var(--measure);
+}
+
+/* Focus areas, as one line divided by thin rules. */
+.hero__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) 0;
+  margin: calc(-1 * var(--space-2)) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.hero__support p {
+  text-wrap: pretty;
+}
+.hero__copy {
+  display: grid;
+  gap: calc(var(--space-3) + 8px);
+}
+.hero__support .hero__scene {
+  font-weight: 600;
+}
+.hero__focus li:not(:last-child)::after {
+  content: '';
+  display: inline-block;
+  width: var(--line-thin);
+  height: 0.9em;
+  margin-inline: var(--space-2);
+  vertical-align: -0.1em;
+  background: var(--rule);
+}
+/* On phones the row wraps, so the dividers give way to plain spacing. */
+@media (max-width: 599px) {
+  .hero__focus {
+    gap: var(--space-1) var(--space-3);
+  }
+  .hero__focus li:not(:last-child)::after {
+    display: none;
+  }
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* ---------- Title block ---------- */
+
+/* One column: the headline runs full width on two lines, then a full-width puzzle. */
+@media (max-width: 599px) {
+  .hero__line {
+    display: block;
+    white-space: nowrap;
+  }
+  .hero .hero__title h1.display {
+    font-size: 7.6vw;
+  }
+}
+
+/* Two columns from tablet up: copy on the left, the puzzle spanning the full height of the copy on the right. */
+@media (min-width: 600px) {
+  .hero__intro {
+    grid-template-columns: minmax(0, 1fr) clamp(220px, 34vw, 340px);
+    grid-template-areas:
+      'title portrait'
+      'support portrait';
+    grid-template-rows: auto 1fr;
+    gap: 0 var(--gutter);
+    margin-bottom: var(--space-4);
+  }
+  .hero__title {
+    grid-area: title;
+    align-self: start;
+    padding-bottom: calc(var(--space-4) + 32px);
+  }
+  .hero__portrait {
+    grid-area: portrait;
+  }
+  .hero__puzzle {
+    position: absolute;
+    inset: 40px 0 0; /* 40px of air under the sheet line, bottom still level with the buttons */
+    grid-template-rows: 1fr 1fr;
+  }
+  .hero__piece {
+    aspect-ratio: auto;
+  }
+  .hero__support {
+    grid-area: support;
+    align-self: start;
+  }
+}
+
+/* On phones the label has room for the role or the scale, not both. */
+@media (max-width: 599px) {
+  .hero__sheet span[aria-hidden='true'] {
+    display: none;
+  }
+}
+
+/* ---------- Load: a stack of sheets fans out and settles, then the page comes in ---------- */
+.hero {
+  overflow-x: clip;
+}
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.hero__stack i {
+  position: absolute;
+  inset: 14px;
+  background: var(--paper);
+  border: var(--line-thin) solid var(--rule);
+  box-shadow: 0 6px 18px -10px rgb(28 27 25 / 0.35);
+  animation: hero-sheet 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  pointer-events: none;
+}
+.hero__stack i:nth-child(1) {
+  --from: translate(12px, 10px) rotate(1.6deg);
+}
+.hero__stack i:nth-child(2) {
+  --from: translate(-10px, 16px) rotate(-1.3deg);
+  animation-delay: 90ms;
+}
+@keyframes hero-sheet {
+  from {
+    opacity: 1;
+    transform: var(--from);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: none;
+  }
+}
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+.hero__sheet,
+.hero__hello,
+.hero__title .display,
+.hero__copy > *,
+.hero__focus,
+.hero__actions,
+.hero__piece {
+  animation: hero-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--in, 0) * 70ms + 450ms);
+}
+.hero__sheet {
+  --in: 0;
+}
+.hero__hello {
+  --in: 1;
+}
+.hero__title .display {
+  --in: 2;
+}
+.hero__copy > :nth-child(1) {
+  --in: 3;
+}
+.hero__copy > :nth-child(2) {
+  --in: 4;
+}
+.hero__copy > :nth-child(3) {
+  --in: 5;
+}
+.hero__focus {
+  --in: 6;
+}
+.hero__actions {
+  --in: 7;
+}
+.hero__piece {
+  animation-name: hero-in-fade;
+  --in: 4;
+}
+@keyframes hero-in-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__stack {
+    display: none;
+  }
+  .hero__sheet,
+  .hero__hello,
+  .hero__title .display,
+  .hero__copy > *,
+  .hero__focus,
+  .hero__actions,
+  .hero__piece {
+    animation: none;
+  }
+}

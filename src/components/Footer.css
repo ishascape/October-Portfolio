@@ -1,0 +1,334 @@
+/* ---------- Title sheet ----------
+   Laid out like the legend panel on an architectural drawing: a ruled frame, small field
+   labels over each value, a key plan with a north point, and a sign-off box. */
+.footer {
+  position: relative;
+  padding-block: var(--space-4) var(--space-3);
+  background: var(--paper);
+  border-top: var(--line-thin) solid var(--ink);
+}
+
+.titlesheet {
+  --tint-ink: 28 27 25; /* hatching and grid on paper */
+  --tint-soft: 97 94 88; /* contours and suburb lines on paper */
+  display: grid;
+  border: var(--line-building) solid var(--ink);
+  outline: var(--line-thin) solid var(--ink);
+  outline-offset: 4px; /* the double border of a drawing frame */
+  background: var(--paper-shade);
+  margin: 6px;
+}
+
+/* Printed as a blueprint (home page only): the palette flips to white linework on cyanotype
+   blue, so every rule below, and the key plan, picks it up through the same tokens. */
+.titlesheet--blueprint {
+  --blueprint: #1d4e89;
+  --tint-ink: 242 246 251;
+  --tint-soft: 242 246 251;
+  --paper: var(--blueprint);
+  --paper-shade: var(--blueprint);
+  --ink: #f2f6fb;
+  --graphite: rgb(242 246 251 / 0.75);
+  --rule: rgb(242 246 251 / 0.45);
+  --marker: #ffffff;
+  color: var(--ink);
+  outline: 6px solid var(--blueprint); /* the blue margin round the drawing frame */
+  outline-offset: 0;
+  background-color: var(--blueprint);
+  background-image:
+    linear-gradient(rgb(242 246 251 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(242 246 251 / 0.07) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.footer .titlesheet__field {
+  display: block;
+  margin-bottom: 1px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.titlesheet__plan {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+
+.footer .titlesheet__key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--space-3);
+  font-size: 10px;
+}
+.titlesheet__key li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.titlesheet__credit {
+  margin-top: 0;
+  font-size: 10px;
+  color: var(--graphite);
+}
+.titlesheet__key svg {
+  width: 24px;
+  height: 12px;
+  overflow: visible;
+}
+
+.keyplan {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--paper);
+}
+.keyplan__land {
+  fill: var(--paper);
+}
+.keyplan__coast {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+.keyplan__hatch {
+  stroke: rgb(var(--tint-ink) / 0.3);
+  stroke-width: 0.75;
+}
+/* Light topography: 20 m contours, every second one slightly heavier. */
+.keyplan__contour {
+  fill: none;
+  stroke: rgb(var(--tint-soft) / 0.22);
+  stroke-width: 0.6;
+}
+.keyplan__contour--index {
+  stroke: rgb(var(--tint-soft) / 0.38);
+}
+/* Suburb boundaries in a see-through grey. */
+.keyplan__suburbs {
+  fill: none;
+  stroke: rgb(var(--tint-soft) / 0.45);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 1.5;
+}
+.keyplan__suburb {
+  font-family: var(--font-sans);
+  font-size: 7px;
+  fill: rgb(var(--tint-soft) / 0.85);
+  text-anchor: middle;
+}
+.keyplan__grid {
+  stroke: rgb(var(--tint-ink) / 0.2);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 4;
+}
+.keyplan__frame {
+  fill: none;
+  stroke: var(--ink);
+}
+.keyplan__ref,
+.keyplan__label,
+.keyplan__north text,
+.keyplan__scale text {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  fill: var(--ink);
+}
+/* A paper halo keeps labels legible where they cross linework. */
+.keyplan text {
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+.keyplan__ref {
+  fill: var(--graphite);
+  letter-spacing: 0;
+}
+.keyplan__north circle,
+.keyplan__north path {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+.keyplan__north .keyplan__north-fill {
+  fill: var(--ink);
+}
+.keyplan__north text {
+  text-anchor: middle;
+  font-size: 11px;
+  font-weight: 600;
+}
+.keyplan__scale rect {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 0.75;
+}
+.keyplan__scale .keyplan__scale-fill {
+  fill: var(--ink);
+}
+.keyplan__scale text {
+  letter-spacing: 0.04em;
+}
+.keyplan__pin {
+  fill: var(--marker);
+  stroke: var(--paper);
+  stroke-width: 1;
+}
+.keyplan__pin-dot {
+  fill: var(--paper);
+}
+.keyplan__leader {
+  stroke: var(--ink);
+  stroke-width: 0.75;
+}
+.keyplan__label--pin {
+  font-weight: 600;
+}
+
+.titlesheet__legend {
+  display: grid;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.titlesheet__legend dd {
+  margin: 0;
+}
+.titlesheet__row {
+  padding: 6px var(--space-2);
+}
+.titlesheet__row + .titlesheet__row {
+  border-top: var(--line-thin) solid var(--ink);
+}
+.titlesheet__name {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.titlesheet__legend a {
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.titlesheet__legend a:hover {
+  color: var(--marker);
+  text-decoration-color: currentColor;
+}
+
+/* Rows split into ruled cells, like the boxes of a title block. */
+.footer .titlesheet__row--meta {
+  display: grid;
+  padding: 0;
+  font-size: 12px;
+  border-top: var(--line-thin) solid var(--ink);
+}
+.titlesheet__row--meta > div {
+  padding: 6px var(--space-2);
+}
+.titlesheet__row--meta {
+  grid-template-columns: repeat(4, 1fr);
+}
+.titlesheet__row--meta > div + div {
+  border-left: var(--line-thin) solid var(--ink);
+}
+
+.titlesheet__index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+}
+.titlesheet__index a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px; /* WCAG 2.2 target size */
+}
+
+.titlesheet__row--sign dd {
+  display: grid;
+  gap: 2px;
+}
+.titlesheet__signature {
+  font-family: var(--font-hand);
+  font-size: 24px;
+  line-height: 1;
+  padding-bottom: 2px;
+  border-bottom: var(--line-thin) solid var(--ink);
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+  width: max-content;
+}
+.titlesheet__smile {
+  display: inline-block;
+  width: 1em;
+  height: 0.75em;
+  margin-left: 0.2em;
+  vertical-align: -0.05em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.titlesheet__signatory {
+  font-weight: 600;
+}
+.titlesheet__title {
+  font-weight: 400;
+  color: var(--graphite);
+}
+
+.footer .footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.footer__made {
+  font-weight: 500;
+}
+.footer .footer__copy {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--graphite);
+}
+.footer__ai {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.footer__ai svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.footer__ai:hover,
+.footer__ai:focus-visible {
+  color: var(--marker);
+}
+.footer .footer__bar--plain {
+  margin-top: 0;
+}
+
+@media (min-width: 900px) {
+  .titlesheet {
+    grid-template-columns: 5fr 7fr;
+  }
+  .titlesheet__plan {
+    border-bottom: 0;
+    border-right: var(--line-thin) solid var(--ink);
+  }
+}

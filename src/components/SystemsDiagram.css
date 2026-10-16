@@ -1,0 +1,144 @@
+/* The systems diagram. Drawn on graph paper, in the portfolio's ink and cobalt. */
+.sysmap {
+  position: relative;
+  margin: var(--space-6) 0 0;
+  padding: var(--space-3);
+  border: var(--line-thin) solid var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgb(28 27 25 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(28 27 25 / 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.sysmap figcaption {
+  margin-top: var(--space-2);
+  color: var(--graphite);
+}
+.sysmap__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1100px;
+  margin-inline: auto;
+  overflow: visible;
+}
+@media (max-width: 759px) {
+  .sysmap__svg {
+    max-width: 420px;
+  }
+}
+
+/* Lettering inside the drawing is hand lettering: it is annotation, not interface. */
+.sysmap text {
+  font-family: var(--font-hand);
+  fill: var(--ink);
+  stroke: var(--paper);
+  stroke-width: 3px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  font-size: 14px;
+}
+.sysmap__label {
+  font-size: 14px;
+}
+.sysmap__label--moment {
+  font-size: 14px;
+}
+.sysmap__me {
+  font-size: 20px;
+  font-weight: 600;
+}
+.sysmap__cap {
+  font-size: 17px;
+  fill: var(--graphite);
+}
+.sysmap__cap--key,
+.sysmap__note--key {
+  fill: var(--marker);
+}
+.sysmap__note {
+  font-size: 13px;
+  fill: var(--graphite);
+}
+.sysmap__note--ink {
+  fill: var(--ink);
+  font-size: 13.5px;
+}
+.sysmap__tiny {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  stroke: none;
+}
+.sysmap__out-name {
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--marker);
+}
+.sysmap__sub {
+  font-size: 13px;
+  fill: var(--graphite);
+}
+.sysmap__q {
+  font-size: 24px;
+  fill: var(--graphite);
+}
+
+/* Line styles, matching the partis elsewhere on the site */
+:where(.sysmap path, .sysmap circle, .sysmap rect, .sysmap ellipse) {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sysmap__node {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+.sysmap__laptop {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 2.2;
+}
+.sysmap__face path {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.sysmap__face .sysmap__eye {
+  fill: var(--ink);
+  stroke: none;
+}
+.sysmap__sweat {
+  fill: var(--marker);
+  stroke: none !important;
+}
+.sysmap__spark {
+  stroke: var(--marker);
+  stroke-width: 1.8;
+}
+.sysmap__bubble {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.3;
+}
+.sysmap__out {
+  stroke: var(--marker);
+  stroke-width: 2;
+}
+.sysmap__outcome {
+  fill: var(--paper);
+  stroke: var(--marker);
+  stroke-width: 2.2;
+}
+.sysmap__moment path,
+.sysmap__moment circle,
+.sysmap__moment rect,
+.sysmap__moment ellipse {
+  stroke-width: 1.8;
+}
+.sysmap__moment circle[style*='fill'] {
+  stroke: none;
+}
+.sysmap__rule {
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}

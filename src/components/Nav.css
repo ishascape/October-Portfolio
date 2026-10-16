@@ -1,0 +1,117 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.nav__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  color: var(--marker);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nav__icon {
+  width: 28px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav__links {
+  display: none;
+}
+.nav__links ul {
+  display: flex;
+  gap: var(--space-4);
+}
+.nav__links a {
+  position: relative;
+  display: inline-block;
+  padding-block: var(--space-2);
+  text-decoration: none;
+}
+/* The underline is a dimension line: a blue rule with a 45 degree tick at each end. */
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 8px;
+  background:
+    linear-gradient(var(--marker), var(--marker)) center / 100% 1px no-repeat,
+    linear-gradient(135deg, transparent 42%, var(--marker) 42% 58%, transparent 58%) left / 8px 8px no-repeat,
+    linear-gradient(135deg, transparent 42%, var(--marker) 42% 58%, transparent 58%) right / 8px 8px no-repeat;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 260ms var(--ease-pen);
+}
+.nav__links a:hover::after,
+.nav__links a[aria-current]::after {
+  clip-path: inset(0 0 0 0);
+}
+
+.nav__menu-button {
+  min-height: var(--tap);
+  padding: 0 var(--space-2);
+  margin-right: calc(-1 * var(--space-2));
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.nav__menu {
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+.nav__menu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 56px;
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+.nav__menu ol a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: var(--line-hair) solid var(--rule);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.nav__menu ol a .label {
+  color: var(--graphite);
+}
+
+@media (min-width: 600px) {
+  .nav__links {
+    display: block;
+  }
+  .nav__menu-button {
+    display: none;
+  }
+}
