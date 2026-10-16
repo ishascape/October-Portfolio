@@ -128,23 +128,23 @@ export function Footer({ onHome }: { onHome: boolean }) {
                   </span>
                 </dd>
               </div>
-              <div className="titlesheet__row titlesheet__row--meta label">
-                <div>
-                  <dt className="titlesheet__field">Date</dt>
-                  <dd>2026</dd>
-                </div>
-                <div>
-                  <dt className="titlesheet__field">Rev</dt>
-                  <dd>E</dd>
-                </div>
-                <div>
-                  <dt className="titlesheet__field">Scale</dt>
-                  <dd>Responsive NTS</dd>
-                </div>
-                <div>
-                  <dt className="titlesheet__field">Sheet</dt>
-                  <dd>04 / 04</dd>
-                </div>
+            </dl>
+            <dl className="titlesheet__legend titlesheet__row--meta label">
+              <div>
+                <dt className="titlesheet__field">Date</dt>
+                <dd>2026</dd>
+              </div>
+              <div>
+                <dt className="titlesheet__field">Rev</dt>
+                <dd>E</dd>
+              </div>
+              <div>
+                <dt className="titlesheet__field">Scale</dt>
+                <dd>Responsive NTS</dd>
+              </div>
+              <div>
+                <dt className="titlesheet__field">Sheet</dt>
+                <dd>04 / 04</dd>
               </div>
             </dl>
           </div>

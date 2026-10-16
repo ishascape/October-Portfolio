@@ -30,6 +30,11 @@ export function HeroPuzzle() {
   return (
     <div
       className="hero__puzzle"
+      role="group"
+      aria-label="Four cards: face card, UX/UI design, workshops and ideation, crossfunctional work"
+      tabIndex={0}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
       data-joined={hover || scrolled ? '' : undefined}
       data-hover={hover ? '' : undefined}
       onPointerEnter={(e) => {

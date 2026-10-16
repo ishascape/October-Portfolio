@@ -13,7 +13,7 @@ export function ModeSwitch({ mode, onChange }: ModeSwitchProps) {
       type="button"
       role="switch"
       aria-checked={mode === 'proposed'}
-      aria-label="Proposed: show what shipped"
+      aria-label="Existing Proposed: show what shipped"
       className="switch label"
       onClick={() => onChange(mode === 'existing' ? 'proposed' : 'existing')}
     >

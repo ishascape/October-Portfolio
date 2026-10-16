@@ -18,6 +18,9 @@
 .contact__copy {
   justify-content: space-between;
   gap: var(--space-4);
+  max-width: 100%; /* reflow: the address wraps instead of widening the page at 320px */
+  overflow-wrap: anywhere;
+  text-align: left;
 }
 .contact__copy-hint {
   opacity: 0.7;
