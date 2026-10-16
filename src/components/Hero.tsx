@@ -7,7 +7,7 @@ export function Hero() {
     <section id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
       <div className="container">
         <p className="label hero__sheet">
-          <span>Sheet 00 / 03 · Introduction · Senior Product Designer</span>
+          <span>Sheet 00 / 03 · Introduction · Senior Product Designer, Sydney, AU</span>
           <span aria-hidden="true">Scale: Responsive NTS</span>
         </p>
 
