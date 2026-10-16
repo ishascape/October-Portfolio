@@ -46,6 +46,29 @@
   stroke-linecap: round;
 }
 
+/* Winks and smirks when the pointer is on the hello. */
+.hero__title .hero__hello {
+  width: fit-content;
+}
+.hero__smile .smile__eye--wink,
+.hero__smile .smile__mouth--smirk {
+  opacity: 0;
+}
+.hero__smile .smile__eye--open,
+.hero__smile .smile__mouth--grin,
+.hero__smile .smile__eye--wink,
+.hero__smile .smile__mouth--smirk {
+  transition: opacity 140ms var(--ease-pen);
+}
+.hero__hello:hover .smile__eye--open,
+.hero__hello:hover .smile__mouth--grin {
+  opacity: 0;
+}
+.hero__hello:hover .smile__eye--wink,
+.hero__hello:hover .smile__mouth--smirk {
+  opacity: 1;
+}
+
 .hero__portrait {
   display: grid;
   gap: var(--space-2);

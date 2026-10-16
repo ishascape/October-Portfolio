@@ -17,11 +17,13 @@ export function Hero() {
           <div className="hero__title">
             <p className="annotation hero__hello">
               Hey, I'm Ashni!
-              {/* A pen-drawn asterisk in place of an emoji. */}
-              <svg className="hero__smile" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3.2 L12.4 20.6" />
-                <path d="M4.2 7.6 L19.8 16.2" />
-                <path d="M19.6 7.2 L4.6 16.6" />
+              {/* A pen-drawn smile, eyes and mouth only. On hover it winks and smirks. */}
+              <svg className="hero__smile" viewBox="0 0 32 24" aria-hidden="true">
+                <path className="smile__eye" d="M11.5 6.8 v3.2" />
+                <path className="smile__eye smile__eye--open" d="M20.5 6.8 v3.2" />
+                <path className="smile__eye smile__eye--wink" d="M18.2 9.6 Q20.4 6.6 22.8 9.4" />
+                <path className="smile__mouth smile__mouth--grin" d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />
+                <path className="smile__mouth smile__mouth--smirk" d="M9.8 16.2 C13 18.4 19 18.2 23.6 12.4" />
               </svg>
             </p>
             <h1 id="hero-heading" className="display">
