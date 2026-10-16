@@ -36,7 +36,7 @@ export function Hero() {
             <div className="hero__copy">
               <p>
                 Clunky workflows? Disconnected systems? A marketplace that needs to grow? An MVP that needs to scale?
-                Baffling user behaviour that needs investigation?
+                Baffling user behaviour to investigate?
               </p>
               <p className="hero__scene">That's my scene.</p>
               <p>UX/UI, product strategy, systems thinking, growth &amp; monetisation</p>
