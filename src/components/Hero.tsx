@@ -25,12 +25,12 @@ export function Hero() {
               </svg>
             </p>
             <h1 id="hero-heading" className="display">
-              I love a good product puzzle. Especially a messy one.
+              <span className="hero__line">I love a good product puzzle.</span>{' '}
+              <span className="hero__line">Especially a messy one.</span>
             </h1>
           </div>
           <figure className="hero__portrait">
             <HeroPuzzle />
-            <figcaption className="annotation">Fig. 00. Ashni Dave</figcaption>
           </figure>
           <div className="hero__support">
             <div className="hero__copy">

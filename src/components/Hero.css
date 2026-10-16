@@ -70,22 +70,18 @@
 }
 
 .hero__portrait {
-  display: grid;
-  gap: var(--space-2);
-  max-width: 300px;
+  margin: 0;
+  position: relative;
 }
 .hero__puzzle {
-  position: relative;
-  width: min(100%, 270px);
-  margin-left: 28px;
-  margin-bottom: var(--space-3);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-width: 0;
   touch-action: manipulation;
 }
 .hero__piece {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1.1;
   overflow: hidden;
   background: var(--paper-shade);
   border: 1.5px solid var(--ink);
@@ -171,9 +167,6 @@
   opacity: 1;
   transform: none;
 }
-.hero__portrait figcaption {
-  color: var(--graphite);
-}
 
 .hero__title {
   padding-bottom: 16px; /* headline to whatever follows it */
@@ -230,36 +223,47 @@
 
 /* ---------- Title block ---------- */
 
-@media (min-width: 1024px) {
-  .hero__intro {
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: var(--space-5) var(--gutter);
+/* One column: the headline runs full width on two lines, then a full-width puzzle. */
+@media (max-width: 599px) {
+  .hero__line {
+    display: block;
+    white-space: nowrap;
   }
-  /* Headline and support text sit as one block, centred against the portrait. */
+  .hero .hero__title h1.display {
+    font-size: 7.6vw;
+  }
+}
+
+/* Two columns from tablet up: copy on the left, the puzzle spanning the full height of the copy on the right. */
+@media (min-width: 600px) {
   .hero__intro {
+    grid-template-columns: minmax(0, 1fr) clamp(220px, 34vw, 340px);
     grid-template-areas:
       'title portrait'
       'support portrait';
-    grid-template-rows: auto auto;
-    row-gap: 0;
+    grid-template-rows: auto 1fr;
+    gap: 0 var(--gutter);
+    margin-bottom: var(--space-4);
   }
   .hero__title {
     grid-area: title;
-    align-self: end;
+    align-self: start;
     padding-bottom: calc(var(--space-4) + 16px);
   }
   .hero__portrait {
     grid-area: portrait;
-    align-self: start;
-    justify-self: end;
-    width: 100%;
+  }
+  .hero__puzzle {
+    position: absolute;
+    inset: 0;
+    grid-template-rows: 1fr 1fr;
+  }
+  .hero__piece {
+    aspect-ratio: auto;
   }
   .hero__support {
     grid-area: support;
     align-self: start;
-  }
-  .hero__intro {
-    margin-bottom: var(--space-4);
   }
 }
 
@@ -267,11 +271,5 @@
 @media (max-width: 599px) {
   .hero__sheet span[aria-hidden='true'] {
     display: none;
-  }
-}
-@media (min-width: 1024px) {
-  .hero__puzzle {
-    width: 100%;
-    margin-left: 0;
   }
 }
