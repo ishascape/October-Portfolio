@@ -39,10 +39,7 @@ export function Hero() {
                 Baffling user behaviour that needs investigation?
               </p>
               <p className="hero__scene">That's my scene.</p>
-              <p>
-                I'm a product designer blending design, strategy and commercial thinking to make complex products
-                simpler, smarter and more successful.
-              </p>
+              <p>UX/UI, product strategy, systems thinking, growth &amp; monetisation</p>
             </div>
             <ul className="hero__focus" aria-label="Focus areas">
               {['B2B SaaS', 'Marketplace', 'Platform', 'Mobile', 'B2C'].map((f) => (
