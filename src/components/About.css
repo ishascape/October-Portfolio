@@ -261,6 +261,6 @@
   }
   .field-notes {
     grid-template-columns: 4fr 8fr;
-    gap: var(--gutter);
+    column-gap: max(60px, var(--gutter));
   }
 }

@@ -74,21 +74,87 @@
   gap: var(--space-2);
   max-width: 300px;
 }
-.hero__portrait-frame {
+.hero__puzzle {
   position: relative;
-  aspect-ratio: 4 / 5;
-  border: var(--line-thin) solid var(--ink);
-  background: var(--paper-shade);
-  overflow: hidden;
+  width: min(100%, 270px);
+  margin-left: 28px;
+  touch-action: manipulation;
+  margin-bottom: var(--space-3);
+  aspect-ratio: 1;
 }
-.hero__portrait-frame img {
-  display: block;
+.hero__puzzle-defs {
+  position: absolute;
+  pointer-events: none;
+}
+.hero__piece {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--paper-shade);
+  transform: var(--from);
+  transition: transform 750ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--n) * 70ms);
+}
+.hero__puzzle[data-joined] .hero__piece {
+  transform: none;
+}
+.hero__piece--tr {
+  --from: translate(9%, -9%) rotate(6deg);
+}
+.hero__piece--br {
+  --from: translate(9%, 10%) rotate(-5deg);
+}
+.hero__piece--bl {
+  --from: translate(-9%, 10%) rotate(5deg);
+}
+.hero__piece--photo {
+  --from: translate(-9%, -9%) rotate(-4deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__piece {
+    transition: none;
+  }
+}
+.hero__piece-outline {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.hero__piece-label {
+  position: absolute;
+  width: 28%;
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  line-height: 1.25;
+}
+.hero__piece-label strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+.hero__piece-label span {
+  font-size: 12px;
+  color: var(--graphite);
+}
+/* The portrait is cropped so the face sits in the piece's own quarter of the square. */
+.hero__piece-photo {
+  position: absolute;
+  left: -20%;
+  top: -12%;
+  width: 90%;
+  height: auto;
+  display: block;
 }
 /* The line drawing sits over the photo, masked to a 40px circle at the pointer. */
-.hero__portrait-sketch {
+.hero__piece-sketch {
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -101,10 +167,10 @@
   mask-image: radial-gradient(circle 40px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
   transition: opacity var(--dur-micro) var(--ease-pen);
 }
-.hero__portrait-frame[data-reveal] {
+.hero__piece--photo[data-reveal] {
   cursor: crosshair;
 }
-.hero__portrait-frame[data-reveal] .hero__portrait-sketch {
+.hero__piece--photo[data-reveal] .hero__piece-sketch {
   opacity: 1;
 }
 .hero__portrait figcaption {
@@ -203,5 +269,11 @@
 @media (max-width: 599px) {
   .hero__sheet span[aria-hidden='true'] {
     display: none;
+  }
+}
+@media (min-width: 1024px) {
+  .hero__puzzle {
+    width: 100%;
+    margin-left: 0;
   }
 }

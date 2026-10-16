@@ -1,7 +1,5 @@
 import { contact } from '../data/content'
-import portrait from '../assets/ashni-portrait.webp'
-import portraitSketch from '../assets/ashni-portrait-sketch.webp'
-import { revealAt, revealEnd } from './reveal'
+import { HeroPuzzle } from './HeroPuzzle'
 import './Hero.css'
 
 export function Hero() {
@@ -31,26 +29,8 @@ export function Hero() {
             </h1>
           </div>
           <figure className="hero__portrait">
-            {/* Hovering with a mouse or pen reveals a line-art version of the photo under the cursor. */}
-            <div className="hero__portrait-frame" onPointerMove={revealAt} onPointerLeave={revealEnd}>
-              <img
-                src={portrait}
-                alt="Ashni Dave smiling, with long dark hair, in a blue denim top, standing in a garden."
-                width={960}
-                height={1200}
-                fetchPriority="high"
-                decoding="async"
-              />
-              <img
-                className="hero__portrait-sketch"
-                src={portraitSketch}
-                alt=""
-                width={960}
-                height={1200}
-                decoding="async"
-              />
-            </div>
-            <figcaption className="annotation">Fig. 00. Ashni Dave</figcaption>
+            <HeroPuzzle />
+            <figcaption className="annotation">Fig. 00. The puzzle, in progress</figcaption>
           </figure>
           <div className="hero__support">
             <div className="hero__copy">
