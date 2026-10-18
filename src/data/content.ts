@@ -160,7 +160,7 @@ export const principles: Principle[] = [
         source: 'HeadBox',
         text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.',
       },
-      { source: 'CV', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
+      { source: 'Findmypast', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
     ],
   },
   {
@@ -181,7 +181,7 @@ export const principles: Principle[] = [
     body: 'From architecture to product, and from Kilimanjaro to AI tooling, I keep learning the next thing.',
     evidence: [
       {
-        source: 'CV',
+        source: 'HeadBox',
         text: 'Launch in a New City: AI research agents and ops tooling cut launch planning from 12+ weeks to 2.',
       },
       { source: 'Memorisely', text: 'AI Coding for Designers, March 2026.' },
