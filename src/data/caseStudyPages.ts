@@ -106,7 +106,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     sections: [
       {
         label: '01 · The problem',
-        heading: 'Guests waited for venues, not discovering them.',
+        heading: 'Guests waited for venues instead of discovering them.',
         body: [
           'Guests spent 13 steps describing their event and saw no venues. Then they waited, with little say over who got in touch, and early replies were often a poor fit.',
           'Marketing measured briefs submitted, not bookings. Hosts often needed 27+ messages to close one.',
@@ -153,7 +153,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         diagram: 'vf-shift',
         planImage3: {
           src: vfBriefLifecycle,
-          alt: 'Diagram of the life-cycle of an event brief, from event brief to direct enquiry or lead, proposals to review and confirmed booking. It compares the Venue Finder experiment, the Host HQ MVP rolled out, the currently legacy guest home and Host HQ steps, and the legacy Brief builder and LeadFeed flow, with friction notes in red.',
+          alt: 'Diagram of the life-cycle of an event brief, from event brief to direct enquiry or lead, proposals to review and confirmed booking. It compares the Venue Finder experiment, the Host HQ MVP rolled out, the currently legacy guest home and Host HQ steps, and the legacy Brief builder and Lead Feed flow, with friction notes in red.',
           caption: 'Life-cycle of an event brief',
           width: 2048,
           height: 794,
@@ -260,7 +260,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     subtitle:
       'Venue hosts on HeadBox used four separate tools. As Senior Product Designer, I ran host focus groups, set the consolidation strategy and scoped the MVP for one platform where hosts see how they earn and act on it.',
     meta: [
-      { label: 'Role', value: 'Senior Product Designer: design strategy, execution, IA and workflow redesign' },
+      { label: 'Role', value: 'Senior Product Designer - design strategy, execution, IA and workflow redesign' },
       { label: 'Stakeholders', value: 'Platform clients, CEO, CTO, Head of Marketing, Head of Venue Sales' },
       { label: 'Timescale', value: '3 months, 0→1, discovery to full release' },
       {
@@ -294,7 +294,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         ],
         dayDiagram: {
           caption:
-            'Learned about the venue hosts existing workflows and day to day activities outside HeadBox from focus group sessions',
+            'Learned about venue hosts’ existing workflows and day-to-day activities outside HeadBox from focus group sessions',
         },
       },
       {
@@ -335,7 +335,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         planImageTop: {
           src: hosthqRequestsDashboard,
           caption:
-            'MVP dashboard - Landing on requests, where users see their inbound qualified Requests for proposals',
+            'MVP dashboard: landing on requests, where users see their inbound, qualified requests for proposals',
           alt: 'The HostHQ Requests screen: a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) beside a list of event requests with New, Urgent and Commissionable event tags, budgets, dates, locations and a Send Proposal button on each.',
           width: 1600,
           height: 1138,
@@ -360,11 +360,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           callout: [
             {
               title: 'Host pain point',
-              text: 'Not knowing how much time has passed between communication, not knowing what next action is pending, especially when an event is being handled by multiple people',
+              text: 'Not knowing how much time has passed between communication, not knowing what next action is pending, especially when an event is being handled by multiple people.',
             },
             {
               title: 'Solution',
-              text: 'Clearly suggest the next action for the host to take, put time stamps on each part of the events journey, set up alerts and notifications when an event moves from one section of the workflow to the next.',
+              text: 'Clearly suggest the next action for the host to take, put timestamps on each part of the events journey, set up alerts and notifications when an event moves from one section of the workflow to the next.',
             },
           ],
         },
@@ -515,7 +515,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         image: {
           src: treeassistDesktop,
           alt: 'A laptop showing the Findmypast family tree on desktop. Suggested relatives wait to be added around the tree, and a "Let\'s keep building the Green family tree" checklist on the right offers three next steps: review suggested relatives, build your tree with hints, and start a 7-day free trial.',
-          caption: 'Desktop layout - with next steps on canvas for user to engage with after onboarding.',
+          caption: 'Desktop layout, with next steps on the canvas for users to engage with after onboarding.',
           width: 1800,
           height: 1142,
         },

@@ -5,7 +5,7 @@ import './VenueFlows.css'
 
 // Two compact diagrams for the Venue Finder case study, in the portfolio's pencil-box style.
 
-const before = ['Guest completes 13 steps', 'LeadFeed', 'Venues approach guest', 'Guest evaluates']
+const before = ['Guest completes 13 steps', 'Lead Feed', 'Venues approach guest', 'Guest evaluates']
 const after = [
   'Guest enters requirements',
   'Semantic matching',
@@ -84,7 +84,7 @@ export function VenueRankingDiagram() {
         </div>
       </div>
       <figcaption className="annotation vf-flow__caption">
-        We balanced relevance, variety, active venues and revenue. Paid visibility helps discovery, it doesn’t override
+        We balanced relevance, variety, active venues and revenue. Paid visibility helps discovery but doesn’t override
         relevance.
       </figcaption>
     </figure>
@@ -111,7 +111,7 @@ export function VenueProblemDiagram() {
         </div>
         <ol className="vf-flow__steps vf-problem__after">
           <li>Submit enquiry</li>
-          <li>LeadFeed</li>
+          <li>Lead Feed</li>
           <li className="vf-flow__end vf-flow__end--warn">Wait for paying venues to respond</li>
           <li>Guest evaluates responses</li>
         </ol>

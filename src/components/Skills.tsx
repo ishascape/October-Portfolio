@@ -203,7 +203,7 @@ const skills: Skill[] = [
   {
     title: 'Growth & monetisation',
     drawing: principleDrawings['4'],
-    text: 'Designing for customer value and commercial return. At Findmypast, covered acquisition, retention and gifting, including a Gift Subscription MVP the CV credits with over £500k in first-year revenue.',
+    text: 'Designing for customer value and commercial return. At Findmypast, covered acquisition, retention and gifting, including a Gift Subscription MVP that brought in over £500k in first-year revenue.',
     hover: [
       { h: 'turn', to: 'scale(1.2)' },
       { h: 'forecast', to: 'translate(2px, -3px)' },
