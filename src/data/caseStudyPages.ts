@@ -113,7 +113,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             role: 'Social booker',
             dark: true,
             lines: [
-              'All of you – Tagvenue, HeadBox – you’re a nightmare. Too many emails. It’s just so much.',
+              'All of you – Tagvenue, HeadBox – you’re a nightmare. Too many emails. It’s just so much. I want a venue that allows me to bring my own catering, not to negotiate or be stuck with the set menu.',
               'All I need is one: a confirmation that it’s received, and then one to confirm the meeting. That’s it. Less is more.',
               'I have to read and delete every one just in case it’s important. That’s wasting my time.',
             ],
