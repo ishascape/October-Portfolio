@@ -41,25 +41,8 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: 'venue-finder',
-    number: '01',
-    title: 'Venue Finder',
-    summary: 'An AI-assisted way to find venues, replacing a 13-step brief builder.',
-    company: 'HeadBox',
-    district: 'HeadBox',
-    role: 'Sole product designer, team of 4 engineers · 2 months',
-    leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
-    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
-    system:
-      'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
-    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
-    existing: '13-step brief builder · 83% drop-off',
-    proposed: 'AI-assisted venue finder · 40% shorter journey',
-    slug: 'venue-finder',
-  },
-  {
     id: 'hosthq',
-    number: '02',
+    number: '01',
     title: 'HostHQ',
     summary: 'Four separate host tools combined into one platform.',
     company: 'HeadBox',
@@ -87,6 +70,23 @@ export const caseStudies: CaseStudy[] = [
         alt: 'A tablet showing a HostHQ submitted proposal with booking status and availability',
       },
     ],
+  },
+  {
+    id: 'venue-finder',
+    number: '02',
+    title: 'Venue Finder',
+    summary: 'An AI-assisted way to find venues, replacing a 13-step brief builder.',
+    company: 'HeadBox',
+    district: 'HeadBox',
+    role: 'Sole product designer, team of 4 engineers · 2 months',
+    leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
+    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
+    system:
+      'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
+    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
+    existing: '13-step brief builder · 83% drop-off',
+    proposed: 'AI-assisted venue finder · 40% shorter journey',
+    slug: 'venue-finder',
   },
   {
     id: 'treeassist',
