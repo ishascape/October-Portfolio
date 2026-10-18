@@ -310,6 +310,10 @@
 .case__figure figcaption {
   color: var(--graphite);
 }
+.case__figure figcaption.case__figure-title {
+  color: var(--ink);
+  font-weight: 600;
+}
 
 /* ---------- Next ---------- */
 
