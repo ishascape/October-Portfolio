@@ -3,7 +3,6 @@
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
-import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
@@ -48,6 +47,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
+  dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
@@ -232,14 +232,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'In focus groups with different venue types, hosts wanted clear signals of growth and return, not more features.',
           'Making revenue clear became the goal and shaped the consolidation strategy.',
         ],
-        image: {
-          src: hosthqFocusGroup,
-          alt: "An isometric drawing of a venue host's day in five moments: running the venue, managing clients, calls and enquiries, a quick HeadBox check where a new enquiry prompts doubts about whether it is genuine, available and will convert, and empty calendar slots to fill with confirmed bookings.",
+        dayDiagram: {
           caption:
             'Learned about the venue hosts existing workflows and day to day activities outside HeadBox from focus group sessions',
-          width: 1800,
-          height: 1013,
-          bordered: true,
         },
       },
       {

@@ -7,6 +7,7 @@ import { ModeSwitch } from './ModeSwitch'
 import { TreeAssistFlow } from './TreeAssistFlow'
 import { BookingStatusWidget } from './BookingStatusWidget'
 import { MvpScopeFlow } from './MvpScopeFlow'
+import { HostDayFlow } from './HostDayFlow'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -193,6 +194,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   </div>
                 </figure>
               )}
+              {s.dayDiagram && <HostDayFlow caption={s.dayDiagram.caption} />}
               {s.image && (
                 <figure
                   className={`case__figure case__figure--image${s.image.bordered ? ' case__figure--bordered' : ''}`}
