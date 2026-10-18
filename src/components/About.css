@@ -85,67 +85,6 @@
   font-weight: 400;
 }
 
-/* ---------- How I work ---------- */
-
-.principles {
-  display: grid;
-  margin-bottom: var(--space-6);
-}
-.principle {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: var(--space-3);
-  padding-block: var(--space-4);
-  border-bottom: var(--line-hair) solid var(--rule);
-}
-.principle__number {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--marker);
-  font-variant-numeric: tabular-nums;
-}
-.principle__text {
-  display: grid;
-  align-content: start;
-  gap: var(--space-2);
-  max-width: var(--measure);
-}
-.principle__parti {
-  grid-column: 2;
-  max-width: 160px;
-}
-@media (min-width: 900px) {
-  .principle {
-    grid-template-columns: 40px minmax(0, 1fr) 200px;
-    gap: var(--space-3) var(--gutter);
-  }
-  .principle__parti {
-    grid-column: 3;
-    grid-row: 1;
-    max-width: none;
-    align-self: center; /* the parti sits at the vertical middle of its row */
-  }
-}
-.principle__title {
-  margin: 0;
-  font-size: var(--text-heading);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-.principle__evidence {
-  display: grid;
-  gap: var(--space-2);
-  margin-top: var(--space-2);
-  font-size: 15px;
-  color: var(--graphite);
-}
-.principle__evidence .label {
-  display: block;
-  color: var(--ink);
-}
-
 /* ---------- Revision table ---------- */
 
 .revisions {
@@ -307,9 +246,6 @@
     grid-template-columns: 7fr 5fr;
     align-items: start;
     gap: var(--gutter);
-  }
-  .principle {
-    grid-template-columns: 64px minmax(0, 1fr) 220px;
   }
   .field-notes {
     grid-template-columns: 4fr 8fr;

@@ -1,6 +1,5 @@
-import { education, fieldNotes, principles, revisions } from '../data/content'
+import { education, fieldNotes, revisions } from '../data/content'
 import { SheetLabel } from './SheetLabel'
-import { PrincipleParti } from './PrinciplePartis'
 import { Skills } from './Skills'
 import './About.css'
 
@@ -89,34 +88,6 @@ export function About() {
             ))}
           </tbody>
         </table>
-
-        <h3 id="design-ethos" className="label about__subhead">
-          Design ethos
-        </h3>
-        <ol className="principles">
-          {principles.map((p) => (
-            <li key={p.number} className="principle">
-              <span className="principle__number" aria-hidden="true">
-                {p.number}
-              </span>
-              <div className="principle__text">
-                <h4 className="principle__title">{p.title}</h4>
-                <p>{p.body}</p>
-                {p.evidence.length > 0 && (
-                  <ul className="principle__evidence">
-                    {p.evidence.map((e) => (
-                      <li key={e.text}>
-                        <span className="label">{e.source}</span>
-                        {e.text}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-              <PrincipleParti number={p.number} />
-            </li>
-          ))}
-        </ol>
 
         <div className="field-notes">
           <div className="field-notes__copy">

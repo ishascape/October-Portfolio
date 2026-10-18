@@ -1,0 +1,83 @@
+/* The design-ethos drawings, each with its principle as a speech bubble on hover. */
+.ethos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-4);
+  margin: calc(var(--space-6) + 16px) 0 var(--space-5);
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 760px) {
+  .ethos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.ethos__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: default;
+  text-align: left;
+}
+.ethos__item:focus-visible {
+  outline: 2px solid var(--marker);
+  outline-offset: 6px;
+}
+.ethos__bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  z-index: 1;
+  width: max-content;
+  max-width: min(240px, 100%);
+  padding: var(--space-2) var(--space-3);
+  border: var(--line-thin) solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 4px) scale(0.96);
+  transform-origin: 50% 100%;
+  pointer-events: none;
+  transition:
+    opacity 140ms var(--ease-pen),
+    transform 140ms var(--ease-pen);
+}
+/* The tail: a small square turned to a point, aimed at the drawing. */
+.ethos__bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  border-right: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--ink);
+  background: var(--paper);
+  transform: translateX(-50%) rotate(45deg);
+}
+.ethos__item:hover .ethos__bubble,
+.ethos__item:focus-visible .ethos__bubble,
+.ethos__item[data-open='true'] .ethos__bubble {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ethos__bubble {
+    transition: none;
+    transform: translate(-50%, 0);
+  }
+}
+.ethos__item .principle__parti {
+  display: block;
+  max-width: 200px;
+  margin-inline: auto;
+}
