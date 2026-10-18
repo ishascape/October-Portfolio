@@ -264,6 +264,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                 )}
                 {s.planImage4 && (
                   <figure className="case__figure case__figure--image">
+                    {s.planImage4.title && <figcaption className="annotation">{s.planImage4.title}</figcaption>}
                     <img
                       src={s.planImage4.src}
                       alt={s.planImage4.alt}

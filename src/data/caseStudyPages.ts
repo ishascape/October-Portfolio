@@ -45,7 +45,7 @@ export interface Section {
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
-  planImage4?: { src: string; alt: string; width: number; height: number } // a fourth, below the third
+  planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { caption: string } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -293,6 +293,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         },
         planImage4: {
           src: hosthqProposalAccepted,
+          title: 'Highlighting the next action for the host to take to progress the event',
           alt: 'The HostHQ proposal screen after a guest accepts: a "John accepted your proposal" banner with the guest\'s verified contact details and a Confirm Booking button, a booking status timeline, and the space and pricing details of the proposal below.',
           width: 1440,
           height: 1024,
