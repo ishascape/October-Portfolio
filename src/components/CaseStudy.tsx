@@ -8,6 +8,8 @@ import { TreeAssistFlow } from './TreeAssistFlow'
 import { BookingStatusWidget } from './BookingStatusWidget'
 import { MvpScopeFlow } from './MvpScopeFlow'
 import { HostDayFlow } from './HostDayFlow'
+import { VenueFinderPrototype } from './VenueFinderPrototype'
+import { LegacyBriefPrototype } from './LegacyBriefPrototype'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -172,6 +174,8 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                         </div>
                       </dl>
                       {e.verdict && <p className="label case__verdict">{e.verdict}</p>}
+                      {e.prototype === 'vf-v2' && <VenueFinderPrototype />}
+                      {e.prototype === 'legacy' && <LegacyBriefPrototype />}
                     </li>
                   ))}
                 </ol>

@@ -28,6 +28,7 @@ export interface Experiment {
   result: string
   verdict?: string
   image?: { src: string; alt: string; width: number; height: number } // a real screen, shown beside the text
+  prototype?: 'vf-v2' | 'legacy' // a clickable prototype, shown below the text
 }
 
 export interface Section {
@@ -150,6 +151,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             intent: 'The baseline.',
             change: 'The existing 13-step, preset-option builder.',
             result: '83% of users dropped off.',
+            prototype: 'legacy',
           },
           {
             name: 'V1 · Disruptive',
@@ -168,6 +170,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             result:
               'Kept in regions with plenty of venues. Lead Feed covers sparse regions; high-value briefs outside active regions go to an account manager.',
             verdict: 'Shipped.',
+            prototype: 'vf-v2',
           },
         ],
         figure: 'V1 and V2 flows',
