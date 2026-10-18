@@ -10,7 +10,7 @@ import travelDiving from '../assets/travel-diving.webp'
 import travelBallooning from '../assets/travel-ballooning.webp'
 import travelQuad from '../assets/travel-quad-biking.webp'
 import hqWorkspace from '../assets/hosthq-card-workspace.webp'
-import hqRequests from '../assets/hosthq-card-requests.webp'
+import hqProposal from '../assets/hosthq-card-proposal.webp'
 import hqFilter from '../assets/hosthq-card-filter.webp'
 import vfStreet from '../assets/vf-card-street.webp'
 import vfSwipe from '../assets/vf-card-swipe.webp'
@@ -69,8 +69,9 @@ export const caseStudies: CaseStudy[] = [
         alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',
       },
       {
-        src: hqRequests,
-        alt: 'A laptop showing the HostHQ requests list, with urgent events and Send Proposal buttons',
+        src: hqProposal,
+        fit: 'contain',
+        alt: 'The HostHQ proposal screen on a desktop monitor: a sent proposal for an investor meeting with its booking status, the chosen space, pricing details and a message to the guest.',
       },
     ],
   },
