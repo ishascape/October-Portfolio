@@ -41,9 +41,6 @@ export function About() {
               I&apos;ve worked across B2B SaaS, marketplaces and growth at HeadBox and Findmypast, designing experiences
               that work for users and make business sense.
             </p>
-            <p className="about__note">
-              And this portfolio? Designed by me. Built with React, TypeScript and a little help from AI tools :)
-            </p>
           </div>
         </div>
 

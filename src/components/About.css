@@ -77,10 +77,6 @@
 .about__mantra {
   font-weight: 600;
 }
-.about__note {
-  font-size: 15px;
-  color: var(--graphite);
-}
 
 .about__subhead {
   padding-bottom: var(--space-2);
