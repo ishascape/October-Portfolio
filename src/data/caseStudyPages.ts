@@ -233,7 +233,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         image: {
           src: hosthqFocusGroup,
           alt: "An isometric drawing of a venue host's day in five moments: running the venue, managing clients, calls and enquiries, a quick HeadBox check where a new enquiry prompts doubts about whether it is genuine, available and will convert, and empty calendar slots to fill with confirmed bookings.",
-          caption: 'A day in the life of a venue host',
+          caption:
+            'Learned about the venue hosts existing workflows and day to day activities outside HeadBox from focus group sessions',
           width: 1800,
           height: 1013,
         },
