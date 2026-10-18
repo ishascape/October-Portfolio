@@ -1,12 +1,11 @@
 import type { ReactNode } from 'react'
 import { SketchRect } from './Sketch'
 import { principleDrawings } from './PrinciplePartis'
-import { DrawOnScroll } from './DrawOnScroll'
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent, type Ref } from 'react'
 import './Parti.css'
 import './Skills.css'
 
-// Core Expertise partis: one idea per discipline, each with its points listed underneath.
+// Core Expertise partis: one idea per discipline, with where it has been proven underneath.
 
 const P = { pathLength: 1 }
 
@@ -38,8 +37,8 @@ function MarketplaceParti() {
       {supply.map(([x, y]) => (
         <rect key={`sr${y}`} x={x - 4} y={y - 4} width={8} height={8} className="parti__heavy" />
       ))}
-      <circle {...P} cx={80} cy={60} r={9} className="parti__node" />
-      <line {...P} x1={52} y1={112} x2={108} y2={112} className="parti__axis" />
+      <circle {...P} cx={80} cy={60} r={9} className="parti__node" data-h="match" />
+      <line {...P} x1={52} y1={112} x2={108} y2={112} className="parti__axis" data-h="base" />
       <path {...P} d="M80 112 V74" className="parti__heavy" />
     </>
   )
@@ -55,7 +54,16 @@ function PlatformParti() {
         [34, 64],
         [86, 64],
       ].map(([x, y]) => (
-        <SketchRect key={`${x}-${y}`} x={x} y={y} width={40} height={30} o={3} className="parti__ghost" />
+        <SketchRect
+          key={`${x}-${y}`}
+          x={x}
+          y={y}
+          width={40}
+          height={30}
+          o={3}
+          className="parti__ghost"
+          data-h={x > 60 ? 'right' : undefined}
+        />
       ))}
       <path {...P} d="M72 108 H22 V12 H138 V108 H88" className="parti__heavy" />
       <line {...P} x1={80} y1={118} x2={80} y2={20} className="parti__axis" />
@@ -73,17 +81,19 @@ function ExperimentationParti() {
   return (
     <>
       <path {...P} d="M8 108 L150 14" className="parti__axis" />
-      {loops.map(([cx, cy, r]) => (
+      {loops.map(([cx, cy, r], n) => (
         <path
           key={cx}
           {...P}
           d={`M${cx + r} ${cy} A${r} ${r} 0 1 1 ${cx + r * 0.7} ${cy - r * 0.7}`}
           className="parti__heavy"
+          data-h={n === 2 ? 'lead' : undefined}
         />
       ))}
-      {loops.map(([cx, cy, r]) => (
+      {loops.map(([cx, cy, r], n) => (
         <path
           key={`a${cx}`}
+          data-h={n === 2 ? 'lead' : undefined}
           d={`M${cx + r * 0.7 - 5} ${cy - r * 0.7 - 2} L${cx + r * 0.7} ${cy - r * 0.7} L${cx + r * 0.7 + 1} ${cy - r * 0.7 + 5}`}
           className="parti__heavy"
         />
@@ -108,8 +118,8 @@ function EndToEndParti() {
         />
       ))}
       <path {...P} d="M48 48 H62 M98 48 H112" className="parti__fine" />
-      <path {...P} d="M12 98 H148" className="parti__key" />
-      <path d="M12 92 V104 M142 92 L148 98 L142 104" className="parti__key" />
+      <path {...P} d="M12 98 H148" className="parti__key" data-h="line" />
+      <path d="M12 92 V104 M142 92 L148 98 L142 104" className="parti__key" data-h="tip" />
     </>
   )
 }
@@ -131,10 +141,18 @@ function DesignSystemParti() {
       {tiles.map(([x, y]) => (
         <line key={`l${x}-${y}`} {...P} x1={40} y1={26} x2={x + 8} y2={y + 4} className="parti__fine" />
       ))}
-      <rect x={26} y={12} width={28} height={28} className="parti__key" fill="none" />
+      <rect x={26} y={12} width={28} height={28} className="parti__key" fill="none" data-h="source" />
       {tiles.map(([x, y], i) =>
         i % 3 === 0 ? (
-          <circle key={`${x}-${y}`} {...P} cx={x + 8} cy={y + 4} r={7} className="parti__heavy" />
+          <circle
+            key={`${x}-${y}`}
+            {...P}
+            cx={x + 8}
+            cy={y + 4}
+            r={7}
+            className="parti__heavy"
+            data-h={i === 0 ? 'tile' : undefined}
+          />
         ) : i % 3 === 1 ? (
           <rect key={`${x}-${y}`} {...P} x={x} y={y - 3} width={16} height={14} className="parti__heavy" />
         ) : (
@@ -148,115 +166,124 @@ function DesignSystemParti() {
 interface Skill {
   title: string
   drawing: () => ReactNode
-  points: string[]
-  onScroll?: boolean // draws in with the scroll; the rest redraw when hovered
+  text: string
+  hover: Nudge[] // the one or two parts of the drawing that move on hover
+}
+
+// A hover microinteraction: a [data-h] part of the drawing eases a few pixels, then eases back.
+// Origins are "fill-box" so scaling happens around the part itself.
+interface Nudge {
+  h: string
+  to: string // CSS transform at the end of the move
+  origin?: string
 }
 
 const skills: Skill[] = [
   {
-    title: 'Marketplaces',
-    drawing: MarketplaceParti,
-    points: [
-      'Two-sided marketplace strategy and optimisation',
-      'Supply-demand matching and conversion',
-      'Buyer and supplier experience design',
-    ],
+    title: 'Product strategy & systems thinking',
+    drawing: principleDrawings['0'],
+    text: "Connecting user journeys to the bigger product ecosystem. Helped shape HeadBox's One Platform initiative, bringing fragmented marketplace and SaaS experiences into a more connected system.",
+    hover: [{ h: 'user', to: 'translateY(6px)' }],
   },
   {
     title: 'B2B SaaS & platform design',
     drawing: PlatformParti,
-    points: [
-      'Complex workflows and platform simplification',
-      'Information architecture and navigation',
-      'Feature consolidation and product scalability',
-    ],
+    text: "Turning complex operational workflows into simpler, scalable products. Redesigned HeadBox's HostHQ platform, bringing four separate host tools into one.",
+    hover: [{ h: 'right', to: 'translateX(-6px)' }],
   },
   {
-    title: 'Experimentation & optimisation',
-    drawing: ExperimentationParti,
-    onScroll: true,
-    points: [
-      'A/B testing and hypothesis-driven design',
-      'Conversion funnel and drop-off optimisation',
-      'Onboarding, activation and time to value',
-    ],
-  },
-  {
-    title: 'Product strategy & systems thinking',
-    drawing: principleDrawings['0'],
-    points: [
-      'Product discovery and opportunity prioritisation',
-      'Connecting user needs with commercial goals',
-      'Cross-functional workflows and automation',
+    title: 'Marketplaces',
+    drawing: MarketplaceParti,
+    text: 'Designing for both sides of the marketplace, from supplier workflows to buyer conversion. At HeadBox, improved the venue discovery journey, contributing to a 30% increase in qualified leads.',
+    hover: [
+      { h: 'match', to: 'scale(1.25)' },
+      { h: 'base', to: 'scaleX(1.12)' },
     ],
   },
   {
     title: 'Growth & monetisation',
     drawing: principleDrawings['4'],
-    onScroll: true,
-    points: [
-      'Acquisition, conversion and retention',
-      'Revenue optimisation and monetisation journeys',
-      'Product-led growth and lifecycle experiences',
+    text: 'Designing experiences that deliver customer value and commercial returns. At Findmypast, worked across acquisition, retention and gifting, including a Gift Subscription MVP worth approximately £500k.',
+    hover: [
+      { h: 'turn', to: 'scale(1.2)' },
+      { h: 'forecast', to: 'translate(2px, -3px)' },
     ],
+  },
+  {
+    title: 'Experimentation & optimisation',
+    drawing: ExperimentationParti,
+    text: 'Using behavioural data and experimentation to find and remove friction. At Findmypast, helped increase free-trial conversion 5× through improvements to the onboarding journey.',
+    hover: [{ h: 'lead', to: 'translate(5px, -3.5px)' }],
   },
   {
     title: 'User research & analytics',
     drawing: principleDrawings['3'],
-    points: [
-      'Qualitative research and customer discovery',
-      'Behavioural analysis and product analytics',
-      'Insight synthesis and opportunity identification',
+    text: "Combining customer insight with product data to challenge assumptions and identify opportunities. Used research and funnel analysis to rethink HeadBox's AI Venue Finder after identifying friction in its initial experience.",
+    hover: [
+      { h: 'direction', to: 'translateX(5px)' },
+      { h: 'lens', to: 'scaleX(1.15)' },
     ],
   },
   {
     title: 'End-to-end UX/UI',
     drawing: EndToEndParti,
-    points: [
-      'Discovery, definition, design and delivery',
-      'User journeys, interaction design and prototyping',
-      'Engineering collaboration and product delivery',
+    text: "Taking product ideas from ambiguous problems through discovery, prototyping and delivery. As HeadBox's sole product designer, owned design across its B2B platform and B2C marketplace.",
+    hover: [
+      { h: 'line', to: 'scaleX(1.045)', origin: 'left center' },
+      { h: 'tip', to: 'translateX(6px)' },
     ],
   },
   {
     title: 'Design systems & scalability',
     drawing: DesignSystemParti,
-    points: [
-      'Reusable components and design patterns',
-      'Design tokens and UI consistency',
-      'Documentation and developer handoff',
+    text: "Building reusable foundations that help teams deliver consistent experiences at scale. Supported Findmypast's migration from Sketch to Figma, improving the team's shared design workflow.",
+    hover: [
+      { h: 'source', to: 'scale(1.12)' },
+      { h: 'tile', to: 'scale(1.12)' },
     ],
   },
 ]
 
-// Redraws a drawing line by line. Uses the Web Animations API rather than a CSS :hover rule,
-// which Chrome does not reliably restyle on SVG children. The card calls it when the pointer
-// lands anywhere on it, not only on the drawing.
-function redraw(card: HTMLElement, e: PointerEvent) {
-  const svg = card.querySelector<SVGElement>('.skill__parti')
-  if (!svg || e.pointerType === 'touch') return
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  svg.querySelectorAll<SVGElement>('[pathLength]').forEach((el, i) => {
-    el.style.strokeDasharray = '1'
-    el.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
-      duration: 700,
-      delay: i * 40,
-      easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)',
-      fill: 'backwards',
+const EASE = 'cubic-bezier(0.3, 0.7, 0.2, 1)'
+const MOVE_MS = 420
+
+// Builds paused animations for a card's nudges. Entering plays them forward, leaving plays them back,
+// so a long hover never repeats and the drawing always settles at rest. Uses the Web Animations API
+// rather than a CSS :hover rule, which Chrome does not reliably restyle on SVG children.
+function useNudges(hover: Nudge[]) {
+  const svgRef = useRef<SVGSVGElement>(null)
+  const anims = useRef<Animation[]>([])
+  useEffect(() => {
+    const svg = svgRef.current
+    if (!svg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    anims.current = hover.flatMap(({ h, to, origin }) =>
+      Array.from(svg.querySelectorAll<SVGElement>(`[data-h="${h}"]`)).map((el) => {
+        el.style.transformBox = 'fill-box'
+        el.style.transformOrigin = origin ?? 'center'
+        const a = el.animate([{ transform: 'none' }, { transform: to }], {
+          duration: MOVE_MS,
+          easing: EASE,
+          fill: 'both',
+        })
+        a.pause()
+        return a
+      }),
+    )
+    return () => anims.current.forEach((a) => a.cancel())
+  }, [hover])
+  const run = (e: PointerEvent, dir: 1 | -1) => {
+    if (e.pointerType === 'touch') return
+    anims.current.forEach((a) => {
+      a.playbackRate = dir
+      a.play()
     })
-  })
-  svg.querySelectorAll<SVGElement>('.draw-late').forEach((el) => {
-    el.animate([{ opacity: 0 }, { opacity: 1 }], {
-      duration: 300,
-      delay: 500,
-      fill: 'backwards',
-    })
-  })
+  }
+  return { svgRef, enter: (e: PointerEvent) => run(e, 1), leave: (e: PointerEvent) => run(e, -1) }
 }
 
-function HoverParti({ children }: { children: ReactNode }) {
+function HoverParti({ children, svgRef }: { children: ReactNode; svgRef: Ref<SVGSVGElement> }) {
   return (
-    <svg className="parti skill__parti" viewBox="0 0 160 120" aria-hidden="true">
+    <svg ref={svgRef} className="parti skill__parti" viewBox="0 0 160 120" aria-hidden="true">
       {children}
     </svg>
   )
@@ -309,6 +336,36 @@ const toolkit = [
   { group: 'Delivery', tools: ['Jira', 'Confluence', 'Notion'] },
   { group: 'AI and build', tools: ['Claude', 'ChatGPT', 'Cursor'] },
 ]
+
+function SkillCard({
+  skill,
+  deck,
+  style,
+  hidden,
+}: {
+  skill: Skill
+  deck: boolean
+  style: CSSProperties
+  hidden: boolean
+}) {
+  const Drawing = skill.drawing
+  const { svgRef, enter, leave } = useNudges(skill.hover)
+  return (
+    <li
+      className="skill"
+      style={style}
+      aria-hidden={hidden ? true : undefined}
+      onPointerEnter={deck ? undefined : enter}
+      onPointerLeave={deck ? undefined : leave}
+    >
+      <HoverParti svgRef={svgRef}>
+        <Drawing />
+      </HoverParti>
+      <h3 className="skill__title">{skill.title}</h3>
+      <p className="skill__text">{skill.text}</p>
+    </li>
+  )
+}
 
 export function Skills() {
   const [deck, setDeck] = useState(false)
@@ -389,41 +446,22 @@ export function Skills() {
           aria-roledescription={deck ? 'carousel' : undefined}
           aria-label={deck ? 'Core expertise, swipe or use the arrows' : undefined}
         >
-          {skills.map((s, i) => {
-            const Drawing = s.drawing
-            return (
-              <li
-                key={s.title}
-                className="skill"
-                style={
-                  deck
-                    ? paperStyle(i - index, i === index ? drag : 0, dragging)
-                    : ({
-                        '--i': i,
-                        '--tilt': `${[-1.6, 1.2, -0.8, 1.8][i % 4]}deg`,
-                      } as CSSProperties)
-                }
-                aria-hidden={deck && i !== index ? true : undefined}
-                onPointerEnter={deck ? undefined : (e) => redraw(e.currentTarget, e)}
-              >
-                {s.onScroll ? (
-                  <DrawOnScroll viewBox="0 0 160 120" className="skill__parti">
-                    <Drawing />
-                  </DrawOnScroll>
-                ) : (
-                  <HoverParti>
-                    <Drawing />
-                  </HoverParti>
-                )}
-                <h3 className="skill__title">{s.title}</h3>
-                <ul className="skill__points">
-                  {s.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </li>
-            )
-          })}
+          {skills.map((s, i) => (
+            <SkillCard
+              key={s.title}
+              skill={s}
+              deck={deck}
+              style={
+                deck
+                  ? paperStyle(i - index, i === index ? drag : 0, dragging)
+                  : ({
+                      '--i': i,
+                      '--tilt': `${[-1.6, 1.2, -0.8, 1.8][i % 4]}deg`,
+                    } as CSSProperties)
+              }
+              hidden={deck && i !== index}
+            />
+          ))}
         </ul>
         {deck && (
           <div className="deck__nav">

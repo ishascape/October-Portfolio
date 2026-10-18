@@ -28,11 +28,11 @@ function System() {
         className="parti__key"
         {...at(2.8)}
       />
-      <circle cx={80} cy={10} r={5} className="parti__node draw-late" />
+      <circle cx={80} cy={10} r={5} className="parti__node draw-late" data-h="user" />
       {touch.map((x) => (
         <rect key={`t${x}`} x={x - 3.5} y={41.5} width={7} height={7} className="parti__node draw-late" />
       ))}
-      <text x={90} y={13} className="parti__tag draw-late">
+      <text x={90} y={13} className="parti__tag draw-late" data-h="user">
         user
       </text>
       <text x={12} y={62} className="parti__tag draw-late">
@@ -97,8 +97,8 @@ function Research() {
       {notes.map(([x, y], n) => (
         <line key={n} {...P} x1={x} y1={y} x2={78} y2={60} className="parti__fine" {...at(n * 0.25)} />
       ))}
-      <path {...P} d="M78 30 Q90 60 78 90 Q66 60 78 30" className="parti__heavy" {...at(2)} />
-      <path {...P} d="M84 60 H150 M140 52 L150 60 L140 68" className="parti__key" {...at(3)} />
+      <path {...P} d="M78 30 Q90 60 78 90 Q66 60 78 30" className="parti__heavy" data-h="lens" {...at(2)} />
+      <path {...P} d="M84 60 H150 M140 52 L150 60 L140 68" className="parti__key" data-h="direction" {...at(3)} />
       {notes.map(([x, y], n) => (
         <circle key={`d${n}`} cx={x} cy={y} r={3} className="parti__dot draw-late" />
       ))}
@@ -120,9 +120,9 @@ function Data() {
   return (
     <>
       <path {...P} d="M12 10 V108 H152" className="parti__fine" {...at(0)} />
-      <path d="M80 66 L132 48" className="parti__ghost draw-late" />
+      <path d="M80 66 L132 48" className="parti__ghost draw-late" data-h="forecast" />
       <path {...P} d="M20 88 L80 64 L92 70 L140 28" className="parti__heavy" {...at(2)} />
-      <circle cx={86} cy={67} r={11} className="parti__key draw-late" />
+      <circle cx={86} cy={67} r={11} className="parti__key draw-late" data-h="turn" />
       {points.map(([x, y], n) => (
         <circle key={n} cx={x} cy={y} r={2.5} className="parti__dot draw-late" />
       ))}
