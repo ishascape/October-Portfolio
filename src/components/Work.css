@@ -277,6 +277,16 @@
     grid-template-columns: 7fr 5fr;
     grid-template-rows: none;
   }
+  /* 16px more room around the text column, so it sits clear of the carousel. */
+  .card__body {
+    padding: calc(var(--space-4) + 16px);
+  }
+  .card__cta {
+    margin: auto calc(-1 * (var(--space-4) + 16px)) calc(-1 * (var(--space-4) + 16px));
+  }
+  .card__cta .button {
+    padding-inline: calc(var(--space-4) + 16px);
+  }
   .card__image {
     aspect-ratio: auto;
     min-height: 100%;
