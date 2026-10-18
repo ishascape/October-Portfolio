@@ -13,7 +13,7 @@ import hqWorkspace from '../assets/hosthq-card-workspace.webp'
 import hqProposal from '../assets/hosthq-card-proposal.webp'
 import hqFilter from '../assets/hosthq-card-filter.webp'
 import vfStreet from '../assets/vf-card-street.webp'
-import vfSwipe from '../assets/vf-card-swipe.webp'
+import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
@@ -97,8 +97,8 @@ export const caseStudies: CaseStudy[] = [
         alt: 'A phone held on a London street showing the HeadBox Venue Finder map with 45 matching venues',
       },
       {
-        src: vfSwipe,
-        alt: "A thumb on a phone showing a Venue Finder venue card with I'm interested and Not for me buttons",
+        src: vfJourney,
+        alt: 'The Venue Finder 2.0 desktop prompt-input flow in Figma: a journey map with notes above the Start, Prompt and 1st recommendations screens, each annotated.',
       },
       {
         src: vfDesktop,
