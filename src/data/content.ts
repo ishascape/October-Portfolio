@@ -91,9 +91,18 @@ export const caseStudies: CaseStudy[] = [
     proposed: 'AI-assisted venue finder · 40% shorter journey',
     slug: 'venue-finder',
     images: [
-      { src: vfStreet, alt: 'A phone held on a London street showing the HeadBox Venue Finder map with 45 matching venues' },
-      { src: vfSwipe, alt: 'A thumb on a phone showing a Venue Finder venue card with I\'m interested and Not for me buttons' },
-      { src: vfDesktop, alt: 'A tablet showing Venue Finder options with venue cards, a map and a How does HeadBox work panel' },
+      {
+        src: vfStreet,
+        alt: 'A phone held on a London street showing the HeadBox Venue Finder map with 45 matching venues',
+      },
+      {
+        src: vfSwipe,
+        alt: "A thumb on a phone showing a Venue Finder venue card with I'm interested and Not for me buttons",
+      },
+      {
+        src: vfDesktop,
+        alt: 'A tablet showing Venue Finder options with venue cards, a map and a How does HeadBox work panel',
+      },
     ],
   },
   {
