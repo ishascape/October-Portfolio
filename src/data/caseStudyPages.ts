@@ -83,7 +83,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     problem:
       'The old model rewarded briefs (event requests) submitted, not intent to book. Hosts were flooded with unqualified briefs, Lead Feed churn hit 55% and the 13-step builder lost 83% of users. I advocated for judging Venue Finder on lead quality, not volume.',
     solution:
-      'An AI-powered brief journey that recommends venues, plus Spotlight Partner, a sponsored-placement model. My first version cut Lead Feed volume by 40%, so we shipped a more moderate second.',
+      'An AI-powered brief journey that recommends venues, plus Spotlight Partner, a sponsored-placement model. Used an AI-powered vector database to match user needs with venues in our inventory, boosting the rankings of premium, engaged and best-fit venues to increase their likelihood of being matched.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '40%', label: 'Shorter journey than the 13-step builder' },
