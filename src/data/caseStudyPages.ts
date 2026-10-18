@@ -3,6 +3,7 @@
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
+import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistExp2 from '../assets/treeassist-exp2.webp'
@@ -230,7 +231,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'I ran interactive focus groups with different types of venue. Hosts wanted clear signals of how they were growing and what return they were getting, not more features.',
           'Making revenue clear became the main goal, and it shaped the consolidation strategy.',
         ],
-        figure: 'Host focus groups',
+        image: {
+          src: hosthqFocusGroup,
+          alt: "An isometric drawing of a venue host's day in five moments: running the venue, managing clients, calls and enquiries, a quick HeadBox check where a new enquiry prompts doubts about whether it is genuine, available and will convert, and empty calendar slots to fill with confirmed bookings.",
+          caption: 'A day in the life of a venue host',
+          width: 1800,
+          height: 1013,
+        },
       },
       {
         label: '02 · Strategy',
