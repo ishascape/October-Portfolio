@@ -160,7 +160,10 @@ export const principles: Principle[] = [
         source: 'HeadBox',
         text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.',
       },
-      { source: 'Findmypast', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
+      {
+        source: 'Findmypast',
+        text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.',
+      },
     ],
   },
   {
