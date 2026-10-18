@@ -90,7 +90,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '40%', label: 'Shorter journey than the 13-step builder' },
-      { value: 'Intended', label: 'New revenue from paid Spotlight placement' },
+      { value: 'New', label: 'Revenue from paid Spotlight placement' },
     ],
     sections: [
       {
