@@ -51,7 +51,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
-  diagram?: 'vf-shift' | 'vf-ranking' // a compact native diagram for the Venue Finder story
+  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-iteration' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -90,16 +90,17 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '40%', label: 'Shorter journey than the 13-step builder' },
-      { value: 'New', label: 'Sponsored-placement revenue' },
+      { value: 'Intended', label: 'New revenue from paid Spotlight placement' },
     ],
     sections: [
       {
         label: '01 · The problem',
         heading: 'Guests waited for venues, not discovering them.',
         body: [
-          'Guests put in 13 steps of effort before seeing any value, then relied on venues to make the first move. Early responses were often poorly aligned, so options felt uninspiring and guests left.',
+          'Guests spent 13 steps describing their event and saw no venues. Then they waited, with little say over who got in touch, and early replies were often a poor fit.',
           'Marketing measured briefs submitted, not bookings. Hosts often needed 27+ messages to close one.',
         ],
+        diagram: 'vf-problem',
       },
       {
         label: '02 · Research',
@@ -135,7 +136,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '03 · The shift',
         heading: 'From venue-led to guest-led discovery.',
         body: [
-          'We changed the order. Guests share what they need, see matched venues, pre-screen and shortlist, then connect with the ones that fit.',
+          'The decision: stop making guests wait for venues, and let them discover venues instead. It gave guests value earlier and more control.',
           'Hypothesis: better matching earlier means less abandonment and more qualified enquiries.',
         ],
         diagram: 'vf-shift',
@@ -148,7 +149,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         },
       },
       {
-        label: '04 · Matching',
+        label: '04 · The experience',
+        heading: 'Intent in, relevant venues out.',
+        diagram: 'vf-experience',
+      },
+      {
+        label: '05 · Matching',
         heading: 'Semantic matching, not just filters.',
         body: [
           'Guests describe their event in their own words, or the system writes a prompt from their capacity, location, event type and vibe. That intent is compared with every venue in the inventory.',
@@ -157,8 +163,18 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         diagram: 'vf-ranking',
       },
       {
-        label: '05 · Experiments',
+        label: '06 · Edge cases',
+        heading: 'Designing for the gaps in our marketplace.',
+        body: [
+          'Self-service Venue Finder only ran where HeadBox had 200+ venues, enough supply for real variety. Elsewhere, guests took a different path.',
+          'We didn’t force recommendations where inventory couldn’t support them, but we still caught high-value enquiries through a concierge.',
+        ],
+        diagram: 'vf-gaps',
+      },
+      {
+        label: '07 · Experiments',
         heading: 'A control, a first version that failed, and a second that shipped.',
+        diagram: 'vf-iteration',
         experiments: [
           {
             name: 'Control · Legacy brief builder',
@@ -188,14 +204,14 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             change:
               'Optional prompt, magic-link sign-up, recommendations only after sign-up (to deter scraping), faster load.',
             result:
-              'Qualified inbound enquiries rose 30%. Kept in regions with plenty of venues; Lead Feed covers sparse regions, and high-value briefs outside active regions go to an account manager.',
+              'Qualified inbound enquiries rose 30%. Kept where we have 200+ venues, with fallbacks elsewhere (see 06).',
             verdict: 'Shipped.',
             prototype: 'vf-v2',
           },
         ],
       },
       {
-        label: '06 · Reflections',
+        label: '08 · Reflections',
         heading: 'A bold idea needs a strong business case.',
         list: [
           {
