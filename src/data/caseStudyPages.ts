@@ -5,6 +5,8 @@ import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
+import treeassistExp2 from '../assets/treeassist-exp2.webp'
+import treeassistExp3 from '../assets/treeassist-exp3.webp'
 import treeassistDesktop from '../assets/treeassist-desktop.webp'
 
 export interface Metric {
@@ -344,8 +346,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             image: {
               src: treeassistExp1,
               alt: 'A phone showing the Findmypast mobile site. "These records match your details. Which one belongs to you?" sits above two civil birth records, the first for Alex Green with the mother\'s maiden name Smith highlighted, and the question "Is this your birth record?" with tick and cross buttons.',
-              width: 1024,
-              height: 2048,
+              width: 670,
+              height: 1200,
             },
           },
           {
@@ -353,6 +355,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             intent: 'Reduce confusion after onboarding.',
             change: 'Suggested mothers and spouses on the tree canvas.',
             result: 'Hint engagement rose 32%, and trees grew more.',
+            image: {
+              src: treeassistExp2,
+              alt: 'A phone showing the Findmypast family tree. A dotted orange box for a suggested mother, Smith, has the prompt "Is this Alex\'s mother?" with Reject and Accept buttons, above the highlighted Alex Green card, born 1983.',
+              width: 670,
+              height: 1200,
+            },
           },
           {
             name: 'Experiment 3 · Interactive onboarding',
@@ -360,6 +368,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             change:
               'Cut onboarding from 8 forms to 3, then moved users into AI-assisted tree building with suggested relatives.',
             result: 'Onboarding drop-off fell 13%, and activation rose.',
+            image: {
+              src: treeassistExp3,
+              alt: 'A phone showing the Findmypast family tree after onboarding. Christopher Smith is marked Added, a suggested relative, Ingrid Green, has an Add button, and a banner reads "You\'ve added Christopher to your tree."',
+              width: 670,
+              height: 1200,
+            },
           },
         ],
         figure: 'Onboarding before and after',

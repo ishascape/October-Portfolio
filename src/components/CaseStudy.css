@@ -316,9 +316,10 @@
 /* An experiment with a screen: image on the left, intent, change and result stacked on the right. */
 .case__experiment-image {
   display: block;
-  width: 100%;
-  max-width: 360px;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 600px; /* never taller than 600px */
   margin-inline: auto;
 }
 @media (min-width: 760px) {
@@ -333,7 +334,7 @@
   .case__experiment--image .case__experiment-image {
     grid-column: 1;
     grid-row: 2 / span 2;
-    max-width: none;
+    justify-self: center; /* centred in its 60% column */
     margin: 0;
   }
   .case__experiments .case__experiment--image dl {
