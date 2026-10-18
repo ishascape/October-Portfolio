@@ -1,0 +1,13 @@
+/* Inventory decision tree: marker-blue for the paths that lead somewhere, dashed for the dead end. */
+.vfg__ok {
+  stroke: var(--marker);
+}
+.vfg__gap {
+  stroke-dasharray: 7 5;
+}
+.vfg__bold {
+  font-weight: 600;
+}
+.vfg__sub {
+  font-weight: 400;
+}

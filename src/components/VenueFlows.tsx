@@ -152,7 +152,15 @@ export function VenueExperienceTrio() {
     <div className="vf-trio">
       {moments.map((m, i) => (
         <figure key={m.title} className="vf-trio__item">
-          <img src={m.src} alt={m.alt} width={m.w} height={m.h} loading="lazy" decoding="async" />
+          <img
+            src={m.src}
+            alt={m.alt}
+            width={m.w}
+            height={m.h}
+            style={{ maxWidth: m.w }}
+            loading="lazy"
+            decoding="async"
+          />
           <figcaption>
             <b>
               {i + 1}. {m.title}
@@ -162,38 +170,6 @@ export function VenueExperienceTrio() {
         </figure>
       ))}
     </div>
-  )
-}
-
-export function VenueGapsDiagram() {
-  return (
-    <figure className="vf-flow vf-tree" aria-label="What happens when a location has too little inventory">
-      <ol className="vf-tree__grid">
-        <li className="vf-tree__n vf-tree__n--start vf-tree__n--r">Guest enters event location</li>
-        <li className="vf-tree__n vf-tree__n--q vf-tree__n--r vf-tree__n--d">
-          Does it have <b>200+ venues</b>?<span className="vf-tree__lbl vf-tree__lbl--r">Yes</span>
-          <span className="vf-tree__lbl vf-tree__lbl--d">No</span>
-        </li>
-        <li className="vf-tree__n vf-tree__n--ok">
-          <small className="vf-tree__via">Yes</small>Normal Venue Finder recommendations
-        </li>
-        <li className="vf-tree__n vf-tree__n--budget vf-tree__n--d">
-          <small className="vf-tree__via">No</small>Reveal a budget field
-        </li>
-        <li className="vf-tree__n vf-tree__n--q vf-tree__n--r vf-tree__n--d">
-          Budget over <b>£50k</b>?<span className="vf-tree__lbl vf-tree__lbl--r">Yes</span>
-          <span className="vf-tree__lbl vf-tree__lbl--d">£50k or less</span>
-        </li>
-        <li className="vf-tree__n vf-tree__n--ok vf-tree__n--concierge">
-          <small className="vf-tree__via">Yes</small>Human concierge handles the enquiry
-        </li>
-        <li className="vf-tree__n vf-tree__n--gap">
-          <small className="vf-tree__via">£50k or less</small>
-          <b>Unavailable-location page</b>
-          “Sorry, we’re not currently available in your area.” Links to cities we cover and event-planning guides.
-        </li>
-      </ol>
-    </figure>
   )
 }
 

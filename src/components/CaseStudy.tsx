@@ -15,9 +15,9 @@ import {
   VenueRankingDiagram,
   VenueProblemDiagram,
   VenueExperienceTrio,
-  VenueGapsDiagram,
   VenueIterationStrip,
 } from './VenueFlows'
+import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -212,7 +212,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               {s.diagram === 'vf-ranking' && <VenueRankingDiagram />}
               {s.diagram === 'vf-problem' && <VenueProblemDiagram />}
               {s.diagram === 'vf-experience' && <VenueExperienceTrio />}
-              {s.diagram === 'vf-gaps' && <VenueGapsDiagram />}
+              {s.diagram === 'vf-gaps' && <VenueGapsFlow />}
               {s.image && (
                 <figure
                   className={`case__figure case__figure--image${s.image.bordered ? ' case__figure--bordered' : ''}`}
