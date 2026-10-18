@@ -199,10 +199,15 @@
 @media (max-width: 599px) {
   .hero__line {
     display: block;
-    white-space: nowrap;
   }
   .hero .hero__title h1.display {
-    font-size: 7.6vw;
+    font-size: calc(7.6vw + 8px);
+  }
+}
+
+@media (min-width: 600px) {
+  .hero .hero__title h1.display {
+    font-size: calc(var(--text-display) + 8px);
   }
 }
 
