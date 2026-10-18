@@ -4,10 +4,11 @@ import './SheetLabel.css'
 interface SheetLabelProps {
   sheet: string
   title: string
+  tags?: string[]
 }
 
 // Opens every section like a drawing border. The rule draws in once, when scrolled into view.
-export function SheetLabel({ sheet, title }: SheetLabelProps) {
+export function SheetLabel({ sheet, title, tags }: SheetLabelProps) {
   const ref = useRef<HTMLParagraphElement>(null)
   const [drawn, setDrawn] = useState(false)
 
@@ -33,6 +34,13 @@ export function SheetLabel({ sheet, title }: SheetLabelProps) {
   return (
     <p ref={ref} className="sheet-label label" data-drawn={drawn}>
       Sheet {sheet} · {title}
+      {tags && (
+        <span className="sheet-label__tags">
+          {tags.map((t) => (
+            <span key={t}>{t}</span>
+          ))}
+        </span>
+      )}
     </p>
   )
 }

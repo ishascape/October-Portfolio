@@ -46,11 +46,6 @@ export function Hero() {
               <p className="hero__scene">That's my scene.</p>
               <p>Product strategy · UX/UI · Systems thinking · Growth &amp; monetisation</p>
             </div>
-            <ul className="hero__focus" aria-label="Focus areas">
-              {['B2B SaaS', 'Marketplace', 'Platform', 'Mobile', 'B2C'].map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
             <div className="hero__actions">
               <a className="button button--primary" href="#work">
                 Selected work <span aria-hidden="true">↓</span>

@@ -18,3 +18,31 @@
 .sheet-label[data-drawn='true']::after {
   transform: scaleX(1);
 }
+
+/* Focus areas, as one line divided by thin rules, next to the sheet title. */
+.sheet-label__tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) 0;
+  margin-left: var(--space-3);
+}
+.sheet-label__tags > span:not(:last-child)::after {
+  content: '';
+  display: inline-block;
+  width: var(--line-thin);
+  height: 0.9em;
+  margin-inline: var(--space-2);
+  vertical-align: -0.1em;
+  background: var(--graphite);
+}
+/* On phones the row wraps, so the dividers give way to plain spacing. */
+@media (max-width: 599px) {
+  .sheet-label__tags {
+    gap: var(--space-1) var(--space-3);
+    margin-left: 0;
+    display: flex;
+  }
+  .sheet-label__tags > span:not(:last-child)::after {
+    display: none;
+  }
+}

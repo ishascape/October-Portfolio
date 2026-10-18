@@ -177,15 +177,6 @@
   max-width: var(--measure);
 }
 
-/* Focus areas, as one line divided by thin rules. */
-.hero__focus {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) 0;
-  margin: calc(-1 * var(--space-2)) 0 0;
-  padding: 0;
-  list-style: none;
-}
 .hero__support p {
   text-wrap: pretty;
 }
@@ -196,25 +187,6 @@
 .hero__support .hero__scene {
   font-weight: 600;
 }
-.hero__focus li:not(:last-child)::after {
-  content: '';
-  display: inline-block;
-  width: var(--line-thin);
-  height: 0.9em;
-  margin-inline: var(--space-2);
-  vertical-align: -0.1em;
-  background: var(--rule);
-}
-/* On phones the row wraps, so the dividers give way to plain spacing. */
-@media (max-width: 599px) {
-  .hero__focus {
-    gap: var(--space-1) var(--space-3);
-  }
-  .hero__focus li:not(:last-child)::after {
-    display: none;
-  }
-}
-
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -325,7 +297,6 @@
 .hero__hello,
 .hero__title .display,
 .hero__copy > *,
-.hero__focus,
 .hero__actions,
 .hero__piece {
   animation: hero-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -348,9 +319,6 @@
 }
 .hero__copy > :nth-child(3) {
   --in: 5;
-}
-.hero__focus {
-  --in: 6;
 }
 .hero__actions {
   --in: 7;
@@ -375,7 +343,6 @@
   .hero__hello,
   .hero__title .display,
   .hero__copy > *,
-  .hero__focus,
   .hero__actions,
   .hero__piece {
     animation: none;
