@@ -184,8 +184,7 @@
   display: grid;
   gap: calc(var(--space-3) + 8px);
 }
-.hero__support .hero__scene,
-.hero__support .hero__role {
+.hero__support .hero__scene {
   font-weight: 600;
 }
 .hero__actions {

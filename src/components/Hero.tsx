@@ -39,7 +39,6 @@ export function Hero() {
           </figure>
           <div className="hero__support">
             <div className="hero__copy">
-              <p className="hero__role">Senior Product Designer for complex B2B platforms and marketplaces.</p>
               <p className="hero__questions">
                 Complex workflows? Disconnected systems? A marketplace with untapped potential? An MVP that needs to
                 scale? User behaviour that doesn't quite add up?
