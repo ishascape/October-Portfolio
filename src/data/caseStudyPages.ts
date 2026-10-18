@@ -105,7 +105,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             role: 'Corporate booker',
             lines: [
               'Once I found my venue, I ignored the rest of the emails. There were so many. I felt bad, but it was too much.',
-              'WhatsApp is much better — email feels too formal. With WhatsApp, I can just reply with one word.',
+              'If there’s no natural light and outdoor space, I don’t care. I won’t book the venue for my event even if everything else is fine.',
             ],
           },
           {
