@@ -184,19 +184,19 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '06 · Reflections',
-        heading: 'A bold experiment teaches the most when it is framed in economics.',
+        heading: 'A bold idea needs a strong business case.',
         list: [
           {
-            title: 'The challenges',
-            text: 'Executives were attached to Lead Feed, marketing targets rewarded volume, and recommendation quality was limited.',
+            title: 'The challenge',
+            text: 'Lead Feed was a familiar product that leadership believed in. Marketing was focused on lead volume, but more leads didn’t always mean better bookings.',
           },
           {
-            title: 'What worked',
-            text: 'Framing the problem in marketplace economics, being explicit about trade-offs, and letting experiments decide.',
+            title: 'What I learned',
+            text: 'Framing the problem around marketplace performance helped shift the conversation. Being clear about trade-offs and testing assumptions made it easier to challenge existing thinking.',
           },
           {
-            title: 'Next',
-            text: 'Rank venues by likelihood to convert, a shortlist-first flow for repeat users, an agent-assisted mode for new-city launches, and separate metrics for marketing volume and marketplace health.',
+            title: 'What I’d explore next',
+            text: 'Smarter venue rankings based on conversion potential, faster shortlisting for repeat users, and AI-assisted discovery. I’d also separate lead volume from metrics that reflect actual marketplace health.',
           },
         ],
       },
