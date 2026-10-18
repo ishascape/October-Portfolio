@@ -211,7 +211,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                 </figure>
               ))}
               {s.image && (
-                <figure className="case__figure case__figure--image">
+                <figure
+                  className={`case__figure case__figure--image${s.image.bordered ? ' case__figure--bordered' : ''}`}
+                >
                   <img
                     src={s.image.src}
                     alt={s.image.alt}
@@ -237,7 +239,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
               {s.planImage ? (
-                <figure className="case__figure case__figure--image">
+                <figure
+                  className={`case__figure case__figure--image${s.planImage.bordered ? ' case__figure--bordered' : ''}`}
+                >
                   <img
                     src={s.planImage.src}
                     alt={s.planImage.alt}

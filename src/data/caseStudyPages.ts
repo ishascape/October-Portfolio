@@ -36,8 +36,8 @@ export interface Section {
   experiments?: Experiment[]
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
-  image?: { src: string; alt: string; caption: string; width: number; height: number } // a real screenshot
-  planImage?: { src: string; alt: string; width: number; height: number } // a full-width image under this section
+  image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
+  planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean } // a full-width image under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
 
@@ -239,6 +239,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             'Learned about the venue hosts existing workflows and day to day activities outside HeadBox from focus group sessions',
           width: 1800,
           height: 1013,
+          bordered: true,
         },
       },
       {
@@ -255,6 +256,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           alt: 'The MVP scope: one events workflow in four stages. Leads (Unread, Declined) leads to Requests (All Requests, New Requests, Rejected requests), then Proposals (Sent proposals, Accepted, In Progress, Declined), then Bookings (Upcoming, Past, Cancelled). Unify all event types into one intuitive workflow, whether B2B, B2C, free or commissionable, using distinct event card styling to differentiate them without fragmenting the experience.',
           width: 1800,
           height: 703,
+          bordered: true,
         },
       },
       {

@@ -446,6 +446,9 @@
   }
 }
 
+.case__figure--bordered img {
+  border: var(--line-thin) solid var(--ink);
+}
 .case__figure--image img {
   display: block;
   width: 100%;
