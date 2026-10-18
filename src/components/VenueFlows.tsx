@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import prompt from '../assets/vf-v2-prompt.webp'
 import suggestions from '../assets/vf-v2-suggestions.webp'
 import prescreen from '../assets/vf-v2-prescreen.webp'
@@ -16,27 +15,25 @@ const after = [
 ]
 
 export function VenueShiftDiagram() {
-  const [view, setView] = useState<'existing' | 'proposed'>('existing')
-  const steps = view === 'existing' ? before : after
   return (
     <figure className="vf-flow" aria-label="Existing and proposed Venue Finder workflows">
-      <div className="vf-flow__tabs" role="group" aria-label="Workflow">
-        {(['existing', 'proposed'] as const).map((v) => (
-          <button key={v} type="button" aria-pressed={view === v} onClick={() => setView(v)}>
-            {v === 'existing' ? 'Existing' : 'Proposed'}
-          </button>
-        ))}
-      </div>
-      <div className={`vf-flow__lane${view === 'proposed' ? ' vf-flow__lane--after' : ''}`}>
-        <p className="vf-flow__tag">{view === 'existing' ? 'Venue-led' : 'Guest-led'}</p>
+      <div className="vf-flow__lane">
+        <p className="vf-flow__tag">Existing: venue-led</p>
         <ol className="vf-flow__steps">
-          {steps.map((s) => (
+          {before.map((s) => (
             <li key={s}>{s}</li>
           ))}
         </ol>
-        <p className={`vf-flow__note${view === 'existing' ? ' vf-flow__note--warn' : ''}`}>
-          {view === 'existing' ? 'No venues shown until a venue replies' : 'Venues shown before anything is submitted'}
-        </p>
+        <p className="vf-flow__note vf-flow__note--warn">No venues shown until a venue replies</p>
+      </div>
+      <div className="vf-flow__lane vf-flow__lane--after">
+        <p className="vf-flow__tag">Proposed: guest-led</p>
+        <ol className="vf-flow__steps">
+          {after.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ol>
+        <p className="vf-flow__note">Venues shown before anything is submitted</p>
       </div>
     </figure>
   )
