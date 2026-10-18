@@ -150,46 +150,25 @@ export const principles: Principle[] = [
     number: '1',
     title: "Show, don't tell.",
     body: 'A prototype people can click settles more than a deck. I build to show the idea, then let people react to the real thing.',
-    evidence: [{ source: 'This site', text: 'Designed and built with AI-assisted code in React and TypeScript.' }],
+    evidence: [],
   },
   {
     number: '2',
     title: 'Let the data and research decide.',
     body: 'Opinions start the conversation; evidence ends it.',
-    evidence: [
-      {
-        source: 'HeadBox',
-        text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.',
-      },
-      {
-        source: 'Findmypast',
-        text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.',
-      },
-    ],
+    evidence: [],
   },
   {
     number: '3',
     title: 'Iterative development.',
     body: 'Ship, measure, refine. Each version earns the next.',
-    evidence: [
-      {
-        source: 'HeadBox',
-        text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.',
-      },
-      { source: 'Findmypast', text: 'Two-week experiment cycles took onboarding from eight forms to three.' },
-    ],
+    evidence: [],
   },
   {
     number: '4',
     title: 'Stay curious, stay ambitious.',
     body: 'From architecture to product, and from Kilimanjaro to AI tooling, I keep learning the next thing.',
-    evidence: [
-      {
-        source: 'HeadBox',
-        text: 'Launch in a New City: AI research agents and ops tooling cut launch planning from 12+ weeks to 2.',
-      },
-      { source: 'Memorisely', text: 'AI Coding for Designers, March 2026.' },
-    ],
+    evidence: [],
   },
 ]
 

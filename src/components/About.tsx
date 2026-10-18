@@ -105,14 +105,16 @@ export function About() {
               <div className="principle__text">
                 <h4 className="principle__title">{p.title}</h4>
                 <p>{p.body}</p>
-                <ul className="principle__evidence">
-                  {p.evidence.map((e) => (
-                    <li key={e.text}>
-                      <span className="label">{e.source}</span>
-                      {e.text}
-                    </li>
-                  ))}
-                </ul>
+                {p.evidence.length > 0 && (
+                  <ul className="principle__evidence">
+                    {p.evidence.map((e) => (
+                      <li key={e.text}>
+                        <span className="label">{e.source}</span>
+                        {e.text}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
               <PrincipleParti number={p.number} />
             </li>
