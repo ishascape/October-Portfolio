@@ -12,6 +12,9 @@ import travelQuad from '../assets/travel-quad-biking.webp'
 import hqOverview from '../assets/hosthq-card-overview.webp'
 import hqRequests from '../assets/hosthq-card-requests.webp'
 import hqProposal from '../assets/hosthq-card-proposal.webp'
+import vfStreet from '../assets/vf-card-street.webp'
+import vfSwipe from '../assets/vf-card-swipe.webp'
+import vfDesktop from '../assets/vf-card-desktop.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
 import taLanding from '../assets/ta-card-landing.webp'
@@ -87,6 +90,11 @@ export const caseStudies: CaseStudy[] = [
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 40% shorter journey',
     slug: 'venue-finder',
+    images: [
+      { src: vfStreet, alt: 'A phone held on a London street showing the HeadBox Venue Finder map with 45 matching venues' },
+      { src: vfSwipe, alt: 'A thumb on a phone showing a Venue Finder venue card with I\'m interested and Not for me buttons' },
+      { src: vfDesktop, alt: 'A tablet showing Venue Finder options with venue cards, a map and a How does HeadBox work panel' },
+    ],
   },
   {
     id: 'treeassist',
