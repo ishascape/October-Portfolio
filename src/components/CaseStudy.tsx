@@ -193,14 +193,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   </div>
                 </figure>
               )}
-              {s.figures?.map((f) => (
-                <figure key={f} className="case__figure">
-                  <div className="case__figure-frame" aria-hidden="true">
-                    <span className="label">Image to come</span>
-                  </div>
-                  <figcaption className="annotation">{f}</figcaption>
-                </figure>
-              ))}
               {s.image && (
                 <figure
                   className={`case__figure case__figure--image${s.image.bordered ? ' case__figure--bordered' : ''}`}
@@ -216,6 +208,14 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <figcaption className="annotation">{s.image.caption}</figcaption>
                 </figure>
               )}
+              {s.figures?.map((f) => (
+                <figure key={f} className="case__figure">
+                  <div className="case__figure-frame" aria-hidden="true">
+                    <span className="label">Image to come</span>
+                  </div>
+                  <figcaption className="annotation">{f}</figcaption>
+                </figure>
+              ))}
               {s.figure && (
                 <figure className="case__figure">
                   <div className="case__figure-frame" aria-hidden="true">

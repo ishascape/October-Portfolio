@@ -5,6 +5,7 @@ import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
+import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
@@ -173,6 +174,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '05 · Selected screens',
         heading: 'Key moments in the journey.',
         body: ['Selected screens, with a note on what each key moment does for the guest.'],
+        image: {
+          src: vfCardDesigns,
+          alt: 'Initial recommendation card designs for Venue Finder, in four states: a loading skeleton with a shimmer and pulse note, hover with an Add to enquiry button and image arrows, default, and favourited with Added to enquiry. Each card shows a venue photo, Popular and Responds fast tags, the venue name, location, rating, price band and capacity.',
+          caption: 'Initial recommendation card designs',
+          width: 1492,
+          height: 514,
+        },
         figures: ['Key moment one', 'Key moment two', 'Key moment three'],
       },
       {
