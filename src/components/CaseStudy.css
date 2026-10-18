@@ -312,13 +312,18 @@
 }
 .case__callout {
   display: grid;
-  gap: var(--space-1);
+  gap: var(--space-3);
   padding: var(--space-3);
   border-left: 4px solid var(--marker);
   background: var(--marker-wash);
   color: var(--ink);
   font-size: 16px;
   line-height: 1.5;
+}
+.case__callout p {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
 }
 .case__callout strong {
   font-weight: 600;

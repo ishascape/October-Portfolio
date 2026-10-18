@@ -282,8 +282,12 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <figure className="case__figure">
                     <BookingStatusWidget />
                     <aside className="case__callout">
-                      <strong>{s.bookingStatus.calloutTitle}</strong>
-                      {s.bookingStatus.callout}
+                      {s.bookingStatus.callout.map((c) => (
+                        <p key={c.title}>
+                          <strong>{c.title}</strong>
+                          {c.text}
+                        </p>
+                      ))}
                     </aside>
                   </figure>
                 )}

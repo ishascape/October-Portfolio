@@ -46,7 +46,7 @@ export interface Section {
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
-  bookingStatus?: { calloutTitle: string; callout: string } // the animated booking status widget, below the fourth image
+  bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -295,9 +295,16 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           height: 1024,
         },
         bookingStatus: {
-          calloutTitle: 'Host pain point',
-          callout:
-            'Not knowing how much time has passed between communication, not knowing what next action is pending, especially when an event is being handled by multiple people',
+          callout: [
+            {
+              title: 'Host pain point',
+              text: 'Not knowing how much time has passed between communication, not knowing what next action is pending, especially when an event is being handled by multiple people',
+            },
+            {
+              title: 'Solution',
+              text: 'Clearly suggest the next action for the host to take, put time stamps on each part of the events journey, set up alerts and notifications when an event moves from one section of the workflow to the next.',
+            },
+          ],
         },
       },
       {
