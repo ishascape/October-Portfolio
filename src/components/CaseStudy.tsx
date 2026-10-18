@@ -227,7 +227,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
             </div>
           </div>
           {(s.plan || s.planDiagram || s.planImage || s.planImage3 || s.planImage4 || s.bookingStatus) && (
-            <div className="container case__section-grid case__plan">
+            <div className={`container case__section-grid case__plan${s.planImage3 ? ' case__plan--spaced' : ''}`}>
               <span aria-hidden="true" />
               <div className="case__plan-stack">
                 {s.planImage ? (

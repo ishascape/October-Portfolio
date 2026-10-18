@@ -93,6 +93,9 @@
 .case__plan {
   padding-block: var(--space-4) var(--space-5);
 }
+.case__plan--spaced {
+  padding-top: calc(var(--space-4) + 16px);
+}
 @media (min-width: 900px) {
   .case__visual--image {
     grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
