@@ -52,6 +52,17 @@
   font-size: 17px;
   fill: var(--graphite);
 }
+.sysmap .sysmap__title {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 700;
+  fill: var(--ink);
+  stroke: var(--paper); /* a paper halo keeps lines behind the title from cutting through it */
+  stroke-width: 6px;
+}
+.sysmap .sysmap__title.sysmap__cap--key {
+  fill: var(--marker);
+}
 .sysmap__cap--key,
 .sysmap__note--key {
   fill: var(--marker);

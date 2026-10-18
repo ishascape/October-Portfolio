@@ -290,17 +290,8 @@ function Diagram({ L, clock, still }: { L: Layout; clock: number; still: boolean
 
   return (
     <svg className="sysmap__svg" viewBox={`0 0 ${vw} ${vh}`} aria-hidden="true">
-      <text className="sysmap__cap" x={L.caps.mess[0]} y={L.caps.mess[1]} style={{ opacity: sIn(0) }}>
+      <text className="sysmap__cap sysmap__title" x={L.caps.mess[0]} y={L.caps.mess[1]} style={{ opacity: sIn(0) }}>
         The messy reality
-      </text>
-      <text
-        className="sysmap__cap sysmap__cap--key"
-        x={L.caps.end[0]}
-        y={L.caps.end[1]}
-        textAnchor={L.caps.endAnchor}
-        style={{ opacity: sOut }}
-      >
-        The happy ending
       </text>
 
       {/* Competing priorities and the bottleneck, fading as things settle */}
@@ -573,6 +564,16 @@ function Diagram({ L, clock, still }: { L: Layout; clock: number; still: boolean
           </text>
         </g>
       ))}
+      {/* drawn last so its paper halo clears any line passing behind it */}
+      <text
+        className="sysmap__cap sysmap__cap--key sysmap__title"
+        x={L.caps.end[0]}
+        y={L.caps.end[1]}
+        textAnchor={L.caps.endAnchor}
+        style={{ opacity: sOut }}
+      >
+        The happy ending
+      </text>
     </svg>
   )
 }
@@ -643,7 +644,6 @@ export function SystemsDiagram() {
         actually shipped. Good product design balances what users want, what is worth it for the business, and what is
         feasible to build.
       </p>
-      <figcaption className="annotation">I connect user needs, business goals and technical realities.</figcaption>
     </figure>
   )
 }
