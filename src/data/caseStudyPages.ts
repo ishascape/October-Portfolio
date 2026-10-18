@@ -43,7 +43,7 @@ export interface Section {
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean } // a full-width image under this section
-  planImage3?: { src: string; alt: string; caption: string; width: number; height: number } // a third, below the second
+  planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
@@ -287,6 +287,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             'Filter events: tailored to what the venue is looking for, with notifications for events that match your venue space and availability.',
           width: 1440,
           height: 1024,
+          bordered: true,
         },
       },
       {

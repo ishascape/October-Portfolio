@@ -247,7 +247,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   planFigure
                 ) : null}
                 {s.planImage3 && (
-                  <figure className="case__figure case__figure--image">
+                  <figure
+                    className={`case__figure case__figure--image${s.planImage3.bordered ? ' case__figure--bordered' : ''}`}
+                  >
                     <img
                       src={s.planImage3.src}
                       alt={s.planImage3.alt}
