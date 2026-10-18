@@ -5,6 +5,7 @@ import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
+import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
@@ -174,6 +175,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             result:
               'Lead Feed volume fell 40%. 38% dropped off at the AI input and 27% at account creation. Direct enquiries rose 26%; guests shortlisted 2.2 venues on average.',
             verdict: 'Failed on lead volume, and taught us the most.',
+            image: {
+              src: vfV1Disruptive,
+              alt: 'The V1 flow. Three mobile screens: a how-it-works panel with a free-text "What are you looking for?" prompt and example chips such as Inspire me and Summer party; "We found 45 venues in Shoreditch" with a map and venue carousel above a Name your event form; and Recommended spaces cards with an Add to favourites button. Below, a heatmap of clicks on the prompt chips and a session recording.',
+              width: 1486,
+              height: 1391,
+            },
           },
           {
             name: 'V2 · Moderate',
