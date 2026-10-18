@@ -77,18 +77,14 @@ export const caseStudies: CaseStudy[] = [
       {
         src: hqOverview,
         alt: 'Three HostHQ screens floating around a monitor: proposals with an urgent-requests alert, leads, and Lead Feed reports',
-        fit: 'contain',
-        bg: 'linear-gradient(#dadde6, #eef0f4)', // continues the mockup's own backdrop above and below it
       },
       {
         src: hqRequests,
         alt: 'A laptop showing the HostHQ requests list, with urgent events and Send Proposal buttons',
-        fit: 'contain',
       },
       {
         src: hqProposal,
         alt: 'A tablet showing a HostHQ submitted proposal with booking status and availability',
-        fit: 'contain',
       },
     ],
   },
