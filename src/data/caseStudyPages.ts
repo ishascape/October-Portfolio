@@ -3,6 +3,7 @@
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
 import treeassistHero from '../assets/treeassist-hero.webp'
+import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistDesktop from '../assets/treeassist-desktop.webp'
 
 export interface Metric {
@@ -16,6 +17,7 @@ export interface Experiment {
   change: string
   result: string
   verdict?: string
+  image?: { src: string; alt: string; width: number; height: number } // a real screen, shown beside the text
 }
 
 export interface Section {
@@ -327,6 +329,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             intent: 'Show value straight after sign-up.',
             change: 'Used sign-up details to surface a likely birth record, for users with British or Irish ancestry.',
             result: '60% of users accepted the suggested task.',
+            image: {
+              src: treeassistExp1,
+              alt: 'A phone showing the Findmypast mobile site. "These records match your details. Which one belongs to you?" sits above two civil birth records, the first for Alex Green with the mother\'s maiden name Smith highlighted, and the question "Is this your birth record?" with tick and cross buttons.',
+              width: 1024,
+              height: 2048,
+            },
           },
           {
             name: 'Experiment 2 · Guide the next action',

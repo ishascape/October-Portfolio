@@ -171,8 +171,19 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               {s.experiments && (
                 <ol className="case__experiments">
                   {s.experiments.map((e) => (
-                    <li key={e.name}>
+                    <li key={e.name} className={e.image ? 'case__experiment--image' : undefined}>
                       <h3 className="label">{e.name}</h3>
+                      {e.image && (
+                        <img
+                          className="case__experiment-image"
+                          src={e.image.src}
+                          alt={e.image.alt}
+                          width={e.image.width}
+                          height={e.image.height}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
                       <dl>
                         <div>
                           <dt className="label">Intent</dt>

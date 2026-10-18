@@ -313,6 +313,39 @@
   color: var(--graphite);
 }
 
+/* An experiment with a screen: image on the left, intent, change and result stacked on the right. */
+.case__experiment-image {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin-inline: auto;
+}
+@media (min-width: 760px) {
+  .case__experiments > .case__experiment--image {
+    grid-template-columns: 60% minmax(0, 1fr);
+    column-gap: var(--space-4); /* 24px between image and text */
+    align-content: start;
+  }
+  .case__experiment--image h3 {
+    grid-column: 1 / -1;
+  }
+  .case__experiment--image .case__experiment-image {
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    max-width: none;
+    margin: 0;
+  }
+  .case__experiments .case__experiment--image dl {
+    grid-column: 2;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+  .case__experiment--image .case__verdict {
+    grid-column: 2;
+  }
+}
+
 @media (min-width: 600px) {
   .case__ps {
     grid-template-columns: 1fr 1fr;
