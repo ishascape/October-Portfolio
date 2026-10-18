@@ -44,8 +44,39 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: 'hosthq',
+    id: 'venue-finder',
     number: '01',
+    title: 'Venue Finder',
+    summary: 'An AI-assisted way to find venues, replacing a 13-step brief builder.',
+    company: 'HeadBox',
+    district: 'HeadBox',
+    role: 'Sole product designer, team of 4 engineers · 2 months',
+    leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
+    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
+    system:
+      'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
+    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
+    existing: '13-step brief builder · 83% drop-off',
+    proposed: 'AI-assisted venue finder · 40% shorter journey',
+    slug: 'venue-finder',
+    images: [
+      {
+        src: vfPhone,
+        alt: 'A hand holding a phone and tapping the HeadBox Venue Finder screen: a Junsei venue card with Spotlight and Responds fast tags and I’m interested and Not for me buttons',
+      },
+      {
+        src: vfJourney,
+        alt: 'The Venue Finder 2.0 desktop prompt-input flow in Figma: a journey map with notes above the Start, Prompt and 1st recommendations screens, each annotated.',
+      },
+      {
+        src: vfDesktop,
+        alt: 'A tablet showing Venue Finder options with venue cards, a map and a How does HeadBox work panel',
+      },
+    ],
+  },
+  {
+    id: 'hosthq',
+    number: '02',
     title: 'HostHQ',
     summary: 'Four separate host tools combined into one platform.',
     company: 'HeadBox',
@@ -72,37 +103,6 @@ export const caseStudies: CaseStudy[] = [
         src: hqProposal,
         fit: 'contain',
         alt: 'The HostHQ proposal screen on a desktop monitor: a sent proposal for an investor meeting with its booking status, the chosen space, pricing details and a message to the guest.',
-      },
-    ],
-  },
-  {
-    id: 'venue-finder',
-    number: '02',
-    title: 'Venue Finder',
-    summary: 'An AI-assisted way to find venues, replacing a 13-step brief builder.',
-    company: 'HeadBox',
-    district: 'HeadBox',
-    role: 'Sole product designer, team of 4 engineers · 2 months',
-    leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
-    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
-    system:
-      'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
-    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
-    existing: '13-step brief builder · 83% drop-off',
-    proposed: 'AI-assisted venue finder · 40% shorter journey',
-    slug: 'venue-finder',
-    images: [
-      {
-        src: vfPhone,
-        alt: 'A hand holding a phone and tapping the HeadBox Venue Finder screen: a Junsei venue card with Spotlight and Responds fast tags and I’m interested and Not for me buttons',
-      },
-      {
-        src: vfJourney,
-        alt: 'The Venue Finder 2.0 desktop prompt-input flow in Figma: a journey map with notes above the Start, Prompt and 1st recommendations screens, each annotated.',
-      },
-      {
-        src: vfDesktop,
-        alt: 'A tablet showing Venue Finder options with venue cards, a map and a How does HeadBox work panel',
       },
     ],
   },
