@@ -6,6 +6,9 @@ import riding from '../assets/ashni-riding.webp'
 import planting from '../assets/ashni-planting.webp'
 import gigOrchestra from '../assets/gig-orchestra.webp'
 import gigLornaShore from '../assets/gig-lorna-shore.webp'
+import travelDiving from '../assets/travel-diving.webp'
+import travelBallooning from '../assets/travel-ballooning.webp'
+import travelQuad from '../assets/travel-quad-biking.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
 import taLanding from '../assets/ta-card-landing.webp'
@@ -243,8 +246,30 @@ export const fieldNotes: FieldNote[] = [
     src: gigLornaShore,
     alt: 'A singer with pink hair holding a microphone above the crowd, a drummer behind them and a screen of orange flames glowing in red stage light.',
   },
-  { fig: '09', group: 'Travel', caption: 'Fig. 09. Summit, to come', ratio: '4 / 5' },
-  { fig: '10', group: 'Travel', caption: 'Fig. 10. Everest Base Camp, to come', ratio: '3 / 2' },
+  {
+    fig: '09',
+    group: 'Exploring the planet',
+    caption: 'Fig. 09. Diving, Great Barrier Reef, AU',
+    ratio: '25 / 16',
+    src: travelDiving,
+    alt: 'A scuba diver in a black wetsuit with an orange tank swims over a coral reef in blue water.',
+  },
+  {
+    fig: '10',
+    group: 'Exploring the planet',
+    caption: 'Fig. 10. Ballooning, Masai Mara, KE',
+    ratio: '1 / 1',
+    src: travelBallooning,
+    alt: 'A hot air balloon basket full of waving passengers, seen from above, with its burner flaring over the green plains of the Masai Mara.',
+  },
+  {
+    fig: '11',
+    group: 'Exploring the planet',
+    caption: 'Fig. 11. Quad biking, Queenstown, NZ',
+    ratio: '4 / 3',
+    src: travelQuad,
+    alt: 'Ashni in a helmet and waterproofs standing on a red quad bike with both arms raised, above a blue lake and mountains near Queenstown.',
+  },
 ]
 
 // Ashni, 15 Oct 2026: permanent or contract; design, product or operator roles. No mention of visa sponsorship.
