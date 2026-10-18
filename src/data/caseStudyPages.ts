@@ -2,6 +2,7 @@
 // The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
+import treeassistHero from '../assets/treeassist-hero.webp'
 
 export interface Metric {
   value: string
@@ -45,6 +46,9 @@ export interface CaseSummary {
 export interface CaseStudyPage {
   id: CaseStudyId
   summary: CaseSummary
+  // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
+  // under the first section instead of the header.
+  heroImage?: { src: string; alt: string }
   kicker: string
   subtitle: string
   meta: { label: string; value: string }[]
@@ -125,7 +129,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           {
             name: 'V1 · Disruptive',
             intent: 'Capture intent up front and show venues before a brief is submitted.',
-            change: 'An AI prompt, venue recommendations before submission, a required account-creation step and multi-venue selection.',
+            change:
+              'An AI prompt, venue recommendations before submission, a required account-creation step and multi-venue selection.',
             result:
               'Lead Feed volume fell 40%. 38% of users dropped off at the AI input and 27% at account creation. Direct enquiries rose 26%, and guests shortlisted 2.2 venues on average.',
             verdict: 'Failed, and taught us the most.',
@@ -236,7 +241,10 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             text: 'Legacy dependencies blocked a full integration, so it was embedded in the proposal flow and the migration was deferred.',
           },
           { title: 'Reporting', text: 'The data needed cleaning first, so we shipped marketplace reporting only.' },
-          { title: 'Performance', text: 'Migrating the data slowed version 1 load times for hosts with large datasets.' },
+          {
+            title: 'Performance',
+            text: 'Migrating the data slowed version 1 load times for hosts with large datasets.',
+          },
           { title: 'Mobile', text: 'The MVP was desktop-only, because hosts work mainly on desktop.' },
         ],
         figure: 'One Platform dashboard and proposal builder',
@@ -265,6 +273,10 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
 
   treeassist: {
     id: 'treeassist',
+    heroImage: {
+      src: treeassistHero,
+      alt: 'Five phones at an angle showing the TreeAssist onboarding in the Findmypast mobile site: a "Let\'s build your tree together" welcome screen with a Get started button, an "Add a mother" form, a success message about a maiden name added, and the family tree view.',
+    },
     summary: {
       role: {
         text: 'Product Designer, working with the Lead Product Designer, a PM, data science and engineering for 2 months. I owned the UI and the experiment design for the three tests below, and the team lead guided strategy.',
@@ -323,7 +335,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           {
             name: 'Experiment 3 · Interactive onboarding',
             intent: 'Reach the core product faster.',
-            change: 'Cut onboarding from 8 forms to 3, then moved users into AI-assisted tree building with suggested relatives.',
+            change:
+              'Cut onboarding from 8 forms to 3, then moved users into AI-assisted tree building with suggested relatives.',
             result: 'Onboarding drop-off fell 13%, and activation rose.',
           },
         ],

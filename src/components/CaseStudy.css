@@ -81,6 +81,23 @@
   }
 }
 
+.case__hero-image {
+  margin: 0;
+}
+.case__hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.case__plan {
+  padding-block: var(--space-4) var(--space-5);
+}
+@media (min-width: 900px) {
+  .case__visual--image {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  }
+}
+
 .case__meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

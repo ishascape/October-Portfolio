@@ -15,6 +15,20 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
   const next = caseStudies[(index + 1) % caseStudies.length]
   const Art = buildingArt[id]
 
+  const planFigure = (
+    <figure className="case__drawing">
+      <svg className="plan" data-mode={mode} viewBox="-12 -12 324 224" aria-hidden="true">
+        <g className="plan__art">
+          <Art />
+        </g>
+      </svg>
+      <figcaption>
+        <ModeSwitch mode={mode} onChange={setMode} />
+        <span className="label case__state">{mode === 'existing' ? study.existing : study.proposed}</span>
+      </figcaption>
+    </figure>
+  )
+
   return (
     <article className="case" aria-labelledby="case-title">
       <header className="case__header">
@@ -33,18 +47,21 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <p className="case__subtitle">{page.subtitle}</p>
             </div>
 
-            <div className="case__visual">
-              <figure className="case__drawing">
-                <svg className="plan" data-mode={mode} viewBox="-12 -12 324 224" aria-hidden="true">
-                  <g className="plan__art">
-                    <Art />
-                  </g>
-                </svg>
-                <figcaption>
-                  <ModeSwitch mode={mode} onChange={setMode} />
-                  <span className="label case__state">{mode === 'existing' ? study.existing : study.proposed}</span>
-                </figcaption>
-              </figure>
+            <div className={page.heroImage ? 'case__visual case__visual--image' : 'case__visual'}>
+              {page.heroImage ? (
+                <figure className="case__hero-image">
+                  <img
+                    src={page.heroImage.src}
+                    alt={page.heroImage.alt}
+                    width={1800}
+                    height={1111}
+                    fetchPriority="high"
+                    decoding="async"
+                  />
+                </figure>
+              ) : (
+                planFigure
+              )}
               <dl className="case__meta">
                 {page.meta.map((m) => (
                   <div key={m.label}>
@@ -111,7 +128,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         </div>
       </section>
 
-      {page.sections.map((s) => (
+      {page.sections.map((s, index) => (
         <section key={s.label} className="case__section">
           <div className="container case__section-grid">
             <p className="label case__section-label">{s.label}</p>
@@ -192,6 +209,12 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
+          {index === 0 && page.heroImage && (
+            <div className="container case__section-grid case__plan">
+              <span aria-hidden="true" />
+              {planFigure}
+            </div>
+          )}
           {s.diagram && (
             <div className="container case__diagram">
               <SystemsDiagram />
