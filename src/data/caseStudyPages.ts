@@ -7,6 +7,7 @@ import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
+import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
@@ -44,6 +45,7 @@ export interface Section {
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
+  planImage4?: { src: string; alt: string; width: number; height: number } // a fourth, below the third
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
@@ -279,7 +281,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           { title: 'Mobile', text: 'Desktop-only, as hosts work mainly on desktop.' },
         ],
-        figure: 'One Platform dashboard and proposal builder',
         planImage3: {
           src: hosthqFilterEvents,
           alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',
@@ -288,6 +289,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           width: 1440,
           height: 1024,
           bordered: true,
+        },
+        planImage4: {
+          src: hosthqProposalAccepted,
+          alt: 'The HostHQ proposal screen after a guest accepts: a "John accepted your proposal" banner with the guest\'s verified contact details and a Confirm Booking button, a booking status timeline, and the space and pricing details of the proposal below.',
+          width: 1440,
+          height: 1024,
         },
       },
       {

@@ -224,7 +224,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
-          {(s.plan || s.planImage || s.planImage3) && (
+          {(s.plan || s.planImage || s.planImage3 || s.planImage4) && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
               <div className="case__plan-stack">
@@ -259,6 +259,18 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                       decoding="async"
                     />
                     <figcaption className="annotation">{s.planImage3.caption}</figcaption>
+                  </figure>
+                )}
+                {s.planImage4 && (
+                  <figure className="case__figure case__figure--image">
+                    <img
+                      src={s.planImage4.src}
+                      alt={s.planImage4.alt}
+                      width={s.planImage4.width}
+                      height={s.planImage4.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </figure>
                 )}
                 {s.planImage2 && (
