@@ -53,7 +53,6 @@
   fill: none;
   stroke: var(--ink);
   stroke-width: 2;
-  transition: stroke 0.25s var(--ease-pen);
 }
 .ia__box--parent {
   stroke-width: 2.25;
@@ -75,7 +74,6 @@
 .ia__edge {
   stroke: var(--ink);
   stroke-width: 1.5;
-  transition: stroke 0.25s var(--ease-pen);
 }
 .ia__edge--flow {
   stroke-width: 2;
@@ -93,7 +91,6 @@
   stroke-width: 1.75;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: stroke 0.25s var(--ease-pen);
 }
 .ia__head--link,
 .ia__head[data-hot='true'] {
@@ -114,7 +111,6 @@
 .ia__fill {
   fill: #fbfaf5;
   stroke: none;
-  transition: fill 0.25s var(--ease-pen);
 }
 .ia__fill--key {
   fill: #e9eef8;
@@ -168,50 +164,10 @@
   line-height: 1.45;
 }
 
-/* The lines draw in once as the section scrolls into view; before that they wait, drawn but hidden. */
-.ia[data-state='ready'] .ia__edge:not(.ia__edge--note),
-.ia[data-state='in'] .ia__edge:not(.ia__edge--note) {
-  stroke-dasharray: 1;
-  transition:
-    stroke-dashoffset 0.6s var(--ease-pen),
-    stroke 0.25s var(--ease-pen);
-  transition-delay: calc(var(--i) * 25ms + 200ms), 0s;
-}
-.ia[data-state='ready'] .ia__edge:not(.ia__edge--note) {
-  stroke-dashoffset: 1;
-}
-.ia[data-state='in'] .ia__edge:not(.ia__edge--note) {
-  stroke-dashoffset: 0;
-}
-.ia[data-state='ready'] .ia__node,
-.ia[data-state='ready'] .ia__box,
-.ia[data-state='ready'] .ia__head,
-.ia[data-state='ready'] .ia__scope,
-.ia[data-state='ready'] .ia__group,
-.ia[data-state='ready'] .ia__notes {
-  opacity: 0;
-}
-.ia[data-state='in'] .ia__node,
-.ia[data-state='in'] .ia__box,
-.ia[data-state='in'] .ia__head,
-.ia[data-state='in'] .ia__scope,
-.ia[data-state='in'] .ia__group,
-.ia[data-state='in'] .ia__notes {
-  opacity: 1;
-  transition: opacity 0.5s var(--ease-pen) calc(var(--i, 0) * 25ms + 150ms);
-}
-.ia[data-state='in'] .ia__scope {
-  transition-delay: 0.9s;
-}
-.ia[data-state='in'] .ia__notes {
-  transition-delay: 1.4s;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .ia__edge,
   .ia__box,
   .ia__head,
   .ia__fill {
-    transition: none !important;
   }
 }

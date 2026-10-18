@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { sketchRectPath } from './Sketch'
 import './TreeAssistFlow.css'
 import './HostHqIaDiagram.css'
@@ -392,31 +391,12 @@ function Drawing({
 }
 
 export function HostHqIaDiagram() {
-  const ref = useRef<HTMLElement>(null)
-  const [state, setState] = useState<'static' | 'ready' | 'in'>('static')
-  const [hot, setHot] = useState<string | null>(null)
-
-  // The lines draw in once as the section enters the viewport. Without JavaScript, or with
-  // reduced motion, the diagram is simply drawn.
-  useEffect(() => {
-    const el = ref.current
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window))
-      return
-    setState('ready')
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return
-        setState('in')
-        io.disconnect()
-      },
-      { threshold: 0.25 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
+  // A still drawing: no entrance animation and no hover effects.
+  const hot = null
+  const setHot = () => {}
 
   return (
-    <figure className="flow ia" ref={ref} data-state={state}>
+    <figure className="flow ia">
       <div className="flow__bar">
         <p className="flow__story">
           <strong>MVP scope.</strong> The first connected workflow.
