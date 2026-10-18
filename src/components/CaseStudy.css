@@ -310,6 +310,19 @@
 .case__figure figcaption {
   color: var(--graphite);
 }
+.case__callout {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-left: 4px solid var(--marker);
+  background: var(--marker-wash);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.case__callout strong {
+  font-weight: 600;
+}
 .case__figure figcaption.case__figure-title {
   color: var(--ink);
   font-weight: 600;

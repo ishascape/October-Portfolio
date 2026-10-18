@@ -281,7 +281,10 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                 {s.bookingStatus && (
                   <figure className="case__figure">
                     <BookingStatusWidget />
-                    <figcaption className="annotation">{s.bookingStatus.caption}</figcaption>
+                    <aside className="case__callout">
+                      <strong>{s.bookingStatus.calloutTitle}</strong>
+                      {s.bookingStatus.callout}
+                    </aside>
                   </figure>
                 )}
                 {s.planImage2 && (
