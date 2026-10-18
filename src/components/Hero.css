@@ -132,10 +132,10 @@
   mask-image: radial-gradient(circle 40px at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 92%, transparent 100%);
   transition: opacity var(--dur-micro) var(--ease-pen);
 }
-.hero__piece--tl[data-reveal] {
+.hero__piece--face[data-reveal] {
   cursor: crosshair;
 }
-.hero__piece--tl[data-reveal] .hero__piece-sketch {
+.hero__piece--face[data-reveal] .hero__piece-sketch {
   opacity: 1;
 }
 .hero__piece-todo {

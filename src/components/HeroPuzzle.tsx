@@ -1,17 +1,36 @@
 import { useEffect, useRef, useState } from 'react'
 import portrait from '../assets/ashni-portrait.webp'
+import heroUi from '../assets/hero-ui.webp'
+import heroMap from '../assets/hero-map.webp'
+import heroProto from '../assets/hero-proto.webp'
 import portraitSketch from '../assets/ashni-portrait-sketch.webp'
 import { revealAt, revealEnd } from './reveal'
 
 // Four portrait cards that sit slightly apart and slide together on hover (or once the reader scrolls on).
-// One card is the portrait; the others stay labelled placeholders until the real images arrive.
+// One card is the portrait; the others show real work.
 // Hovering shows what each card stands for.
 
 const cards = [
-  { id: 'tl', label: 'Face card', photo: true },
-  { id: 'tr', label: 'UX/UI design' },
-  { id: 'bl', label: 'Workshops & ideation' },
-  { id: 'br', label: 'Crossfunctional work' },
+  {
+    id: 'tl',
+    label: 'UI & Design Systems',
+    src: heroUi,
+    alt: 'A button design-system sheet showing enabled, disabled, hovered, focused and pressed states.',
+  },
+  { id: 'tr', label: 'Face card', photo: true },
+  {
+    id: 'bl',
+    label: 'Prototyping & testing',
+    src: heroProto,
+    alt: 'A phone held on a London street showing the HeadBox Venue Finder prototype with a map of matching venues.',
+  },
+  {
+    id: 'br',
+    label: 'Ideation & UX mapping',
+    src: heroMap,
+    pos: '0% 50%',
+    alt: 'A HeadBox ecosystem map of the venue self-serve system, drawn as lanes of user steps.',
+  },
 ]
 
 export function HeroPuzzle() {
@@ -31,7 +50,7 @@ export function HeroPuzzle() {
     <div
       className="hero__puzzle"
       role="group"
-      aria-label="Four cards: face card, UX/UI design, workshops and ideation, crossfunctional work"
+      aria-label="Four cards: UI and design systems, face card, prototyping and testing, ideation and UX mapping"
       tabIndex={0}
       onFocus={() => setHover(true)}
       onBlur={() => setHover(false)}
@@ -49,7 +68,7 @@ export function HeroPuzzle() {
       {cards.map((c, n) => (
         <div
           key={c.id}
-          className={`hero__piece hero__piece--${c.id}`}
+          className={`hero__piece hero__piece--${c.id}${c.photo ? ' hero__piece--face' : ''}`}
           style={{ ['--n' as string]: n }}
           onPointerMove={c.photo ? revealAt : undefined}
           onPointerLeave={c.photo ? revealEnd : undefined}
@@ -70,7 +89,16 @@ export function HeroPuzzle() {
               </div>
             </>
           ) : (
-            <span className="hero__piece-todo">Image to come</span>
+            <img
+              className="hero__piece-photo"
+              style={c.pos ? { objectPosition: c.pos } : undefined}
+              src={c.src}
+              alt={c.alt}
+              width={960}
+              height={1056}
+              loading="lazy"
+              decoding="async"
+            />
           )}
           <span className="hero__piece-label">{c.label}</span>
         </div>
