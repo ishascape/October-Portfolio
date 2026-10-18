@@ -188,7 +188,7 @@ const skills: Skill[] = [
   {
     title: 'B2B SaaS & platform design',
     drawing: PlatformParti,
-    text: "Turning complex workflows into simple, scalable products. Redesigned HostHQ, merging four host tools into one.",
+    text: 'Turning complex workflows into simple, scalable products. Redesigned HostHQ, merging four host tools into one.',
     hover: [{ h: 'right', to: 'translateX(-6px)' }],
   },
   {
