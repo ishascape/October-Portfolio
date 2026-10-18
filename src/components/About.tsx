@@ -32,17 +32,17 @@ export function About() {
           </div>
           <div className="about__body">
             <p>I trained as an architect in the UK. Turns out, I never stopped thinking like one.</p>
-            <p className="about__mantra">Understand the site. Question the brief. Design for the people who use it.</p>
+            <p className="about__mantra">Understand the space. Challenge the brief. Design for the people using it.</p>
             <p>
-              Today, I apply that thinking to digital products — untangling complex workflows, connecting user needs
-              with business goals, and making the complicated feel effortless.
+              These days, I do that with digital products. Untangling messy workflows, connecting the dots between
+              people and systems, and making complicated things feel simple.
             </p>
             <p>
-              Most recently, I shaped B2B and marketplace experiences at HeadBox, following work across growth, core
-              product and monetisation at Findmypast.
+              I&apos;ve worked across B2B SaaS, marketplaces and growth at HeadBox and Findmypast, designing experiences
+              that work for users and make business sense.
             </p>
             <p className="about__note">
-              And this portfolio? Designed by me. Built with React, TypeScript and a lot of help from AI.
+              And this portfolio? Designed by me. Built with React, TypeScript and a little help from AI tools :)
             </p>
           </div>
         </div>
