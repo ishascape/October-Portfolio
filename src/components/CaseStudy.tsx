@@ -173,6 +173,24 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   ))}
                 </ol>
               )}
+              {s.quotes && (
+                <figure className="case__quotes">
+                  <div className="case__quote-cards">
+                    {s.quotes.map((q) => (
+                      <blockquote key={q.name} className={`case__quote${q.dark ? ' case__quote--dark' : ''}`}>
+                        <p className="case__quote-name">
+                          {q.name}
+                          <span>{q.role}</span>
+                        </p>
+                        {q.lines.map((l) => (
+                          <p key={l}>“{l}”</p>
+                        ))}
+                      </blockquote>
+                    ))}
+                  </div>
+                  {s.quotesCaption && <figcaption className="annotation">{s.quotesCaption}</figcaption>}
+                </figure>
+              )}
               {s.figures?.map((f) => (
                 <figure key={f} className="case__figure">
                   <div className="case__figure-frame" aria-hidden="true">

@@ -218,6 +218,47 @@
   font-weight: 600;
 }
 
+.case__quotes {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+.case__quote-cards {
+  display: grid;
+  gap: var(--space-3);
+}
+@media (min-width: 700px) {
+  .case__quote-cards {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.case__quote {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-4);
+  border: var(--line-building) solid var(--ink);
+  border-radius: 20px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.case__quote--dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+.case__quote p {
+  margin: 0;
+}
+.case__quote-name {
+  font-weight: 600;
+}
+.case__quote-name span {
+  display: block;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
 .case__experiments {
   display: grid;
   gap: var(--space-3);

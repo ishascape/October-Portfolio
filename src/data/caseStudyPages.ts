@@ -6,7 +6,6 @@ import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
-import vfGuestQuotes from '../assets/venue-finder-guest-quotes.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
@@ -38,6 +37,8 @@ export interface Section {
   body?: string[]
   list?: { title?: string; text: string }[]
   experiments?: Experiment[]
+  quotes?: { name: string; role: string; lines: string[]; dark?: boolean }[] // pull quotes from interviews, as cards
+  quotesCaption?: string // hand-lettered line under the quote cards
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
@@ -98,14 +99,27 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'HeadBox had done no guest research in over four years, so I interviewed 10 event bookers. Every brief had one fixed requirement, and venues that missed it were rejected at once.',
           'Hypothesis: capturing intent and encouraging shortlisting before submission means fewer, more valuable briefs for hosts.',
         ],
-        figure: 'Research synthesis',
-        planImage3: {
-          src: vfGuestQuotes,
-          alt: 'Guest quotes from interviews. Examples: "I felt like I was being sold to rather than helped", "I wish there were links to social media or their website, I want to do more research before matching", and "Let me message the venue right inside HeadBox. I don’t want to switch to email or WhatsApp."',
-          caption: 'Quotes from guest user interviews - 5 corporate bookers, 5 social bookers',
-          width: 1654,
-          height: 888,
-        },
+        quotes: [
+          {
+            name: 'Stephanie',
+            role: 'Corporate booker',
+            lines: [
+              'Once I found my venue, I ignored the rest of the emails. There were so many. I felt bad, but it was too much.',
+              'WhatsApp is much better — email feels too formal. With WhatsApp, I can just reply with one word.',
+            ],
+          },
+          {
+            name: 'Barney',
+            role: 'Social booker',
+            dark: true,
+            lines: [
+              'All of you – Tagvenue, HeadBox – you’re a nightmare. Too many emails. It’s just so much.',
+              'All I need is one: a confirmation that it’s received, and then one to confirm the meeting. That’s it. Less is more.',
+              'I have to read and delete every one just in case it’s important. That’s wasting my time.',
+            ],
+          },
+        ],
+        quotesCaption: 'Quotes from guest user interviews - 5 corporate bookers, 5 social bookers',
       },
       {
         label: '03 · The system',
