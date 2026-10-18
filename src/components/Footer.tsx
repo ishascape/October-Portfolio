@@ -55,98 +55,104 @@ export function Footer({ onHome }: { onHome: boolean }) {
               </figcaption>
             </figure>
 
-            <dl className="titlesheet__legend">
-              <div className="titlesheet__row titlesheet__row--name">
-                <dt className="label titlesheet__field">Drawn by</dt>
-                <dd className="titlesheet__name">Ashni Dave &amp; Claude</dd>
-              </div>
-              <div className="titlesheet__row">
-                <dt className="label titlesheet__field">Role</dt>
-                <dd>Senior Product Designer</dd>
-              </div>
-              <div className="titlesheet__row">
-                <dt className="label titlesheet__field">Availability</dt>
-                <dd>{availability.short}</dd>
-              </div>
-              <div className="titlesheet__row">
-                <dt className="label titlesheet__field">Email</dt>
-                <dd>
-                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
-                </dd>
-              </div>
-              {contact.linkedin && (
+            <div className="titlesheet__side">
+              <dl className="titlesheet__legend">
+                <div className="titlesheet__row titlesheet__row--name">
+                  <dt className="label titlesheet__field">Drawn by</dt>
+                  <dd className="titlesheet__name">Ashni Dave &amp; Claude</dd>
+                </div>
                 <div className="titlesheet__row">
-                  <dt className="label titlesheet__field">LinkedIn</dt>
+                  <dt className="label titlesheet__field">Role</dt>
+                  <dd>Senior Product Designer</dd>
+                </div>
+                <div className="titlesheet__row">
+                  <dt className="label titlesheet__field">Availability</dt>
+                  <dd>{availability.short}</dd>
+                </div>
+                <div className="titlesheet__row">
+                  <dt className="label titlesheet__field">Email</dt>
                   <dd>
-                    <a href={contact.linkedin} target="_blank" rel="noreferrer">
-                      {linkedinHandle} <span aria-hidden="true">↗</span>
-                    </a>
+                    <a href={`mailto:${contact.email}`}>{contact.email}</a>
                   </dd>
                 </div>
-              )}
-              <div className="titlesheet__row">
-                <dt className="label titlesheet__field">Sheets</dt>
-                <dd>
-                  <nav aria-label="Sheet index">
-                    <ul className="titlesheet__index">
-                      <li>
-                        <a href={sectionHref('top', onHome)}>00 Introduction</a>
-                      </li>
-                      <li>
-                        <a href={sectionHref('work', onHome)}>01 Work</a>
-                      </li>
-                      <li>
-                        <a href={sectionHref('about', onHome)}>02 About</a>
-                      </li>
-                      <li>
-                        <a href={sectionHref('contact', onHome)}>03 Contact</a>
-                      </li>
-                      {contact.resume && (
+                {contact.linkedin && (
+                  <div className="titlesheet__row">
+                    <dt className="label titlesheet__field">LinkedIn</dt>
+                    <dd>
+                      <a href={contact.linkedin} target="_blank" rel="noreferrer">
+                        {linkedinHandle} <span aria-hidden="true">↗</span>
+                      </a>
+                    </dd>
+                  </div>
+                )}
+                <div className="titlesheet__row">
+                  <dt className="label titlesheet__field">Sheets</dt>
+                  <dd>
+                    <nav aria-label="Sheet index">
+                      <ul className="titlesheet__index">
                         <li>
-                          <a href={contact.resume} target="_blank" rel="noreferrer">
-                            Resume <span aria-hidden="true">↗</span>
-                          </a>
+                          <a href={sectionHref('top', onHome)}>00 Introduction</a>
                         </li>
-                      )}
-                    </ul>
-                  </nav>
-                </dd>
+                        <li>
+                          <a href={sectionHref('work', onHome)}>01 Work</a>
+                        </li>
+                        <li>
+                          <a href={sectionHref('about', onHome)}>02 About</a>
+                        </li>
+                        <li>
+                          <a href={sectionHref('contact', onHome)}>03 Contact</a>
+                        </li>
+                        {contact.resume && (
+                          <li>
+                            <a href={contact.resume} target="_blank" rel="noreferrer">
+                              Resume <span aria-hidden="true">↗</span>
+                            </a>
+                          </li>
+                        )}
+                      </ul>
+                    </nav>
+                  </dd>
+                </div>
+              </dl>
+              <div className="titlesheet__signrow">
+                <dl className="titlesheet__legend">
+                  <div className="titlesheet__row titlesheet__row--sign">
+                    <dt className="label titlesheet__field">Signed off by</dt>
+                    <dd>
+                      <span className="titlesheet__signature" aria-hidden="true">
+                        Ashni
+                        <svg className="titlesheet__smile" viewBox="0 0 32 24">
+                          <path d="M15 1.8 C8 1.6 4.8 6.6 5.2 12.4 C5.6 18.6 10.4 22.4 16.4 22.1 C22.8 21.8 27 17.4 26.6 11.4 C26.3 5.6 22 1.9 16.8 1.6 C14.6 1.5 12.8 2.2 11.4 3.2" />
+                          <path d="M11.5 9.5 v1.4 M20.5 9.5 v1.4" />
+                          <path d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />
+                        </svg>
+                      </span>
+                      <span className="titlesheet__signatory">
+                        Ashni Dave <span className="titlesheet__title">[Project Lead]</span>
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+                <dl className="titlesheet__legend titlesheet__row--meta label">
+                  <div>
+                    <dt className="titlesheet__field">Date</dt>
+                    <dd>2026</dd>
+                  </div>
+                  <div>
+                    <dt className="titlesheet__field">Rev</dt>
+                    <dd>E</dd>
+                  </div>
+                  <div>
+                    <dt className="titlesheet__field">Scale</dt>
+                    <dd>Responsive NTS</dd>
+                  </div>
+                  <div>
+                    <dt className="titlesheet__field">Sheet</dt>
+                    <dd>04 / 04</dd>
+                  </div>
+                </dl>
               </div>
-              <div className="titlesheet__row titlesheet__row--sign">
-                <dt className="label titlesheet__field">Signed off by</dt>
-                <dd>
-                  <span className="titlesheet__signature" aria-hidden="true">
-                    Ashni
-                    <svg className="titlesheet__smile" viewBox="0 0 32 24">
-                      <path d="M15 1.8 C8 1.6 4.8 6.6 5.2 12.4 C5.6 18.6 10.4 22.4 16.4 22.1 C22.8 21.8 27 17.4 26.6 11.4 C26.3 5.6 22 1.9 16.8 1.6 C14.6 1.5 12.8 2.2 11.4 3.2" />
-                      <path d="M11.5 9.5 v1.4 M20.5 9.5 v1.4" />
-                      <path d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />
-                    </svg>
-                  </span>
-                  <span className="titlesheet__signatory">
-                    Ashni Dave <span className="titlesheet__title">[Project Lead]</span>
-                  </span>
-                </dd>
-              </div>
-            </dl>
-            <dl className="titlesheet__legend titlesheet__row--meta label">
-              <div>
-                <dt className="titlesheet__field">Date</dt>
-                <dd>2026</dd>
-              </div>
-              <div>
-                <dt className="titlesheet__field">Rev</dt>
-                <dd>E</dd>
-              </div>
-              <div>
-                <dt className="titlesheet__field">Scale</dt>
-                <dd>Responsive NTS</dd>
-              </div>
-              <div>
-                <dt className="titlesheet__field">Sheet</dt>
-                <dd>04 / 04</dd>
-              </div>
-            </dl>
+            </div>
           </div>
         )}
         <div className={`footer__bar${onHome ? '' : ' footer__bar--plain'}`}>

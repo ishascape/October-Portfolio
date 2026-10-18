@@ -193,6 +193,15 @@
   font-weight: 600;
 }
 
+.titlesheet__side {
+  display: grid;
+  align-content: start;
+}
+/* Signed off by shares a row with the date, rev, scale and sheet cells. */
+.titlesheet__signrow {
+  display: grid;
+  border-top: var(--line-thin) solid var(--ink);
+}
 .titlesheet__legend {
   display: grid;
   margin: 0;
@@ -235,6 +244,9 @@
 }
 .titlesheet__row--meta {
   grid-template-columns: repeat(4, 1fr);
+}
+.footer .titlesheet__signrow .titlesheet__row--meta {
+  border-top: var(--line-thin) solid var(--ink);
 }
 .titlesheet__row--meta > div + div {
   border-left: var(--line-thin) solid var(--ink);
@@ -330,5 +342,16 @@
   .titlesheet__plan {
     border-bottom: 0;
     border-right: var(--line-thin) solid var(--ink);
+  }
+}
+
+@media (min-width: 600px) {
+  .titlesheet__signrow {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 2fr);
+  }
+  .footer .titlesheet__signrow .titlesheet__row--meta {
+    border-top: 0;
+    border-left: var(--line-thin) solid var(--ink);
+    grid-template-columns: repeat(4, auto);
   }
 }
