@@ -9,6 +9,7 @@ import gigLornaShore from '../assets/gig-lorna-shore.webp'
 import travelDiving from '../assets/travel-diving.webp'
 import travelBallooning from '../assets/travel-ballooning.webp'
 import travelQuad from '../assets/travel-quad-biking.webp'
+import hqWorkspace from '../assets/hosthq-card-workspace.webp'
 import hqOverview from '../assets/hosthq-card-overview.webp'
 import hqRequests from '../assets/hosthq-card-requests.webp'
 import hqLeads from '../assets/hosthq-card-leads.webp'
@@ -60,6 +61,10 @@ export const caseStudies: CaseStudy[] = [
     proposed: 'One Platform',
     slug: 'hosthq',
     images: [
+      {
+        src: hqWorkspace,
+        alt: 'A laptop on a sunlit desk showing the HostHQ requests list: new and urgent events with budgets, dates and Send Proposal buttons. A ringing phone, a to-do notebook and a sticky note reading "Check availability?" sit beside it.',
+      },
       {
         src: hqOverview,
         alt: 'Three HostHQ screens floating around a monitor: proposals with an urgent-requests alert, leads, and Lead Feed reports',
