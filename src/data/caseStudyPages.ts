@@ -2,6 +2,7 @@
 // The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
+import hosthqHero from '../assets/hosthq-hero.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistDesktop from '../assets/treeassist-desktop.webp'
@@ -31,6 +32,7 @@ export interface Section {
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number } // a real screenshot
+  plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
   diagram?: boolean // the animated systems diagram, shown full width under the section
 }
 
@@ -52,7 +54,7 @@ export interface CaseStudyPage {
   summary: CaseSummary
   // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
   // under the first section instead of the header.
-  heroImage?: { src: string; alt: string }
+  heroImage?: { src: string; alt: string; width: number; height: number }
   kicker: string
   subtitle: string
   meta: { label: string; value: string }[]
@@ -180,6 +182,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
 
   hosthq: {
     id: 'hosthq',
+    heroImage: {
+      src: hosthqHero,
+      alt: 'Three HostHQ screens floating around a monitor: proposals with an urgent-requests alert, a leads list, and Lead Feed reports.',
+      width: 1800,
+      height: 654,
+    },
     summary: {
       role: {
         text: 'Senior Product Designer on a project built from scratch in 3 months. I ran the host focus groups, set the consolidation strategy and scoped the MVP (first release) across four products.',
@@ -231,7 +239,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { text: 'Build a modular foundation that is ready for automation, AI and integrations.' },
         ],
         figure: 'Before and after information architecture',
-        diagram: true,
+        plan: 'parti',
       },
       {
         label: '03 · The MVP',
@@ -271,6 +279,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         body: [
           'Reactive growth had caused the fragmentation, and the fix was to reframe the product around clearer growth signals for hosts. Strong marketplaces run on structural clarity and features that improve workflows, not on shipping features faster.',
         ],
+        diagram: true,
       },
     ],
   },
@@ -280,6 +289,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     heroImage: {
       src: treeassistHero,
       alt: 'Five phones at an angle showing the TreeAssist onboarding in the Findmypast mobile site: a "Let\'s build your tree together" welcome screen with a Get started button, an "Add a mother" form, a success message about a maiden name added, and the family tree view.',
+      width: 1800,
+      height: 1111,
     },
     summary: {
       role: {
@@ -313,6 +324,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     ],
     sections: [
       {
+        plan: 'flow',
         label: '01 · The problem',
         heading: 'Value arrived too late.',
         body: [

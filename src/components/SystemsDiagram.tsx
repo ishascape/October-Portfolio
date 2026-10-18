@@ -13,6 +13,7 @@ const GRAPHITE = [97, 94, 88] as const
 const MARKER = [47, 95, 179] as const
 
 const CYCLE = 26 // seconds per loop
+const CALM = 0.5 // how much of the ambient wobble, pulse and bobbing is kept
 const INTRO = 4.2 // seconds to sketch the first draw
 const START = 2.2 // chaos is shown for a moment before the first untangling
 
@@ -211,7 +212,8 @@ function Glyph({ k, r, a }: { k: number; r: number; a: number }) {
 }
 
 function Diagram({ L, clock, still }: { L: Layout; clock: number; still: boolean }) {
-  const { intro, u, t, clock: c } = timeline(clock, still)
+  const { intro, u, t, clock: raw } = timeline(clock, still)
+  const c = raw * CALM // ambient motion runs at half speed
   const [vw, vh] = L.vb
   const fl = L.flow
   const lap = L.laptop
@@ -227,13 +229,13 @@ function Diagram({ L, clock, still }: { L: Layout; clock: number; still: boolean
   // Each input settles in turn.
   const e = inputs.map((_, i) => sstep(i * 0.06, i * 0.06 + 0.6, t))
   const nodes = L.nodes.map((n, i) => {
-    const amp = L.jitter * (0.25 + (1 - e[i]) * 0.9)
+    const amp = L.jitter * CALM * (0.25 + (1 - e[i]) * 0.9)
     const j: Pt = [Math.sin(c * 0.9 + i * 1.7) * amp, Math.cos(c * 0.7 + i * 2.3) * amp]
     return add(lerpPt(n.chaos, n.order, e[i]), j)
   })
   const ports = L.ports.map((p, i) => lerpPt(L.gate, p, e[i]))
   const paths = L.nodes.map((n, i) => {
-    const wob = (1 - e[i]) * 10
+    const wob = (1 - e[i]) * 10 * CALM
     const w: Pt = [Math.sin(c * 0.8 + i) * wob, Math.cos(c * 0.6 + i * 1.3) * wob]
     const c1 = lerpPt(add(nodes[i], add(n.off1, w)), add(nodes[i], [fl[0] * L.k, fl[1] * L.k]), e[i])
     const c2 = lerpPt(add(ports[i], add(n.off2, [-w[0], -w[1]])), add(ports[i], [-fl[0] * L.k, -fl[1] * L.k]), e[i])
@@ -278,8 +280,8 @@ function Diagram({ L, clock, still }: { L: Layout; clock: number; still: boolean
   // The orphaned feature joins the system.
   const eo = sstep(0.35, 0.85, t)
   const orphan = add(lerpPt(L.orphan.chaos, L.orphan.order, eo), [
-    Math.sin(c * 0.8 + 4) * L.jitter * (1 - eo) * 0.8,
-    Math.cos(c * 0.9 + 1) * L.jitter * (1 - eo) * 0.8,
+    Math.sin(c * 0.8 + 4) * L.jitter * CALM * (1 - eo) * 0.8,
+    Math.cos(c * 0.9 + 1) * L.jitter * CALM * (1 - eo) * 0.8,
   ])
   const link = sstep(0.5, 0.86, t)
   const linkEnd = lerpPt(orphan, nodes[5], link)
@@ -380,7 +382,7 @@ function Diagram({ L, clock, still }: { L: Layout; clock: number; still: boolean
 
       {/* Input nodes and their labels */}
       {nodes.map((n, i) => {
-        const pulse = 1 + mState[i].pulse * 0.6
+        const pulse = 1 + mState[i].pulse * 0.6 * CALM
         return (
           <g key={inputs[i]} style={{ opacity: sIn(i) }}>
             <circle
@@ -417,7 +419,7 @@ function Diagram({ L, clock, still }: { L: Layout; clock: number; still: boolean
           <path
             d={`M${f(fx + 34)} ${f(fy - 28)} q-4 7 0 10 q4 -3 0 -10`}
             className="sysmap__sweat"
-            style={{ opacity: clamp(1 - t * 2), transform: `translateY(${f(Math.sin(c * 3) * 1.5)}px)` }}
+            style={{ opacity: clamp(1 - t * 2), transform: `translateY(${f(Math.sin(c * 3) * 1.5 * CALM)}px)` }}
           />
         </g>
         {[

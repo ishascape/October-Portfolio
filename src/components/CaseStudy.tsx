@@ -54,8 +54,8 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <img
                     src={page.heroImage.src}
                     alt={page.heroImage.alt}
-                    width={1800}
-                    height={1111}
+                    width={page.heroImage.width}
+                    height={page.heroImage.height}
                     fetchPriority="high"
                     decoding="async"
                   />
@@ -129,7 +129,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         </div>
       </section>
 
-      {page.sections.map((s, index) => (
+      {page.sections.map((s) => (
         <section key={s.label} className="case__section">
           <div className="container case__section-grid">
             <p className="label case__section-label">{s.label}</p>
@@ -234,10 +234,10 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
-          {index === 0 && page.heroImage && (
+          {s.plan && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
-              <TreeAssistFlow />
+              {s.plan === 'flow' ? <TreeAssistFlow /> : planFigure}
             </div>
           )}
           {s.diagram && (
