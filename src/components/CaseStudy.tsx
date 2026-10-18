@@ -5,6 +5,7 @@ import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
 import { ModeSwitch } from './ModeSwitch'
 import { SystemsDiagram } from './SystemsDiagram'
+import { TreeAssistFlow } from './TreeAssistFlow'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -212,7 +213,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
           {index === 0 && page.heroImage && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
-              {planFigure}
+              <TreeAssistFlow />
             </div>
           )}
           {s.diagram && (
