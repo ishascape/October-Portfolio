@@ -5,7 +5,6 @@ import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
 import { ModeSwitch } from './ModeSwitch'
 import { TreeAssistFlow } from './TreeAssistFlow'
-import { HostHqIaDiagram } from './HostHqIaDiagram'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -234,10 +233,25 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
-          {s.plan && (
+          {(s.plan || s.planImage) && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
-              {s.plan === 'flow' ? <TreeAssistFlow /> : s.plan === 'ia' ? <HostHqIaDiagram /> : planFigure}
+              {s.planImage ? (
+                <figure className="case__figure case__figure--image">
+                  <img
+                    src={s.planImage.src}
+                    alt={s.planImage.alt}
+                    width={s.planImage.width}
+                    height={s.planImage.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              ) : s.plan === 'flow' ? (
+                <TreeAssistFlow />
+              ) : (
+                planFigure
+              )}
             </div>
           )}
         </section>

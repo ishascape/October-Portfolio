@@ -4,6 +4,7 @@
 import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
+import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistExp2 from '../assets/treeassist-exp2.webp'
@@ -36,7 +37,8 @@ export interface Section {
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number } // a real screenshot
-  plan?: 'parti' | 'flow' | 'ia' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
+  planImage?: { src: string; alt: string; width: number; height: number } // a full-width image under this section
+  plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
 
 // One cell of the top summary box. `gap` marks something only Ashni can fill in; it is shown on
@@ -248,7 +250,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { text: 'Bring performance data together into one clear story of return on investment.' },
           { text: 'Build a modular foundation that is ready for automation, AI and integrations.' },
         ],
-        plan: 'ia',
+        planImage: {
+          src: hosthqMvpScope,
+          alt: 'The MVP scope: one events workflow in four stages. Leads (Unread, Declined) leads to Requests (All Requests, New Requests, Rejected requests), then Proposals (Sent proposals, Accepted, In Progress, Declined), then Bookings (Upcoming, Past, Cancelled). Unify all event types into one intuitive workflow, whether B2B, B2C, free or commissionable, using distinct event card styling to differentiate them without fragmenting the experience.',
+          width: 1800,
+          height: 703,
+        },
       },
       {
         label: '03 · The MVP',
