@@ -342,6 +342,16 @@
   .titlesheet__plan {
     border-bottom: 0;
     border-right: var(--line-thin) solid var(--ink);
+    /* The right column sets the row height; the map shrinks so the panel ends level with the sign-off row. */
+    height: 0;
+    min-height: 100%;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  .titlesheet__plan .keyplan {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    justify-self: center;
   }
 }
 
