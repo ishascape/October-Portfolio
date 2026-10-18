@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ModeSwitch } from './ModeSwitch'
 import { sketchRectPath } from './Sketch'
 import type { PlanMode } from './SitePlan'
@@ -62,7 +62,7 @@ const wide: Layout = (() => {
   const H = 60
   const lanes = [
     { x: 40, y: 20, w: 900, h: 215, label: 'User actions' },
-    { x: 40, y: 270, w: 900, h: 130, label: 'System intelligence' },
+    { x: 40, y: 262, w: 900, h: 150, label: 'Smart matching logic' },
   ]
   const proposed: Plan = {
     w: 960,
@@ -165,7 +165,7 @@ const tall: Layout = (() => {
   const H = 50
   const lanes = [
     { x: 20, y: 16, w: 144, h: 0, label: 'User actions' },
-    { x: 196, y: 16, w: 144, h: 0, label: 'System intelligence' },
+    { x: 196, y: 16, w: 144, h: 0, label: 'Smart matching logic' },
   ]
   const ry = (i: number) => 96 + i * 82
   const proposed: Plan = {
@@ -380,11 +380,36 @@ const steps = {
 }
 
 export function TreeAssistFlow() {
-  const [mode, setMode] = useState<PlanMode>('proposed')
+  const [mode, setMode] = useState<PlanMode>('existing')
+  const ref = useRef<HTMLElement>(null)
+  const [nudge, setNudge] = useState(false)
+  // When the diagram first scrolls into view, pulse the switch to say it can be toggled.
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !('IntersectionObserver' in window)) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        setNudge(true)
+        io.disconnect()
+      },
+      { threshold: 0.5 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
   return (
-    <figure className="flow" data-mode={mode}>
+    <figure className="flow" data-mode={mode} ref={ref}>
       <div className="flow__bar">
-        <ModeSwitch mode={mode} onChange={setMode} />
+        <span className="flow__switch" data-nudge={nudge}>
+          <ModeSwitch
+            mode={mode}
+            onChange={(m) => {
+              setNudge(false)
+              setMode(m)
+            }}
+          />
+        </span>
         <p className="flow__story" aria-live="polite">
           {mode === 'existing' ? (
             <>

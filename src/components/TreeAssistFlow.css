@@ -63,7 +63,7 @@
 }
 .flow__lane-label {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   fill: var(--graphite);
 }
@@ -232,5 +232,28 @@
   .flow__node,
   .flow__ripple {
     animation: none !important;
+  }
+}
+
+/* A gentle ring that pulses around the switch until it is used, so it reads as clickable. */
+.flow__switch {
+  display: inline-flex;
+}
+.flow__switch[data-nudge='true'] .switch {
+  animation: flow-nudge 1.6s ease-out 4;
+}
+@keyframes flow-nudge {
+  0% {
+    box-shadow: 0 0 0 0 rgb(47 95 179 / 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 12px rgb(47 95 179 / 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow__switch[data-nudge='true'] .switch {
+    animation: none;
+    box-shadow: 0 0 0 3px rgb(47 95 179 / 0.45);
   }
 }
