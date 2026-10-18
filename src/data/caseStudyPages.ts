@@ -41,22 +41,8 @@ export interface Section {
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
 
-// One cell of the top summary box. `gap` marks something only Ashni can fill in; it is shown on
-// the page as "To confirm" until she answers, so nothing is guessed.
-export interface SummaryCell {
-  text: string
-  gap?: string
-}
-
-export interface CaseSummary {
-  role: SummaryCell
-  decision: SummaryCell
-  outcome: SummaryCell
-}
-
 export interface CaseStudyPage {
   id: CaseStudyId
-  summary: CaseSummary
   // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
   // under the first section instead of the header.
   heroImage?: { src: string; alt: string; width: number; height: number }
@@ -72,20 +58,9 @@ export interface CaseStudyPage {
 export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
   'venue-finder': {
     id: 'venue-finder',
-    summary: {
-      role: {
-        text: 'Sole product designer, working with 4 engineers for 2 months. I interviewed 10 event bookers and designed both versions of the brief journey, the flow where guests describe their event to venues.',
-      },
-      decision: {
-        text: 'I argued for keeping Venue Finder going and for judging it differently. Counting leads rewarded volume over quality and left customers on both sides of the marketplace disappointed. The first version cut Lead Feed volume by 40%, so we shipped a more moderate second version.',
-      },
-      outcome: {
-        text: 'Qualified inbound enquiries rose 30%, and the journey became 40% shorter than the old 13-step builder, which lost 83% of users. Measured with A/B tests in 2-week cycles and by monitoring engagement patterns.',
-      },
-    },
     kicker: 'HeadBox · Demand side',
     subtitle:
-      'HeadBox is a marketplace connecting people planning events with venue hosts. I redesigned how guests describe their event, so hosts received fewer, better-qualified enquiries.',
+      'HeadBox is a marketplace connecting people planning events with venue hosts. As the sole product designer, I interviewed 10 event bookers and redesigned how guests describe their event, so hosts received fewer, better-qualified enquiries.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
       { label: 'Team', value: '4 engineers' },
@@ -93,12 +68,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Marketplace', value: 'Guests planning events (demand) · venue hosts (supply)' },
     ],
     problem:
-      'The old model rewarded the number of briefs submitted, not the intent to book. A brief is a guest’s event request. Unqualified briefs flooded hosts, and Lead Feed churn hit 55%.',
+      'The old model rewarded the number of briefs submitted, not the intent to book. A brief is a guest’s event request. Unqualified briefs flooded hosts, Lead Feed churn hit 55%, and the old 13-step builder lost 83% of users. I argued for keeping Venue Finder and judging it on lead quality, not volume.',
     solution:
-      'An AI-powered brief journey that recommends venues, plus Spotlight Partner, a sponsored-placement model for venues.',
+      'I designed both versions of an AI-powered brief journey that recommends venues, plus Spotlight Partner, a sponsored-placement model for venues. The first version cut Lead Feed volume by 40%, so we shipped a more moderate second version.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
-      { value: '40%', label: 'Shorter user journey' },
+      { value: '40%', label: 'Shorter journey than the 13-step builder' },
       { value: 'New', label: 'Sponsored-placement revenue' },
     ],
     sections: [
@@ -193,31 +168,18 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       width: 1800,
       height: 654,
     },
-    summary: {
-      role: {
-        text: 'Senior Product Designer on a project built from scratch in 3 months. I ran the host focus groups, set the consolidation strategy and scoped the MVP (first release) across four products.',
-        gap: 'Team size and who you worked with day to day.',
-      },
-      decision: {
-        text: 'I argued for round-table research instead of a redesign driven only by stakeholder opinion and support tickets. The research set the MVP scope, the workflows that mattered most under a tight deadline, and the order of what comes next. We shipped structure over completeness and deferred the 3D Studio migration, full reporting and mobile.',
-      },
-      outcome: {
-        text: '55+ new One Platform clients in 3 months, 32% more hosts reporting closed bookings, and 25% fewer support tickets about navigation.',
-        gap: 'How these were measured (baseline, period, source).',
-      },
-    },
     kicker: 'HeadBox · Supply side',
     subtitle:
-      'Venue hosts on HeadBox used four separate tools. I combined them into one platform, so hosts could see how they were earning and act on it.',
+      'Venue hosts on HeadBox used four separate tools. As Senior Product Designer on a 0→1 build, I ran the host focus groups, set the consolidation strategy and scoped the MVP, so hosts could see how they were earning and act on it.',
     meta: [
       { label: 'Role', value: 'Senior Product Designer: design strategy, execution, IA and workflow redesign' },
       { label: 'Stakeholders', value: 'Platform clients, CEO, CTO, Head of Marketing, Head of Venue Sales' },
       { label: 'Timescale', value: '3 months, 0→1, discovery to full release' },
     ],
     problem:
-      'Hosts are the venues that list on HeadBox, and their platform was really four separate products: Lead Feed, PowerHost, HeadBox for Business and 3D Studio. We were shipping our org chart: confusing navigation, repeated workflows, inconsistent data and little use of more than one product.',
+      'Hosts are the venues that list on HeadBox, and their platform was really four separate products: Lead Feed, PowerHost, HeadBox for Business and 3D Studio. We were shipping our org chart: confusing navigation, repeated workflows, inconsistent data and little use of more than one product. I argued for round-table research over a redesign driven only by stakeholder opinion and support tickets.',
     solution:
-      'One Platform: a single system for hosts, organised around the jobs they do and positioned as a structured way to earn revenue.',
+      'One Platform: a single system for hosts, organised around the jobs they do and positioned as a structured way to earn revenue. The research set the MVP scope and the order of what comes next. We shipped structure over completeness and deferred the 3D Studio migration, full reporting and mobile.',
     impact: [
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
@@ -309,20 +271,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       width: 1800,
       height: 1111,
     },
-    summary: {
-      role: {
-        text: 'Product Designer, working with the Lead Product Designer, a PM, data science and engineering for 2 months. I owned the UI and the experiment design for the three tests below, and the team lead guided strategy.',
-      },
-      decision: {
-        text: 'I argued for interactive states in the desktop onboarding, instead of the view-only state engineers proposed to speed up development. Three tests then cut onboarding from 8 forms to 3 and moved users into AI-assisted tree building.',
-      },
-      outcome: {
-        text: 'Free-trial starts rose 18%, trial-to-subscription conversion rose 8% and onboarding drop-off fell 13%. The starting point was 41% of new users leaving before they reached value. Measured with A/B tests in 2-week cycles and by monitoring engagement patterns.',
-      },
-    },
     kicker: 'Findmypast · Activation',
     subtitle:
-      'Findmypast is a family history subscription. I redesigned onboarding so new users reached value sooner, using AI-powered relative suggestions to lift activation and free-trial conversion.',
+      'Findmypast is a family history subscription. As Product Designer, I owned the UI and the experiment design for three onboarding tests, so new users reached value sooner and AI-powered relative suggestions lifted activation and free-trial conversion.',
     meta: [
       { label: 'Role', value: 'Product Designer, with the Lead Product Designer' },
       { label: 'Team', value: 'PM, data science and engineering' },
@@ -332,7 +283,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     problem:
       '41% of new users left before they reached value. Onboarding was heavy on admin forms, and users then faced a blank family-tree canvas.',
     solution:
-      'AI-assisted onboarding: relative suggestions inside the product and step-by-step guidance replaced a form-heavy setup.',
+      'AI-assisted onboarding: relative suggestions inside the product and step-by-step guidance replaced a form-heavy setup. I argued for interactive states in the desktop onboarding, instead of the view-only state engineers proposed, and three tests cut onboarding from 8 forms to 3.',
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },

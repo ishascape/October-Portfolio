@@ -99,35 +99,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         </div>
       </section>
 
-      <section className="case__summary" aria-labelledby="case-summary-title">
-        <div className="container">
-          <h2 id="case-summary-title" className="case__summary-title">
-            TL;DR
-          </h2>
-          <dl className="case__summary-grid">
-            {(
-              [
-                ['My role and what I owned', page.summary.role],
-                ['Key decision', page.summary.decision],
-                ['Outcome and how it was measured', page.summary.outcome],
-              ] as const
-            ).map(([label, cell]) => (
-              <div key={label} className="case__summary-cell">
-                <dt>{label}</dt>
-                <dd>
-                  <span>{cell.text}</span>
-                  {cell.gap && (
-                    <span className="case__gap">
-                      <strong>To confirm:</strong> {cell.gap}
-                    </span>
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
       {page.sections.map((s) => (
         <section key={s.label} className="case__section">
           <div className="container case__section-grid">
