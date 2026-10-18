@@ -263,7 +263,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '03 · The MVP',
-        heading: 'A coherent system before surface polish.',
+        heading: 'Tradeoff: A coherent system before surface polish.',
         body: [
           'With three months before peak season, I chose structure over completeness: unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
         ],
