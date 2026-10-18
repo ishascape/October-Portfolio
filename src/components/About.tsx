@@ -94,7 +94,7 @@ export function About() {
             <h3 className="display field-notes__heading">Field notes</h3>
             <p>Outside work, I'm usually drawing, consuming art, food &amp; music, or plotting my next trip.</p>
             <p>
-              I love sketching animals, there's something satisfying about capturing a personality in just a few lines.
+              I love sketching animals. There's something satisfying about capturing a personality in just a few lines.
               I've played piano and flute for years, and absolutely love live music, from metalcore gigs to orchestras
               and pretty much everything in between.
             </p>

@@ -184,8 +184,8 @@ export const revisions = [
 export const education = [
   { date: 'Mar 2026', course: 'AI Coding for Designers', school: 'Memorisely' },
   { date: '2020 - 2021', course: 'UX Immersion and UI Specification', school: 'CareerFoundry' },
-  { date: '2016–20', course: 'BSc Architecture', school: 'University of Bath, UK' },
-  { date: '2014–16', course: 'IB Diploma', school: 'Aga Khan Academy, Nairobi' },
+  { date: '2016 - 2020', course: 'BSc Architecture', school: 'University of Bath, UK' },
+  { date: '2014 - 2016', course: 'IB Diploma', school: 'Aga Khan Academy, Nairobi' },
 ]
 
 export interface FieldNote {
