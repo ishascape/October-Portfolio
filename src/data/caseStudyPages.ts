@@ -7,6 +7,7 @@ import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
+import hosthqProposalMonitor from '../assets/hosthq-proposal-monitor.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
@@ -42,7 +43,7 @@ export interface Section {
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
-  planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean } // a full-width image under this section
+  planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -308,6 +309,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         body: [
           'Reactive growth caused the fragmentation. The fix was reframing the product around clearer growth signals for hosts. Strong marketplaces run on structural clarity and workflow-improving features, not faster shipping.',
         ],
+        planImage: {
+          src: hosthqProposalMonitor,
+          alt: 'The HostHQ proposal screen on a desktop monitor: a sent proposal for an investor meeting with its booking status, the chosen space, pricing details and a message to the guest.',
+          width: 1499,
+          height: 1049,
+          transparent: true,
+        },
       },
     ],
   },

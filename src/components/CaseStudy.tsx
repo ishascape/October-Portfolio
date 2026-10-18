@@ -230,7 +230,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <div className="case__plan-stack">
                 {s.planImage ? (
                   <figure
-                    className={`case__figure case__figure--image${s.planImage.bordered ? ' case__figure--bordered' : ''}`}
+                    className={`case__figure case__figure--image${s.planImage.bordered ? ' case__figure--bordered' : ''}${s.planImage.transparent ? ' case__figure--clear' : ''}`}
                   >
                     <img
                       src={s.planImage.src}
