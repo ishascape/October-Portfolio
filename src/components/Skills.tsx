@@ -182,19 +182,19 @@ const skills: Skill[] = [
   {
     title: 'Product strategy & systems thinking',
     drawing: principleDrawings['0'],
-    text: "Connecting user journeys to the bigger product ecosystem. Helped shape HeadBox's One Platform initiative, bringing fragmented marketplace and SaaS experiences into a more connected system.",
+    text: "Connecting user journeys to the wider product. Helped shape HeadBox's One Platform, joining marketplace and SaaS experiences.",
     hover: [{ h: 'user', to: 'translateY(6px)' }],
   },
   {
     title: 'B2B SaaS & platform design',
     drawing: PlatformParti,
-    text: "Turning complex operational workflows into simpler, scalable products. Redesigned HeadBox's HostHQ platform, bringing four separate host tools into one.",
+    text: "Turning complex workflows into simple, scalable products. Redesigned HostHQ, merging four host tools into one.",
     hover: [{ h: 'right', to: 'translateX(-6px)' }],
   },
   {
     title: 'Marketplaces',
     drawing: MarketplaceParti,
-    text: 'Designing for both sides of the marketplace, from supplier workflows to buyer conversion. At HeadBox, improved the venue discovery journey, contributing to a 30% increase in qualified leads.',
+    text: 'Designing both sides of the marketplace. Improved venue discovery at HeadBox, contributing to a 30% rise in qualified leads.',
     hover: [
       { h: 'match', to: 'scale(1.25)' },
       { h: 'base', to: 'scaleX(1.12)' },
@@ -203,7 +203,7 @@ const skills: Skill[] = [
   {
     title: 'Growth & monetisation',
     drawing: principleDrawings['4'],
-    text: 'Designing experiences that deliver customer value and commercial returns. At Findmypast, worked across acquisition, retention and gifting, including a Gift Subscription MVP worth approximately £500k.',
+    text: 'Designing for customer value and commercial return. At Findmypast, covered acquisition, retention and gifting, including a ~£500k Gift Subscription MVP.',
     hover: [
       { h: 'turn', to: 'scale(1.2)' },
       { h: 'forecast', to: 'translate(2px, -3px)' },
@@ -212,13 +212,13 @@ const skills: Skill[] = [
   {
     title: 'Experimentation & optimisation',
     drawing: ExperimentationParti,
-    text: 'Using behavioural data and experimentation to find and remove friction. At Findmypast, helped increase free-trial conversion 5× through improvements to the onboarding journey.',
+    text: 'Using data and experiments to remove friction. At Findmypast, helped lift free-trial conversion 5× through onboarding improvements.',
     hover: [{ h: 'lead', to: 'translate(5px, -3.5px)' }],
   },
   {
     title: 'User research & analytics',
     drawing: principleDrawings['3'],
-    text: "Combining customer insight with product data to challenge assumptions and identify opportunities. Used research and funnel analysis to rethink HeadBox's AI Venue Finder after identifying friction in its initial experience.",
+    text: "Pairing customer insight with product data to challenge assumptions. Used research and funnel analysis to rethink HeadBox's AI Venue Finder.",
     hover: [
       { h: 'direction', to: 'translateX(5px)' },
       { h: 'lens', to: 'scaleX(1.15)' },
@@ -227,7 +227,7 @@ const skills: Skill[] = [
   {
     title: 'End-to-end UX/UI',
     drawing: EndToEndParti,
-    text: "Taking product ideas from ambiguous problems through discovery, prototyping and delivery. As HeadBox's sole product designer, owned design across its B2B platform and B2C marketplace.",
+    text: "Taking ambiguous problems from discovery to delivery. As HeadBox's sole product designer, owned its B2B platform and B2C marketplace.",
     hover: [
       { h: 'line', to: 'scaleX(1.045)', origin: 'left center' },
       { h: 'tip', to: 'translateX(6px)' },
@@ -236,7 +236,7 @@ const skills: Skill[] = [
   {
     title: 'Design systems & scalability',
     drawing: DesignSystemParti,
-    text: "Building reusable foundations that help teams deliver consistent experiences at scale. Supported Findmypast's migration from Sketch to Figma, improving the team's shared design workflow.",
+    text: "Reusable foundations for consistent design at scale. Supported Findmypast's migration from Sketch to Figma.",
     hover: [
       { h: 'source', to: 'scale(1.12)' },
       { h: 'tile', to: 'scale(1.12)' },
