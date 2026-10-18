@@ -226,8 +226,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           src: hosthqMvpDashboard,
           alt: 'The HostHQ Requests screen on a tablet: a list of event requests with budgets, dates and locations, Urgent and Commissionable event tags, and a Send Proposal button on each. The Your Events menu lists Requests, Proposals, Bookings and Leads.',
           caption: 'MVP Dashboard UI',
-          width: 1385,
-          height: 982,
+          width: 1536,
+          height: 1024,
         },
       },
       {
