@@ -262,7 +262,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <figure
                     className={`case__figure case__figure--image${s.planImageTop.bordered ? ' case__figure--bordered' : ''}`}
                   >
-                    <figcaption className="case__figure-title">{s.planImageTop.title}</figcaption>
                     <img
                       src={s.planImageTop.src}
                       alt={s.planImageTop.alt}
@@ -271,6 +270,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                       loading="lazy"
                       decoding="async"
                     />
+                    <figcaption className="annotation">{s.planImageTop.caption}</figcaption>
                   </figure>
                 )}
                 {s.planImage3 && (

@@ -44,7 +44,7 @@ export interface Section {
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
-  planImageTop?: { src: string; alt: string; title: string; width: number; height: number; bordered?: boolean } // above the third, with a title
+  planImageTop?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // above the third, with a handwritten caption below
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
@@ -276,7 +276,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         ],
         planImageTop: {
           src: hosthqRequestsDashboard,
-          title: 'MVP dashboard - Landing on requests, where users see their inbound qualified Requests for proposals',
+          caption:
+            'MVP dashboard - Landing on requests, where users see their inbound qualified Requests for proposals',
           alt: 'The HostHQ Requests screen: a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) beside a list of event requests with New, Urgent and Commissionable event tags, budgets, dates, locations and a Send Proposal button on each.',
           width: 1600,
           height: 1138,
