@@ -3,7 +3,7 @@
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
-import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
+import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
@@ -46,7 +46,7 @@ export interface Section {
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
-  planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
+  planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -248,11 +248,10 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         ],
         planDiagram: 'mvp-scope',
         planImage2: {
-          src: hosthqMvpDashboard,
-          alt: 'The HostHQ Requests screen on a tablet: a list of event requests with budgets, dates and locations, Urgent and Commissionable event tags, and a Send Proposal button on each. The Your Events menu lists Requests, Proposals, Bookings and Leads.',
-          caption: 'MVP Dashboard UI',
-          width: 1536,
-          height: 1024,
+          src: hosthqBeforeAfter,
+          alt: 'HeadBox before and after on laptops. Before: the Lead Feed "Your interested guests" table of 2232 contact details, each row with a status and a Guest details button. After: the HostHQ Requests screen with a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) and event cards showing budget, date, location and a Send Proposal button.',
+          width: 1983,
+          height: 793,
         },
       },
       {
