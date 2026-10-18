@@ -172,8 +172,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '05 · Selected screens',
-        heading: 'Key moments in the journey.',
-        body: ['Selected screens, with a note on what each key moment does for the guest.'],
+        heading: 'A closer look at the key screens and elements + the thinking behind them.',
         image: {
           src: vfCardDesigns,
           alt: 'Initial recommendation card designs for Venue Finder, in four states: a loading skeleton with a shimmer and pulse note, hover with an Add to enquiry button and image arrows, default, and favourited with Added to enquiry. Each card shows a venue photo, Popular and Responds fast tags, the venue name, location, rating, price band and capacity.',
