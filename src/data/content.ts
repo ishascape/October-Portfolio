@@ -4,6 +4,8 @@ import owl from '../assets/sketches/owl.webp'
 import gorilla from '../assets/sketches/gorilla.webp'
 import riding from '../assets/ashni-riding.webp'
 import planting from '../assets/ashni-planting.webp'
+import gigOrchestra from '../assets/gig-orchestra.webp'
+import gigLornaShore from '../assets/gig-lorna-shore.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
 import taLanding from '../assets/ta-card-landing.webp'
@@ -225,9 +227,24 @@ export const fieldNotes: FieldNote[] = [
     src: gorilla,
     alt: 'A hand holding a sketchbook on a plane tray table, open to a ballpoint pen drawing of a silverback gorilla.',
   },
-  { fig: '07', group: 'Concerts', caption: 'Fig. 07. Performing, to come', ratio: '3 / 2' },
-  { fig: '08', group: 'Travel', caption: 'Fig. 08. Summit, to come', ratio: '4 / 5' },
-  { fig: '09', group: 'Travel', caption: 'Fig. 09. Everest Base Camp, to come', ratio: '3 / 2' },
+  {
+    fig: '07',
+    group: 'Find me at all sorts of gigs',
+    caption: 'Fig. 07. Anoushka Shankar and the London Contemporary Orchestra',
+    ratio: '17 / 20',
+    src: gigOrchestra,
+    alt: 'A concert seen from the balcony: an orchestra of strings, percussion and a drum kit on a stepped stage under green beams of light, with the audience in the foreground.',
+  },
+  {
+    fig: '08',
+    group: 'Find me at all sorts of gigs',
+    caption: 'Fig. 08. Lorna Shore ft. Will Ramos, belting',
+    ratio: '17 / 20',
+    src: gigLornaShore,
+    alt: 'A singer with pink hair holding a microphone above the crowd, a drummer behind them and a screen of orange flames glowing in red stage light.',
+  },
+  { fig: '09', group: 'Travel', caption: 'Fig. 09. Summit, to come', ratio: '4 / 5' },
+  { fig: '10', group: 'Travel', caption: 'Fig. 10. Everest Base Camp, to come', ratio: '3 / 2' },
 ]
 
 // Ashni, 15 Oct 2026: permanent or contract; design, product or operator roles. No mention of visa sponsorship.
