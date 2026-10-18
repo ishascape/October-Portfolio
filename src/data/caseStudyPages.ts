@@ -50,6 +50,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
+  diagram?: 'vf-shift' | 'vf-ranking' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -82,9 +83,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Marketplace', value: 'Guests planning events (demand) · venue hosts (supply)' },
     ],
     problem:
-      'The old model rewarded briefs (event requests) submitted, not intent to book. Hosts were flooded with unqualified briefs, Lead Feed churn hit 55% and the 13-step builder lost 83% of users. I advocated for judging Venue Finder on lead quality, not volume.',
+      'Guests filled in 13 steps without seeing a single venue, then waited for venues to get in touch. Early replies often missed the brief, and 83% of users dropped off the builder. Hosts were left with unqualified briefs and Lead Feed churn hit 55%. I argued for judging Venue Finder on lead quality, not volume.',
     solution:
-      'An AI-powered brief journey that recommends venues, plus Spotlight Partner, a sponsored-placement model. Used an AI-powered vector database to match user needs with venues in our inventory, boosting the rankings of premium, engaged and best-fit venues to increase their likelihood of being matched.',
+      'Guests share their event, see matched venues straight away, shortlist, then connect. A vector database ranks the inventory against what they need, boosting best-fit, active and premium venues, plus Spotlight Partner, a paid placement model.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '40%', label: 'Shorter journey than the 13-step builder' },
@@ -92,10 +93,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     ],
     sections: [
       {
-        label: '01 · The systemic problem',
-        heading: 'Optimised for the wrong metric.',
+        label: '01 · The problem',
+        heading: 'Guests waited for venues, not discovering them.',
         body: [
-          'Marketing measured briefs submitted, not bookings. Hosts often needed 27+ messages to close one booking.',
+          'Guests put in 13 steps of effort before seeing any value, then relied on venues to make the first move. Early responses were often poorly aligned, so options felt uninspiring and guests left.',
+          'Marketing measured briefs submitted, not bookings. Hosts often needed 27+ messages to close one.',
         ],
       },
       {
@@ -129,11 +131,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         quotesCaption: 'Quotes from guest user interviews - 5 corporate bookers, 5 social bookers',
       },
       {
-        label: '03 · The system',
-        heading: 'How an event brief travels.',
+        label: '03 · The shift',
+        heading: 'From venue-led to guest-led discovery.',
         body: [
-          'An LLM reads what the guest needs, ranks venues from a vectorised inventory and lets guests compare quotes. The brief then lands in the host’s Lead Feed, so one workflow serves both sides.',
+          'We changed the order. Guests share what they need, see matched venues, pre-screen and shortlist, then connect with the ones that fit.',
+          'Hypothesis: better matching earlier means less abandonment and more qualified enquiries.',
         ],
+        diagram: 'vf-shift',
         planImage3: {
           src: vfBriefLifecycle,
           alt: 'Diagram of the life-cycle of an event brief, from event brief to direct enquiry or lead, proposals to review and confirmed booking. It compares the Venue Finder experiment, the Host HQ MVP rolled out, the currently legacy guest home and Host HQ steps, and the legacy Brief builder and LeadFeed flow, with friction notes in red.',
@@ -143,7 +147,16 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         },
       },
       {
-        label: '04 · Experiments',
+        label: '04 · Matching',
+        heading: 'Semantic matching, not just filters.',
+        body: [
+          'Guests describe their event in their own words, or the system writes a prompt from their capacity, location, event type and vibe. That intent is compared with every venue in the inventory.',
+          'The aim wasn’t venues that technically fit. It was venues a guest would want to book. Ranking then balances four signals: best fit, active venues, premium and paid Spotlight.',
+        ],
+        diagram: 'vf-ranking',
+      },
+      {
+        label: '05 · Experiments',
         heading: 'A control, a first version that failed, and a second that shipped.',
         experiments: [
           {
@@ -160,7 +173,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
               'AI prompt, venue recommendations before submission, required account creation, multi-venue selection.',
             result:
               'Lead Feed volume fell 40%. 38% dropped off at the AI input and 27% at account creation. Direct enquiries rose 26%; guests shortlisted 2.2 venues on average.',
-            verdict: 'Failed, and taught us the most.',
+            verdict: 'Failed on lead volume, and taught us the most.',
           },
           {
             name: 'V2 · Moderate',
@@ -168,7 +181,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             change:
               'Optional prompt, magic-link sign-up, recommendations only after sign-up (to deter scraping), faster load.',
             result:
-              'Kept in regions with plenty of venues. Lead Feed covers sparse regions; high-value briefs outside active regions go to an account manager.',
+              'Qualified inbound enquiries rose 30%. Kept in regions with plenty of venues; Lead Feed covers sparse regions, and high-value briefs outside active regions go to an account manager.',
             verdict: 'Shipped.',
             prototype: 'vf-v2',
           },
@@ -176,16 +189,16 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         figure: 'V1 and V2 flows',
       },
       {
-        label: '05 · Reflections',
+        label: '06 · Reflections',
         heading: 'A bold idea needs a strong business case.',
         list: [
           {
             title: 'The challenge',
-            text: 'Lead Feed was a familiar product that leadership believed in. Marketing was focused on lead volume, but more leads didn’t always mean better bookings.',
+            text: 'Lead Feed was a familiar product that leadership believed in, and marketing was focused on lead volume.',
           },
           {
             title: 'What I learned',
-            text: 'Framing the problem around marketplace performance helped shift the conversation. Being clear about trade-offs and testing assumptions made it easier to challenge existing thinking.',
+            text: 'Framing the problem around marketplace performance shifted the conversation. Being clear about trade-offs, between lead volume, match quality and revenue, made it easier to challenge existing thinking. Measured: more qualified enquiries. Still a hypothesis: more bookings.',
           },
           {
             title: 'What I’d explore next',

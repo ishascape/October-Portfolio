@@ -10,6 +10,7 @@ import { MvpScopeFlow } from './MvpScopeFlow'
 import { HostDayFlow } from './HostDayFlow'
 import { VenueFinderPrototype } from './VenueFinderPrototype'
 import { LegacyBriefPrototype } from './LegacyBriefPrototype'
+import { VenueShiftDiagram, VenueRankingDiagram } from './VenueFlows'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -199,6 +200,8 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                 </figure>
               )}
               {s.dayDiagram && <HostDayFlow caption={s.dayDiagram.caption} />}
+              {s.diagram === 'vf-shift' && <VenueShiftDiagram />}
+              {s.diagram === 'vf-ranking' && <VenueRankingDiagram />}
               {s.image && (
                 <figure
                   className={`case__figure case__figure--image${s.image.bordered ? ' case__figure--bordered' : ''}`}
