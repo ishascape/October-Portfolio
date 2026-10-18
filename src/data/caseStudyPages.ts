@@ -377,7 +377,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             },
           },
         ],
-        figure: 'Onboarding before and after',
       },
       {
         label: '03 · Trade-offs',
