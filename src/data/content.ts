@@ -12,7 +12,7 @@ import travelQuad from '../assets/travel-quad-biking.webp'
 import hqWorkspace from '../assets/hosthq-card-workspace.webp'
 import hqProposal from '../assets/hosthq-card-proposal.webp'
 import hqFilter from '../assets/hosthq-card-filter.webp'
-import vfStreet from '../assets/vf-card-street.webp'
+import vfPhone from '../assets/vf-card-phone.webp'
 import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
 import taPhones from '../assets/ta-card-phones.webp'
@@ -93,8 +93,8 @@ export const caseStudies: CaseStudy[] = [
     slug: 'venue-finder',
     images: [
       {
-        src: vfStreet,
-        alt: 'A phone held on a London street showing the HeadBox Venue Finder map with 45 matching venues',
+        src: vfPhone,
+        alt: 'A hand holding a phone and tapping the HeadBox Venue Finder screen: a Junsei venue card with Spotlight and Responds fast tags and I’m interested and Not for me buttons',
       },
       {
         src: vfJourney,
