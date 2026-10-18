@@ -11,7 +11,7 @@ import travelBallooning from '../assets/travel-ballooning.webp'
 import travelQuad from '../assets/travel-quad-biking.webp'
 import hqOverview from '../assets/hosthq-card-overview.webp'
 import hqRequests from '../assets/hosthq-card-requests.webp'
-import hqProposal from '../assets/hosthq-card-proposal.webp'
+import hqLeads from '../assets/hosthq-card-leads.webp'
 import vfStreet from '../assets/vf-card-street.webp'
 import vfSwipe from '../assets/vf-card-swipe.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
@@ -65,12 +65,12 @@ export const caseStudies: CaseStudy[] = [
         alt: 'Three HostHQ screens floating around a monitor: proposals with an urgent-requests alert, leads, and Lead Feed reports',
       },
       {
-        src: hqRequests,
-        alt: 'A laptop showing the HostHQ requests list, with urgent events and Send Proposal buttons',
+        src: hqLeads,
+        alt: 'A HostHQ leads list. A prompt asks "You contacted the guest 2 weeks ago. Has this event been booked yet?" above a book club lead with an In progress status and a Confirm booking button, with other events listed below.',
       },
       {
-        src: hqProposal,
-        alt: 'A tablet showing a HostHQ submitted proposal with booking status and availability',
+        src: hqRequests,
+        alt: 'A laptop showing the HostHQ requests list, with urgent events and Send Proposal buttons',
       },
     ],
   },
