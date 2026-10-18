@@ -83,6 +83,7 @@
 
 .case__hero-image {
   margin: 0;
+  background: #fff; /* white behind the product shot, only as large as the image */
 }
 .case__hero-image img {
   display: block;
