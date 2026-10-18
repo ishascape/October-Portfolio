@@ -11,7 +11,7 @@ import travelBallooning from '../assets/travel-ballooning.webp'
 import travelQuad from '../assets/travel-quad-biking.webp'
 import hqWorkspace from '../assets/hosthq-card-workspace.webp'
 import hqRequests from '../assets/hosthq-card-requests.webp'
-import hqLeads from '../assets/hosthq-card-leads.webp'
+import hqFilter from '../assets/hosthq-card-filter.webp'
 import vfStreet from '../assets/vf-card-street.webp'
 import vfSwipe from '../assets/vf-card-swipe.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
@@ -65,8 +65,8 @@ export const caseStudies: CaseStudy[] = [
         alt: 'A laptop on a sunlit desk showing the HostHQ requests list: new and urgent events with budgets, dates and Send Proposal buttons. A ringing phone, a to-do notebook and a sticky note reading "Check availability?" sit beside it.',
       },
       {
-        src: hqLeads,
-        alt: 'A HostHQ leads list. A prompt asks "You contacted the guest 2 weeks ago. Has this event been booked yet?" above a book club lead with an In progress status and a Confirm booking button, with other events listed below.',
+        src: hqFilter,
+        alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',
       },
       {
         src: hqRequests,
