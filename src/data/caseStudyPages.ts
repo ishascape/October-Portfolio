@@ -6,6 +6,7 @@ import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
+import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistExp2 from '../assets/treeassist-exp2.webp'
@@ -39,6 +40,7 @@ export interface Section {
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean } // a full-width image under this section
+  planImage3?: { src: string; alt: string; caption: string; width: number; height: number } // a third, below the second
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
@@ -249,6 +251,14 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { title: 'Mobile', text: 'Desktop-only, as hosts work mainly on desktop.' },
         ],
         figure: 'One Platform dashboard and proposal builder',
+        planImage3: {
+          src: hosthqFilterEvents,
+          alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',
+          caption:
+            'Filter events: tailored to what the venue is looking for, with notifications for events that match your venue space and availability.',
+          width: 1440,
+          height: 1024,
+        },
       },
       {
         label: '04 · With 12 months instead of 3',

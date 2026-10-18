@@ -206,7 +206,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
-          {(s.plan || s.planImage) && (
+          {(s.plan || s.planImage || s.planImage3) && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
               <div className="case__plan-stack">
@@ -225,8 +225,21 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   </figure>
                 ) : s.plan === 'flow' ? (
                   <TreeAssistFlow />
-                ) : (
+                ) : s.plan ? (
                   planFigure
+                ) : null}
+                {s.planImage3 && (
+                  <figure className="case__figure case__figure--image">
+                    <img
+                      src={s.planImage3.src}
+                      alt={s.planImage3.alt}
+                      width={s.planImage3.width}
+                      height={s.planImage3.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption className="annotation">{s.planImage3.caption}</figcaption>
+                  </figure>
                 )}
                 {s.planImage2 && (
                   <figure className="case__figure case__figure--image">
