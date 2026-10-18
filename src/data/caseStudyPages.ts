@@ -5,6 +5,7 @@ import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
+import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistExp2 from '../assets/treeassist-exp2.webp'
@@ -38,6 +39,7 @@ export interface Section {
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean } // a full-width image under this section
+  planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
 
@@ -219,6 +221,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           width: 1800,
           height: 703,
           bordered: true,
+        },
+        planImage2: {
+          src: hosthqMvpDashboard,
+          alt: 'The HostHQ Requests screen on a tablet: a list of event requests with budgets, dates and locations, Urgent and Commissionable event tags, and a Send Proposal button on each. The Your Events menu lists Requests, Proposals, Bookings and Leads.',
+          caption: 'MVP Dashboard UI',
+          width: 1500,
+          height: 1000,
         },
       },
       {

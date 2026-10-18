@@ -209,24 +209,39 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
           {(s.plan || s.planImage) && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
-              {s.planImage ? (
-                <figure
-                  className={`case__figure case__figure--image${s.planImage.bordered ? ' case__figure--bordered' : ''}`}
-                >
-                  <img
-                    src={s.planImage.src}
-                    alt={s.planImage.alt}
-                    width={s.planImage.width}
-                    height={s.planImage.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              ) : s.plan === 'flow' ? (
-                <TreeAssistFlow />
-              ) : (
-                planFigure
-              )}
+              <div className="case__plan-stack">
+                {s.planImage ? (
+                  <figure
+                    className={`case__figure case__figure--image${s.planImage.bordered ? ' case__figure--bordered' : ''}`}
+                  >
+                    <img
+                      src={s.planImage.src}
+                      alt={s.planImage.alt}
+                      width={s.planImage.width}
+                      height={s.planImage.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                ) : s.plan === 'flow' ? (
+                  <TreeAssistFlow />
+                ) : (
+                  planFigure
+                )}
+                {s.planImage2 && (
+                  <figure className="case__figure case__figure--image">
+                    <img
+                      src={s.planImage2.src}
+                      alt={s.planImage2.alt}
+                      width={s.planImage2.width}
+                      height={s.planImage2.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption className="annotation">{s.planImage2.caption}</figcaption>
+                  </figure>
+                )}
+              </div>
             </div>
           )}
         </section>

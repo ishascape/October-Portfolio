@@ -394,6 +394,11 @@
 
 /* ---------- Top summary: the case in 30 seconds ---------- */
 
+.case__plan-stack {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
 .case__figure--bordered img {
   border: var(--line-thin) solid var(--ink);
 }
