@@ -226,7 +226,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     sections: [
       {
         label: '01 · Research',
-        heading: 'HeadBox was a side channel for leads, not where hosts ran their business.',
+        heading: 'Hosts came to HeadBox for leads, but managed their business elsewhere.',
         eyebrow: 'Research insight',
         body: [
           'In focus groups with different venue types, hosts wanted clear signals of growth and return, not more features.',
