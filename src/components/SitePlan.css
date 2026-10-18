@@ -1,0 +1,189 @@
+.plan {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  cursor: crosshair;
+  fill: none;
+  stroke-linecap: square;
+}
+
+.plan text {
+  fill: var(--ink);
+  stroke: none;
+  font-family: var(--font-sans);
+}
+.plan .plan__tiny {
+  font-family: var(--font-hand);
+}
+
+.plan__label {
+  font-size: 14px;
+  font-weight: 500;
+}
+.plan__tiny {
+  font-size: 15px;
+  fill: var(--graphite) !important;
+}
+.plan__name {
+  font-size: 17px;
+  font-weight: 600;
+}
+.plan__metric {
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--marker) !important;
+}
+
+.plan--portrait .plan__label {
+  font-size: 15px;
+}
+.plan--portrait .plan__name {
+  font-size: 18px;
+}
+.plan--portrait .plan__metric {
+  font-size: 16px;
+}
+.plan--portrait .plan__tiny {
+  font-size: 17px;
+}
+
+/* District boundaries: chain line, like a site boundary */
+.plan__district path {
+  stroke: var(--ink);
+  stroke-width: var(--line-thin);
+  stroke-dasharray: 14 4 2 4;
+}
+
+.plan__road line {
+  stroke: var(--graphite);
+  stroke-width: var(--line-thin);
+}
+
+.plan__north circle {
+  stroke: var(--ink);
+  stroke-width: var(--line-thin);
+}
+.plan__north path {
+  fill: var(--ink);
+}
+
+.plan__phase2-outline {
+  stroke: var(--graphite);
+  stroke-width: var(--line-thin);
+  stroke-dasharray: 4 4;
+}
+.plan__phase2-label {
+  paint-order: stroke;
+  stroke: var(--paper) !important;
+  stroke-width: 6px;
+}
+
+.plan__hatch-line--grey {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+/* ---------- Buildings ---------- */
+
+.plan__building {
+  outline: none;
+  transition: opacity var(--dur-state) var(--ease-pen);
+}
+
+.plan__hit {
+  fill: transparent;
+  stroke: none;
+}
+.plan__building:focus-visible .plan__hit {
+  stroke: var(--marker);
+  stroke-width: 2;
+}
+
+/* Existing: what I found. Dashed graphite. */
+.plan__existing :is(rect, line, path) {
+  stroke: var(--graphite);
+  stroke-width: var(--line-thin);
+  stroke-dasharray: 4 4;
+}
+.plan__existing {
+  transition: opacity var(--dur-state) var(--ease-pen);
+}
+
+/* Proposed: what shipped. Solid ink, drawn on with stroke-dashoffset. */
+.plan__proposed :is(rect, line, path, circle) {
+  stroke: var(--ink);
+  stroke-width: var(--line-building);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition:
+    stroke-dashoffset var(--dur-signature) var(--ease-pen),
+    stroke-width var(--dur-micro) var(--ease-pen);
+  animation: plan-draw 800ms var(--ease-pen) backwards;
+  animation-delay: calc(200ms + var(--i, 0) * 180ms);
+}
+.plan__node {
+  fill: var(--paper);
+}
+
+@keyframes plan-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Mode: existing */
+.plan[data-mode='existing'] .plan__proposed :is(rect, line, path, circle) {
+  stroke-dashoffset: 1;
+  transition-duration: calc(var(--dur-signature) * 0.6), var(--dur-micro);
+}
+.plan[data-mode='existing'] .plan__node {
+  fill-opacity: 0;
+}
+
+/* Mode: proposed keeps a faint ghost of what was there */
+.plan[data-mode='proposed'] .plan__existing {
+  opacity: 0.18;
+}
+
+/* Hover or focus: pen weight goes from 1.5 to 3 */
+.plan__building[data-hovered='true'] .plan__proposed :is(rect, line, path, circle) {
+  stroke-width: var(--line-cut);
+}
+.plan__building[data-hovered='true'] .plan__existing :is(rect, line, path) {
+  stroke: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan__proposed :is(rect, line, path, circle) {
+    animation: none;
+  }
+}
+
+/* ---------- Hand-drawn feel ---------- */
+
+/* Pencil wobble on all linework (not on text, which stays crisp). */
+.plan__art,
+.plan__district path,
+.plan__road line,
+.plan__phase2-outline,
+.plan__construct {
+  filter: url(#pencil);
+}
+
+/* Faint construction lines that run past each building, like guide lines left in a sketch. */
+.plan__construct line {
+  stroke: var(--graphite);
+  stroke-width: 0.5;
+  opacity: 0.35;
+}
+
+.plan .plan__note {
+  font-size: 15px;
+  font-weight: 500;
+  fill: var(--marker) !important;
+}
+.plan__note-arrow {
+  stroke: var(--marker);
+  stroke-width: 1.25;
+  fill: none;
+}

@@ -1,0 +1,259 @@
+/* TreeAssist before/after flow. Graph paper, ink lines, cobalt for the one reward that matters. */
+.flow {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.flow__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+.flow__story {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.4;
+}
+.flow__paper {
+  padding: var(--space-3);
+  border: var(--line-thin) solid var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgb(28 27 25 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(28 27 25 / 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.flow__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.flow__svg--tall {
+  display: none;
+  max-width: 420px;
+  margin-inline: auto;
+}
+@media (max-width: 679px) {
+  .flow__svg--wide {
+    display: none;
+  }
+  .flow__svg--tall {
+    display: block;
+  }
+  .flow__paper {
+    padding: var(--space-2);
+  }
+}
+
+/* lanes */
+.flow__lane rect {
+  fill: rgb(28 27 25 / 0.025);
+  stroke: var(--graphite);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.flow__lane line {
+  stroke: var(--graphite);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.flow__lane-label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  fill: var(--graphite);
+}
+
+/* a state is one drawing; the inactive one fades back and un-draws */
+.flow__state {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-pen);
+}
+.flow__state[data-active='true'] {
+  opacity: 1;
+  transition-delay: 0.15s;
+}
+.flow__lines {
+  filter: url(#pencil);
+  fill: none;
+  stroke-linecap: square;
+}
+.flow__box {
+  stroke: var(--ink);
+  stroke-width: 2;
+  fill: none;
+}
+.flow__box--key {
+  stroke: var(--marker);
+  stroke-width: 2.75;
+}
+.flow__fill {
+  fill: var(--paper);
+  stroke: none;
+}
+.flow__fill--key {
+  fill: #e9eef8;
+}
+.flow__edge {
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.45s var(--ease-pen);
+}
+.flow__edge--loop {
+  stroke: var(--marker);
+  stroke-width: 2.25;
+}
+.flow__edge--fallback,
+.flow__edge--drop {
+  stroke: var(--graphite);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-pen);
+}
+.flow__state[data-active='true'] .flow__edge {
+  stroke-dashoffset: 0;
+  transition-delay: calc(var(--i) * 70ms + 150ms);
+}
+.flow__state[data-active='true'] .flow__edge--fallback,
+.flow__state[data-active='true'] .flow__edge--drop {
+  opacity: 1;
+  transition-delay: 0.9s;
+}
+.flow__head {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.flow__head--loop {
+  stroke: var(--marker);
+}
+.flow__head--fallback,
+.flow__head--drop {
+  stroke: var(--graphite);
+}
+.flow__node {
+  transform-box: fill-box;
+}
+.flow__state[data-active='true'] .flow__node {
+  animation: flow-pop 0.4s var(--ease-pen) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+@keyframes flow-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.flow__ripple {
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 4;
+  opacity: 0.7;
+  animation: flow-ripple 2.8s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes flow-ripple {
+  from {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+/* text */
+.flow__text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  fill: var(--ink);
+}
+.flow__text--num {
+  font-size: 26px;
+  font-weight: 600;
+}
+.flow__text--key {
+  fill: #1f4a99; /* marker, darkened for 4.5:1 on its tint */
+  font-weight: 600;
+}
+.flow__note {
+  font-family: var(--font-hand);
+  font-size: 20px;
+  fill: var(--graphite);
+}
+.flow__note--key {
+  fill: #1f4a99;
+}
+
+/* outcomes */
+.flow__outcome {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-pen);
+}
+.flow__outcome[data-show='true'] {
+  opacity: 1;
+  transition-delay: 0.8s;
+}
+.flow__outcome span {
+  padding: 4px var(--space-2);
+  border: var(--line-thin) solid var(--marker);
+  color: #1f4a99;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow__state,
+  .flow__edge,
+  .flow__edge--fallback,
+  .flow__edge--drop,
+  .flow__outcome {
+    transition: none !important;
+  }
+  .flow__node,
+  .flow__ripple {
+    animation: none !important;
+  }
+}
+
+/* A gentle ring that pulses around the switch until it is used, so it reads as clickable. */
+.flow__switch {
+  display: inline-flex;
+}
+.flow__switch[data-nudge='true'] .switch {
+  animation: flow-nudge 1.6s ease-out 4;
+}
+@keyframes flow-nudge {
+  0% {
+    box-shadow: 0 0 0 0 rgb(47 95 179 / 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 12px rgb(47 95 179 / 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow__switch[data-nudge='true'] .switch {
+    animation: none;
+    box-shadow: 0 0 0 3px rgb(47 95 179 / 0.45);
+  }
+}

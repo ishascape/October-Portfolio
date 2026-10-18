@@ -1,0 +1,296 @@
+/* Selected work sits on a darker, cold-press watercolour sheet. The texture is an SVG
+   relief multiplied over the base colour, so it shades the paper without washing it out. */
+#work.paper-sheet {
+  background-color: var(--paper-deep);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='5' seed='11' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' surfaceScale='2.6' lighting-color='%23fff' result='l'%3E%3CfeDistantLight azimuth='225' elevation='58'/%3E%3C/feDiffuseLighting%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.22' intercept='0.8'/%3E%3CfeFuncG type='linear' slope='0.22' intercept='0.8'/%3E%3CfeFuncB type='linear' slope='0.22' intercept='0.8'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23w%29'/%3E%3C/svg%3E");
+  background-size: 360px 360px;
+  background-blend-mode: multiply;
+}
+
+.work__heading {
+  margin-bottom: var(--space-6);
+  font-size: clamp(28px, 3.5vw, 44px);
+}
+
+.work__list {
+  display: grid;
+  gap: var(--space-4);
+}
+/* Cards in a row share one height and width; the call to action sits on the bottom edge. */
+.work__list > li {
+  display: grid;
+}
+
+/* The whole card is the tap target: the title link stretches over it. */
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  border: var(--line-thin) solid var(--rule);
+  background: var(--paper);
+  transition:
+    border-color var(--dur-micro) var(--ease-pen),
+    box-shadow var(--dur-micro) var(--ease-pen);
+}
+.card::before,
+.card::after {
+  /* Registration marks, shown on hover */
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transition: opacity var(--dur-micro) var(--ease-pen);
+}
+.card::before {
+  top: -7px;
+  left: -7px;
+  border-top: var(--line-building) solid var(--ink);
+  border-left: var(--line-building) solid var(--ink);
+}
+.card::after {
+  bottom: -7px;
+  right: -7px;
+  border-bottom: var(--line-building) solid var(--ink);
+  border-right: var(--line-building) solid var(--ink);
+}
+.card:hover,
+.card:focus-within {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 0.5px var(--ink);
+}
+.card:hover::before,
+.card:hover::after,
+.card:focus-within::before,
+.card:focus-within::after {
+  opacity: 1;
+}
+
+.card__link {
+  text-decoration: none;
+}
+.card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.card__link:focus-visible {
+  outline: none;
+}
+.card:has(.card__link:focus-visible) {
+  outline: 2px solid var(--marker);
+  outline-offset: 3px;
+}
+
+.card__image {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background:
+    linear-gradient(to right, rgb(216 210 196 / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
+    linear-gradient(to bottom, rgb(216 210 196 / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
+    var(--paper-shade);
+  border-bottom: var(--line-thin) solid var(--rule);
+}
+.card__image-note {
+  color: var(--graphite);
+}
+/* Slides stack in the frame and cross-fade; only the active one is visible. */
+.card__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-3);
+  opacity: 0;
+  transition: opacity var(--dur-state) var(--ease-pen);
+}
+.card__slide[data-active] {
+  opacity: 1;
+}
+.card__slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top; /* full width; any extra height is trimmed from the bottom */
+}
+.card__slide img[data-fit='contain'] {
+  object-fit: contain; /* full width of the frame, nothing cropped; the paper grid shows around it */
+  object-position: center;
+}
+.card__dots {
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  display: flex;
+  gap: 6px;
+}
+.card__dots span {
+  width: 8px;
+  height: 8px;
+  border: 1.25px solid var(--ink);
+  transition: background-color var(--dur-micro) var(--ease-pen);
+}
+.card__dots span[data-active] {
+  background: var(--ink);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-3);
+}
+
+.card__meta {
+  color: var(--graphite);
+}
+.card__title {
+  font-size: var(--text-heading);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.card__role {
+  font-size: 15px;
+  color: var(--graphite);
+}
+
+.card__metric {
+  display: grid;
+  gap: var(--space-1);
+  color: var(--marker);
+  padding-top: var(--space-3);
+  border-top: var(--line-hair) solid var(--rule);
+}
+.card__metric-value {
+  font-size: var(--text-metric);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.card__supporting {
+  display: grid;
+  gap: var(--space-1);
+  font-size: 15px;
+}
+.card__supporting li {
+  position: relative;
+  padding-left: var(--space-4);
+}
+.card__supporting li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border: 1.25px solid var(--ink);
+}
+
+.card__system {
+  font-size: 15px;
+  color: var(--graphite);
+}
+.card__system .label {
+  color: var(--ink);
+  margin-right: var(--space-1);
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.card__tags li {
+  padding: 2px var(--space-2);
+  border: var(--line-thin) solid var(--rule);
+  color: var(--graphite);
+}
+
+/* The CTA fills the foot of the card, edge to edge: the body padding is cancelled out. */
+.card__cta {
+  margin: auto calc(-1 * var(--space-3)) calc(-1 * var(--space-4));
+  padding-top: var(--space-2);
+}
+.card__cta .button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 56px;
+  padding-inline: var(--space-3);
+  border-width: var(--line-building) 0 0;
+}
+.card__cta .button::before,
+.card__cta .button::after {
+  display: none;
+}
+/* The CTA reads as a secondary button until the card is hovered, then becomes primary. */
+.card:hover .card__cta .button,
+.card:focus-within .card__cta .button {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.card:hover .card__cta .button::before,
+.card:hover .card__cta .button::after,
+.card:focus-within .card__cta .button::before,
+.card:focus-within .card__cta .button::after {
+  opacity: 1;
+}
+
+/* The arrow stays put on hover; only the button colour changes. */
+.card__arrow {
+  display: inline-block;
+  line-height: 1;
+}
+
+.work__footer {
+  margin-top: var(--space-5);
+  color: var(--graphite);
+}
+
+@media (min-width: 600px) {
+  .card__body {
+    padding: var(--space-4);
+  }
+  .card__cta {
+    margin-inline: calc(-1 * var(--space-4));
+  }
+  .card__cta .button {
+    padding-inline: var(--space-4);
+  }
+}
+
+/* Wide screens: each card is a horizontal row, image first and large. */
+@media (min-width: 900px) {
+  .work__list {
+    gap: var(--space-5);
+  }
+  .card {
+    grid-template-columns: 7fr 5fr;
+    grid-template-rows: none;
+  }
+  /* 16px more room around the text column, so it sits clear of the carousel. */
+  .card__body {
+    padding: calc(var(--space-4) + 16px);
+  }
+  .card__cta {
+    margin: auto calc(-1 * (var(--space-4) + 16px)) calc(-1 * (var(--space-4) + 16px));
+  }
+  .card__cta .button {
+    padding-inline: calc(var(--space-4) + 16px);
+  }
+  .card__image {
+    aspect-ratio: auto;
+    min-height: 100%;
+    border-bottom: 0;
+    border-right: var(--line-thin) solid var(--rule);
+  }
+}

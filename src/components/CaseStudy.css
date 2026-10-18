@@ -1,0 +1,492 @@
+.case__header {
+  padding-block: var(--space-4) var(--space-5);
+  background-image:
+    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+  background-size: 24px 24px;
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+
+.case__sheet {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--ink);
+  margin-bottom: var(--space-5);
+}
+.case__sheet a {
+  text-decoration: none;
+}
+.case__sheet a:hover {
+  color: var(--marker);
+}
+
+.case__intro {
+  display: grid;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+.case__titles {
+  display: grid;
+  gap: var(--space-3);
+  align-content: end;
+}
+.case__kicker {
+  color: var(--marker);
+}
+.case__subtitle {
+  max-width: var(--measure);
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.4;
+}
+
+.case__drawing {
+  width: 100%;
+  max-width: 640px; /* stacked under the title on every screen size; capped so it doesn't swell on desktop */
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--line-thin) solid var(--ink);
+  background: var(--paper);
+}
+.case__drawing .plan {
+  cursor: default;
+}
+.case__drawing .plan__tiny {
+  font-size: 9px;
+}
+.case__drawing figcaption {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+.case__state {
+  color: var(--graphite);
+}
+
+.case__visual {
+  display: grid;
+  gap: var(--space-4);
+}
+/* On desktop the drawing and the facts sit side by side, the facts in a compact column. */
+@media (min-width: 900px) {
+  .case__visual {
+    grid-template-columns: minmax(0, 640px) minmax(220px, 300px);
+    align-items: start;
+    gap: var(--space-5);
+  }
+  .case__visual .case__meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.case__hero-image {
+  margin: 0;
+  background: #fff; /* white behind the product shot, only as large as the image */
+}
+.case__hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.case__plan {
+  padding-block: var(--space-4) var(--space-5);
+}
+.case__plan--spaced {
+  padding-top: calc(var(--space-4) + 16px);
+}
+@media (min-width: 900px) {
+  .case__visual--image {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  }
+}
+
+.case__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--line-thin);
+  border: var(--line-thin) solid var(--ink);
+  background: var(--ink); /* shows through the 1px gaps as rules */
+}
+.case__meta > div {
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+  padding: var(--space-2) var(--space-3);
+  background: var(--paper-shade);
+}
+.case__meta dt {
+  color: var(--graphite);
+}
+.case__meta dd {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* ---------- TL;DR ---------- */
+
+.case__tldr {
+  padding-block: var(--space-6);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+.case__ps {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.case__ps > div {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--measure);
+}
+.case__ps h2,
+.case__impact-label {
+  font-weight: 400;
+  color: var(--graphite);
+}
+.case__impact-label {
+  margin-bottom: var(--space-3);
+}
+.case__impact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4) var(--gutter);
+}
+.case__impact li {
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+  padding-top: var(--space-3);
+  border-top: var(--line-building) solid var(--ink);
+  color: var(--marker);
+}
+.case__impact-value {
+  font-size: var(--text-metric);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.case__impact-note {
+  margin-top: var(--space-3);
+  max-width: 62ch;
+  font-size: 0.875rem;
+  color: var(--graphite);
+}
+
+/* ---------- Sections ---------- */
+
+.case__section {
+  padding-block: var(--space-6);
+  border-bottom: var(--line-hair) solid var(--rule);
+}
+.case__section-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+.case__section-label {
+  color: var(--graphite);
+}
+.case__section-body {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 760px;
+}
+.case__section-heading {
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin-bottom: var(--space-2);
+}
+.case__section-body > p {
+  max-width: var(--measure);
+}
+
+.case__list {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--measure);
+}
+.case__list li {
+  padding-left: var(--space-4);
+  position: relative;
+}
+.case__list li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border: 1.25px solid var(--ink);
+}
+.case__list strong {
+  font-weight: 600;
+}
+
+.case__quotes {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+.case__quote-cards {
+  display: grid;
+  gap: var(--space-3);
+}
+@media (min-width: 700px) {
+  .case__quote-cards {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.case__quote {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-4);
+  border: var(--line-building) solid var(--ink);
+  border-radius: 20px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.case__quote--dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+.case__quote p {
+  margin: 0;
+}
+.case__quote-name {
+  font-weight: 600;
+}
+.case__quote-name span {
+  display: block;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.case__experiments {
+  display: grid;
+  gap: var(--space-3);
+}
+.case__experiments > li {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: var(--line-thin) solid var(--rule);
+}
+.case__experiments h3 {
+  font-weight: 400;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+.case__experiments dl {
+  display: grid;
+  gap: var(--space-2);
+  font-size: 16px;
+}
+.case__experiments dl > div {
+  display: grid;
+  gap: var(--space-1);
+}
+.case__experiments dt {
+  color: var(--graphite);
+}
+.case__experiments dd {
+  margin: 0;
+}
+.case__verdict {
+  color: var(--marker);
+}
+
+.case__figure {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.case__figure-frame {
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 16 / 9;
+  padding: var(--space-3);
+  border: var(--line-thin) dashed var(--graphite);
+  background: var(--paper-shade);
+  color: var(--graphite);
+}
+.case__figure figcaption {
+  color: var(--graphite);
+}
+.case__callout {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-left: 4px solid var(--marker);
+  background: var(--marker-wash);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.case__callout + .case__figure {
+  margin-top: 0;
+}
+.case__callout p {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+}
+.case__callout strong {
+  font-weight: 600;
+}
+.case__figure figcaption.case__figure-caption--spaced {
+  margin-top: calc(var(--space-4) - var(--space-2)); /* the figure's own gap supplies the rest */
+}
+.case__figure figcaption.case__figure-title {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- Next ---------- */
+
+.case__next {
+  padding-block: var(--space-6);
+}
+.case__next-link {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-4);
+  border: var(--line-thin) solid var(--ink);
+  text-decoration: none;
+  transition: background-color var(--dur-micro) var(--ease-pen);
+}
+.case__next-link:hover {
+  background: var(--marker-wash);
+}
+.case__next-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+.case__next-image--placeholder {
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-3);
+  border: var(--line-thin) dashed var(--graphite);
+  background: var(--paper-shade);
+  color: var(--graphite);
+}
+.case__next-text {
+  display: grid;
+  gap: var(--space-2);
+}
+.case__next-title {
+  font-size: var(--text-heading);
+  font-weight: 600;
+}
+.case__next-summary {
+  color: var(--graphite);
+}
+
+/* An experiment with a screen: image on the left, intent, change and result stacked on the right. */
+.case__experiment-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 600px; /* never taller than 600px */
+  margin-inline: auto;
+}
+@media (min-width: 760px) {
+  .case__experiments > .case__experiment--image {
+    grid-template-columns: 60% minmax(0, 1fr);
+    column-gap: var(--space-4); /* 24px between image and text */
+    align-content: start;
+  }
+  .case__experiment--image h3 {
+    grid-column: 1 / -1;
+  }
+  .case__experiment--image .case__experiment-image {
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    justify-self: center; /* centred in its 60% column */
+    margin: 0;
+  }
+  .case__experiments .case__experiment--image dl {
+    grid-column: 2;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+  .case__experiment--image .case__verdict {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 600px) {
+  .case__ps {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gutter);
+  }
+  .case__experiments dl {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+  }
+}
+
+@media (min-width: 1024px) {
+  .case__next-link {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-6);
+    padding: var(--space-5);
+  }
+  .case__impact {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .case__section-grid {
+    grid-template-columns: 3fr 9fr;
+    gap: var(--gutter);
+  }
+}
+
+/* Hand-lettered note above a section heading, with a line-drawn light bulb. */
+.case__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0 0 var(--space-1);
+  color: var(--marker);
+}
+.case__eyebrow svg {
+  width: 22px;
+  height: 26px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Top summary: the case in 30 seconds ---------- */
+
+.case__plan-stack {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.case__figure--bordered img {
+  border: var(--line-thin) solid var(--ink);
+}
+.case__figure--image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff; /* the screenshot is cut out on white; keep the white only as large as the image */
+}
+.case__figure--clear img {
+  background: none; /* a cut-out with a transparent background, so the paper shows through */
+}

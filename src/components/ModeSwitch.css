@@ -1,0 +1,35 @@
+/* Existing ⇄ proposed switch, used on the case-study pages. */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  border: var(--line-thin) solid var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+}
+.switch [data-on='false'] {
+  color: var(--graphite);
+}
+.switch__track {
+  position: relative;
+  width: 40px;
+  height: 16px;
+  border: var(--line-thin) solid var(--ink);
+}
+.switch__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 10px;
+  background: var(--ink);
+  transition: transform var(--dur-state) var(--ease-pen);
+}
+.switch[aria-checked='true'] .switch__thumb {
+  transform: translateX(18px);
+  background: var(--marker);
+}

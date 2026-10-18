@@ -1,0 +1,235 @@
+/* The Venue Finder V2 prototype: the real screens, with clickable hotspots and a demo cursor on top. */
+.vfp {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  min-width: 0;
+}
+.vfp__scroll {
+  overflow-x: auto;
+  border: var(--line-thin) solid var(--ink);
+  background: #fff;
+}
+.vfp__stage {
+  position: relative;
+  min-width: 640px; /* on phones the screen scrolls sideways rather than shrinking to nothing */
+  aspect-ratio: 1440 / 964;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #fff;
+  user-select: none;
+}
+.vfp__screen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition:
+    opacity 380ms var(--ease-pen),
+    transform 380ms var(--ease-pen);
+  pointer-events: none;
+}
+.vfp__screen[data-pos='before'] {
+  transform: translateX(-2%);
+}
+.vfp__screen[data-pos='after'] {
+  transform: translateX(2%);
+}
+.vfp__screen[data-pos='active'] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .vfp__screen {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+.vfp__spot {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+.vfp__spot:hover,
+.vfp__spot:focus-visible {
+  outline: 2px solid var(--marker);
+  outline-offset: 1px;
+  background: rgb(47 95 179 / 0.1);
+}
+.vfp__pulse {
+  position: absolute;
+  border: 2px solid var(--marker);
+  border-radius: 4px;
+  pointer-events: none;
+  animation: vfp-pulse 1.8s ease-out infinite;
+}
+@keyframes vfp-pulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.12, 1.5);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vfp__pulse {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+.vfp__radio {
+  position: absolute;
+  width: 0.85%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #1c1b19;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.vfp__dim {
+  position: absolute;
+  background: rgb(255 255 255 / 0.62);
+  pointer-events: none;
+}
+.vfp__yes {
+  position: absolute;
+  border: 1.5px solid #b3231c;
+  border-radius: 3px;
+  background: rgb(179 35 28 / 0.1);
+  pointer-events: none;
+}
+
+.vfp__cursor {
+  position: absolute;
+  width: clamp(18px, 2.2cqw, 34px);
+  aspect-ratio: 24 / 28;
+  fill: #fff;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: translate(-12%, -8%);
+  transition:
+    left 850ms cubic-bezier(0.45, 0, 0.25, 1),
+    top 850ms cubic-bezier(0.45, 0, 0.25, 1),
+    opacity 250ms ease,
+    scale 120ms ease;
+  filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.25));
+  pointer-events: none;
+}
+.vfp__cursor[data-show='true'] {
+  opacity: 1;
+}
+.vfp__cursor[data-down='true'] {
+  scale: 0.88;
+}
+.vfp__ripple {
+  position: absolute;
+  width: 3.2%;
+  aspect-ratio: 1;
+  border: 2px solid var(--marker);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+  transition:
+    left 850ms cubic-bezier(0.45, 0, 0.25, 1),
+    top 850ms cubic-bezier(0.45, 0, 0.25, 1);
+  pointer-events: none;
+}
+.vfp__ripple[data-on='true'] {
+  animation: vfp-ripple 420ms ease-out;
+}
+@keyframes vfp-ripple {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+.vfp__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+}
+.vfp__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.vfp__tabs button,
+.vfp__play {
+  padding: 4px 14px;
+  border: var(--line-thin) solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.vfp__tabs button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+.vfp__tabs button span {
+  opacity: 0.7;
+}
+.vfp__caption {
+  margin-top: var(--space-1);
+}
+
+.case__experiments .vfp {
+  grid-column: 1 / -1;
+  margin-top: var(--space-3);
+}
+
+/* The card demo: a loading skeleton laid over the card, with a soft shimmer. */
+.vfp__skeleton {
+  position: absolute;
+  background: #fff;
+  border-radius: 6px;
+  pointer-events: none;
+  /* Failsafe: fades itself out just after the script clears it, so the skeleton can never get stuck on screen. */
+  animation: vfp-skeleton-out 200ms ease 1900ms forwards;
+}
+@keyframes vfp-skeleton-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.vfp__bone {
+  position: absolute;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #ece9e4 25%, #f6f4f0 50%, #ece9e4 75%);
+  background-size: 200% 100%;
+  animation: vfp-shimmer 1.2s linear infinite;
+}
+@keyframes vfp-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vfp__bone {
+    animation: none;
+  }
+}

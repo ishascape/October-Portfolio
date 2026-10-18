@@ -1,0 +1,83 @@
+/* HostHQ MVP scope: the TreeAssist flow's graph paper and pencil linework. */
+.scope {
+  margin: 0;
+  min-width: 0;
+}
+.scope__paper {
+  padding: var(--space-3);
+  border: var(--line-thin) solid var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgb(28 27 25 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(28 27 25 / 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.scope__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.scope__svg--tall {
+  display: none;
+}
+@media (max-width: 679px) {
+  .scope__svg--wide {
+    display: none;
+  }
+  .scope__svg--tall {
+    display: block;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+  .scope__paper {
+    padding: var(--space-2);
+  }
+}
+.scope__lines {
+  filter: url(#pencil);
+  fill: none;
+  stroke-linecap: square;
+}
+.scope__box {
+  stroke: var(--ink);
+  stroke-width: 2;
+  fill: none;
+}
+.scope__box--light {
+  stroke: var(--graphite);
+  stroke-width: 1.5;
+}
+.scope__fill {
+  fill: var(--paper);
+  stroke: none;
+}
+.scope__edge {
+  stroke: var(--ink);
+  stroke-width: 2;
+  fill: none;
+}
+.scope__edge--light {
+  stroke: var(--graphite);
+  stroke-width: 1.5;
+}
+.scope__head {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.scope__head--light {
+  stroke: var(--graphite);
+}
+.scope__text {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 500;
+  fill: var(--ink);
+}
+.scope__text--light {
+  font-size: 14px;
+  fill: var(--graphite);
+}
