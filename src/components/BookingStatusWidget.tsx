@@ -4,7 +4,7 @@ import './BookingStatusWidget.css'
 type Row = { text: string; date?: string }
 type Stage = { id: string; tab: string; pill: string; lead: string[]; rows: Row[] }
 
-const DATE = 'DD/MM/YYYY'
+const EVENT = '14/12/2026'
 
 // The four states of the HostHQ booking status panel, in the order an event moves through them.
 const stages: Stage[] = [
@@ -17,8 +17,8 @@ const stages: Stage[] = [
       'They will accept it if they wish to proceed with booking.',
     ],
     rows: [
-      { text: 'Guest submitted brief', date: DATE },
-      { text: 'You sent a proposal to the guest', date: DATE },
+      { text: 'Guest submitted brief', date: '02/11/2026' },
+      { text: 'You sent a proposal to the guest', date: '03/11/2026' },
       { text: 'Waiting for guest to respond…' },
     ],
   },
@@ -30,8 +30,8 @@ const stages: Stage[] = [
       'Congratulations, your proposal was accepted by the guest! Contact them directly to finalise the booking progress',
     ],
     rows: [
-      { text: 'You reached out with a proposal', date: DATE },
-      { text: 'The guest has accepted your proposal', date: DATE },
+      { text: 'You reached out with a proposal', date: '03/11/2026' },
+      { text: 'The guest has accepted your proposal', date: '05/11/2026' },
       { text: 'You need to contact the guest to finalise booking.' },
     ],
   },
@@ -39,26 +39,26 @@ const stages: Stage[] = [
     id: 'upcoming',
     tab: 'Upcoming',
     pill: 'Upcoming event',
-    lead: ['This will take place on DD/MM/YYYY.'],
+    lead: [`This will take place on ${EVENT}.`],
     rows: [
-      { text: 'You reached out with a proposal', date: DATE },
-      { text: 'The guest has accepted your proposal', date: DATE },
-      { text: 'You contacted the guest', date: DATE },
-      { text: 'You confirmed the booking', date: DATE },
-      { text: 'Event scheduled for DD/MM/YY 🎉' },
+      { text: 'You reached out with a proposal', date: '03/11/2026' },
+      { text: 'The guest has accepted your proposal', date: '05/11/2026' },
+      { text: 'You contacted the guest', date: '06/11/2026' },
+      { text: 'You confirmed the booking', date: '09/11/2026' },
+      { text: 'Event scheduled for 14/12/26 🎉' },
     ],
   },
   {
     id: 'completed',
     tab: 'Completed',
     pill: 'Completed event',
-    lead: ['This will take place on DD/MM/YYYY.'],
+    lead: [`This will take place on ${EVENT}.`],
     rows: [
-      { text: 'You reached out with a proposal', date: DATE },
-      { text: 'The guest has accepted your proposal', date: DATE },
-      { text: 'You contacted the guest', date: DATE },
-      { text: 'You confirmed the booking', date: DATE },
-      { text: 'Event took place on DD/MM/YY 🎉' },
+      { text: 'You reached out with a proposal', date: '03/11/2026' },
+      { text: 'The guest has accepted your proposal', date: '05/11/2026' },
+      { text: 'You contacted the guest', date: '06/11/2026' },
+      { text: 'You confirmed the booking', date: '09/11/2026' },
+      { text: 'Event took place on 14/12/26 🎉' },
     ],
   },
 ]
