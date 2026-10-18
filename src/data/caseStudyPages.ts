@@ -6,6 +6,7 @@ import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
+import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
@@ -104,7 +105,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         body: [
           'An LLM reads what the guest needs, ranks venues from a vectorised inventory and lets guests compare quotes. The brief then lands in the host’s Lead Feed, so one workflow serves both sides.',
         ],
-        figure: 'Brief-to-lead system diagram',
+        planImage3: {
+          src: vfBriefLifecycle,
+          alt: 'Diagram of the life-cycle of an event brief, from event brief to direct enquiry or lead, proposals to review and confirmed booking. It compares the Venue Finder experiment, the Host HQ MVP rolled out, the currently legacy guest home and Host HQ steps, and the legacy Brief builder and LeadFeed flow, with friction notes in red.',
+          caption: 'Life-cycle of an event brief',
+          width: 2048,
+          height: 794,
+        },
       },
       {
         label: '04 · Experiments',
