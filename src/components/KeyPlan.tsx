@@ -4,25 +4,38 @@ import { CONTOURS, LAND, PLACES, PX_PER_KM, SUBURBS, SUBURB_LABELS, VIEW, ZETLAN
 // terrain (see keyplanData.ts), with a north point, grid references, a scale bar and one
 // blue pin on Zetland. Decorative; the location is also given as text beside it.
 
-const { w, h } = VIEW
+const { w: fullW, h: fullH } = VIEW
+
+// The drawing is cropped to a window centred on Zetland, so the map reads closer in.
+const ZOOM = 1.25
+const w = fullW / ZOOM
+const h = w / 1.5
+const vx = Math.min(Math.max(ZETLAND.x - w / 2, 0), fullW - w)
+const vy = Math.min(Math.max(ZETLAND.y - h / 2, 0), fullH - h)
 const cols = ['A', 'B', 'C', 'D']
 const rows = ['1', '2', '3']
 
 export function KeyPlan() {
   return (
-    <svg className="keyplan" viewBox={`0 0 ${w} ${h}`} role="img" aria-labelledby="keyplan-title">
+    <svg
+      className="keyplan"
+      viewBox={`${vx} ${vy} ${w} ${h}`}
+      preserveAspectRatio="xMidYMid slice"
+      role="img"
+      aria-labelledby="keyplan-title"
+    >
       <title id="keyplan-title">Key plan of inner and eastern Sydney with a pin on Zetland</title>
       <defs>
         <pattern id="keyplan-water" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="6" className="keyplan__hatch" />
         </pattern>
         <clipPath id="keyplan-frame">
-          <rect x="0" y="0" width={w} height={h} />
+          <rect x={vx} y={vy} width={w} height={h} />
         </clipPath>
       </defs>
 
       <g clipPath="url(#keyplan-frame)">
-        <rect width={w} height={h} fill="url(#keyplan-water)" />
+        <rect x={vx} y={vy} width={w} height={h} fill="url(#keyplan-water)" />
         <path d={LAND} className="keyplan__land" fillRule="evenodd" />
         {CONTOURS.map(([level, d]) => (
           <path key={level} d={d} className={`keyplan__contour${level % 40 === 0 ? ' keyplan__contour--index' : ''}`} />
@@ -30,22 +43,34 @@ export function KeyPlan() {
         <path d={SUBURBS} className="keyplan__suburbs" />
         <path d={LAND} className="keyplan__coast" fillRule="evenodd" />
         {cols.slice(1).map((_, i) => (
-          <line key={i} x1={((i + 1) * w) / 4} y1="0" x2={((i + 1) * w) / 4} y2={h} className="keyplan__grid" />
+          <line
+            key={i}
+            x1={vx + ((i + 1) * w) / 4}
+            y1={vy}
+            x2={vx + ((i + 1) * w) / 4}
+            y2={vy + h}
+            className="keyplan__grid"
+          />
         ))}
         {rows.slice(1).map((_, i) => (
-          <line key={i} x1="0" y1={((i + 1) * h) / 3} x2={w} y2={((i + 1) * h) / 3} className="keyplan__grid" />
+          <line
+            key={i}
+            x1={vx}
+            y1={vy + ((i + 1) * h) / 3}
+            x2={vx + w}
+            y2={vy + ((i + 1) * h) / 3}
+            className="keyplan__grid"
+          />
         ))}
       </g>
 
-      <rect x="0.5" y="0.5" width={w - 1} height={h - 1} className="keyplan__frame" />
-
       {cols.map((l, i) => (
-        <text key={l} x={((i + 0.5) * w) / 4} y="12" className="keyplan__ref">
+        <text key={l} x={vx + ((i + 0.5) * w) / 4} y={vy + 12} className="keyplan__ref">
           {l}
         </text>
       ))}
       {rows.map((n, i) => (
-        <text key={n} x="6" y={((i + 0.5) * h) / 3} className="keyplan__ref">
+        <text key={n} x={vx + 6} y={vy + ((i + 0.5) * h) / 3} className="keyplan__ref">
           {n}
         </text>
       ))}
@@ -76,7 +101,7 @@ export function KeyPlan() {
       })}
 
       {/* North point */}
-      <g transform={`translate(40 ${h - 92})`} className="keyplan__north">
+      <g transform={`translate(${vx + 30} ${vy + h - 98})`} className="keyplan__north">
         <circle r="18" />
         <path d="M0 -24 L7 8 L0 3 L-7 8 Z" />
         <path d="M0 -24 L0 3 L-7 8 Z" className="keyplan__north-fill" />
@@ -86,7 +111,7 @@ export function KeyPlan() {
       </g>
 
       {/* Scale bar, 0 to 2 km */}
-      <g transform={`translate(20 ${h - 26})`} className="keyplan__scale">
+      <g transform={`translate(${vx + 16} ${vy + h - 48})`} className="keyplan__scale">
         <rect x="0" y="-3" width={PX_PER_KM} height="6" className="keyplan__scale-fill" />
         <rect x="0" y="-3" width={PX_PER_KM * 2} height="6" />
         <text x="0" y="16">

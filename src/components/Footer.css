@@ -349,9 +349,7 @@
   }
   .titlesheet__plan .keyplan {
     height: 100%;
-    width: auto;
-    max-width: 100%;
-    justify-self: center;
+    width: 100%;
   }
 }
 
