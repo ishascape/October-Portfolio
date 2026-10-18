@@ -1,6 +1,7 @@
 import { caseHref, homeHref } from '../links'
 import { useState } from 'react'
 import { Lightbox } from './Lightbox'
+import { EvidencePlaceholder } from './EvidencePlaceholder'
 import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
@@ -81,6 +82,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               </dl>
             </div>
           </div>
+          {page.headerEvidence?.map((id) => (
+            <EvidencePlaceholder key={id} id={id} />
+          ))}
         </div>
       </header>
 
@@ -106,6 +110,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
             ))}
           </ul>
           {page.impactNote && <p className="case__impact-note">{page.impactNote}</p>}
+          {page.impactEvidence?.map((id) => (
+            <EvidencePlaceholder key={id} id={id} />
+          ))}
         </div>
       </section>
 
@@ -203,6 +210,70 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   </div>
                 </figure>
               )}
+              {s.decisions && (
+                <ol className="case__decisions">
+                  {s.decisions.map((d) => (
+                    <li key={d.title}>
+                      <h3 className="label">{d.title}</h3>
+                      <dl>
+                        <div>
+                          <dt className="label">Problem</dt>
+                          <dd>{d.problem}</dd>
+                        </div>
+                        <div>
+                          <dt className="label">Options</dt>
+                          <dd>{d.options}</dd>
+                        </div>
+                        <div>
+                          <dt className="label">Decision</dt>
+                          <dd>{d.decision}</dd>
+                        </div>
+                        <div>
+                          <dt className="label">Why</dt>
+                          <dd>{d.why}</dd>
+                        </div>
+                        <div>
+                          <dt className="label">What shipped</dt>
+                          <dd>{d.shipped}</dd>
+                        </div>
+                      </dl>
+                    </li>
+                  ))}
+                </ol>
+              )}
+              {s.moments?.map((m) => (
+                <figure key={m.title} className="case__moment">
+                  <img
+                    className={
+                      m.image.bordered ? 'case__moment-image case__moment-image--bordered' : 'case__moment-image'
+                    }
+                    src={m.image.src}
+                    alt={m.image.alt}
+                    width={m.image.width}
+                    height={m.image.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {m.widget === 'booking-status' && <BookingStatusWidget />}
+                  <figcaption>
+                    <h3 className="label">{m.title}</h3>
+                    <dl>
+                      <div>
+                        <dt className="label">Problem</dt>
+                        <dd>{m.problem}</dd>
+                      </div>
+                      <div>
+                        <dt className="label">Decision</dt>
+                        <dd>{m.decision}</dd>
+                      </div>
+                      <div>
+                        <dt className="label">Why</dt>
+                        <dd>{m.why}</dd>
+                      </div>
+                    </dl>
+                  </figcaption>
+                </figure>
+              ))}
               {s.dayDiagram && <HostDayFlow caption={s.dayDiagram.caption} />}
               {s.diagram === 'vf-shift' && <VenueShiftDiagram />}
               {s.diagram === 'vf-ranking' && <VenueRankingDiagram />}
@@ -240,6 +311,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <figcaption className="annotation">{s.figure}</figcaption>
                 </figure>
               )}
+              {s.evidence?.map((id) => (
+                <EvidencePlaceholder key={id} id={id} />
+              ))}
             </div>
           </div>
           {(s.plan ||

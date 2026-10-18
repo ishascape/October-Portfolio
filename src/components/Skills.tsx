@@ -194,7 +194,7 @@ const skills: Skill[] = [
   {
     title: 'Marketplaces',
     drawing: MarketplaceParti,
-    text: 'Designing both sides of the marketplace. Improved venue discovery at HeadBox, contributing to a 30% rise in qualified leads.',
+    text: 'Designing both sides of the marketplace. Improved venue discovery at HeadBox, contributing to a 30% rise in qualified inbound enquiries.',
     hover: [
       { h: 'match', to: 'scale(1.25)' },
       { h: 'base', to: 'scaleX(1.12)' },
