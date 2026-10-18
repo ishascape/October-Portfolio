@@ -197,3 +197,31 @@
   grid-column: 1 / -1;
   margin-top: var(--space-3);
 }
+
+/* The card demo: a loading skeleton laid over the card, with a soft shimmer. */
+.vfp__skeleton {
+  position: absolute;
+  background: #fff;
+  border-radius: 6px;
+  pointer-events: none;
+}
+.vfp__bone {
+  position: absolute;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #ece9e4 25%, #f6f4f0 50%, #ece9e4 75%);
+  background-size: 200% 100%;
+  animation: vfp-shimmer 1.2s linear infinite;
+}
+@keyframes vfp-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vfp__bone {
+    animation: none;
+  }
+}

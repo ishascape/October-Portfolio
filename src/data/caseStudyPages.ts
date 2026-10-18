@@ -5,6 +5,7 @@ import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
+import vfHero from '../assets/venue-finder-hero.webp'
 import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
@@ -74,6 +75,12 @@ export interface CaseStudyPage {
 export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
   'venue-finder': {
     id: 'venue-finder',
+    heroImage: {
+      src: vfHero,
+      alt: "A hand holding a phone and tapping a Venue Finder venue card. The card shows a Spotlight tag, Responds fast, a photo of Junsei, a yakitori restaurant in Marylebone, a short description, and I'm interested and Not for me buttons.",
+      width: 1536,
+      height: 1024,
+    },
     kicker: 'HeadBox · Demand side',
     subtitle:
       'HeadBox is a marketplace for event planners and venue hosts. As sole product designer, I redesigned how guests brief venues, so hosts got fewer, better-qualified enquiries.',

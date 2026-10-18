@@ -1,6 +1,6 @@
 import prompt from '../assets/vf-v2-prompt.webp'
 import suggestions from '../assets/vf-v2-suggestions.webp'
-import prescreen from '../assets/vf-v2-prescreen.webp'
+import { VenueCardDemo } from './VenueCardDemo'
 import './VenueFlows.css'
 
 // Two compact diagrams for the Venue Finder case study, in the portfolio's pencil-box style.
@@ -138,7 +138,7 @@ const moments = [
     h: 964,
   },
   {
-    src: prescreen,
+    src: '',
     alt: "A Venue Finder suggestion card for Junsei, a yakitori restaurant in Marylebone, with I'm interested and Not for me buttons.",
     title: 'Pre-screen as you go',
     note: '“I’m interested” and “Not for me” tell us what to refine next.',
@@ -152,15 +152,19 @@ export function VenueExperienceTrio() {
     <div className="vf-trio">
       {moments.map((m, i) => (
         <figure key={m.title} className="vf-trio__item">
-          <img
-            src={m.src}
-            alt={m.alt}
-            width={m.w}
-            height={m.h}
-            style={{ maxWidth: m.w }}
-            loading="lazy"
-            decoding="async"
-          />
+          {m.src ? (
+            <img
+              src={m.src}
+              alt={m.alt}
+              width={m.w}
+              height={m.h}
+              style={{ maxWidth: m.w }}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <VenueCardDemo />
+          )}
           <figcaption>
             <b>
               {i + 1}. {m.title}
