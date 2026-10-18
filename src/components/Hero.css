@@ -381,3 +381,18 @@
     animation: none;
   }
 }
+
+/* The portrait on its own: one card, square on, no tilt or label. */
+.hero__puzzle--single {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+.hero__puzzle--single .hero__piece {
+  aspect-ratio: 4 / 5;
+  transform: none;
+}
+@media (min-width: 760px) {
+  .hero__puzzle--single .hero__piece {
+    aspect-ratio: auto;
+  }
+}
