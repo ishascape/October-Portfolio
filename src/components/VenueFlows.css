@@ -188,22 +188,3 @@
 .vf-trio__item figcaption b {
   font-weight: 600;
 }
-
-/* V1, what we learned, V2 */
-.vf-iter__steps li b {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-.vf-iter__steps .vf-iter__learn {
-  border-style: dashed;
-}
-.vf-iter__steps .vf-iter__v2 {
-  border-color: var(--marker);
-  background: var(--marker-wash);
-}
-@media (min-width: 900px) {
-  .vf-iter__steps {
-    grid-auto-columns: 1fr;
-  }
-}

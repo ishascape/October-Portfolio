@@ -176,24 +176,3 @@ export function VenueExperienceTrio() {
     </div>
   )
 }
-
-export function VenueIterationStrip() {
-  return (
-    <figure className="vf-flow vf-iter" aria-label="From V1 to V2">
-      <ol className="vf-flow__steps vf-iter__steps">
-        <li>
-          <b>V1</b>
-          Prompt first, account required before recommendations
-        </li>
-        <li className="vf-iter__learn">
-          <b>Learning</b>
-          38% left at the prompt, 27% at account creation. Intent was valuable, the friction wasn’t.
-        </li>
-        <li className="vf-iter__v2">
-          <b>V2</b>
-          Optional prompt, magic-link sign-up, faster load
-        </li>
-      </ol>
-    </figure>
-  )
-}

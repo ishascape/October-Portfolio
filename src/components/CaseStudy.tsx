@@ -10,13 +10,7 @@ import { MvpScopeFlow } from './MvpScopeFlow'
 import { HostDayFlow } from './HostDayFlow'
 import { VenueFinderPrototype } from './VenueFinderPrototype'
 import { LegacyBriefPrototype } from './LegacyBriefPrototype'
-import {
-  VenueShiftDiagram,
-  VenueRankingDiagram,
-  VenueProblemDiagram,
-  VenueExperienceTrio,
-  VenueIterationStrip,
-} from './VenueFlows'
+import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
 
@@ -151,7 +145,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   ))}
                 </ul>
               )}
-              {s.diagram === 'vf-iteration' && <VenueIterationStrip />}
               {s.experiments && (
                 <ol className="case__experiments">
                   {s.experiments.map((e) => (

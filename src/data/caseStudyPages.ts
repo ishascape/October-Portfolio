@@ -52,7 +52,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
-  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-iteration' // a compact native diagram for the Venue Finder story
+  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -181,7 +181,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       {
         label: '07 · Experiments',
         heading: 'A control, a first version that failed, and a second that shipped.',
-        diagram: 'vf-iteration',
         experiments: [
           {
             name: 'Control · Legacy brief builder',
