@@ -6,6 +6,7 @@ import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
 import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
+import vfGuestQuotes from '../assets/venue-finder-guest-quotes.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
@@ -98,6 +99,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'Hypothesis: capturing intent and encouraging shortlisting before submission means fewer, more valuable briefs for hosts.',
         ],
         figure: 'Research synthesis',
+        planImage3: {
+          src: vfGuestQuotes,
+          alt: 'Guest quotes from interviews. Examples: "I felt like I was being sold to rather than helped", "I wish there were links to social media or their website, I want to do more research before matching", and "Let me message the venue right inside HeadBox. I don’t want to switch to email or WhatsApp."',
+          caption: 'Quotes from guest user interviews - 5 corporate bookers, 5 social bookers',
+          width: 1654,
+          height: 888,
+        },
       },
       {
         label: '03 · The system',
