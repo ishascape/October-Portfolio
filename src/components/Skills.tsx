@@ -194,7 +194,7 @@ const skills: Skill[] = [
   {
     title: 'Marketplaces',
     drawing: MarketplaceParti,
-    text: 'Designing both sides of the marketplace. Improved venue discovery at HeadBox, contributing to a 30% rise in qualified leads.',
+    text: 'Designing both sides of the marketplace. Improved venue discovery at HeadBox, contributing to a 30% rise in qualified inbound enquiries.',
     hover: [
       { h: 'match', to: 'scale(1.25)' },
       { h: 'base', to: 'scaleX(1.12)' },
@@ -212,7 +212,7 @@ const skills: Skill[] = [
   {
     title: 'Experimentation & optimisation',
     drawing: ExperimentationParti,
-    text: 'Using data and experiments to remove friction. At Findmypast, ran behavioural analysis and A/B tests in a growth squad to improve trial conversion.',
+    text: 'Using data and experiments to remove friction. At Findmypast, ran behavioural analysis and A/B tests in a growth squad, lifting free-trial conversion 5×. Redesigned onboarding to raise 14-day retention by 25% and cut checkout drop-off by 23%.',
     hover: [{ h: 'lead', to: 'translate(5px, -3.5px)' }],
   },
   {

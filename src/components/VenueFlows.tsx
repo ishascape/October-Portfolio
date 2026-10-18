@@ -126,6 +126,7 @@ const moments = [
     alt: 'Venue Finder V2 prompt step: "Tell us about your event, is there anything specific you\'re looking for?" with example chips, a text area, and Skip this step, Back and Next buttons.',
     title: 'Say what you want',
     note: 'A free-text prompt, or skip it and answer a few structured questions.',
+    why: 'In V1 the required AI prompt lost 38% of guests, so V2 made it optional.',
     w: 1440,
     h: 964,
   },
@@ -134,6 +135,7 @@ const moments = [
     alt: 'Venue Finder V2 suggestions step: "Here are your initial suggestions", with venue cards for Junsei, Caia and Radisson Blu beside a map of 32 venues in London.',
     title: 'See relevant venues',
     note: 'Ranked suggestions on a map, before any enquiry is sent.',
+    why: 'Guests used to wait for venues to reply. Now they see venues first.',
     w: 1440,
     h: 964,
   },
@@ -142,6 +144,7 @@ const moments = [
     alt: "A Venue Finder suggestion card for Junsei, a yakitori restaurant in Marylebone, with I'm interested and Not for me buttons.",
     title: 'Pre-screen as you go',
     note: '“I’m interested” and “Not for me” tell us what to refine next.',
+    why: 'Guests used to have little say over who got in touch. Now their taps shape it.',
     w: 680,
     h: 335,
   },
@@ -170,6 +173,7 @@ export function VenueExperienceTrio() {
               {i + 1}. {m.title}
             </b>
             <span className="annotation">{m.note}</span>
+            <span className="annotation vf-trio__why">{m.why}</span>
           </figcaption>
         </figure>
       ))}

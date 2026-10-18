@@ -33,12 +33,15 @@ export function About() {
             <p>I trained as an architect in the UK. Turns out, I never stopped thinking like one.</p>
             <p className="about__mantra">Understand the space. Challenge the brief. Design for the people using it.</p>
             <p>
-              These days, I do that with digital products. Untangling messy workflows, connecting the dots between
-              people and systems, and making complicated things feel simple.
+              <strong>Designing complex systems.</strong> These days, I do that with digital products: untangling messy
+              workflows, connecting the dots between people and systems, and making complicated things feel simple.
             </p>
             <p>
-              I&apos;ve worked across B2B SaaS, marketplaces and growth at HeadBox and Findmypast, designing experiences
-              that work for users and make business sense.
+              <strong>Driving commercial outcomes.</strong> Experiences that work for users and make business sense, at
+              HeadBox and Findmypast.
+            </p>
+            <p>
+              <strong>Shipping through ambiguity.</strong> Taking ambiguous problems from discovery to delivery.
             </p>
           </div>
         </div>

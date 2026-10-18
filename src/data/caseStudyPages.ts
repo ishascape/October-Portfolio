@@ -2,6 +2,7 @@
 // The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
+import type { EvidenceId } from './evidence'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
@@ -33,6 +34,25 @@ export interface Experiment {
   prototype?: 'vf-v2' | 'legacy' // a clickable prototype, shown below the text
 }
 
+export interface Decision {
+  title: string
+  problem: string
+  options: string
+  decision: string
+  why: string
+  shipped: string
+}
+
+// A real screen with what it solves, the interaction decision and the reason for it.
+export interface Moment {
+  title: string
+  image: { src: string; alt: string; width: number; height: number; bordered?: boolean }
+  problem: string
+  decision: string
+  why: string
+  widget?: 'booking-status'
+}
+
 export interface Section {
   label: string // small kicker, like a drawing title
   heading: string
@@ -56,6 +76,9 @@ export interface Section {
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
+  decisions?: Decision[] // problem, options, decision, why and what shipped
+  moments?: Moment[] // key product moments: real screens with short annotations
+  evidence?: EvidenceId[] // dev and preview only: dotted placeholders for evidence still to come
 }
 
 export interface CaseStudyPage {
@@ -71,6 +94,8 @@ export interface CaseStudyPage {
   impact: Metric[]
   // Discreet line under the impact figures saying how far to trust them.
   impactNote?: string
+  impactEvidence?: EvidenceId[] // dev and preview only
+  headerEvidence?: EvidenceId[] // dev and preview only, shown under the header details
   sections: Section[]
 }
 
@@ -103,6 +128,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     ],
     impactNote:
       'Qualified enquiries is the measured V2 result against the control. Spotlight is a new revenue line; no revenue figure is claimed.',
+    impactEvidence: ['vf-verify-metrics'],
     sections: [
       {
         label: '01 · The problem',
@@ -160,7 +186,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         },
       },
       {
-        label: '04 · The experience',
+        label: '04 · Key product moments',
         heading: 'Intent in, relevant venues out.',
         diagram: 'vf-experience',
       },
@@ -172,6 +198,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'The aim wasn’t venues that technically fit. It was venues a guest would want to book. Ranking then balances four signals: best fit, active venues, premium and paid Spotlight.',
         ],
         diagram: 'vf-ranking',
+        evidence: ['vf-ranking-balance'],
       },
       {
         label: '06 · Edge cases',
@@ -181,6 +208,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'We didn’t force recommendations where inventory couldn’t support them, but we still caught high-value enquiries through a concierge.',
         ],
         diagram: 'vf-gaps',
+        evidence: ['vf-edge-treatment'],
       },
       {
         label: '07 · Experiments',
@@ -219,6 +247,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             prototype: 'vf-v2',
           },
         ],
+        evidence: ['vf-v1-v2-screens', 'vf-eng-decisions'],
       },
       {
         label: '08 · Reflections',
@@ -271,7 +300,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: 'Shipped',
         value: 'Unified navigation, requests dashboard, proposal builder and marketplace reporting',
       },
-      { label: 'Deferred', value: '3D Studio migration, full reporting and mobile (see 04 for what comes next)' },
+      { label: 'Deferred', value: '3D Studio migration, full reporting and mobile (see 06 for what comes next)' },
     ],
     problem:
       'Hosts’ platform was really four products (Lead Feed, PowerHost, HeadBox for Business, 3D Studio): confusing navigation, repeated workflows, inconsistent data, little cross-product use. We were shipping our org chart. I advocated for round-table research over a redesign driven by stakeholder opinion and support tickets.',
@@ -283,6 +312,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '-25%', label: 'Navigation support tickets' },
     ],
     impactNote: 'Reported project outcomes, not individual attribution.',
+    impactEvidence: ['hq-verify-metrics'],
     sections: [
       {
         label: '01 · Research',
@@ -319,58 +349,109 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         heading: 'Trade-off: A coherent system before surface polish.',
         body: [
           'With three months before peak season, I chose structure over completeness: unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
+          'The cost: migrating the data slowed v1 load times for hosts with large datasets.',
         ],
-        list: [
-          {
-            title: '3D Studio',
-            text: 'Legacy dependencies blocked full integration, so it was embedded in the proposal flow and migration deferred.',
-          },
-          { title: 'Reporting', text: 'Data needed cleaning first, so we shipped marketplace reporting only.' },
-          {
-            title: 'Performance',
-            text: 'Migrating the data slowed v1 load times for hosts with large datasets.',
-          },
-          { title: 'Mobile', text: 'Desktop-only, as hosts work mainly on desktop.' },
-        ],
-        planImageTop: {
-          src: hosthqRequestsDashboard,
-          caption:
-            'MVP dashboard: landing on requests, where users see their inbound, qualified requests for proposals',
-          alt: 'The HostHQ Requests screen: a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) beside a list of event requests with New, Urgent and Commissionable event tags, budgets, dates, locations and a Send Proposal button on each.',
-          width: 1600,
-          height: 1138,
-          bordered: true,
-        },
-        planImage3: {
-          src: hosthqFilterEvents,
-          alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',
-          caption:
-            'Filter events: tailored to what the venue is looking for, with notifications for events that match your venue space and availability.',
-          width: 1440,
-          height: 1024,
-          bordered: true,
-        },
-        planImage4: {
-          src: hosthqProposalAccepted,
-          alt: 'The HostHQ proposal screen after a guest accepts: a "John accepted your proposal" banner with the guest\'s verified contact details and a Confirm Booking button, a booking status timeline, and the space and pricing details of the proposal below.',
-          width: 1440,
-          height: 1024,
-        },
-        bookingStatus: {
-          callout: [
-            {
-              title: 'Host pain point',
-              text: 'Not knowing how much time has passed between communication, not knowing what next action is pending, especially when an event is being handled by multiple people.',
-            },
-            {
-              title: 'Solution',
-              text: 'Clearly suggest the next action for the host to take, put timestamps on each part of the events journey, set up alerts and notifications when an event moves from one section of the workflow to the next.',
-            },
-          ],
-        },
       },
       {
-        label: '04 · With 12 months instead of 3',
+        label: '04 · Decisions that shaped the release',
+        heading: 'What we chose, what we gave up, what shipped.',
+        decisions: [
+          {
+            title: 'Research before redesign',
+            problem:
+              'Four separate products, and pressure for a redesign driven by stakeholder opinion and support tickets.',
+            options: 'Redesign from stakeholder opinion and tickets, or run round-table research with hosts first.',
+            decision: 'I advocated for round-table research.',
+            why: 'Hosts wanted clear signals of growth and return, not more features.',
+            shipped: 'A consolidation strategy built around making revenue clear.',
+          },
+          {
+            title: 'Structure over completeness',
+            problem: 'Three months before peak season.',
+            options: 'Polish the surface and the full feature set, or ship a coherent structure first.',
+            decision: 'I chose structure over completeness.',
+            why: 'A coherent system mattered more than surface polish before peak season.',
+            shipped:
+              'Unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
+          },
+          {
+            title: '3D Studio',
+            problem: '3D Studio was one of the four tools, and legacy dependencies blocked full integration.',
+            options: 'Integrate fully, or embed it and defer migration.',
+            decision: 'Embed it in the proposal flow and defer migration.',
+            why: 'Legacy dependencies blocked full integration.',
+            shipped: '3D Studio embedded in the proposal flow.',
+          },
+          {
+            title: 'Reporting',
+            problem: 'The data needed cleaning first.',
+            options: 'Full reporting, or marketplace reporting only.',
+            decision: 'Ship marketplace reporting only.',
+            why: 'Reporting depends on a clean data layer.',
+            shipped: 'Marketplace reporting. Full reporting is in what comes next.',
+          },
+          {
+            title: 'Mobile',
+            problem: 'Three months, and hosts work mainly on desktop.',
+            options: 'Desktop and mobile, or desktop only.',
+            decision: 'Desktop only.',
+            why: 'Hosts work mainly on desktop.',
+            shipped: 'A desktop-only v1.',
+          },
+        ],
+        evidence: ['hq-eng-constraint', 'hq-responsibilities'],
+      },
+      {
+        label: '05 · Key product moments',
+        heading: 'Three screens, and the decision behind each.',
+        moments: [
+          {
+            title: 'Requests dashboard',
+            image: {
+              src: hosthqRequestsDashboard,
+              alt: 'The HostHQ Requests screen: a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) beside a list of event requests with New, Urgent and Commissionable event tags, budgets, dates, locations and a Send Proposal button on each.',
+              width: 1600,
+              height: 1138,
+              bordered: true,
+            },
+            problem: 'Hosts came to HeadBox for leads but ran their business elsewhere.',
+            decision: 'Land on requests, where hosts see their inbound, qualified requests for proposals.',
+            why: 'Hosts wanted clear signals of growth and return, and a dashboard that prompts action.',
+          },
+          {
+            title: 'Filter events',
+            image: {
+              src: hosthqFilterEvents,
+              alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',
+              width: 1440,
+              height: 1024,
+              bordered: true,
+            },
+            problem: 'Hosts doubted whether an enquiry was genuine and whether they were even available.',
+            decision:
+              'Filters tailored to what the venue is looking for, with notifications for events that match the venue space and availability.',
+            why: 'Those were the questions hosts asked of every enquiry: is it genuine, and are we available?',
+          },
+          {
+            title: 'Proposal accepted and booking status',
+            image: {
+              src: hosthqProposalAccepted,
+              alt: 'The HostHQ proposal screen after a guest accepts: a "John accepted your proposal" banner with the guest\'s verified contact details and a Confirm Booking button, a booking status timeline, and the space and pricing details of the proposal below.',
+              width: 1440,
+              height: 1024,
+            },
+            problem:
+              'Hosts could not tell how long it had been since the last message or what action was pending, especially when several people handled one event.',
+            decision:
+              'Suggest the next action, put timestamps on each part of the events journey, and alert hosts when an event moves between stages.',
+            why: 'The pain point was visibility of timing and pending actions.',
+            widget: 'booking-status',
+          },
+        ],
+        evidence: ['hq-workflow', 'hq-screens-annotated'],
+      },
+      {
+        label: '06 · With 12 months instead of 3',
         heading: 'What comes next.',
         list: [
           { text: 'Group hosts by maturity and revenue band.' },
@@ -382,7 +463,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         ],
       },
       {
-        label: '05 · Reflections',
+        label: '07 · Reflections',
         heading: 'A fragmented platform is an alignment problem before it is a design problem.',
         body: [
           'Reactive growth caused the fragmentation. The fix was reframing the product around clearer growth signals for hosts. Strong marketplaces run on structural clarity and workflow-improving features, not faster shipping.',
@@ -419,6 +500,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '-13%', label: 'Onboarding drop-off' },
     ],
     impactNote: 'Results from A/B experiments run with product, data science and engineering.',
+    impactEvidence: ['ta-verify-attribution'],
+    headerEvidence: ['ta-contribution'],
     sections: [
       {
         plan: 'flow',
@@ -471,6 +554,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             },
           },
         ],
+        evidence: ['ta-experiment-results'],
       },
       {
         label: '03 · Trade-offs',
@@ -491,13 +575,34 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         ],
       },
       {
-        label: '04 · Descope dungeon',
+        label: '04 · Key product moments',
+        heading: 'Next steps on the canvas, not a blank tree.',
+        moments: [
+          {
+            title: 'Desktop tree with next steps',
+            image: {
+              src: treeassistDesktop,
+              alt: 'A laptop showing the Findmypast family tree on desktop. Suggested relatives wait to be added around the tree, and a "Let\'s keep building the Green family tree" checklist on the right offers three next steps: review suggested relatives, build your tree with hints, and start a 7-day free trial.',
+              width: 1800,
+              height: 1142,
+            },
+            problem: 'After onboarding, new users faced a blank family-tree canvas.',
+            decision:
+              'Show suggested relatives around the tree and a checklist of next steps on the canvas. I advocated for interactive states in desktop onboarding, not the view-only state engineers proposed.',
+            why: 'To get users into the core product and building their tree sooner.',
+          },
+        ],
+        evidence: ['ta-final-states'],
+      },
+      {
+        label: '05 · Descope dungeon',
         heading: 'Latency: Designing for a 2 to 30 second wait.',
         eyebrow: 'Descoped, not forgotten',
         eyebrowIcon: 'sword',
         body: [
           'Suggestions took 2 to 30 seconds to appear. I proposed progressive, personalised content during the wait, such as headlines from the user’s birthday. It was descoped to focus on core improvements and release speed.',
         ],
+        evidence: ['ta-eng-latency'],
         image: {
           src: treeassistWait,
           alt: 'Four phones showing the descoped wait-state concept. A progress bar reads "We\'re checking our records for information on your relatives" above a "Browse while you wait" carousel: tips to grow your family tree, newspaper headlines on your birthday, a "Did you know" fact with a historic photo, and a prompt to try Findmypast free for 7 days.',
@@ -507,18 +612,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         },
       },
       {
-        label: '05 · Reflections',
+        label: '06 · Reflections',
         heading: 'Deliver value before asking for data.',
         body: [
-          'Early value often beats perfect upfront data, and designing for momentum can unlock engagement and monetisation. Next: a personalised task list on the tree canvas to guide the free trial.',
+          'Designing for momentum can unlock engagement and monetisation. Next: a personalised task list on the tree canvas to guide the free trial.',
         ],
-        image: {
-          src: treeassistDesktop,
-          alt: 'A laptop showing the Findmypast family tree on desktop. Suggested relatives wait to be added around the tree, and a "Let\'s keep building the Green family tree" checklist on the right offers three next steps: review suggested relatives, build your tree with hints, and start a 7-day free trial.',
-          caption: 'Desktop layout, with next steps on the canvas for users to engage with after onboarding.',
-          width: 1800,
-          height: 1142,
-        },
       },
     ],
   },

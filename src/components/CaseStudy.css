@@ -490,3 +490,73 @@
 .case__figure--clear img {
   background: none; /* a cut-out with a transparent background, so the paper shows through */
 }
+
+/* ---------- Decisions and key product moments ---------- */
+
+.case__decisions {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+.case__decisions > li {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: var(--line-thin) solid var(--rule);
+}
+.case__decisions h3 {
+  font-weight: 400;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+.case__decisions dl,
+.case__moment dl {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: 16px;
+}
+.case__decisions dl > div {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: var(--space-3);
+}
+.case__decisions dt,
+.case__moment dt {
+  color: var(--graphite);
+}
+.case__decisions dd,
+.case__moment dd {
+  margin: 0;
+}
+.case__moment {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-4) 0 0;
+}
+.case__moment-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.case__moment-image--bordered {
+  border: var(--line-thin) solid var(--rule);
+}
+.case__moment h3 {
+  font-weight: 400;
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--ink);
+}
+.case__moment dl > div {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: var(--space-3);
+}
+@media (max-width: 599px) {
+  .case__decisions dl > div,
+  .case__moment dl > div {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}
