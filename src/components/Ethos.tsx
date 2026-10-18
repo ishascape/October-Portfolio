@@ -21,7 +21,7 @@ export function Ethos() {
             onBlur={() => setOpen(null)}
           >
             <span className="ethos__bubble" aria-hidden="true">
-              {p.title}
+              <span>{p.title}</span>
             </span>
             <PrincipleParti number={p.number} />
           </button>

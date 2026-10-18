@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-6) var(--space-4);
-  margin: calc(var(--space-6) + 16px) 0 var(--space-5);
+  margin: calc(var(--space-6) + 32px) 0 var(--space-5);
   padding: 0;
   list-style: none;
 }
@@ -32,15 +32,20 @@
   left: 50%;
   bottom: calc(100% + 14px);
   z-index: 1;
-  width: max-content;
-  max-width: min(240px, 100%);
+  /* One fixed size for every bubble (room for two lines), so nothing jumps between hovers. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: min(264px, 100%);
+  min-height: 60px;
   padding: var(--space-2) var(--space-3);
   border: var(--line-thin) solid var(--ink);
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.25;
   text-align: center;
   opacity: 0;
@@ -63,6 +68,10 @@
   border-bottom: var(--line-thin) solid var(--ink);
   background: var(--paper);
   transform: translateX(-50%) rotate(45deg);
+}
+.ethos__bubble > span {
+  width: 100%;
+  text-align: center;
 }
 .ethos__item:hover .ethos__bubble,
 .ethos__item:focus-visible .ethos__bubble,
