@@ -8,6 +8,7 @@ import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
+import hosthqRequestsDashboard from '../assets/hosthq-requests-dashboard.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistExp2 from '../assets/treeassist-exp2.webp'
@@ -43,6 +44,7 @@ export interface Section {
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
+  planImageTop?: { src: string; alt: string; title: string; width: number; height: number; bordered?: boolean } // above the third, with a title
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
@@ -272,6 +274,14 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           { title: 'Mobile', text: 'Desktop-only, as hosts work mainly on desktop.' },
         ],
+        planImageTop: {
+          src: hosthqRequestsDashboard,
+          title: 'MVP dashboard - Landing on requests, where users see their inbound qualified Requests for proposals',
+          alt: 'The HostHQ Requests screen: a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) beside a list of event requests with New, Urgent and Commissionable event tags, budgets, dates, locations and a Send Proposal button on each.',
+          width: 1600,
+          height: 1138,
+          bordered: true,
+        },
         planImage3: {
           src: hosthqFilterEvents,
           alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',

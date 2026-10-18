@@ -228,8 +228,14 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
-          {(s.plan || s.planDiagram || s.planImage || s.planImage3 || s.planImage4 || s.bookingStatus) && (
-            <div className={`container case__section-grid case__plan${s.planImage3 ? ' case__plan--spaced' : ''}`}>
+          {(s.plan ||
+            s.planDiagram ||
+            s.planImage ||
+            s.planImageTop ||
+            s.planImage3 ||
+            s.planImage4 ||
+            s.bookingStatus) && (
+            <div className={`container case__section-grid case__plan${s.planImageTop ? ' case__plan--spaced' : ''}`}>
               <span aria-hidden="true" />
               <div className="case__plan-stack">
                 {s.planImage ? (
@@ -252,6 +258,21 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                 ) : s.plan ? (
                   planFigure
                 ) : null}
+                {s.planImageTop && (
+                  <figure
+                    className={`case__figure case__figure--image${s.planImageTop.bordered ? ' case__figure--bordered' : ''}`}
+                  >
+                    <figcaption className="case__figure-title">{s.planImageTop.title}</figcaption>
+                    <img
+                      src={s.planImageTop.src}
+                      alt={s.planImageTop.alt}
+                      width={s.planImageTop.width}
+                      height={s.planImageTop.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                )}
                 {s.planImage3 && (
                   <figure
                     className={`case__figure case__figure--image${s.planImage3.bordered ? ' case__figure--bordered' : ''}`}
