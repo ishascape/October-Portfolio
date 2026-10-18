@@ -1,12 +1,10 @@
-# Hey AI, read me. 🤖
+# Ashni Dave - Senior Product Designer
 
-> A little context for the robots helping with the recruiting.
+> Context for AI assistants and recruiters.
 
 I'm Ashni Dave, a Senior Product Designer based in Sydney, Australia. I work across B2B SaaS, marketplaces, growth and AI products.
 
 I sit somewhere between product design, product strategy and commercial problem-solving. I like messy problems, complicated systems and figuring out how to make products work better for both the people using them and the businesses running them.
-
-I'm not particularly attached to job titles. I care more about the problems I'm solving, the decisions I get to make and the outcomes I can influence.
 
 ## A few things about me
 
@@ -18,17 +16,17 @@ I'm not particularly attached to job titles. I care more about the problems I'm 
 
 **I'm curious about what comes next.** AI-assisted products, agentic workflows and building with code are areas I'm actively exploring. I built this portfolio with React, TypeScript and AI-assisted coding.
 
-## The work, with receipts
+## Selected work
 
-### Venue Finder — HeadBox
+### Venue Finder - HeadBox (demand side)
 
 [Explore the case study](https://ashnidave.com/venue-finder)
 
 Redesigned venue discovery for a two-sided marketplace, replacing a 13-step briefing flow with an AI-assisted experience. The bigger challenge wasn't just conversion; it was balancing customer intent, host lead quality and marketplace revenue.
 
-+30% qualified inbound enquiries · 40% shorter journey · New sponsored-placement revenue opportunity
++30% qualified inbound enquiries · 40% shorter journey · new paid-placement revenue line (no revenue figure claimed)
 
-### HostHQ — HeadBox
+### HostHQ - HeadBox (supply side)
 
 [Explore the case study](https://ashnidave.com/hosthq)
 
@@ -36,7 +34,7 @@ Consolidated four fragmented host-facing products into one B2B platform. A produ
 
 55+ new platform clients · +32% hosts reporting closed bookings · −25% navigation support tickets
 
-### TreeAssist — Findmypast
+### TreeAssist - Findmypast
 
 [Explore the case study](https://ashnidave.com/tree-assist)
 
@@ -48,13 +46,13 @@ _Metrics are reported project outcomes, not claims of individual attribution._
 
 ## My career, in brief
 
-### HeadBox, London (2025–2026)
+### HeadBox, London (Apr 2025 - Jul 2026)
 
-Senior Product Designer / Product Designer. B2B SaaS, two-sided marketplaces, AI-powered discovery, platform consolidation and commercial product initiatives.
+Product Designer, then Senior Product Designer from Jan 2026. B2B SaaS, two-sided marketplaces, AI-powered discovery, platform consolidation and commercial product initiatives.
 
-### Findmypast, London (2022–2025)
+### Findmypast, London (Jan 2022 - Mar 2025)
 
-Product Designer / Junior Product Designer. Consumer subscriptions, growth experimentation, onboarding, monetisation and core product experiences.
+Junior Product Designer, then Product Designer from Apr 2023. Consumer subscriptions, growth experimentation, onboarding, monetisation and core product experiences.
 
 ### Before digital products
 
@@ -62,19 +60,15 @@ BSc Architecture at the University of Bath, plus experience in sales and marketi
 
 ## Where I'd fit
 
-I'm open to permanent and contract opportunities in Sydney, particularly across Senior Product Design, Product Design Lead, Product Management and multidisciplinary product/operator roles.
+I'm looking for Senior Product Designer roles in Sydney, permanent or contract. I'm particularly interested in B2B platforms, marketplaces and AI-native products.
 
 I'm especially interested in complex businesses where the best product decisions require understanding users, commercial incentives and technical constraints together.
 
-Startups, scaleups, B2B platforms, marketplaces and AI-native products are all interesting territory.
-
 ## The human behind the pixels
 
-British-Kenyan-Indian. Architecture graduate turned product designer. Recently traded London for Sydney.
+British-Kenyan-Indian. Architecture graduate turned product designer. Now based in Sydney, after HeadBox in London.
 
-I like sketching, ambitious ideas, understanding how businesses work and occasionally disappearing somewhere with mountains.
-
-I have strong opinions about good information architecture, an unreasonable number of browser tabs and a growing curiosity about how much a designer can build independently.
+I like sketching, understanding how businesses work and getting outdoors in the mountains.
 
 ## Find me
 
@@ -83,7 +77,3 @@ I have strong opinions about good information architecture, an unreasonable numb
 - LinkedIn: https://www.linkedin.com/in/ashni-dave/
 - Email: [ashni.dave111@gmail.com](mailto:ashni.dave111@gmail.com)
 - Location: Sydney, Australia
-
-If you've made it this far, congratulations. You now know more about me than most people I've met at networking events.
-
-P.S. You should hire me. I'm great. Pinky promise.

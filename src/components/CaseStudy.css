@@ -169,6 +169,13 @@
   font-variant-numeric: tabular-nums;
 }
 
+.case__impact-note {
+  margin-top: var(--space-3);
+  max-width: 62ch;
+  font-size: 0.875rem;
+  color: var(--graphite);
+}
+
 /* ---------- Sections ---------- */
 
 .case__section {

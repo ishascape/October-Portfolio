@@ -148,7 +148,7 @@ export function Footer({ onHome }: { onHome: boolean }) {
                   </div>
                   <div>
                     <dt className="titlesheet__field">Sheet</dt>
-                    <dd>04 / 04</dd>
+                    <dd>Title sheet</dd>
                   </div>
                 </dl>
               </div>

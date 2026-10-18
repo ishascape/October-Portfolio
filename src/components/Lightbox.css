@@ -1,0 +1,26 @@
+.case img[alt]:not([alt='']):not(.case__next-image) {
+  cursor: zoom-in;
+}
+.lightbox {
+  max-width: 96vw;
+  max-height: 96vh;
+  padding: var(--space-2);
+  border: var(--line-thin) solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+}
+.lightbox::backdrop {
+  background: rgb(0 0 0 / 0.7);
+}
+.lightbox img {
+  display: block;
+  max-width: calc(96vw - 2 * var(--space-2));
+  max-height: calc(96vh - 5rem);
+  width: auto;
+  height: auto;
+  margin-inline: auto;
+}
+.lightbox__close {
+  display: block;
+  margin: var(--space-2) auto 0;
+}

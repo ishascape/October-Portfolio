@@ -31,6 +31,7 @@ export interface CaseStudy {
   summary: string
   company: string
   district: 'HeadBox' | 'Findmypast'
+  side?: 'Demand side' | 'Supply side' // HeadBox marketplace relationship
   role: string
   leadMetric: { value: string; label: string }
   supporting: string[]
@@ -44,12 +45,45 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: 'hosthq',
+    id: 'venue-finder',
     number: '01',
+    title: 'Venue Finder',
+    summary: 'An AI-assisted way to find venues, replacing a 13-step brief builder.',
+    company: 'HeadBox',
+    district: 'HeadBox',
+    side: 'Demand side',
+    role: 'Sole product designer, team of 4 engineers · 2 months',
+    leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
+    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
+    system:
+      'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
+    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
+    existing: '13-step brief builder · 83% drop-off',
+    proposed: 'AI-assisted venue finder · 40% shorter journey',
+    slug: 'venue-finder',
+    images: [
+      {
+        src: vfPhone,
+        alt: 'A hand holding a phone and tapping the HeadBox Venue Finder screen: a Junsei venue card with Spotlight and Responds fast tags and I’m interested and Not for me buttons',
+      },
+      {
+        src: vfJourney,
+        alt: 'The Venue Finder 2.0 desktop prompt-input flow in Figma: a journey map with notes above the Start, Prompt and 1st recommendations screens, each annotated.',
+      },
+      {
+        src: vfDesktop,
+        alt: 'A tablet showing Venue Finder options with venue cards, a map and a How does HeadBox work panel',
+      },
+    ],
+  },
+  {
+    id: 'hosthq',
+    number: '02',
     title: 'HostHQ',
     summary: 'Four separate host tools combined into one platform.',
     company: 'HeadBox',
     district: 'HeadBox',
+    side: 'Supply side',
     role: 'Senior Product Designer · 3 months, discovery to release',
     leadMetric: { value: '55+', label: 'new One Platform clients in 3 months' },
     supporting: ['+32% hosts reporting closed bookings', '-25% navigation support tickets'],
@@ -72,37 +106,6 @@ export const caseStudies: CaseStudy[] = [
         src: hqProposal,
         fit: 'contain',
         alt: 'The HostHQ proposal screen on a desktop monitor: a sent proposal for an investor meeting with its booking status, the chosen space, pricing details and a message to the guest.',
-      },
-    ],
-  },
-  {
-    id: 'venue-finder',
-    number: '02',
-    title: 'Venue Finder',
-    summary: 'An AI-assisted way to find venues, replacing a 13-step brief builder.',
-    company: 'HeadBox',
-    district: 'HeadBox',
-    role: 'Sole product designer, team of 4 engineers · 2 months',
-    leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
-    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
-    system:
-      'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
-    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
-    existing: '13-step brief builder · 83% drop-off',
-    proposed: 'AI-assisted venue finder · 40% shorter journey',
-    slug: 'venue-finder',
-    images: [
-      {
-        src: vfPhone,
-        alt: 'A hand holding a phone and tapping the HeadBox Venue Finder screen: a Junsei venue card with Spotlight and Responds fast tags and I’m interested and Not for me buttons',
-      },
-      {
-        src: vfJourney,
-        alt: 'The Venue Finder 2.0 desktop prompt-input flow in Figma: a journey map with notes above the Start, Prompt and 1st recommendations screens, each annotated.',
-      },
-      {
-        src: vfDesktop,
-        alt: 'A tablet showing Venue Finder options with venue cards, a map and a How does HeadBox work panel',
       },
     ],
   },
@@ -173,17 +176,17 @@ export const principles: Principle[] = [
 ]
 
 export const revisions = [
-  { rev: 'E', date: 'Jan 2026', role: 'Senior Product Designer', company: 'HeadBox, London' },
-  { rev: 'D', date: 'Apr 2025', role: 'Product Designer', company: 'HeadBox, London' },
-  { rev: 'C', date: 'Apr 2023', role: 'Product Designer', company: 'Findmypast, London' },
-  { rev: 'B', date: 'Jan 2022', role: 'Junior Product Designer', company: 'Findmypast, London' },
-  { rev: 'A', date: '2020–21', role: 'Sales & Marketing Associate', company: 'HealthCare Direct, Nairobi' },
+  { rev: 'E', date: 'Jan 2026 - Jul 2026', role: 'Senior Product Designer', company: 'HeadBox, London' },
+  { rev: 'D', date: 'Apr 2025 - Jan 2026', role: 'Product Designer', company: 'HeadBox, London' },
+  { rev: 'C', date: 'Apr 2023 - Mar 2025', role: 'Product Designer', company: 'Findmypast, London' },
+  { rev: 'B', date: 'Jan 2022 - Apr 2023', role: 'Junior Product Designer', company: 'Findmypast, London' },
+  { rev: 'A', date: '2020 - 2021', role: 'Sales & Marketing Associate', company: 'HealthCare Direct, Nairobi' },
 ]
 
 // From the CV, most recent first.
 export const education = [
   { date: 'Mar 2026', course: 'AI Coding for Designers', school: 'Memorisely' },
-  { date: '2020–21', course: 'UX Immersion and UI Specification', school: 'CareerFoundry' },
+  { date: '2020 - 2021', course: 'UX Immersion and UI Specification', school: 'CareerFoundry' },
   { date: '2016–20', course: 'BSc Architecture', school: 'University of Bath, UK' },
   { date: '2014–16', course: 'IB Diploma', school: 'Aga Khan Academy, Nairobi' },
 ]
@@ -291,9 +294,9 @@ export const fieldNotes: FieldNote[] = [
 
 // Ashni, 15 Oct 2026: permanent or contract; design, product or operator roles. No mention of visa sponsorship.
 export const availability = {
-  headline: "I'm open to permanent and contract Senior Product Designer, Product Manager or operator roles.",
-  location: 'Currently based in Sydney, Australia.',
-  short: 'Open to permanent and contract roles in design, product or operations',
+  headline: "I'm looking for Senior Product Designer roles in Sydney, permanent or contract.",
+  location: "I'm particularly interested in B2B platforms, marketplaces and AI-native products.",
+  short: 'Looking for Senior Product Designer roles in Sydney, permanent or contract',
 }
 
 export const contact = {

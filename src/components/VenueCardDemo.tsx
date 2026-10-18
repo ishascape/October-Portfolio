@@ -108,7 +108,7 @@ export function VenueCardDemo() {
   }, [running])
 
   return (
-    <div className="vfp__scroll">
+    <div className="vfp__scroll" role="group" aria-label="Scrollable prototype screen" tabIndex={0}>
       <div
         ref={stage}
         className="vfp__stage"

@@ -184,7 +184,8 @@
   display: grid;
   gap: calc(var(--space-3) + 8px);
 }
-.hero__support .hero__scene {
+.hero__support .hero__scene,
+.hero__support .hero__role {
   font-weight: 600;
 }
 .hero__actions {
@@ -197,6 +198,17 @@
 
 /* One column: the headline runs full width on two lines, then a full-width puzzle. */
 @media (max-width: 599px) {
+  /* Role line and buttons come before the puzzle, so they show without scrolling past it. */
+  .hero__portrait {
+    order: 3;
+  }
+  .hero__support .hero__questions,
+  .hero__support .hero__scene {
+    display: none;
+  }
+  .hero__support {
+    gap: var(--space-4);
+  }
   .hero__line {
     display: block;
   }

@@ -24,6 +24,9 @@ export function Ethos() {
               <span>{p.title}</span>
             </span>
             <PrincipleParti number={p.number} />
+            <span className="ethos__caption" aria-hidden="true">
+              {p.title}
+            </span>
           </button>
         </li>
       ))}

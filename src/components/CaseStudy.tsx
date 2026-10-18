@@ -1,5 +1,6 @@
 import { caseHref, homeHref } from '../links'
 import { useState } from 'react'
+import { Lightbox } from './Lightbox'
 import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
@@ -38,6 +39,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
 
   return (
     <article className="case" aria-labelledby="case-title">
+      <Lightbox />
       <header className="case__header">
         <div className="container">
           <p className="label case__sheet">
@@ -103,6 +105,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               </li>
             ))}
           </ul>
+          {page.impactNote && <p className="case__impact-note">{page.impactNote}</p>}
         </div>
       </section>
 
@@ -302,14 +305,14 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   </figure>
                 )}
                 {s.bookingStatus && (
-                  <aside className="case__callout">
+                  <div className="case__callout">
                     {s.bookingStatus.callout.map((c) => (
                       <p key={c.title}>
                         <strong>{c.title}</strong>
                         {c.text}
                       </p>
                     ))}
-                  </aside>
+                  </div>
                 )}
                 {s.planImage4 && (
                   <figure className="case__figure case__figure--image">

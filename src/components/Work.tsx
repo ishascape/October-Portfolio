@@ -26,6 +26,7 @@ export function Work() {
                 <div className="card__body">
                   <p className="label card__meta">
                     {s.number} · {s.company}
+                    {s.side ? ` · ${s.side}` : ''}
                   </p>
                   <h3 id={`card-${s.id}`} className="card__title">
                     <a href={caseHref(s.slug)} className="card__link">

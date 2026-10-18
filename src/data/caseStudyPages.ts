@@ -69,6 +69,8 @@ export interface CaseStudyPage {
   problem: string
   solution: string
   impact: Metric[]
+  // Discreet line under the impact figures saying how far to trust them.
+  impactNote?: string
   sections: Section[]
 }
 
@@ -99,6 +101,8 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '40%', label: 'Shorter journey than the 13-step builder' },
       { value: 'New', label: 'Revenue from paid Spotlight placement' },
     ],
+    impactNote:
+      'Qualified enquiries is the measured V2 result against the control. Spotlight is a new revenue line; no revenue figure is claimed.',
     sections: [
       {
         label: '01 · The problem',
@@ -259,6 +263,15 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Role', value: 'Senior Product Designer: design strategy, execution, IA and workflow redesign' },
       { label: 'Stakeholders', value: 'Platform clients, CEO, CTO, Head of Marketing, Head of Venue Sales' },
       { label: 'Timescale', value: '3 months, 0→1, discovery to full release' },
+      {
+        label: 'I owned',
+        value: 'Focus-group research, the consolidation strategy, MVP scope, IA and workflow redesign',
+      },
+      {
+        label: 'Shipped',
+        value: 'Unified navigation, requests dashboard, proposal builder and marketplace reporting',
+      },
+      { label: 'Deferred', value: '3D Studio migration, full reporting and mobile (see 04 for what comes next)' },
     ],
     problem:
       'Hosts’ platform was really four products (Lead Feed, PowerHost, HeadBox for Business, 3D Studio): confusing navigation, repeated workflows, inconsistent data, little cross-product use. We were shipping our org chart. I advocated for round-table research over a redesign driven by stakeholder opinion and support tickets.',
@@ -269,6 +282,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '+32%', label: 'Hosts reporting closed bookings' },
       { value: '-25%', label: 'Navigation support tickets' },
     ],
+    impactNote: 'Reported project outcomes, not individual attribution.',
     sections: [
       {
         label: '01 · Research',
@@ -302,7 +316,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '03 · The MVP',
-        heading: 'Tradeoff: A coherent system before surface polish.',
+        heading: 'Trade-off: A coherent system before surface polish.',
         body: [
           'With three months before peak season, I chose structure over completeness: unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
         ],
@@ -404,6 +418,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '+26%', label: 'Users building trees with 10+ people' },
       { value: '-13%', label: 'Onboarding drop-off' },
     ],
+    impactNote: 'Results from A/B experiments run with product, data science and engineering.',
     sections: [
       {
         plan: 'flow',

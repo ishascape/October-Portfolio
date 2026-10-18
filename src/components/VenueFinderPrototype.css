@@ -204,6 +204,14 @@
   background: #fff;
   border-radius: 6px;
   pointer-events: none;
+  /* Failsafe: fades itself out just after the script clears it, so the skeleton can never get stuck on screen. */
+  animation: vfp-skeleton-out 200ms ease 1900ms forwards;
+}
+@keyframes vfp-skeleton-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 .vfp__bone {
   position: absolute;

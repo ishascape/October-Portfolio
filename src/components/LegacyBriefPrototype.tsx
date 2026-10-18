@@ -96,7 +96,7 @@ export function LegacyBriefPrototype() {
 
   return (
     <figure className="vfp vfp--auto">
-      <div className="vfp__scroll">
+      <div className="vfp__scroll" role="group" aria-label="Scrollable prototype screen" tabIndex={0}>
         <div
           ref={stage}
           className="vfp__stage"

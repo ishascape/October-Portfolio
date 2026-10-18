@@ -203,7 +203,7 @@ const skills: Skill[] = [
   {
     title: 'Growth & monetisation',
     drawing: principleDrawings['4'],
-    text: 'Designing for customer value and commercial return. At Findmypast, covered acquisition, retention and gifting, including a ~£500k Gift Subscription MVP.',
+    text: 'Designing for customer value and commercial return. At Findmypast, covered acquisition, retention and gifting, including a Gift Subscription MVP the CV credits with over £500k in first-year revenue.',
     hover: [
       { h: 'turn', to: 'scale(1.2)' },
       { h: 'forecast', to: 'translate(2px, -3px)' },
@@ -212,7 +212,7 @@ const skills: Skill[] = [
   {
     title: 'Experimentation & optimisation',
     drawing: ExperimentationParti,
-    text: 'Using data and experiments to remove friction. At Findmypast, helped lift free-trial conversion 5× through onboarding improvements.',
+    text: 'Using data and experiments to remove friction. At Findmypast, ran behavioural analysis and A/B tests in a growth squad to improve trial conversion.',
     hover: [{ h: 'lead', to: 'translate(5px, -3.5px)' }],
   },
   {
