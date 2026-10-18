@@ -6,6 +6,7 @@ import hosthqHero from '../assets/hosthq-hero.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
 import treeassistExp1 from '../assets/treeassist-exp1.webp'
 import treeassistExp2 from '../assets/treeassist-exp2.webp'
+import treeassistWait from '../assets/treeassist-wait.webp'
 import treeassistExp3 from '../assets/treeassist-exp3.webp'
 import treeassistDesktop from '../assets/treeassist-desktop.webp'
 
@@ -404,7 +405,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         body: [
           'Suggestions took between 2 and 30 seconds to appear. I proposed showing progressive, personalised content during the wait, such as newspaper headlines from the user’s birthday. It was descoped so the team could focus on core improvements and release speed.',
         ],
-        figure: 'Wait-state concepts',
+        image: {
+          src: treeassistWait,
+          alt: 'Four phones showing the descoped wait-state concept. A progress bar reads "We\'re checking our records for information on your relatives" above a "Browse while you wait" carousel: tips to grow your family tree, newspaper headlines on your birthday, a "Did you know" fact with a historic photo, and a prompt to try Findmypast free for 7 days.',
+          caption: 'Wait-state concepts',
+          width: 1800,
+          height: 894,
+        },
       },
       {
         label: '05 · Reflections',
