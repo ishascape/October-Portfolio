@@ -242,7 +242,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   </figure>
                 )}
                 {s.planImage2 && (
-                  <figure className="case__figure case__figure--image">
+                  <figure className="case__figure case__figure--image case__figure--clear">
                     <img
                       src={s.planImage2.src}
                       alt={s.planImage2.alt}

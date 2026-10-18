@@ -408,3 +408,6 @@
   height: auto;
   background: #fff; /* the screenshot is cut out on white; keep the white only as large as the image */
 }
+.case__figure--clear img {
+  background: none; /* a cut-out with a transparent background, so the paper shows through */
+}
