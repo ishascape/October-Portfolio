@@ -11,14 +11,8 @@ const stages = [
   { name: 'Bookings', views: ['Upcoming', 'Past', 'Cancelled'] },
 ]
 
-const note = [
-  'Unify all event types into one intuitive workflow, whether B2B, B2C,',
-  'free or commissionable. Use distinct event card styling to differentiate',
-  'them without fragmenting the experience.',
-]
-
 const alt =
-  'The MVP scope: one events workflow in four stages. Leads (Unread, Declined) leads to Requests (All Requests, New Requests, Rejected requests), then Proposals (Sent proposals, Accepted, In Progress, Declined), then Bookings (Upcoming, Past, Cancelled). Unify all event types into one intuitive workflow, whether B2B, B2C, free or commissionable, using distinct event card styling to differentiate them without fragmenting the experience.'
+  'The MVP scope: one events workflow in four stages. Leads (Unread, Declined) leads to Requests (All Requests, New Requests, Rejected requests), then Proposals (Sent proposals, Accepted, In Progress, Declined), then Bookings (Upcoming, Past, Cancelled).'
 
 function Head({ x, y, angle, light }: { x: number; y: number; angle: number; light?: boolean }) {
   return (
@@ -92,7 +86,6 @@ function layout(orient: 'wide' | 'tall') {
       y = next
     })
     w = 24 + PW + 60
-    h = y - 4 + PH * 0
     h = y + 10
   }
   return { parents, children, lines, w, h }
@@ -100,8 +93,7 @@ function layout(orient: 'wide' | 'tall') {
 
 function Diagram({ orient }: { orient: 'wide' | 'tall' }) {
   const { parents, children, lines, w, h } = layout(orient)
-  const wide = orient === 'wide'
-  const H = wide ? h + 70 : h
+  const H = h
   return (
     <svg className={`scope__svg scope__svg--${orient}`} viewBox={`0 0 ${w} ${H}`} aria-hidden="true" focusable="false">
       <g className="scope__lines">
@@ -150,12 +142,6 @@ function Diagram({ orient }: { orient: 'wide' | 'tall' }) {
           </text>
         </g>
       ))}
-      {wide &&
-        note.map((t, i) => (
-          <text key={t} x={40} y={H - 56 + i * 24} className="scope__note">
-            {t}
-          </text>
-        ))}
     </svg>
   )
 }
@@ -166,7 +152,6 @@ export function MvpScopeFlow() {
       <div className="scope__paper">
         <Diagram orient="wide" />
         <Diagram orient="tall" />
-        <p className="scope__note scope__note--tall">{note.join(' ')}</p>
       </div>
     </figure>
   )

@@ -1,4 +1,4 @@
-/* HostHQ MVP scope: the TreeAssist flow's graph paper, pencil linework and handwritten note. */
+/* HostHQ MVP scope: the TreeAssist flow's graph paper and pencil linework. */
 .scope {
   margin: 0;
   min-width: 0;
@@ -18,8 +18,7 @@
   height: auto;
   overflow: visible;
 }
-.scope__svg--tall,
-.scope__note--tall {
+.scope__svg--tall {
   display: none;
 }
 @media (max-width: 679px) {
@@ -30,10 +29,6 @@
     display: block;
     max-width: 340px;
     margin-inline: auto;
-  }
-  .scope__note--tall {
-    display: block;
-    margin: var(--space-3) 0 0;
   }
   .scope__paper {
     padding: var(--space-2);
@@ -85,10 +80,4 @@
 .scope__text--light {
   font-size: 14px;
   fill: var(--graphite);
-}
-.scope__note {
-  font-family: var(--font-hand);
-  font-size: 20px;
-  fill: var(--graphite);
-  color: var(--graphite);
 }
