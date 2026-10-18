@@ -76,6 +76,30 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         </div>
       </header>
 
+      <section className="case__tldr" aria-label="Summary">
+        <div className="container">
+          <div className="case__ps">
+            <div>
+              <h2 className="label">Problem</h2>
+              <p>{page.problem}</p>
+            </div>
+            <div>
+              <h2 className="label">Solution</h2>
+              <p>{page.solution}</p>
+            </div>
+          </div>
+          <h2 className="label case__impact-label">Impact</h2>
+          <ul className="case__impact">
+            {page.impact.map((m) => (
+              <li key={m.label}>
+                <span className="case__impact-value">{m.value}</span>
+                <span className="label">{m.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="case__summary" aria-labelledby="case-summary-title">
         <div className="container">
           <h2 id="case-summary-title" className="case__summary-title">
@@ -102,30 +126,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               </div>
             ))}
           </dl>
-        </div>
-      </section>
-
-      <section className="case__tldr" aria-label="Summary">
-        <div className="container">
-          <div className="case__ps">
-            <div>
-              <h2 className="label">Problem</h2>
-              <p>{page.problem}</p>
-            </div>
-            <div>
-              <h2 className="label">Solution</h2>
-              <p>{page.solution}</p>
-            </div>
-          </div>
-          <h2 className="label case__impact-label">Impact</h2>
-          <ul className="case__impact">
-            {page.impact.map((m) => (
-              <li key={m.label}>
-                <span className="case__impact-value">{m.value}</span>
-                <span className="label">{m.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
