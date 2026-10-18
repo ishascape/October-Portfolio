@@ -1,0 +1,217 @@
+/* HostHQ information architecture. Same graph paper, pencil linework and hand notes as the TreeAssist
+   flow (it borrows .flow__paper and .flow__story); cobalt for Demand, terracotta for the MVP boundary. */
+.ia__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.ia__svg--tall {
+  display: none;
+  max-width: 420px;
+  margin-inline: auto;
+}
+@media (max-width: 679px) {
+  .ia__svg--wide {
+    display: none;
+  }
+  .ia__svg--tall {
+    display: block;
+  }
+  .ia__paper {
+    padding: var(--space-2);
+  }
+}
+
+/* the MVP boundary and the group of modules */
+.ia__scope rect {
+  fill: rgb(184 79 52 / 0.06);
+  stroke: #b84f34;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+.ia__scope-label {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  font-style: italic;
+  fill: #a8402a;
+}
+.ia__group {
+  fill: none;
+  stroke: var(--graphite);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+/* linework */
+.ia__lines {
+  filter: url(#pencil);
+  fill: none;
+  stroke-linecap: square;
+}
+.ia__box {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  transition: stroke 0.25s var(--ease-pen);
+}
+.ia__box--parent {
+  stroke-width: 2.25;
+}
+.ia__box--module {
+  stroke: var(--graphite);
+  stroke-width: 1.25;
+}
+.ia__box--key {
+  stroke: var(--marker);
+  stroke-width: 2.25;
+}
+.ia__box--child {
+  stroke-width: 1.5;
+}
+.ia__box[data-hot='true'] {
+  stroke: var(--marker);
+}
+.ia__edge {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  transition: stroke 0.25s var(--ease-pen);
+}
+.ia__edge--flow {
+  stroke-width: 2;
+}
+.ia__edge--link {
+  stroke: var(--marker);
+  stroke-width: 1.75;
+}
+.ia__edge[data-hot='true'] {
+  stroke: var(--marker);
+}
+.ia__head {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.25s var(--ease-pen);
+}
+.ia__head--link,
+.ia__head[data-hot='true'] {
+  stroke: var(--marker);
+}
+.ia__head--note {
+  stroke: var(--graphite);
+  stroke-width: 1.25;
+}
+.ia__edge--note {
+  fill: none;
+  stroke: var(--graphite);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 4;
+}
+
+/* boxes and text */
+.ia__fill {
+  fill: #fbfaf5;
+  stroke: none;
+  transition: fill 0.25s var(--ease-pen);
+}
+.ia__fill--key {
+  fill: #e9eef8;
+}
+.ia__fill--module {
+  fill: rgb(251 250 245 / 0.6);
+}
+.ia__fill[data-hot='true'] {
+  fill: #e9eef8;
+}
+.ia__text {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--ink);
+}
+.ia__text--parent {
+  font-size: 17px;
+  font-weight: 600;
+}
+.ia__text--module {
+  font-size: 13.5px;
+  fill: var(--graphite);
+}
+.ia__text--key {
+  font-size: 14.5px;
+  font-weight: 600;
+  fill: #1f4a99;
+}
+.ia__text--stage {
+  font-size: 17px;
+  font-weight: 600;
+}
+.ia__text--child {
+  font-size: 14px;
+  font-weight: 400;
+}
+.ia__note {
+  font-family: var(--font-hand);
+  font-size: 20px;
+  fill: var(--graphite);
+}
+.ia__note--key {
+  fill: #1f4a99;
+}
+.ia__caption {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--graphite);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* The lines draw in once as the section scrolls into view; before that they wait, drawn but hidden. */
+.ia[data-state='ready'] .ia__edge:not(.ia__edge--note),
+.ia[data-state='in'] .ia__edge:not(.ia__edge--note) {
+  stroke-dasharray: 1;
+  transition:
+    stroke-dashoffset 0.6s var(--ease-pen),
+    stroke 0.25s var(--ease-pen);
+  transition-delay: calc(var(--i) * 25ms + 200ms), 0s;
+}
+.ia[data-state='ready'] .ia__edge:not(.ia__edge--note) {
+  stroke-dashoffset: 1;
+}
+.ia[data-state='in'] .ia__edge:not(.ia__edge--note) {
+  stroke-dashoffset: 0;
+}
+.ia[data-state='ready'] .ia__node,
+.ia[data-state='ready'] .ia__box,
+.ia[data-state='ready'] .ia__head,
+.ia[data-state='ready'] .ia__scope,
+.ia[data-state='ready'] .ia__group,
+.ia[data-state='ready'] .ia__notes {
+  opacity: 0;
+}
+.ia[data-state='in'] .ia__node,
+.ia[data-state='in'] .ia__box,
+.ia[data-state='in'] .ia__head,
+.ia[data-state='in'] .ia__scope,
+.ia[data-state='in'] .ia__group,
+.ia[data-state='in'] .ia__notes {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-pen) calc(var(--i, 0) * 25ms + 150ms);
+}
+.ia[data-state='in'] .ia__scope {
+  transition-delay: 0.9s;
+}
+.ia[data-state='in'] .ia__notes {
+  transition-delay: 1.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ia__edge,
+  .ia__box,
+  .ia__head,
+  .ia__fill {
+    transition: none !important;
+  }
+}

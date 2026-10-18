@@ -35,7 +35,7 @@ export interface Section {
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number } // a real screenshot
-  plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
+  plan?: 'parti' | 'flow' | 'ia' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
   diagram?: boolean // the animated systems diagram, shown full width under the section
 }
 
@@ -241,8 +241,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { text: 'Bring performance data together into one clear story of return on investment.' },
           { text: 'Build a modular foundation that is ready for automation, AI and integrations.' },
         ],
-        figure: 'Before and after information architecture',
-        plan: 'parti',
+        plan: 'ia',
       },
       {
         label: '03 · The MVP',

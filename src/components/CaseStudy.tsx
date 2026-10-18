@@ -6,6 +6,7 @@ import { buildingArt, type PlanMode } from './SitePlan'
 import { ModeSwitch } from './ModeSwitch'
 import { SystemsDiagram } from './SystemsDiagram'
 import { TreeAssistFlow } from './TreeAssistFlow'
+import { HostHqIaDiagram } from './HostHqIaDiagram'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -237,7 +238,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
           {s.plan && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
-              {s.plan === 'flow' ? <TreeAssistFlow /> : planFigure}
+              {s.plan === 'flow' ? <TreeAssistFlow /> : s.plan === 'ia' ? <HostHqIaDiagram /> : planFigure}
             </div>
           )}
           {s.diagram && (
