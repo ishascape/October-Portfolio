@@ -37,7 +37,6 @@ export interface Section {
   figures?: string[] // several placeholder frames, one per selected screen
   image?: { src: string; alt: string; caption: string; width: number; height: number } // a real screenshot
   plan?: 'parti' | 'flow' | 'ia' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
-  diagram?: boolean // the animated systems diagram, shown full width under the section
 }
 
 // One cell of the top summary box. `gap` marks something only Ashni can fill in; it is shown on
@@ -288,7 +287,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         body: [
           'Reactive growth had caused the fragmentation, and the fix was to reframe the product around clearer growth signals for hosts. Strong marketplaces run on structural clarity and features that improve workflows, not on shipping features faster.',
         ],
-        diagram: true,
       },
     ],
   },

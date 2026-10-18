@@ -373,10 +373,6 @@
   }
 }
 
-.case__diagram {
-  padding-bottom: var(--space-4);
-}
-
 /* Hand-lettered note above a section heading, with a line-drawn light bulb. */
 .case__eyebrow {
   display: flex;
