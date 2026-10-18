@@ -334,6 +334,9 @@
 .case__callout strong {
   font-weight: 600;
 }
+.case__figure figcaption.case__figure-caption--spaced {
+  margin-top: calc(var(--space-4) - var(--space-2)); /* the figure's own gap supplies the rest */
+}
 .case__figure figcaption.case__figure-title {
   color: var(--ink);
   font-weight: 600;

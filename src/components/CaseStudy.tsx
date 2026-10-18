@@ -270,7 +270,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                       loading="lazy"
                       decoding="async"
                     />
-                    <figcaption className="annotation">{s.planImageTop.caption}</figcaption>
+                    <figcaption className="annotation case__figure-caption--spaced">
+                      {s.planImageTop.caption}
+                    </figcaption>
                   </figure>
                 )}
                 {s.planImage3 && (
