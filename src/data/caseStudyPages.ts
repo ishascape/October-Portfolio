@@ -171,19 +171,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         figure: 'V1 and V2 flows',
       },
       {
-        label: '05 · Selected screens',
-        heading: 'A closer look at the key screens and elements + the thinking behind them.',
-        image: {
-          src: vfCardDesigns,
-          alt: 'Initial recommendation card designs for Venue Finder, in four states: a loading skeleton with a shimmer and pulse note, hover with an Add to enquiry button and image arrows, default, and favourited with Added to enquiry. Each card shows a venue photo, Popular and Responds fast tags, the venue name, location, rating, price band and capacity.',
-          caption: 'Initial recommendation card designs',
-          width: 1492,
-          height: 514,
-        },
-        figures: ['Key moment one', 'Key moment two', 'Key moment three'],
-      },
-      {
-        label: '06 · Reflections',
+        label: '05 · Reflections',
         heading: 'A bold idea needs a strong business case.',
         list: [
           {
@@ -199,6 +187,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             text: 'Smarter venue rankings based on conversion potential, faster shortlisting for repeat users, and AI-assisted discovery. I’d also separate lead volume from metrics that reflect actual marketplace health.',
           },
         ],
+        image: {
+          src: vfCardDesigns,
+          alt: 'Initial recommendation card designs for Venue Finder, in four states: a loading skeleton with a shimmer and pulse note, hover with an Add to enquiry button and image arrows, default, and favourited with Added to enquiry. Each card shows a venue photo, Popular and Responds fast tags, the venue name, location, rating, price band and capacity.',
+          caption: 'Initial recommendation card designs',
+          width: 1492,
+          height: 514,
+        },
       },
     ],
   },
