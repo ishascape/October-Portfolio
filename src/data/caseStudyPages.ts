@@ -193,7 +193,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             prototype: 'vf-v2',
           },
         ],
-        figure: 'V1 and V2 flows',
       },
       {
         label: '06 · Reflections',
