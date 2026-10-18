@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import location from '../assets/legacy-brief-location.webp'
 import planning from '../assets/legacy-brief-planning.webp'
 import guests from '../assets/legacy-brief-guests.webp'
@@ -30,15 +30,8 @@ const screens = [
   },
 ]
 
-const BACK: Rect = [282, 912, 180, 50]
 const CONTINUE: Rect = [862, 912, 180, 50]
 
-const pct = (r: Rect) => ({
-  left: `${(r[0] / W) * 100}%`,
-  top: `${(r[1] / H) * 100}%`,
-  width: `${(r[2] / W) * 100}%`,
-  height: `${(r[3] / H) * 100}%`,
-})
 const centre = (r: Rect): [number, number] => [r[0] + r[2] / 2, r[1] + r[3] / 2]
 const sleep = (ms: number) => new Promise<void>((res) => setTimeout(res, ms))
 
@@ -46,7 +39,6 @@ export function LegacyBriefPrototype() {
   const [step, setStep] = useState(0)
   const [auto, setAuto] = useState(true)
   const [visible, setVisible] = useState(false)
-  const [hovered, setHovered] = useState(false)
   const [cursor, setCursor] = useState({ x: 1000, y: 600, show: false, down: false })
   const stage = useRef<HTMLDivElement>(null)
 
@@ -61,8 +53,7 @@ export function LegacyBriefPrototype() {
     return () => io.disconnect()
   }, [])
 
-  const reset = useCallback(() => setStep(0), [])
-  const running = auto && visible && !hovered
+  const running = auto && visible
 
   useEffect(() => {
     if (!running) {
@@ -84,7 +75,7 @@ export function LegacyBriefPrototype() {
     }
     const run = async () => {
       while (live) {
-        reset()
+        setStep(0)
         setCursor({ x: 1000, y: 700, show: true, down: false })
         await sleep(1600)
         if (!live) return
@@ -101,30 +92,17 @@ export function LegacyBriefPrototype() {
     return () => {
       live = false
     }
-  }, [running, reset])
-
-  const act = (fn: () => void) => () => {
-    setAuto(false)
-    fn()
-  }
-  const go = (n: number) => act(() => setStep(Math.min(screens.length - 1, Math.max(0, n))))
+  }, [running])
 
   return (
-    <figure className="vfp">
-      <div
-        className="vfp__scroll"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        onFocus={() => setHovered(true)}
-        onBlur={() => setHovered(false)}
-      >
+    <figure className="vfp vfp--auto">
+      <div className="vfp__scroll">
         <div
           ref={stage}
           className="vfp__stage"
           style={{ aspectRatio: `${W} / ${H}` }}
-          role="group"
-          aria-roledescription="prototype"
-          aria-label="Legacy brief builder prototype. Use the buttons on the screens, or the step buttons below."
+          role="img"
+          aria-label="Legacy brief builder, an animated walk through the first three steps"
         >
           {screens.map((s, i) => (
             <img
@@ -141,22 +119,6 @@ export function LegacyBriefPrototype() {
               draggable={false}
             />
           ))}
-
-          {!running && step < 2 && <span className="vfp__pulse" style={pct(CONTINUE)} aria-hidden="true" />}
-          {step === 0 && <Spot rect={CONTINUE} label="Continue" onClick={go(1)} />}
-          {step === 1 && (
-            <>
-              <Spot rect={BACK} label="Back" onClick={go(0)} />
-              <Spot rect={CONTINUE} label="Continue" onClick={go(2)} />
-            </>
-          )}
-          {step === 2 && (
-            <>
-              <Spot rect={BACK} label="Back" onClick={go(1)} />
-              <Spot rect={CONTINUE} label="Start again" onClick={act(reset)} />
-            </>
-          )}
-
           <svg
             className="vfp__cursor"
             data-show={cursor.show}
@@ -175,35 +137,6 @@ export function LegacyBriefPrototype() {
           />
         </div>
       </div>
-
-      <div className="vfp__bar">
-        <div className="vfp__tabs" role="group" aria-label="Prototype steps">
-          {screens.map((s, i) => (
-            <button key={s.tab} type="button" aria-pressed={i === step} onClick={go(i)}>
-              <span aria-hidden="true">{i + 1}</span> {s.tab}
-            </button>
-          ))}
-        </div>
-        <button
-          type="button"
-          className="vfp__play"
-          aria-pressed={auto}
-          onClick={() => {
-            if (!auto) reset()
-            setAuto(!auto)
-          }}
-        >
-          {auto ? 'Pause demo' : 'Play demo'}
-        </button>
-      </div>
-      <figcaption className="annotation vfp__caption">
-        Interactive prototype of the first three steps of the legacy builder (13 steps in all): click Continue, jump
-        between steps, or let it play.
-      </figcaption>
     </figure>
   )
-}
-
-function Spot({ rect, label, onClick }: { rect: Rect; label: string; onClick: () => void }) {
-  return <button type="button" className="vfp__spot" style={pct(rect)} aria-label={label} onClick={onClick} />
 }

@@ -37,12 +37,9 @@ const screens = [
   },
 ]
 
-const BACK: Rect = [240, 916, 202, 32]
 const NEXT: Rect = [458, 916, 202, 32]
-const SKIP: Rect = [357, 512, 186, 32]
 const START: Rect = [538, 837, 375, 46]
 const CORPORATE: Rect = [580, 788, 120, 28]
-const PERSONAL: Rect = [748, 788, 115, 28]
 // The first two venue cards on the suggestions screen.
 const CARDS: { card: Rect; yes: Rect; no: Rect }[] = [
   { card: [121, 255, 659, 313], yes: [382, 517, 180, 32], no: [578, 517, 180, 32] },
@@ -67,7 +64,6 @@ export function VenueFinderPrototype() {
   const [passed, setPassed] = useState<boolean[]>([false, false])
   const [auto, setAuto] = useState(true)
   const [visible, setVisible] = useState(false)
-  const [hovered, setHovered] = useState(false)
   const [cursor, setCursor] = useState<{ x: number; y: number; show: boolean; down: boolean }>({
     x: 720,
     y: 560,
@@ -95,7 +91,7 @@ export function VenueFinderPrototype() {
     setPassed([false, false])
   }, [])
 
-  const running = auto && visible && !hovered
+  const running = auto && visible
 
   // The demo: a cursor that works through the flow, clicking as a guest would.
   useEffect(() => {
@@ -153,32 +149,14 @@ export function VenueFinderPrototype() {
     }
   }, [running, reset])
 
-  // Whoever takes over, the demo stays out of the way until Play is pressed again.
-  const act = (fn: () => void) => () => {
-    setAuto(false)
-    fn()
-  }
-  const go = (n: number) => act(() => setStep(Math.min(screens.length - 1, Math.max(0, n))))
-  const toggle = (arr: boolean[], i: number) => arr.map((v, n) => (n === i ? !v : v))
-
-  // The one hotspot worth pressing next: it gets a pulsing ring, while nobody is driving.
-  const nextHint: Rect | null = step === 0 ? START : step === 1 ? NEXT : step === 2 ? NEXT : null
-
   return (
-    <figure className="vfp">
-      <div
-        className="vfp__scroll"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        onFocus={() => setHovered(true)}
-        onBlur={() => setHovered(false)}
-      >
+    <figure className="vfp vfp--auto">
+      <div className="vfp__scroll">
         <div
           ref={stage}
           className="vfp__stage"
-          role="group"
-          aria-roledescription="prototype"
-          aria-label="Venue Finder V2 prototype. Use the buttons on the screens, or the step buttons below."
+          role="img"
+          aria-label="Venue Finder V2, an animated walk through the four steps"
         >
           {screens.map((s, i) => (
             <img
@@ -211,57 +189,6 @@ export function VenueFinderPrototype() {
               </span>
             ))}
 
-          {/* Hotspots */}
-          {!running && nextHint && <span className="vfp__pulse" style={pct(nextHint)} aria-hidden="true" />}
-          {step === 0 && (
-            <>
-              <Spot rect={CORPORATE} label="Corporate event" onClick={act(() => setChoice('corporate'))} />
-              <Spot rect={PERSONAL} label="Personal event" onClick={act(() => setChoice('personal'))} />
-              <Spot rect={START} label="Start searching" onClick={go(1)} />
-            </>
-          )}
-          {step === 1 && (
-            <>
-              <Spot rect={SKIP} label="Skip this step" onClick={go(2)} />
-              <Spot rect={BACK} label="Back" onClick={go(0)} />
-              <Spot rect={NEXT} label="Next" onClick={go(2)} />
-            </>
-          )}
-          {step === 2 && (
-            <>
-              <Spot rect={BACK} label="Back" onClick={go(1)} />
-              <Spot rect={NEXT} label="Next" onClick={go(3)} />
-            </>
-          )}
-          {step === 3 && (
-            <>
-              {CARDS.map((c, i) => (
-                <span key={i}>
-                  <Spot
-                    rect={c.yes}
-                    label={`I'm interested, venue ${i + 1}`}
-                    pressed={interested[i]}
-                    onClick={act(() => setInterested((v) => toggle(v, i)))}
-                  />
-                  <Spot
-                    rect={c.no}
-                    label={`Not for me, venue ${i + 1}`}
-                    pressed={passed[i]}
-                    onClick={act(() => setPassed((v) => toggle(v, i)))}
-                  />
-                </span>
-              ))}
-              <Spot rect={BACK} label="Back" onClick={go(2)} />
-              <Spot
-                rect={NEXT}
-                label="Start again"
-                onClick={act(() => {
-                  reset()
-                })}
-              />
-            </>
-          )}
-
           <svg
             className="vfp__cursor"
             data-show={cursor.show}
@@ -280,53 +207,6 @@ export function VenueFinderPrototype() {
           />
         </div>
       </div>
-
-      <div className="vfp__bar">
-        <div className="vfp__tabs" role="group" aria-label="Prototype steps">
-          {screens.map((s, i) => (
-            <button key={s.tab} type="button" aria-pressed={i === step} onClick={go(i)}>
-              <span aria-hidden="true">{i + 1}</span> {s.tab}
-            </button>
-          ))}
-        </div>
-        <button
-          type="button"
-          className="vfp__play"
-          aria-pressed={auto}
-          onClick={() => {
-            if (!auto) reset()
-            setAuto(!auto)
-          }}
-        >
-          {auto ? 'Pause demo' : 'Play demo'}
-        </button>
-      </div>
-      <figcaption className="annotation vfp__caption">
-        Interactive prototype of the V2 flow: click the buttons on the screens, jump between steps, or let it play.
-      </figcaption>
     </figure>
-  )
-}
-
-function Spot({
-  rect,
-  label,
-  onClick,
-  pressed,
-}: {
-  rect: Rect
-  label: string
-  onClick: () => void
-  pressed?: boolean
-}) {
-  return (
-    <button
-      type="button"
-      className="vfp__spot"
-      style={pct(rect)}
-      aria-label={label}
-      aria-pressed={pressed}
-      onClick={onClick}
-    />
   )
 }
