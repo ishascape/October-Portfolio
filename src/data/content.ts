@@ -4,6 +4,9 @@ import owl from '../assets/sketches/owl.webp'
 import gorilla from '../assets/sketches/gorilla.webp'
 import riding from '../assets/ashni-riding.webp'
 import planting from '../assets/ashni-planting.webp'
+import taPhones from '../assets/ta-card-phones.webp'
+import taDesktop from '../assets/ta-card-desktop.webp'
+import taLanding from '../assets/ta-card-landing.webp'
 
 // All copy and figures come from notes/homepage-content.md (approved 14 Oct 2026).
 // Never add a metric here that isn't in that doc or the CV.
@@ -73,12 +76,16 @@ export const caseStudies: CaseStudy[] = [
     role: 'Product Designer · 2 months, 2-week experiment cycles',
     leadMetric: { value: '+18%', label: 'free-trial starts' },
     supporting: ['+8% trial-to-subscription conversion', '-13% onboarding drop-off'],
-    system:
-      'PM, data science, engineering · sign-up-to-subscription funnel · record matching replaces manual entry',
+    system: 'PM, data science, engineering · sign-up-to-subscription funnel · record matching replaces manual entry',
     tags: ['B2C Conversion', 'AI Products', 'Experiment design', 'Mobile first'],
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
     slug: 'tree-assist',
+    images: [
+      { src: taPhones, alt: 'Five phones showing the TreeAssist onboarding on the Findmypast mobile site' },
+      { src: taDesktop, alt: 'The Findmypast family tree on desktop with a next-steps checklist on the canvas' },
+      { src: taLanding, alt: 'The Findmypast landing page with a short "Let\'s start with you" sign-up form' },
+    ],
   },
 ]
 
@@ -103,16 +110,17 @@ export const principles: Principle[] = [
     number: '1',
     title: "Show, don't tell.",
     body: 'A prototype people can click settles more than a deck. I build to show the idea, then let people react to the real thing.',
-    evidence: [
-      { source: 'This site', text: 'Designed and built with AI-assisted code in React and TypeScript.' },
-    ],
+    evidence: [{ source: 'This site', text: 'Designed and built with AI-assisted code in React and TypeScript.' }],
   },
   {
     number: '2',
     title: 'Let the data and research decide.',
     body: 'Opinions start the conversation; evidence ends it.',
     evidence: [
-      { source: 'HeadBox', text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.' },
+      {
+        source: 'HeadBox',
+        text: 'Interviewed 10 event bookers; every brief hinged on one non-negotiable requirement, which became the product hypothesis.',
+      },
       { source: 'CV', text: '5× free-trial conversion at Findmypast via behavioural analysis and A/B testing.' },
     ],
   },
@@ -121,7 +129,10 @@ export const principles: Principle[] = [
     title: 'Iterative development.',
     body: 'Ship, measure, refine. Each version earns the next.',
     evidence: [
-      { source: 'HeadBox', text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.' },
+      {
+        source: 'HeadBox',
+        text: 'V1 lost users at the AI prompt (38% drop-off) and account creation (27%). V2 made the prompt optional, softened sign-up and shipped.',
+      },
       { source: 'Findmypast', text: 'Two-week experiment cycles took onboarding from eight forms to three.' },
     ],
   },
@@ -130,7 +141,10 @@ export const principles: Principle[] = [
     title: 'Stay curious, stay ambitious.',
     body: 'From architecture to product, and from Kilimanjaro to AI tooling, I keep learning the next thing.',
     evidence: [
-      { source: 'CV', text: 'Launch in a New City: AI research agents and ops tooling cut launch planning from 12+ weeks to 2.' },
+      {
+        source: 'CV',
+        text: 'Launch in a New City: AI research agents and ops tooling cut launch planning from 12+ weeks to 2.',
+      },
       { source: 'Memorisely', text: 'AI Coding for Designers, March 2026.' },
     ],
   },
@@ -143,7 +157,6 @@ export const revisions = [
   { rev: 'B', date: 'Jan 2022', role: 'Junior Product Designer', company: 'Findmypast, London' },
   { rev: 'A', date: '2020–21', role: 'Sales & Marketing Associate', company: 'HealthCare Direct, Nairobi' },
 ]
-
 
 // From the CV, most recent first.
 export const education = [
