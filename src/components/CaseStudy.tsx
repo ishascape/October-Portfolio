@@ -200,6 +200,19 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <figcaption className="annotation">{f}</figcaption>
                 </figure>
               ))}
+              {s.image && (
+                <figure className="case__figure case__figure--image">
+                  <img
+                    src={s.image.src}
+                    alt={s.image.alt}
+                    width={s.image.width}
+                    height={s.image.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption className="annotation">{s.image.caption}</figcaption>
+                </figure>
+              )}
               {s.figure && (
                 <figure className="case__figure">
                   <div className="case__figure-frame" aria-hidden="true">

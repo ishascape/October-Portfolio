@@ -3,6 +3,7 @@
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
 import treeassistHero from '../assets/treeassist-hero.webp'
+import treeassistDesktop from '../assets/treeassist-desktop.webp'
 
 export interface Metric {
   value: string
@@ -27,6 +28,7 @@ export interface Section {
   experiments?: Experiment[]
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
+  image?: { src: string; alt: string; caption: string; width: number; height: number } // a real screenshot
   diagram?: boolean // the animated systems diagram, shown full width under the section
 }
 
@@ -376,6 +378,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         body: [
           'Early value often beats perfect upfront data, and designing for momentum can unlock engagement and monetisation. Next step: a personalised task list on the tree canvas to guide users through their free trial.',
         ],
+        image: {
+          src: treeassistDesktop,
+          alt: 'A laptop showing the Findmypast family tree on desktop. Suggested relatives wait to be added around the tree, and a "Let\'s keep building the Green family tree" checklist on the right offers three next steps: review suggested relatives, build your tree with hints, and start a 7-day free trial.',
+          caption: 'Desktop layout - with next steps on canvas for user to engage with after onboarding.',
+          width: 1800,
+          height: 1142,
+        },
       },
     ],
   },
