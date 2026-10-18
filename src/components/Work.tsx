@@ -10,7 +10,7 @@ export function Work() {
       <div className="container">
         <SheetLabel sheet="01 / 03" title="Selected work" />
         <h2 id="work-heading" className="display work__heading">
-          Form follows function: design the system first.
+          Form follows function: first solve the problem, then the pixels.
         </h2>
 
         <ol className="work__list">
