@@ -175,6 +175,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
               {s.quotes && (
                 <figure className="case__quotes">
+                  {s.quotesCaption && <figcaption className="annotation">{s.quotesCaption}</figcaption>}
                   <div className="case__quote-cards">
                     {s.quotes.map((q) => (
                       <blockquote key={q.name} className={`case__quote${q.dark ? ' case__quote--dark' : ''}`}>
@@ -188,7 +189,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                       </blockquote>
                     ))}
                   </div>
-                  {s.quotesCaption && <figcaption className="annotation">{s.quotesCaption}</figcaption>}
                 </figure>
               )}
               {s.figures?.map((f) => (
