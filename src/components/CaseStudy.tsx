@@ -267,6 +267,16 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                     <figcaption className="annotation">{s.planImage3.caption}</figcaption>
                   </figure>
                 )}
+                {s.bookingStatus && (
+                  <aside className="case__callout">
+                    {s.bookingStatus.callout.map((c) => (
+                      <p key={c.title}>
+                        <strong>{c.title}</strong>
+                        {c.text}
+                      </p>
+                    ))}
+                  </aside>
+                )}
                 {s.planImage4 && (
                   <figure className="case__figure case__figure--image">
                     {s.planImage4.title && <figcaption className="case__figure-title">{s.planImage4.title}</figcaption>}
@@ -283,14 +293,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                 {s.bookingStatus && (
                   <figure className="case__figure">
                     <BookingStatusWidget />
-                    <aside className="case__callout">
-                      {s.bookingStatus.callout.map((c) => (
-                        <p key={c.title}>
-                          <strong>{c.title}</strong>
-                          {c.text}
-                        </p>
-                      ))}
-                    </aside>
                   </figure>
                 )}
                 {s.planImage2 && (
