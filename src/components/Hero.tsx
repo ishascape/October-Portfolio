@@ -40,11 +40,11 @@ export function Hero() {
           <div className="hero__support">
             <div className="hero__copy">
               <p>
-                Clunky workflows? Disconnected systems? A marketplace that needs to grow? An MVP that needs to scale?
-                Baffling user behaviour to investigate?
+                Complex workflows? Disconnected systems? A marketplace with untapped potential? An MVP that needs to
+                scale? User behaviour that doesn't quite add up?
               </p>
               <p className="hero__scene">That's my scene.</p>
-              <p>UX/UI, product strategy, systems thinking, growth &amp; monetisation</p>
+              <p>Product strategy · UX/UI · Systems thinking · Growth &amp; monetisation</p>
             </div>
             <ul className="hero__focus" aria-label="Focus areas">
               {['B2B SaaS', 'Marketplace', 'Platform', 'Mobile', 'B2C'].map((f) => (
