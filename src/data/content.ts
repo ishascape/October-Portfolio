@@ -9,6 +9,9 @@ import gigLornaShore from '../assets/gig-lorna-shore.webp'
 import travelDiving from '../assets/travel-diving.webp'
 import travelBallooning from '../assets/travel-ballooning.webp'
 import travelQuad from '../assets/travel-quad-biking.webp'
+import hqOverview from '../assets/hosthq-card-overview.webp'
+import hqRequests from '../assets/hosthq-card-requests.webp'
+import hqProposal from '../assets/hosthq-card-proposal.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
 import taLanding from '../assets/ta-card-landing.webp'
@@ -33,7 +36,7 @@ export interface CaseStudy {
   existing: string
   proposed: string
   slug: string // URL path, kept identical to the old site's
-  images?: { src: string; alt: string }[] // 2–3 card carousel images; placeholders until Ashni sends them
+  images?: { src: string; alt: string; fit?: 'contain'; bg?: string }[] // 2–3 card carousel images; placeholders until Ashni sends them
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -70,6 +73,24 @@ export const caseStudies: CaseStudy[] = [
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
     slug: 'hosthq',
+    images: [
+      {
+        src: hqOverview,
+        alt: 'Three HostHQ screens floating around a monitor: proposals with an urgent-requests alert, leads, and Lead Feed reports',
+        fit: 'contain',
+        bg: 'linear-gradient(#dadde6, #eef0f4)', // continues the mockup's own backdrop above and below it
+      },
+      {
+        src: hqRequests,
+        alt: 'A laptop showing the HostHQ requests list, with urgent events and Send Proposal buttons',
+        fit: 'contain',
+      },
+      {
+        src: hqProposal,
+        alt: 'A tablet showing a HostHQ submitted proposal with booking status and availability',
+        fit: 'contain',
+      },
+    ],
   },
   {
     id: 'treeassist',

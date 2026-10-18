@@ -5,8 +5,16 @@ const INTERVAL = 1600
 
 // The card image: 2–3 slides that cycle while the card is hovered or focused, and rest on
 // the first slide otherwise. Until real images exist, each slide is a labelled drawing frame.
-export function CardCarousel({ number, images }: { number: string; images?: { src: string; alt: string }[] }) {
-  const slides = images?.length ? images : PLACEHOLDERS.map((note) => ({ src: '', alt: note }))
+export function CardCarousel({
+  number,
+  images,
+}: {
+  number: string
+  images?: { src: string; alt: string; fit?: 'contain'; bg?: string }[]
+}) {
+  const slides: { src: string; alt: string; fit?: 'contain'; bg?: string }[] = images?.length
+    ? images
+    : PLACEHOLDERS.map((note) => ({ src: '', alt: note }))
   const [active, setActive] = useState(0)
   const [playing, setPlaying] = useState(false)
 
@@ -48,9 +56,14 @@ export function CardCarousel({ number, images }: { number: string; images?: { sr
   return (
     <div ref={ref} className="card__image" aria-hidden="true">
       {slides.map((sl, i) => (
-        <div key={i} className="card__slide" data-active={i === active || undefined}>
+        <div
+          key={i}
+          className="card__slide"
+          data-active={i === active || undefined}
+          style={sl.bg ? { background: sl.bg } : undefined}
+        >
           {sl.src ? (
-            <img src={sl.src} alt="" loading="lazy" decoding="async" />
+            <img src={sl.src} alt="" loading="lazy" decoding="async" data-fit={sl.fit} />
           ) : (
             <>
               <span className="label">

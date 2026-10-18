@@ -118,6 +118,10 @@
   object-fit: cover;
   object-position: top; /* full width; any extra height is trimmed from the bottom */
 }
+.card__slide img[data-fit='contain'] {
+  object-fit: contain; /* full width of the frame, nothing cropped; the paper grid shows around it */
+  object-position: center;
+}
 .card__dots {
   position: absolute;
   right: var(--space-3);
