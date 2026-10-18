@@ -4,7 +4,6 @@
 import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqFocusGroup from '../assets/hosthq-focus-group.webp'
-import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqMvpDashboard from '../assets/hosthq-mvp-dashboard.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
@@ -48,6 +47,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { caption: string } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption: string; width: number; height: number } // a second one, below it
+  planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
 }
 
@@ -249,13 +249,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { text: 'Bring performance data into one clear return-on-investment story.' },
           { text: 'Build a modular base ready for automation, AI and integrations.' },
         ],
-        planImage: {
-          src: hosthqMvpScope,
-          alt: 'The MVP scope: one events workflow in four stages. Leads (Unread, Declined) leads to Requests (All Requests, New Requests, Rejected requests), then Proposals (Sent proposals, Accepted, In Progress, Declined), then Bookings (Upcoming, Past, Cancelled). Unify all event types into one intuitive workflow, whether B2B, B2C, free or commissionable, using distinct event card styling to differentiate them without fragmenting the experience.',
-          width: 1800,
-          height: 703,
-          bordered: true,
-        },
+        planDiagram: 'mvp-scope',
         planImage2: {
           src: hosthqMvpDashboard,
           alt: 'The HostHQ Requests screen on a tablet: a list of event requests with budgets, dates and locations, Urgent and Commissionable event tags, and a Send Proposal button on each. The Your Events menu lists Requests, Proposals, Bookings and Leads.',

@@ -6,6 +6,7 @@ import { buildingArt, type PlanMode } from './SitePlan'
 import { ModeSwitch } from './ModeSwitch'
 import { TreeAssistFlow } from './TreeAssistFlow'
 import { BookingStatusWidget } from './BookingStatusWidget'
+import { MvpScopeFlow } from './MvpScopeFlow'
 import './CaseStudy.css'
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
@@ -225,7 +226,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               )}
             </div>
           </div>
-          {(s.plan || s.planImage || s.planImage3 || s.planImage4 || s.bookingStatus) && (
+          {(s.plan || s.planDiagram || s.planImage || s.planImage3 || s.planImage4 || s.bookingStatus) && (
             <div className="container case__section-grid case__plan">
               <span aria-hidden="true" />
               <div className="case__plan-stack">
@@ -242,6 +243,8 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                       decoding="async"
                     />
                   </figure>
+                ) : s.planDiagram === 'mvp-scope' ? (
+                  <MvpScopeFlow />
                 ) : s.plan === 'flow' ? (
                   <TreeAssistFlow />
                 ) : s.plan ? (
