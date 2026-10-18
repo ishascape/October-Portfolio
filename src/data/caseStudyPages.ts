@@ -68,7 +68,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Marketplace', value: 'Guests planning events (demand) · venue hosts (supply)' },
     ],
     problem:
-      'The old model rewarded the number of briefs submitted, not the intent to book. A brief is a guest’s event request. Unqualified briefs flooded hosts, Lead Feed churn hit 55%, and the old 13-step builder lost 83% of users. I argued for keeping Venue Finder and judging it on lead quality, not volume.',
+      'The old model rewarded the number of briefs submitted, not the intent to book. A brief is a guest’s event request. Unqualified briefs flooded hosts, Lead Feed churn hit 55%, and the old 13-step builder lost 83% of users. I advocated for keeping Venue Finder and judging it on lead quality, not volume.',
     solution:
       'I designed both versions of an AI-powered brief journey that recommends venues, plus Spotlight Partner, a sponsored-placement model for venues. The first version cut Lead Feed volume by 40%, so we shipped a more moderate second version.',
     impact: [
@@ -177,7 +177,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Timescale', value: '3 months, 0→1, discovery to full release' },
     ],
     problem:
-      'Hosts are the venues that list on HeadBox, and their platform was really four separate products: Lead Feed, PowerHost, HeadBox for Business and 3D Studio. We were shipping our org chart: confusing navigation, repeated workflows, inconsistent data and little use of more than one product. I argued for round-table research over a redesign driven only by stakeholder opinion and support tickets.',
+      'Hosts are the venues that list on HeadBox, and their platform was really four separate products: Lead Feed, PowerHost, HeadBox for Business and 3D Studio. We were shipping our org chart: confusing navigation, repeated workflows, inconsistent data and little use of more than one product. I advocated for round-table research over a redesign driven only by stakeholder opinion and support tickets.',
     solution:
       'One Platform: a single system for hosts, organised around the jobs they do and positioned as a structured way to earn revenue. The research set the MVP scope and the order of what comes next. We shipped structure over completeness and deferred the 3D Studio migration, full reporting and mobile.',
     impact: [
@@ -283,7 +283,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     problem:
       '41% of new users left before they reached value. Onboarding was heavy on admin forms, and users then faced a blank family-tree canvas.',
     solution:
-      'AI-assisted onboarding: relative suggestions inside the product and step-by-step guidance replaced a form-heavy setup. I argued for interactive states in the desktop onboarding, instead of the view-only state engineers proposed, and three tests cut onboarding from 8 forms to 3.',
+      'AI-assisted onboarding: relative suggestions inside the product and step-by-step guidance replaced a form-heavy setup. I advocated for interactive states in the desktop onboarding, instead of the view-only state engineers proposed, and three tests cut onboarding from 8 forms to 3.',
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },
