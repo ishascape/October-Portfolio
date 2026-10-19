@@ -456,7 +456,6 @@ export function Skills() {
                   ? paperStyle(i - index, i === index ? drag : 0, dragging)
                   : ({
                       '--i': i,
-                      '--tilt': `${[-1.6, 1.2, -0.8, 1.8][i % 4]}deg`,
                     } as CSSProperties)
               }
               hidden={deck && i !== index}
