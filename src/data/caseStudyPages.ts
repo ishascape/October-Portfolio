@@ -2,7 +2,6 @@
 // The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
-import type { EvidenceId } from './evidence'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
@@ -78,7 +77,6 @@ export interface Section {
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
   decisions?: Decision[] // problem, options, decision, why and what shipped
   moments?: Moment[] // key product moments: real screens with short annotations
-  evidence?: EvidenceId[] // dev and preview only: dotted placeholders for evidence still to come
 }
 
 export interface CaseStudyPage {
@@ -94,8 +92,6 @@ export interface CaseStudyPage {
   impact: Metric[]
   // Discreet line under the impact figures saying how far to trust them.
   impactNote?: string
-  impactEvidence?: EvidenceId[] // dev and preview only
-  headerEvidence?: EvidenceId[] // dev and preview only, shown under the header details
   sections: Section[]
 }
 
@@ -128,7 +124,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     ],
     impactNote:
       'Qualified enquiries is the measured V2 result against the control. Spotlight is a new revenue line; no revenue figure is claimed.',
-    impactEvidence: ['vf-verify-metrics'],
     sections: [
       {
         label: '01 · The problem',
@@ -198,7 +193,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'The aim wasn’t venues that technically fit. It was venues a guest would want to book. Ranking then balances four signals: best fit, active venues, premium and paid Spotlight.',
         ],
         diagram: 'vf-ranking',
-        evidence: ['vf-ranking-balance'],
       },
       {
         label: '06 · Edge cases',
@@ -208,7 +202,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'We didn’t force recommendations where inventory couldn’t support them, but we still caught high-value enquiries through a concierge.',
         ],
         diagram: 'vf-gaps',
-        evidence: ['vf-edge-treatment'],
       },
       {
         label: '07 · Experiments',
@@ -247,7 +240,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             prototype: 'vf-v2',
           },
         ],
-        evidence: ['vf-v1-v2-screens', 'vf-eng-decisions'],
       },
       {
         label: '08 · Reflections',
@@ -312,7 +304,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '-25%', label: 'Navigation support tickets' },
     ],
     impactNote: 'Reported project outcomes, not individual attribution.',
-    impactEvidence: ['hq-verify-metrics'],
     sections: [
       {
         label: '01 · Research',
@@ -399,7 +390,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             shipped: 'A desktop-only v1.',
           },
         ],
-        evidence: ['hq-eng-constraint', 'hq-responsibilities'],
       },
       {
         label: '05 · Key product moments',
@@ -448,7 +438,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             widget: 'booking-status',
           },
         ],
-        evidence: ['hq-workflow', 'hq-screens-annotated'],
       },
       {
         label: '06 · With 12 months instead of 3',
@@ -500,8 +489,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '-13%', label: 'Onboarding drop-off' },
     ],
     impactNote: 'Results from A/B experiments run with product, data science and engineering.',
-    impactEvidence: ['ta-verify-attribution'],
-    headerEvidence: ['ta-contribution'],
     sections: [
       {
         plan: 'flow',
@@ -554,7 +541,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             },
           },
         ],
-        evidence: ['ta-experiment-results'],
       },
       {
         label: '03 · Trade-offs',
@@ -592,7 +578,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             why: 'To get users into the core product and building their tree sooner.',
           },
         ],
-        evidence: ['ta-final-states'],
       },
       {
         label: '05 · Descope dungeon',
@@ -602,7 +587,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         body: [
           'Suggestions took 2 to 30 seconds to appear. I proposed progressive, personalised content during the wait, such as headlines from the user’s birthday. It was descoped to focus on core improvements and release speed.',
         ],
-        evidence: ['ta-eng-latency'],
         image: {
           src: treeassistWait,
           alt: 'Four phones showing the descoped wait-state concept. A progress bar reads "We\'re checking our records for information on your relatives" above a "Browse while you wait" carousel: tips to grow your family tree, newspaper headlines on your birthday, a "Did you know" fact with a historic photo, and a prompt to try Findmypast free for 7 days.',
