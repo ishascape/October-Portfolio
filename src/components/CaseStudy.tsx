@@ -1,7 +1,6 @@
 import { caseHref, homeHref } from '../links'
 import { useState } from 'react'
 import { Lightbox } from './Lightbox'
-import { EvidencePlaceholder } from './EvidencePlaceholder'
 import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
 import { buildingArt, type PlanMode } from './SitePlan'
@@ -82,9 +81,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               </dl>
             </div>
           </div>
-          {page.headerEvidence?.map((id) => (
-            <EvidencePlaceholder key={id} id={id} />
-          ))}
         </div>
       </header>
 
@@ -110,9 +106,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
             ))}
           </ul>
           {page.impactNote && <p className="case__impact-note">{page.impactNote}</p>}
-          {page.impactEvidence?.map((id) => (
-            <EvidencePlaceholder key={id} id={id} />
-          ))}
         </div>
       </section>
 
@@ -311,9 +304,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <figcaption className="annotation">{s.figure}</figcaption>
                 </figure>
               )}
-              {s.evidence?.map((id) => (
-                <EvidencePlaceholder key={id} id={id} />
-              ))}
             </div>
           </div>
           {(s.plan ||
