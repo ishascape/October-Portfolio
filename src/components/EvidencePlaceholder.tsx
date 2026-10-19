@@ -1,6 +1,13 @@
 import { evidence, type EvidenceId } from '../data/evidence'
 import './EvidencePlaceholder.css'
 
+const labels = {
+  evidence: 'Evidence needed',
+  verify: 'Verify claim',
+  confirm: 'ASHNI TO CONFIRM',
+  add: 'ASHNI TO ADD',
+} as const
+
 // A dotted outline marking exactly where a piece of evidence belongs. Renders only in dev and on preview
 // deployments (see vite.config.ts); production builds render nothing, so layout spacing is unchanged.
 export function EvidencePlaceholder({ id }: { id: EvidenceId }) {
@@ -8,20 +15,16 @@ export function EvidencePlaceholder({ id }: { id: EvidenceId }) {
   const e = evidence[id]
   const ratio = 'ratio' in e ? e.ratio : undefined
   return (
-    <aside
-      className="evidence"
-      data-evidence-id={id}
-      aria-label={`${e.kind === 'verify' ? 'Verify claim' : 'Evidence needed'}: ${e.title}`}
-    >
+    <aside className="evidence" data-evidence-id={id} aria-label={`${labels[e.kind]}: ${e.title}`}>
       <p className="evidence__label">
         <svg viewBox="0 0 16 16" aria-hidden="true">
-          {e.kind === 'verify' ? (
+          {e.kind === 'verify' || e.kind === 'confirm' ? (
             <path d="M8 2 L14.5 13.5 H1.5 Z M8 6.5 V9.5 M8 11.5 V11.6" />
           ) : (
             <path d="M2 3 H14 V13 H2 Z M2 10 L6 7 L9 10 L11 8.5 L14 11" />
           )}
         </svg>
-        {e.kind === 'verify' ? 'Verify claim' : 'Evidence needed'} · {e.title}
+        {labels[e.kind]} · {e.title}
         <span className="evidence__priority">{e.priority}</span>
       </p>
       <p>{e.ask}</p>

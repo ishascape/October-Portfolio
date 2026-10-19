@@ -25,10 +25,15 @@ Each case study states the role, team and context. Results are published on the 
 
 https://ashnidave.com/venue-finder
 
-- Context: two-sided venue marketplace. Guests had to complete a long briefing flow, and venue hosts received low-quality leads.
-- Role: sole product designer, working with 4 engineers.
-- What was designed: a replacement for the 13-step briefing flow, an AI-assisted discovery experience, and a paid Spotlight placement model that balances guest intent, host lead quality and marketplace revenue.
-- Outcome on the site: +30% qualified inbound enquiries.
+- Context: two-sided venue marketplace. Guests completed a 13-step briefing flow without seeing a venue, then waited for venues to reply. 83% dropped off the builder, hosts received unqualified briefs and Lead Feed churn was 55%. Marketing measured briefs submitted, not bookings.
+- Role: sole product designer, working with 4 engineers, 2 months, 2-week experiment cycles. Interviewed 10 event bookers (5 corporate, 5 social).
+- Individual contribution: guest research, problem framing, the case for judging Venue Finder on lead quality rather than volume, and the design and prototypes for the control, V1 and V2 experiences. Engineers built the matching and the shipped product. I did not build the retrieval or ranking systems.
+- What was designed: AI-assisted venue discovery replacing the 13-step flow. Guests write a prompt, or one is written from their location, capacity, event type and vibe; venues are matched semantically against the inventory; recommendations appear before any enquiry, with "I'm interested" and "Not for me" feedback.
+- Ranking (design level, no weights stated): best-fit relevance, host activity, premium subscription status and paid Spotlight placement. The principle is that paid visibility helps discovery but does not override relevance. Strong-fit free venues stay discoverable.
+- Guardrails (confirmed): Venue Finder runs only in markets with 200+ venues. Elsewhere a budget field appears: over £50,000 goes to a human concierge, otherwise guests see an unavailable page with links to supported cities and event-planning guides. In V2, recommendations come after magic-link sign-up, partly to deter scraping.
+- Experiments (measured): Control 83% drop-off. V1 (required AI prompt and account creation): Lead Feed volume -40%, 38% dropped at the AI input, 27% at account creation, direct enquiries +26%, 2.2 venues shortlisted. V2 (optional prompt, magic link, faster load): qualified inbound enquiries +30%, shipped.
+- Outcome: +30% qualified inbound enquiries (V2 against the control). Qualified enquiries are not bookings; no booking or Spotlight revenue figure is claimed.
+- Not stated, awaiting verification: the retrieval method and models, ranking criteria, guardrails beyond the 200-venue rule, whether recommendation quality was formally evaluated, and engineering decision examples. An evaluation framework is described on the case study as a proposal, not as work done.
 
 ### HostHQ - HeadBox (supply side)
 

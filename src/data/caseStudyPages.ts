@@ -30,6 +30,7 @@ export interface Experiment {
   change: string
   result: string
   verdict?: string
+  learning?: string // what this version taught, and how it fed the next
   image?: { src: string; alt: string; width: number; height: number } // a real screen, shown beside the text
   prototype?: 'vf-v2' | 'legacy' // a clickable prototype, shown below the text
 }
@@ -53,6 +54,13 @@ export interface Moment {
   widget?: 'booking-status'
 }
 
+// How far to trust a statement: confirmed on the page or by Ashni, design intent, or still to confirm.
+export interface Fact {
+  status: 'confirmed' | 'intent' | 'confirm'
+  label: string
+  text: string
+}
+
 export interface Section {
   label: string // small kicker, like a drawing title
   heading: string
@@ -72,12 +80,15 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
-  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' // a compact native diagram for the Venue Finder story
+  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-system' | 'vf-signals' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
   decisions?: Decision[] // problem, options, decision, why and what shipped
   moments?: Moment[] // key product moments: real screens with short annotations
+  body2?: string[] // paragraphs after a table or diagram
+  facts?: Fact[] // a status list: what is confirmed, what is design intent, what still needs confirming
+  matrix?: { caption: string; head: string[]; rows: string[][] } // a compact comparison table
   evidence?: EvidenceId[] // dev and preview only: dotted placeholders for evidence still to come
 }
 
@@ -120,7 +131,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     problem:
       'Guests filled in 13 steps without seeing a single venue, then waited for venues to get in touch. Early replies often missed the brief, and 83% of users dropped off the builder. Hosts were left with unqualified briefs and Lead Feed churn hit 55%. I argued for judging Venue Finder on lead quality, not volume.',
     solution:
-      'Guests share their event, see matched venues straight away, shortlist, then connect. A vector database ranks the inventory against what they need, boosting best-fit, active and premium venues, plus Spotlight Partner, a paid placement model.',
+      'A 13-step enquiry form became AI-assisted venue discovery. Guests share their event, see matched venues straight away, shortlist, then connect. Ranking balances fit with host activity, premium status and Spotlight Partner, a paid placement model.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '40%', label: 'Shorter journey than the 13-step builder' },
@@ -135,7 +146,18 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         heading: 'Guests waited for venues instead of discovering them.',
         body: [
           'Guests spent 13 steps describing their event and saw no venues. Then they waited, with little say over who got in touch, and early replies were often a poor fit.',
-          'Marketing measured briefs submitted, not bookings. Hosts often needed 27+ messages to close one.',
+          'Three things get blurred in a marketplace like this, and the difference was the whole problem.',
+        ],
+        list: [
+          { title: 'Lead volume', text: 'What marketing measured: briefs submitted.' },
+          {
+            title: 'Lead quality',
+            text: 'What hosts felt: unqualified briefs, often 27+ messages to close one, and Lead Feed churn of 55%.',
+          },
+          {
+            title: 'Bookings',
+            text: 'What the marketplace needs. Not measured as an outcome of this project.',
+          },
         ],
         diagram: 'vf-problem',
       },
@@ -145,6 +167,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         eyebrow: 'Interview insight',
         body: [
           'HeadBox had done no guest research in over four years, so I interviewed 10 event bookers. Every brief had one fixed requirement, and venues that missed it were rejected at once.',
+          'That made “must fit” a product requirement in its own right, separate from “would be nice”. It is why the matching section below treats hard constraints and soft preferences differently.',
           'Hypothesis: capturing intent and encouraging shortlisting before submission means fewer, more valuable briefs for hosts.',
         ],
         quotes: [
@@ -174,6 +197,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         heading: 'From venue-led to guest-led discovery.',
         body: [
           'The decision: stop making guests wait for venues, and let them discover venues instead. It gave guests value earlier and more control.',
+          'Each side wanted something different. Guests wanted fewer, better replies. Hosts wanted briefs they could act on. A metric that counted submitted briefs rewarded neither.',
           'Hypothesis: better matching earlier means less abandonment and more qualified enquiries.',
         ],
         diagram: 'vf-shift',
@@ -191,34 +215,182 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         diagram: 'vf-experience',
       },
       {
-        label: '05 · Matching',
-        heading: 'Semantic matching, not just filters.',
+        label: '05 · Matching system',
+        heading: 'From intent to recommendations.',
         body: [
-          'Guests describe their event in their own words, or the system writes a prompt from their capacity, location, event type and vibe. That intent is compared with every venue in the inventory.',
-          'The aim wasn’t venues that technically fit. It was venues a guest would want to book. Ranking then balances four signals: best fit, active venues, premium and paid Spotlight.',
+          'This is the flow I designed the experience around. Engineering built the matching and ranking; I designed what goes in, what comes out and what the guest can do about it. Each step is marked as confirmed, design intent or still to confirm.',
         ],
-        diagram: 'vf-ranking',
-        evidence: ['vf-ranking-balance'],
+        diagram: 'vf-system',
+        facts: [
+          {
+            status: 'confirmed',
+            label: 'Guest intent',
+            text: 'A prompt the guest writes, or one written from their location, capacity, event type and vibe.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Semantic matching',
+            text: 'Intent is compared with every venue in the inventory, so a venue can match on meaning and not only on filters.',
+          },
+          {
+            status: 'confirm',
+            label: 'Retrieval approach',
+            text: 'Model, vector store, and whether structured fields filter candidates before or after the semantic match.',
+          },
+          {
+            status: 'intent',
+            label: 'Hard constraints and soft preferences',
+            text: 'Research showed a missed fixed requirement ends a venue’s chances. The design treats those as must-haves and vibe as a preference.',
+          },
+          {
+            status: 'intent',
+            label: 'Retrieval and ranking are separate jobs',
+            text: 'Matching finds venues that could fit. Ranking decides the order the guest sees them in.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Market eligibility',
+            text: 'Venue Finder runs only where HeadBox has 200+ venues. Venue-level eligibility and listing quality checks are not documented here.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Feedback',
+            text: '“I’m interested” and “Not for me” on every card. What they changed in later results is still to confirm.',
+          },
+        ],
+        evidence: ['vf-confirm-retrieval', 'vf-confirm-constraints', 'vf-confirm-feedback', 'vf-add-architecture'],
       },
       {
-        label: '06 · Edge cases',
+        label: '06 · Ranking and incentives',
+        heading: 'Balancing fit, activity and revenue.',
+        body: [
+          'Four signals shape the order guests see. Each is a fair thing to want, and they pull against each other.',
+          'Strong-fit venues on a free plan stay discoverable. If only paying venues surfaced, guests would meet weaker matches, stop trusting the list, and paid placement would be worth less.',
+        ],
+        diagram: 'vf-signals',
+        facts: [
+          {
+            status: 'confirmed',
+            label: 'Retrieval and eligibility',
+            text: 'Which venues can appear at all: the 200+ venue market rule, then matching against the guest’s intent.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Ranking features',
+            text: 'Best-fit relevance, and host activity and engagement. Cards show a “Responds fast” tag.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Commercial boosts',
+            text: 'Premium subscription status for extra visibility, and Spotlight Partner, a paid placement.',
+          },
+          {
+            status: 'intent',
+            label: 'Safeguard against irrelevant sponsored results',
+            text: 'The principle: paid visibility helps discovery but does not override relevance. The mechanism is still to confirm.',
+          },
+        ],
+        evidence: ['vf-add-ranking-criteria', 'vf-confirm-diversity'],
+      },
+      {
+        label: '07 · Guardrails',
         heading: 'Designing for the gaps in our marketplace.',
         body: [
           'Self-service Venue Finder only ran where HeadBox had 200+ venues, enough supply for real variety. Elsewhere, guests took a different path.',
-          'We didn’t force recommendations where inventory couldn’t support them, but we still caught high-value enquiries through a concierge.',
+          'We didn’t force recommendations where inventory couldn’t support them, but we still caught high-value enquiries through a concierge: budgets over £50,000 go to a human, and everyone else sees a clear unavailable page.',
         ],
         diagram: 'vf-gaps',
-        evidence: ['vf-edge-treatment'],
+        facts: [
+          {
+            status: 'confirmed',
+            label: 'Minimum supply',
+            text: 'Only markets with 200+ venues get Venue Finder.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Unsupported areas',
+            text: 'A budget field appears. Over £50,000 goes to a human concierge. Otherwise guests see an unavailable page with links to supported cities and event-planning guides.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Scraping and account creation',
+            text: 'In V2, recommendations come after magic-link sign-up, partly to deter scraping. V1’s required account creation lost 27% of guests, so V2 made it lighter.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Speed and loading',
+            text: 'V2 loaded faster. The first card designs include a loading skeleton state.',
+          },
+          {
+            status: 'confirmed',
+            label: 'Slow or inactive hosts',
+            text: 'Active venues are boosted and responsive hosts get a “Responds fast” tag. Penalties for poor responders are not documented.',
+          },
+          {
+            status: 'confirm',
+            label: 'Hard-requirement failures, weak matches, low confidence',
+            text: 'How the product behaved when no venue met a must-have or the best match was weak.',
+          },
+          {
+            status: 'confirm',
+            label: 'Duplicates and sponsored mismatches',
+            text: 'Any rule against repetitive results, or against a Spotlight venue that does not fit.',
+          },
+          {
+            status: 'confirm',
+            label: 'Misleading listings, prompt misuse, error states',
+            text: 'Not documented, so not claimed.',
+          },
+        ],
+        evidence: ['vf-edge-treatment', 'vf-confirm-guardrails', 'vf-confirm-misuse'],
       },
       {
-        label: '07 · Experiments',
-        heading: 'A control, a first version that failed, and a second that shipped.',
+        label: '08 · Evaluation',
+        heading: 'How would we know matching works?',
+        eyebrow: 'Proposed framework',
+        body: [
+          'This is the framework I would use, not a record of what was run. Only the behavioural results in the right-hand column were measured.',
+        ],
+        matrix: {
+          caption: 'Three layers of evaluation',
+          head: ['Layer', 'Question', 'Proposed measures', 'Evidence today'],
+          rows: [
+            [
+              'Recommendation quality',
+              'Are the right venues shown, in the right order?',
+              'Relevance of retrieved venues, hard requirements met, Precision@K, NDCG@K if order matters, variety and coverage, fit of Spotlight venues.',
+              'Not documented.',
+            ],
+            [
+              'Guest behaviour',
+              'Do guests find and act on them?',
+              'Prompt completion and drop-off, engagement, interested and not-for-me, shortlisting, enquiry conversion, qualified enquiry rate, time to a relevant venue.',
+              'Measured: V1 lost 38% at the AI prompt and 27% at account creation, with 2.2 venues shortlisted and direct enquiries up 26%. V2 qualified enquiries up 30%.',
+            ],
+            [
+              'Marketplace outcomes',
+              'Is the marketplace healthier?',
+              'Lead quality against volume, host response rates, booking conversion, host satisfaction and retention, Spotlight revenue without losing guest trust.',
+              'Baselines only: 55% Lead Feed churn, often 27+ messages to close. No booking or revenue figure claimed.',
+            ],
+          ],
+        },
+        body2: [
+          'Offline evaluation checks the recommendations without real guests. One way: take a set of real briefs, have people rate each returned venue as a fit or not, then count how many of the top few are fits (Precision@K). NDCG@K adds credit for putting the best fits first.',
+          'Online experiments, like the control, V1 and V2 tests, show whether guests behave differently. Both are needed: relevant recommendations can still fail to convert, and conversion can rise on poor matches.',
+        ],
+        evidence: ['vf-confirm-evaluation'],
+      },
+      {
+        label: '09 · Experiments',
+        heading: 'Three versions, each teaching the next.',
         experiments: [
           {
             name: 'Control · Legacy brief builder',
             intent: 'The baseline.',
             change: 'The existing 13-step, preset-option builder.',
             result: '83% of users dropped off.',
+            learning: 'The journey itself was the problem, not one step in it.',
             prototype: 'legacy',
           },
           {
@@ -228,7 +400,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
               'AI prompt, venue recommendations before submission, required account creation, multi-venue selection.',
             result:
               'Lead Feed volume fell 40%. 38% dropped off at the AI input and 27% at account creation. Direct enquiries rose 26%; guests shortlisted 2.2 venues on average.',
-            verdict: 'Failed on lead volume, and taught us the most.',
+            verdict: 'Lead volume fell, and it taught us the most.',
+            learning:
+              'Lead volume was the metric the business tracked, and Lead Feed was a familiar product leadership believed in, so the drop was a real constraint. Fewer leads can also mean fewer weak ones, but V1 could not show which. The required prompt and sign-up asked guests for effort before showing value.',
             image: {
               src: vfV1Disruptive,
               alt: 'The V1 flow. Three mobile screens: a how-it-works panel with a free-text "What are you looking for?" prompt and example chips such as Inspire me and Summer party; "We found 45 venues in Shoreditch" with a map and venue carousel above a Name your event form; and Recommended spaces cards with an Add to favourites button. Below, a heatmap of clicks on the prompt chips and a session recording.',
@@ -242,24 +416,70 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
             change:
               'Optional prompt, magic-link sign-up, recommendations only after sign-up (to deter scraping), faster load.',
             result:
-              'Qualified inbound enquiries rose 30%. Kept where we have 200+ venues, with fallbacks elsewhere (see 06).',
+              'Qualified inbound enquiries rose 30%. Kept where we have 200+ venues, with fallbacks elsewhere (see 07).',
             verdict: 'Shipped.',
+            learning: 'It kept the intent signal for guests who offered it and removed the tax on those who did not.',
             prototype: 'vf-v2',
           },
         ],
-        evidence: ['vf-v1-v2-screens', 'vf-eng-decisions'],
+        matrix: {
+          caption: 'Side by side',
+          head: ['', 'Control', 'V1', 'V2'],
+          rows: [
+            ['Prompt', 'None, 13 preset steps', 'Required AI prompt', 'Optional prompt'],
+            ['Venues shown', 'Not until a venue replies', 'Before submission', 'After sign-up'],
+            ['Sign-up', 'Not part of the flow', 'Required account creation', 'Magic link'],
+            ['Measured', '83% drop-off', 'Lead Feed volume -40%, direct enquiries +26%', 'Qualified enquiries +30%'],
+          ],
+        },
+        evidence: ['vf-v1-v2-screens'],
       },
       {
-        label: '08 · Reflections',
-        heading: 'A bold idea needs a strong business case.',
+        label: '10 · Ownership',
+        heading: 'What I owned, and how I worked with engineering.',
         list: [
           {
-            title: 'The challenge',
-            text: 'Lead Feed was a familiar product that leadership believed in, and marketing was focused on lead volume.',
+            title: 'What I owned',
+            text: 'The guest research (10 interviews), the problem framing and the case for judging Venue Finder on lead quality, and the design and prototypes for the control, V1 and V2 experiences.',
           },
           {
-            title: 'What I learned',
-            text: 'Framing the problem around marketplace performance shifted the conversation. Being clear about trade-offs, between lead volume, match quality and revenue, made it easier to challenge existing thinking. Measured: more qualified enquiries. Still a hypothesis: more bookings.',
+            title: 'How I worked with engineering',
+            text: 'As sole product designer with four engineers, in two-week experiment cycles. They built the matching and the shipped product. I designed the experience and made the product case.',
+          },
+          {
+            title: 'Trade-offs visible in the design',
+            text: 'Making the AI prompt optional traded some intent signal for completion. Putting recommendations behind a magic link traded friction for scraping protection.',
+          },
+          {
+            title: 'Not claimed here',
+            text: 'I did not build the embedding, retrieval or ranking systems. This page describes them from the product side.',
+          },
+        ],
+        evidence: ['vf-add-eng-1', 'vf-add-eng-2', 'vf-add-prioritisation', 'vf-add-delivery'],
+      },
+      {
+        label: '11 · Impact and reflection',
+        heading: 'What the results show, and what they don’t.',
+        list: [
+          {
+            title: 'Measured',
+            text: 'V2 raised qualified inbound enquiries by 30% against the control. The V1 results above are also measured.',
+          },
+          {
+            title: 'Not proven',
+            text: 'That more qualified enquiries became more bookings, that matching quality is high, or what Spotlight earns. No revenue figure is claimed.',
+          },
+          {
+            title: 'What would show it',
+            text: 'Booking conversion by cohort, host response rates, and a relevance review of recommendations.',
+          },
+          {
+            title: 'The challenge',
+            text: 'Lead Feed was a familiar product that leadership believed in, and marketing was focused on lead volume. Framing the problem around marketplace performance, and being clear about the trade-offs between lead volume, match quality and revenue, made it easier to challenge existing thinking.',
+          },
+          {
+            title: 'On building marketplaces with AI',
+            text: 'Interviewees rejected a venue that missed one fixed requirement at once, so the design question became how the product behaves when a match is weak, not only how clever the match is. V1 showed AI input is a cost guests pay before they see value. And paid placement and AI recommendations share one asset, guest trust, which Spotlight only keeps while the list still looks like it works for the guest.',
           },
           {
             title: 'What I’d explore next',
@@ -273,6 +493,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           width: 1492,
           height: 514,
         },
+        evidence: ['vf-add-bookings'],
       },
     ],
   },

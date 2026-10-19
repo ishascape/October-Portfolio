@@ -560,3 +560,114 @@
     gap: var(--space-1);
   }
 }
+
+/* Status lists: what is confirmed, what is design intent, what still needs confirming. */
+.case__facts {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.case__facts li {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--ink);
+  background: color-mix(in srgb, var(--paper) 94%, var(--ink));
+  font-size: 15px;
+  line-height: 1.45;
+}
+.case__facts li[data-status='intent'] {
+  border-left-color: var(--marker);
+}
+.case__facts li[data-status='confirm'] {
+  border-left: 3px dashed var(--graphite);
+  background: transparent;
+  color: var(--graphite);
+}
+.case__fact-status {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--graphite);
+}
+.case__facts li[data-status='intent'] .case__fact-status {
+  color: var(--marker);
+}
+.case__learning {
+  margin: var(--space-2) 0 0;
+  font-size: 15px;
+}
+
+/* A compact comparison table; scrolls sideways inside its own box on narrow screens. */
+.case__matrix {
+  margin: var(--space-4) 0 0;
+}
+.case__matrix-scroll {
+  overflow-x: auto;
+  border: var(--line-thin) solid var(--ink);
+  border-radius: 3px;
+}
+.case__matrix table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.case__matrix th,
+.case__matrix td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: var(--line-thin) solid var(--rule);
+}
+.case__matrix thead th {
+  background: color-mix(in srgb, var(--paper) 92%, var(--ink));
+  font-weight: 600;
+}
+.case__matrix tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.case__matrix tbody tr:last-child th,
+.case__matrix tbody tr:last-child td {
+  border-bottom: 0;
+}
+.case__section-body,
+.case__matrix {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* On narrow screens each row becomes a small card with its column names beside the values. */
+@media (max-width: 759px) {
+  .case__matrix thead {
+    display: none;
+  }
+  .case__matrix table,
+  .case__matrix tbody,
+  .case__matrix tr,
+  .case__matrix th,
+  .case__matrix td {
+    display: block;
+  }
+  .case__matrix tbody tr {
+    padding: var(--space-2) 0;
+    border-bottom: var(--line-thin) solid var(--ink);
+  }
+  .case__matrix tbody tr:last-child {
+    border-bottom: 0;
+  }
+  .case__matrix th,
+  .case__matrix td {
+    border-bottom: 0;
+    padding: 4px 12px;
+  }
+  .case__matrix td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--graphite);
+  }
+}

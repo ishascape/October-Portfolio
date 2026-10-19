@@ -1,0 +1,115 @@
+.vsys,
+.vsig {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-4) 0 0;
+  min-width: 0;
+}
+.vsys__steps,
+.vsig__signals,
+.vsig__tensions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.vsys__steps {
+  display: grid;
+  gap: var(--space-3);
+}
+.vsys__steps li,
+.vsig__signals li {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border: var(--line-thin) solid var(--ink);
+  border-radius: 3px;
+  background: var(--paper);
+  font-size: 14px;
+  line-height: 1.35;
+}
+.vsys__steps li[data-status='intent'] {
+  border-style: dashed;
+}
+.vsys__steps li:not(:last-child)::after {
+  content: '↓';
+  position: absolute;
+  left: 50%;
+  bottom: -19px;
+  transform: translateX(-50%);
+  color: var(--graphite);
+  line-height: 1;
+}
+.vsys__steps em {
+  font-style: normal;
+  color: var(--graphite);
+}
+.vsys__steps li[data-status='confirmed'] em {
+  color: var(--marker);
+}
+.vsig__signals {
+  display: grid;
+  gap: var(--space-2);
+}
+.vsig__signals li {
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  column-gap: var(--space-2);
+}
+.vsig__signals li span:last-child {
+  grid-column: 2;
+  color: var(--graphite);
+}
+.vsig__n {
+  font-weight: 600;
+  color: var(--marker);
+}
+.vsig__head {
+  margin: var(--space-2) 0 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+.vsig__tensions {
+  display: grid;
+  gap: var(--space-2);
+}
+.vsig__tensions li {
+  display: grid;
+  gap: 2px;
+  padding: 8px 12px;
+  border: var(--line-thin) dashed var(--graphite);
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+.vsig__pair {
+  font-weight: 600;
+}
+.vsig__pair i {
+  font-style: normal;
+  color: var(--marker);
+}
+
+@media (min-width: 760px) {
+  .vsys__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-4);
+  }
+  .vsys__steps li:not(:last-child)::after {
+    content: '→';
+    left: auto;
+    right: -19px;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .vsys__steps li:nth-child(3)::after {
+    content: '';
+  }
+  .vsig__signals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .vsig__tensions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

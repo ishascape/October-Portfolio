@@ -14,7 +14,10 @@ import { VenueFinderPrototype } from './VenueFinderPrototype'
 import { LegacyBriefPrototype } from './LegacyBriefPrototype'
 import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
+import { VenueSystemFlow, VenueSignals } from './VenueSystem'
 import './CaseStudy.css'
+
+const factStatus = { confirmed: 'Confirmed', intent: 'Design intent', confirm: 'To confirm' } as const
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
   const [mode, setMode] = useState<PlanMode>('proposed')
@@ -186,6 +189,12 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                         </div>
                       </dl>
                       {e.verdict && <p className="label case__verdict">{e.verdict}</p>}
+                      {e.learning && (
+                        <p className="case__learning">
+                          <strong>What it taught. </strong>
+                          {e.learning}
+                        </p>
+                      )}
                       {e.prototype === 'vf-v2' && <VenueFinderPrototype />}
                       {e.prototype === 'legacy' && <LegacyBriefPrototype />}
                     </li>
@@ -280,6 +289,59 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               {s.diagram === 'vf-problem' && <VenueProblemDiagram />}
               {s.diagram === 'vf-experience' && <VenueExperienceTrio />}
               {s.diagram === 'vf-gaps' && <VenueGapsFlow />}
+              {s.diagram === 'vf-system' && <VenueSystemFlow />}
+              {s.diagram === 'vf-signals' && <VenueSignals />}
+              {s.facts && (
+                <ul className="case__facts">
+                  {s.facts.map((f) => (
+                    <li key={f.label} data-status={f.status}>
+                      <span className="case__fact-status">{factStatus[f.status]}</span>
+                      <span>
+                        <strong>{f.label}. </strong>
+                        {f.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.matrix && (
+                <figure className="case__matrix">
+                  <div className="case__matrix-scroll" tabIndex={0} role="region" aria-label={s.matrix.caption}>
+                    <table>
+                      <thead>
+                        <tr>
+                          {s.matrix.head.map((h, i) => (
+                            <th key={i} scope="col">
+                              {h}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {s.matrix.rows.map((r) => (
+                          <tr key={r[0]}>
+                            {r.map((c, i) =>
+                              i === 0 ? (
+                                <th key={i} scope="row">
+                                  {c}
+                                </th>
+                              ) : (
+                                <td key={i} data-label={s.matrix!.head[i]}>
+                                  {c}
+                                </td>
+                              ),
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <figcaption className="annotation">{s.matrix.caption}</figcaption>
+                </figure>
+              )}
+              {s.body2?.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
               {s.image && (
                 <figure
                   className={`case__figure case__figure--image${s.image.bordered ? ' case__figure--bordered' : ''}`}
