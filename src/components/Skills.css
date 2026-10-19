@@ -131,16 +131,15 @@
   }
   .skills--stacked > .skill {
     opacity: 0;
-    transform: translateY(40px) rotate(var(--tilt)) scale(0.94);
+    transform: translateY(40px) scale(0.94);
   }
   .skills--out > .skill {
     opacity: 1;
     transform: none;
   }
-  /* Cursor on a card: it tips slightly, the way a loose sheet would. Once the fan-out has played the
-     stagger delay is dropped so the tilt answers the pointer straight away. */
+  /* Cursor on a card: the shadow deepens, the card itself stays still. Once the fan-out has played the
+     stagger delay is dropped so the response is immediate. */
   .skill:hover {
-    transform: rotate(var(--tilt)) translateY(-4px);
     transition-delay: 0s;
     box-shadow:
       0 1px 0 rgb(28 27 25 / 0.08),
@@ -150,11 +149,6 @@
     transition:
       transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1),
       box-shadow 300ms;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .skill:hover {
-      transform: none;
-    }
   }
   .skill__parti {
     grid-row: auto;
