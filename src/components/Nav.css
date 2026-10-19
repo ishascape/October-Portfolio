@@ -4,6 +4,17 @@
   z-index: 10;
   background: var(--paper);
   border-bottom: var(--line-thin) solid var(--ink);
+  padding-top: env(safe-area-inset-top);
+}
+/* Solid paper above the nav, so nothing scrolls into view behind the status bar. */
+.nav::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 100vh;
+  background: var(--paper);
 }
 
 .nav__inner {
