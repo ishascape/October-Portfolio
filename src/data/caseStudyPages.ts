@@ -106,7 +106,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     },
     kicker: 'HeadBox · Demand side',
     subtitle:
-      'HeadBox is a marketplace for event planners and venue hosts. As sole product designer, I redesigned how guests brief venues, so hosts got fewer, better-qualified enquiries.',
+      'HeadBox is a two-sided marketplace connecting event planners (demand) with venue hosts (supply). As the sole Product Designer, I redesigned how planners submitted event briefs and discovered venues, introducing AI-powered recommendations to improve matching quality, reduce low-quality enquiries for hosts, and help planners find the right venue faster.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
       { label: 'Team', value: '4 engineers' },
