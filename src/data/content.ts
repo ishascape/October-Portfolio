@@ -137,41 +137,6 @@ export const capabilities = [
   'Data-led decisions',
 ]
 
-export interface Principle {
-  number: string
-  title: string
-  body: string
-  evidence: { source: string; text: string }[]
-}
-
-// Design ethos (Ashni, 15 Oct 2026). Evidence lines reuse facts already on the site.
-export const principles: Principle[] = [
-  {
-    number: '1',
-    title: "Show, don't tell.",
-    body: 'A prototype people can click settles more than a deck. I build to show the idea, then let people react to the real thing.',
-    evidence: [],
-  },
-  {
-    number: '2',
-    title: 'Let the data and research decide.',
-    body: 'Opinions start the conversation; evidence ends it.',
-    evidence: [],
-  },
-  {
-    number: '3',
-    title: 'Iterative development.',
-    body: 'Ship, measure, refine. Each version earns the next.',
-    evidence: [],
-  },
-  {
-    number: '4',
-    title: 'Stay curious, stay ambitious.',
-    body: 'From architecture to product, and from Kilimanjaro to AI tooling, I keep learning the next thing.',
-    evidence: [],
-  },
-]
-
 export const revisions = [
   { rev: 'E', date: 'Jan 2026 - Jul 2026', role: 'Senior Product Designer', company: 'HeadBox, London' },
   { rev: 'D', date: 'Apr 2025 - Jan 2026', role: 'Product Designer', company: 'HeadBox, London' },
