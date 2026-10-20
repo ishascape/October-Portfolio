@@ -578,4 +578,7 @@
   .case__hero-proto img {
     height: 640px;
   }
+.case__caption-plain {
+  font-size: 15px;
+  line-height: 1.5;
 }

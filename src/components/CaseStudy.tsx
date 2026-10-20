@@ -307,7 +307,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                     loading="lazy"
                     decoding="async"
                   />
-                  <figcaption className="annotation">{s.image.caption}</figcaption>
+                  <figcaption className={s.image.plainCaption ? 'case__caption-plain' : 'annotation'}>{s.image.caption}</figcaption>
                 </figure>
               )}
               {s.figures?.map((f) => (
