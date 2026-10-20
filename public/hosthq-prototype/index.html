@@ -42,7 +42,7 @@ var VH = 1024;
 var stage = document.getElementById('stage'), frame = document.getElementById('frame'), cur = document.getElementById('cur');
 var els = SCREENS.map(function (s) {
   var d = document.createElement('div'); d.className = 'scr';
-  var i = document.createElement('img'); i.src = s.f; i.alt = ''; i.draggable = false; i.decoding = 'async';
+  var i = document.createElement('img'); i.src = '/hosthq-prototype/' + s.f; i.alt = ''; i.draggable = false; i.decoding = 'async';
   d.appendChild(i); stage.insertBefore(d, cur); return d;
 });
 function fit() { stage.style.transform = 'scale(' + frame.clientWidth / 1440 + ')'; }
