@@ -108,7 +108,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     },
     kicker: 'HeadBox · Demand side',
     subtitle:
-      'HeadBox is a two-sided marketplace connecting event planners (demand) with venue hosts (supply). As the sole Product Designer, I redesigned how planners submitted event briefs and discovered venues, introducing AI-powered recommendations to improve matching quality, reduce low-quality enquiries for hosts, and help planners find the right venue faster.',
+      'HeadBox is a two-sided marketplace connecting event planners (demand) with venue hosts (supply). As sole Product Designer, I redesigned how planners brief and find venues, using AI recommendations to improve matching, cut low-quality enquiries and speed up discovery.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
       { label: 'Team', value: '4 engineers' },
@@ -116,9 +116,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Marketplace', value: 'Guests planning events (demand) · venue hosts (supply)' },
     ],
     problem:
-      'Guests filled in 13 steps without seeing a single venue, then waited for venues to get in touch. Early replies often missed the brief, and 83% of users dropped off the builder. Hosts were left with unqualified briefs and Lead Feed churn hit 55%. I argued for judging Venue Finder on lead quality, not volume.',
+      'Guests filled in 13 steps without seeing a venue, then waited for replies that often missed the brief. 83% dropped off the builder, hosts got unqualified briefs and Lead Feed churn hit 55%. I argued for judging Venue Finder on lead quality, not volume.',
     solution:
-      'Guests share their event, see matched venues straight away, shortlist, then connect. A vector database ranks the inventory against what they need, boosting best-fit, active and premium venues, plus Spotlight Partner, a paid placement model.',
+      'Guests share their event, see matched venues straight away, shortlist, then connect. A vector database ranks inventory against their needs, boosting best-fit, active and premium venues, plus paid Spotlight Partner placements.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '27%', label: 'More likely to finalise bookings when venues selected by guest' },
@@ -131,7 +131,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '01 · The problem',
         heading: 'Guests waited for venues instead of discovering them.',
         body: [
-          'Guests spent 13 steps describing their event and saw no venues. Then they waited, with little say over who got in touch, and early replies were often a poor fit.',
+          'Guests spent 13 steps describing their event and saw no venues, then waited with little say over who got in touch.',
           'Marketing measured briefs submitted, not bookings. Hosts often needed 27+ messages to close one.',
         ],
         diagram: 'vf-problem',
@@ -226,7 +226,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           alt: 'The HeadBox concierge page. A headline says Great news, you are eligible for personalised support from our expert event planners. On the left, a profile card for Ryan Grieve, Head of Meetings and Events, with 100,000+ customers, the world’s best brands, a 4.2 out of 5 Trustpilot rating, and Google, Monzo and Spotify logos above a customer quote. On the right, a form asking for first name, last name, email, phone number and event details, with a Share details button.',
           plainCaption: true,
           caption:
-            'Priority Edge case handling - Concierge fallback: For locations outside our marketplace coverage, corporate bookers with event budgets exceeding £50,000 were routed to a human concierge rather than reaching a dead end.',
+            'Concierge fallback: outside our marketplace coverage, corporate bookers with budgets over £50,000 were routed to a human concierge, not a dead end.',
           width: 1440,
           height: 1024,
         },
@@ -279,11 +279,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: 'What I learned',
-            text: 'Framing the problem around marketplace performance shifted the conversation. Being clear about trade-offs, between lead volume, match quality and revenue, made it easier to challenge existing thinking. Measured: more qualified enquiries. Still a hypothesis: more bookings.',
+            text: 'Framing the problem around marketplace performance shifted the conversation. Clear trade-offs between lead volume, match quality and revenue made it easier to challenge existing thinking. Measured: more qualified enquiries. Still a hypothesis: more bookings.',
           },
           {
             title: 'What I’d explore next',
-            text: 'Smarter venue rankings based on conversion potential, faster shortlisting for repeat users, and AI-assisted discovery. I’d also separate lead volume from metrics that reflect actual marketplace health.',
+            text: 'Rankings based on conversion potential, faster shortlisting for repeat users, AI-assisted discovery, and metrics that reflect marketplace health, not lead volume.',
           },
         ],
         image: {
@@ -323,9 +323,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Deferred', value: '3D Studio migration, full reporting and mobile (see 06 for what comes next)' },
     ],
     problem:
-      'Hosts’ platform was really four products (Lead Feed, PowerHost, HeadBox for Business, 3D Studio): confusing navigation, repeated workflows, inconsistent data, little cross-product use. We were shipping our org chart. I advocated for round-table research over a redesign driven by stakeholder opinion and support tickets.',
+      'Hosts’ platform was really four products (Lead Feed, PowerHost, HeadBox for Business, 3D Studio), with confusing navigation, repeated workflows and inconsistent data. We were shipping our org chart. I advocated for round-table research over a redesign driven by opinion and support tickets.',
     solution:
-      'One Platform: a single system organised around the jobs hosts do, positioned as a structured way to earn revenue. Research set the MVP scope and what comes next. We shipped structure over completeness and deferred 3D Studio migration, full reporting and mobile.',
+      'One Platform: a single system organised around the jobs hosts do, positioned as a structured way to earn revenue. We shipped structure over completeness and deferred 3D Studio migration, full reporting and mobile.',
     impact: [
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
@@ -443,7 +443,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: '3D Studio',
-            problem: '3D Studio was one of the four tools, and legacy dependencies blocked full integration.',
+            problem: '3D Studio was one of the four tools.',
             options: 'Integrate fully, or embed it and defer migration.',
             decision: 'Embed it in the proposal flow and defer migration.',
             why: 'Legacy dependencies blocked full integration.',
@@ -482,7 +482,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '07 · Reflections',
         heading: 'A fragmented platform is an alignment problem before it is a design problem.',
         body: [
-          'Reactive growth caused the fragmentation. The fix was reframing the product around clearer growth signals for hosts. Strong marketplaces run on structural clarity and workflow-improving features, not faster shipping.',
+          'Reactive growth caused the fragmentation. The fix was reframing the product around clearer growth signals. Strong marketplaces run on structural clarity, not faster shipping.',
         ],
       },
     ],
@@ -508,7 +508,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     problem:
       '41% of new users left before reaching value: onboarding was heavy on admin forms, then users faced a blank family-tree canvas.',
     solution:
-      'AI-assisted onboarding: relative suggestions in the product and step-by-step guidance replaced a form-heavy setup. I advocated for interactive states in desktop onboarding, not the view-only state engineers proposed. Three tests cut onboarding from 8 forms to 3.',
+      'AI-assisted onboarding: relative suggestions and step-by-step guidance replaced a form-heavy setup. I advocated for interactive states in desktop onboarding, not the view-only state engineers proposed. Three tests cut onboarding from 8 forms to 3.',
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },
