@@ -6,6 +6,7 @@ import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
 import vfHero from '../assets/venue-finder-hero.webp'
+import vfConcierge from '../assets/venue-finder-concierge.webp'
 import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
@@ -64,7 +65,7 @@ export interface Section {
   quotesCaption?: string // hand-lettered line under the quote cards
   figure?: string // placeholder caption until real images arrive
   figures?: string[] // several placeholder frames, one per selected screen
-  image?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a real screenshot
+  image?: { src: string; alt: string; caption: string; plainCaption?: boolean; width: number; height: number; bordered?: boolean } // a real screenshot; plainCaption sets the caption in the normal font
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
   planImageTop?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // above the third, with a handwritten caption below
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
@@ -202,6 +203,15 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'We didn’t force recommendations where inventory couldn’t support them, but we still caught high-value enquiries through a concierge.',
         ],
         diagram: 'vf-gaps',
+        image: {
+          src: vfConcierge,
+          alt: 'The HeadBox concierge page. A headline says Great news, you are eligible for personalised support from our expert event planners. On the left, a profile card for Ryan Grieve, Head of Meetings and Events, with 100,000+ customers, the world’s best brands, a 4.2 out of 5 Trustpilot rating, and Google, Monzo and Spotify logos above a customer quote. On the right, a form asking for first name, last name, email, phone number and event details, with a Share details button.',
+          plainCaption: true,
+          caption:
+            'Priority Edge case handling - Concierge fallback: For locations outside our marketplace coverage, corporate bookers with event budgets exceeding £50,000 were routed to a human concierge rather than reaching a dead end.',
+          width: 1440,
+          height: 1024,
+        },
       },
       {
         label: '07 · Experiments',
