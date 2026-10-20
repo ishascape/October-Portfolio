@@ -119,7 +119,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       'Guests share their event, see matched venues straight away, shortlist, then connect. A vector database ranks the inventory against what they need, boosting best-fit, active and premium venues, plus Spotlight Partner, a paid placement model.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
-      { value: '40%', label: 'Shorter journey than the 13-step builder' },
+      { value: '27%', label: 'More likely to finalise bookings when venues selected by guest' },
       { value: 'New', label: 'Revenue from paid Spotlight placement' },
     ],
     impactNote:
