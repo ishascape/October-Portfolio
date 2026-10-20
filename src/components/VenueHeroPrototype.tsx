@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import logo from '../assets/vfh-logo.webp'
+import top from '../assets/vfh-top.webp'
+import chip1 from '../assets/vfh-chip1.webp'
+import chip2 from '../assets/vfh-chip2.webp'
 import mapRadius from '../assets/vfh-map-radius.webp'
 import mapResults from '../assets/vfh-map-results.webp'
 import junsei from '../assets/vfh-junsei.webp'
@@ -35,16 +37,30 @@ const Sparkle = () => (
   </svg>
 )
 
+// The status bar and HeadBox header, cropped from the landing screen.
 function Header() {
-  return (
-    <header className="vhp__bar">
-      <img src={logo} alt="HeadBox" width={168} height={42} />
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 6h18M3 12h18M3 18h18" />
-      </svg>
-    </header>
-  )
+  return <img className="vhp__top" src={top} alt="HeadBox" width={393} height={116} />
 }
+
+const Steps = () => (
+  <div className="vhp__how">
+    <p className="vhp__q">How does HeadBox work?</p>
+    <ol>
+      <li data-first>
+        <b>1</b>
+        <span>Tell us about your event</span>
+      </li>
+      <li>
+        <b>2</b>
+        <span>We suggest some options for you to request quotes from</span>
+      </li>
+      <li>
+        <b>3</b>
+        <span>Get quotes from available venues</span>
+      </li>
+    </ol>
+  </div>
+)
 
 function Footer({ children }: { children: ReactNode }) {
   return <footer className="vhp__foot">{children}</footer>
@@ -311,7 +327,6 @@ export function VenueHeroPrototype() {
   return (
     <figure className="vhp" ref={root} aria-label="An auto-playing walk through the Venue Finder flow on a phone">
       <div className="vhp__phone" style={{ height: (H + 24) * scale }}>
-        <span className="vhp__camera" aria-hidden="true" />
         <div className="vhp__screen" style={{ width: W * scale, height: H * scale }}>
           <div className="vhp__ui" ref={ui} style={{ width: W, height: H, transform: `scale(${scale})` }}>
             <div className="vhp__screen-in" key={screen}>
@@ -370,6 +385,12 @@ export function VenueHeroPrototype() {
                       <b>Zastra, England</b>
                     </blockquote>
                   </div>
+                  <span className="vhp__totop">
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M4 10l4-4 4 4" />
+                    </svg>
+                    Back to top
+                  </span>
                 </>
               )}
 
@@ -399,7 +420,7 @@ export function VenueHeroPrototype() {
                     </p>
                     <p className="vhp__found">
                       <Sparkle />
-                      We found 45 in this area that could be a good fit
+                      We found [45] in this area that could be a good fit
                     </p>
                     <img className="vhp__map vhp__map--wide" src={mapResults} alt="" width={346} height={230} />
                   </div>
@@ -484,10 +505,12 @@ export function VenueHeroPrototype() {
                         <Radio on={soon === 2}>I’m just browsing</Radio>
                       </div>
                     </div>
-                    <p className="vhp__found">
+                    <img className="vhp__map vhp__map--wide" src={mapResults} alt="" width={346} height={230} />
+                    <p className="vhp__found vhp__found--rule">
                       <Sparkle />
                       We found 32 Venues that could be a good fit!
                     </p>
+                    <Steps />
                   </div>
                   <Footer>
                     <span className="vhp__ghost vhp__ghost--foot">
@@ -578,11 +601,12 @@ export function VenueHeroPrototype() {
                     ))}
                     <p className="vhp__more">+ Show 6 more</p>
                     <img className="vhp__map vhp__map--wide" src={mapResults} alt="" width={346} height={230} />
-                    <p className="vhp__found">
+                    <p className="vhp__found vhp__found--rule">
                       <Sparkle />
-                      45 venues in Shoreditch
+                      [45] Venues in [location]
                     </p>
-                    <p className="vhp__body vhp__body--light vhp__tail">We’re 100% free to use - only pay the venue you book!</p>
+                    <Steps />
+                    <p className="vhp__body vhp__body--light vhp__tail">We are 100% free to use - only pay the venue you book!</p>
                   </div>
                   <Footer>
                     <span className="vhp__ghost vhp__ghost--foot">
@@ -600,16 +624,10 @@ export function VenueHeroPrototype() {
                   <Header />
                   <div className="vhp__done">
                     <h2>Great!</h2>
-                    <p className="vhp__sent">We’ve sent your event to 2 venues</p>
+                    <p className="vhp__sent">We’ve sent your event to 3 venues</p>
                     <div className="vhp__sent-cards">
-                      <span>
-                        <img src={junsei} alt="" width={342} height={210} />
-                        <b>Junsei</b>
-                      </span>
-                      <span>
-                        <img src={caia} alt="" width={338} height={206} />
-                        <b>Caia</b>
-                      </span>
+                      <img src={chip1} alt="The Admiralty" width={287} height={76} />
+                      <img src={chip2} alt="" width={59} height={76} />
                     </div>
                     <p className="vhp__body vhp__body--light">We’ll notify you when they get back with quotes to compare.</p>
                     <p className="vhp__body vhp__body--light">
