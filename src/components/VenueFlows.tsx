@@ -107,7 +107,7 @@ export function VenueProblemDiagram() {
               <li key={n}>{n}</li>
             ))}
           </ol>
-          <p className="vf-flow__note vf-flow__note--warn">All effort. Not one venue shown.</p>
+          <p className="vf-flow__note vf-flow__note--warn">Lots of upfront effort, with no venues presented until their first message - 1 to 24hrs later</p>
         </div>
         <ol className="vf-flow__steps vf-problem__after">
           <li>Submit enquiry</li>
