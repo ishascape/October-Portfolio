@@ -97,7 +97,7 @@ export function VenueRankingDiagram() {
           <h4>Relevance &amp; performance guardrails</h4></div>
           <div className="vf-pipe__body">
           <ul>
-            <li>Hard eligibility filters applied with the candidate cap</li>
+            <li>Hard eligibility filters applied, i.e. must include parking, wheelchair access etc.</li>
             <li>Similarity threshold ≥ 0.85</li>
             <li>Max 32 candidate venues per brief</li>
             <li>Ineligible or low-relevance venues excluded</li>
