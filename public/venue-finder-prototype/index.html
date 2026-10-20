@@ -12,6 +12,7 @@
   --line:#BFBFBF; --field:#505050; --muted:#86858B; --stepc:#6E494A; --stepg:#BEBEBE;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html,body{height:100%}
 body{background:#1b1b1f;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',system-ui,sans-serif;overflow:hidden;color:var(--ink);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #fit{width:393px;height:852px;flex:none;transform-origin:center center}
@@ -28,7 +29,7 @@ body{background:#1b1b1f;display:flex;align-items:center;justify-content:center;f
 .burger i{display:block;height:2px;background:#000}
 #prog{position:absolute;top:116px;left:0;right:0;height:12px;background:#000;z-index:20;display:flex;align-items:center}
 #progF{height:100%;width:0;border-radius:0 6px 6px 0;background:linear-gradient(90deg,#F2CFCB,#AF231C);transition:width .6s ease}
-#progT{position:absolute;right:10px;color:#fff;font-size:9px;line-height:12px;font-weight:500}
+#progT{display:none;position:absolute;right:10px;color:#fff;font-size:9px;line-height:12px;font-weight:500}
 /* screens */
 #stage{position:absolute;inset:0}
 .screen{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg-bot);transform:translateX(100%);transition:none;padding-top:128px}
@@ -60,7 +61,7 @@ body{background:#1b1b1f;display:flex;align-items:center;justify-content:center;f
 .chk.sel i{background:#111}
 .chk i svg{opacity:0;width:11px;height:11px}
 .chk.sel i svg{opacity:1}
-.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--red);color:#222;border-radius:20px;padding:5px 12px;font-size:13px;font-weight:600;background:#fff}
+.chip{display:inline-flex;white-space:nowrap;max-width:100%;align-items:center;gap:6px;border:1px solid var(--red);color:#222;border-radius:20px;padding:5px 12px;font-size:13px;font-weight:600;background:#fff}
 .chip svg{width:14px;height:14px}
 .cta{height:46px;border-radius:3px;background:var(--red);color:#fff;font:700 17px 'Montserrat';display:flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:transform .12s}
 .cta svg{width:15px;height:15px}
@@ -172,7 +173,7 @@ body{background:#1b1b1f;display:flex;align-items:center;justify-content:center;f
   <div class="card" style="margin-top:28px">
     <h2>Tell us about your event, is there anything specific you would like?</h2>
     <div style="font-size:14px;margin:12px 0 10px;color:#333;font-weight:500">Example prompts:</div>
-    <div style="display:flex;gap:10px;margin-bottom:16px"><span class="chip" style="background:#fff">Christmas party</span><span class="chip">Meeting</span><span class="chip">Birthday</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px"><span class="chip" style="background:#fff">Christmas party</span><span class="chip">Meeting</span><span class="chip">Birthday</span></div>
     <div class="fld ph" id="prompt" style="height:190px;align-items:flex-start;padding:12px;font-size:16px;line-height:1.5;display:block"><span id="promptT">I’m looking for an elegant rooftop bar</span></div>
     <div style="display:flex;gap:8px;margin-top:14px;font-size:14px;line-height:1.45;color:#333;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" style="flex:none;margin-top:3px"><path d="M12 2l2.2 6.3L21 10.5l-6.3 2.2L12 19l-2.2-6.3L3 10.5l6.3-2.2z" fill="#AF231C"/></svg><span>The more detailed the information you include here the better the suggestions we can find for you.</span></div>
   </div>
