@@ -15,8 +15,12 @@ import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExper
 import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
 
-// The header prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
-function HeroPrototype({ src, poster, title }: { src: string; poster: string; title: string }) {
+// The Key product moments prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
+function VenuePrototype() {
+  const src = '/venue-finder-prototype/'
+  const poster = '/venue-finder-prototype/poster.webp'
+  const title =
+    'Auto-playing prototype of the Venue Finder flow on a phone: landing, prompt, event details, contact details, venue shortlist and confirmation.'
   const [still, setStill] = useState(false)
   useEffect(() => {
     setStill(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
@@ -73,10 +77,8 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <p className="case__subtitle">{page.subtitle}</p>
             </div>
 
-            <div className={page.heroImage || page.heroPrototype ? 'case__visual case__visual--image' : 'case__visual'}>
-              {page.heroPrototype ? (
-                <HeroPrototype {...page.heroPrototype} />
-              ) : page.heroImage ? (
+            <div className={page.heroImage ? 'case__visual case__visual--image' : 'case__visual'}>
+              {page.heroImage ? (
                 <figure className="case__hero-image">
                   <img
                     src={page.heroImage.src}
@@ -291,6 +293,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               {s.diagram === 'vf-ranking' && <VenueRankingDiagram />}
               {s.diagram === 'vf-problem' && <VenueProblemDiagram />}
               {s.diagram === 'vf-experience' && <VenueExperienceTrio />}
+              {s.diagram === 'vf-prototype' && <VenuePrototype />}
               {s.diagram === 'vf-gaps' && <VenueGapsFlow />}
               {s.image && (
                 <figure

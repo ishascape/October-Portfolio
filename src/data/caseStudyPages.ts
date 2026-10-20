@@ -5,6 +5,7 @@ import type { CaseStudyId } from './content'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
+import vfHero from '../assets/venue-finder-hero.webp'
 import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
@@ -70,7 +71,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
-  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' // a compact native diagram for the Venue Finder story
+  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-prototype' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -83,8 +84,6 @@ export interface CaseStudyPage {
   // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
   // under the first section instead of the header.
   heroImage?: { src: string; alt: string; width: number; height: number }
-  // An auto-playing prototype in the header, used instead of a still. The poster shows when motion is reduced.
-  heroPrototype?: { src: string; poster: string; title: string }
   kicker: string
   subtitle: string
   meta: { label: string; value: string }[]
@@ -99,10 +98,11 @@ export interface CaseStudyPage {
 export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
   'venue-finder': {
     id: 'venue-finder',
-    heroPrototype: {
-      src: '/venue-finder-prototype/',
-      poster: '/venue-finder-prototype/poster.webp',
-      title: 'Auto-playing prototype of the Venue Finder flow on a phone: landing, prompt, event details, contact details, venue shortlist and confirmation.',
+    heroImage: {
+      src: vfHero,
+      alt: "A hand holding a phone and tapping a Venue Finder venue card. The card shows a Spotlight tag, Responds fast, a photo of Junsei, a yakitori restaurant in Marylebone, a short description, and I'm interested and Not for me buttons.",
+      width: 1536,
+      height: 1024,
     },
     kicker: 'HeadBox · Demand side',
     subtitle:
@@ -183,7 +183,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       {
         label: '04 · Key product moments',
         heading: 'Intent in, relevant venues out.',
-        diagram: 'vf-experience',
+        diagram: 'vf-prototype',
       },
       {
         label: '05 · Matching',
