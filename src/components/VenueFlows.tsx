@@ -49,7 +49,7 @@ const metrics = [
 const signals = [
   { name: 'Best fit', text: 'relevance first' },
   { name: 'Active hosts', text: 'engagement boost' },
-  { name: 'Premium', text: 'subscription visibility', paid: true },
+  { name: 'Premium', text: 'subscription visibility' },
   { name: 'Spotlight', text: 'paid promotion', paid: true },
 ]
 
@@ -92,7 +92,6 @@ export function VenueRankingDiagram() {
           <ul>
             <li>Intent converted into embeddings</li>
             <li>Semantic similarity search across venue inventory</li>
-            <li>Hard eligibility filters applied</li>
           </ul></div>
         </li>
         <li className="vf-pipe__stage vf-pipe__stage--filter">
@@ -100,6 +99,7 @@ export function VenueRankingDiagram() {
           <h4>Relevance &amp; performance guardrails</h4></div>
           <div className="vf-pipe__body">
           <ul>
+            <li>Hard eligibility filters applied with the candidate cap</li>
             <li>Similarity threshold ≥ 0.85</li>
             <li>Max 32 candidate venues per brief</li>
             <li>Ineligible or low-relevance venues excluded</li>
@@ -123,7 +123,7 @@ export function VenueRankingDiagram() {
               </li>
             ))}
           </ul>
-          <p className="vf-pipe__guard">Max 2 paid-feature placements per brief. Paid boosts never override relevance.</p></div>
+          <p className="vf-pipe__guard">Max 2 paid Spotlight placements per brief. Paid boosts never override relevance.</p></div>
         </li>
         <li className="vf-pipe__stage vf-pipe__stage--out">
           <div className="vf-pipe__head"><p className="vf-pipe__num">05</p>
