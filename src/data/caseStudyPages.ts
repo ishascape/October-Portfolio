@@ -2,6 +2,7 @@
 // The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
+import type { Fork } from '../components/DecisionFork'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
@@ -41,6 +42,7 @@ export interface Decision {
   decision: string
   why: string
   shipped: string
+  fork?: Fork // a small drawing of the choice: problem, chose, gave up, shipped
 }
 
 // A real screen with what it solves, the interaction decision and the reason for it.
@@ -425,6 +427,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         decisions: [
           {
             title: 'Research before redesign',
+            fork: { problem: 'Four products, pressure to redesign', chose: 'Round-table research with hosts', gaveUp: 'Redesign from opinion and tickets', shipped: 'Strategy built around making revenue clear' },
             problem:
               'Four separate products, and pressure for a redesign driven by stakeholder opinion and support tickets.',
             options: 'Redesign from stakeholder opinion and tickets, or run round-table research with hosts first.',
@@ -434,6 +437,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: 'Structure over completeness',
+            fork: { problem: 'Three months to peak season', chose: 'A coherent structure first', gaveUp: 'Surface polish and the full feature set', shipped: 'Unified navigation and IA, dashboards, proposal builder' },
             problem: 'Three months before peak season.',
             options: 'Polish the surface and the full feature set, or ship a coherent structure first.',
             decision: 'I chose structure over completeness.',
@@ -443,6 +447,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: '3D Studio',
+            fork: { problem: 'One of the four tools, with legacy dependencies', chose: 'Embed it and defer migration', gaveUp: 'Full integration', shipped: '3D Studio embedded in the proposal flow' },
             problem: '3D Studio was one of the four tools.',
             options: 'Integrate fully, or embed it and defer migration.',
             decision: 'Embed it in the proposal flow and defer migration.',
@@ -451,6 +456,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: 'Reporting',
+            fork: { problem: 'The data needed cleaning first', chose: 'Marketplace reporting only', gaveUp: 'Full reporting', shipped: 'Marketplace reporting, full reporting next' },
             problem: 'The data needed cleaning first.',
             options: 'Full reporting, or marketplace reporting only.',
             decision: 'Ship marketplace reporting only.',
@@ -459,6 +465,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: 'Mobile',
+            fork: { problem: 'Three months, and hosts work mainly on desktop', chose: 'Desktop only', gaveUp: 'Desktop and mobile', shipped: 'A desktop-only v1' },
             problem: 'Three months, and hosts work mainly on desktop.',
             options: 'Desktop and mobile, or desktop only.',
             decision: 'Desktop only.',

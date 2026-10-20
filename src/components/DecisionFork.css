@@ -1,0 +1,47 @@
+/* A decision as a fork: the HostHQ scope flow's graph paper and pencil linework, one small drawing per card. */
+.fork {
+  margin: var(--space-3) 0 0;
+  min-width: 0;
+}
+.fork__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.fork__svg--tall {
+  display: none;
+}
+@media (max-width: 679px) {
+  .fork__svg--wide {
+    display: none;
+  }
+  .fork__svg--tall {
+    display: block;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+}
+.fork__box--gave {
+  stroke: var(--graphite);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+.fork__wash {
+  fill: var(--marker-wash);
+  stroke: none;
+}
+.fork__text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  fill: var(--ink);
+}
+.fork__text--light {
+  fill: var(--graphite);
+}
+.fork__label {
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--graphite);
+}
