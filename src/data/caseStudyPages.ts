@@ -182,7 +182,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         },
       },
       {
-        label: '04 · Key product moments',
+        label: '04 · Key product decisions',
         heading: 'Intent in, relevant venues out.',
         diagram: 'vf-prototype',
       },
