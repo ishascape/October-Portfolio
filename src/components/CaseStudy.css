@@ -611,6 +611,18 @@
     margin-left: -8px;
   }
 }
+.case__hq-proto {
+  margin: 0;
+}
+.case__hq-proto iframe,
+.case__hq-proto img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1440 / 1024;
+  height: auto;
+  border: 1px solid var(--line, rgba(0, 0, 0, 0.12));
+  background: #fff;
+}
 
 .case__caption-plain {
   font-size: 15px;

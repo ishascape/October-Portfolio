@@ -73,7 +73,7 @@ export interface Section {
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
   keyDecisions?: { title: string; text: string }[] // numbered decisions shown beside the prototype
-  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-prototype' // a compact native diagram for the Venue Finder story
+  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-prototype' | 'hq-prototype' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -370,57 +370,10 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'With three months before peak season, I chose structure over completeness: unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
           'The cost: migrating the data slowed v1 load times for hosts with large datasets.',
         ],
+        diagram: 'hq-prototype',
       },
       {
-        label: '04 · Decisions that shaped the release',
-        heading: 'What we chose, what we gave up, what shipped.',
-        decisions: [
-          {
-            title: 'Research before redesign',
-            problem:
-              'Four separate products, and pressure for a redesign driven by stakeholder opinion and support tickets.',
-            options: 'Redesign from stakeholder opinion and tickets, or run round-table research with hosts first.',
-            decision: 'I advocated for round-table research.',
-            why: 'Hosts wanted clear signals of growth and return, not more features.',
-            shipped: 'A consolidation strategy built around making revenue clear.',
-          },
-          {
-            title: 'Structure over completeness',
-            problem: 'Three months before peak season.',
-            options: 'Polish the surface and the full feature set, or ship a coherent structure first.',
-            decision: 'I chose structure over completeness.',
-            why: 'A coherent system mattered more than surface polish before peak season.',
-            shipped:
-              'Unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
-          },
-          {
-            title: '3D Studio',
-            problem: '3D Studio was one of the four tools, and legacy dependencies blocked full integration.',
-            options: 'Integrate fully, or embed it and defer migration.',
-            decision: 'Embed it in the proposal flow and defer migration.',
-            why: 'Legacy dependencies blocked full integration.',
-            shipped: '3D Studio embedded in the proposal flow.',
-          },
-          {
-            title: 'Reporting',
-            problem: 'The data needed cleaning first.',
-            options: 'Full reporting, or marketplace reporting only.',
-            decision: 'Ship marketplace reporting only.',
-            why: 'Reporting depends on a clean data layer.',
-            shipped: 'Marketplace reporting. Full reporting is in what comes next.',
-          },
-          {
-            title: 'Mobile',
-            problem: 'Three months, and hosts work mainly on desktop.',
-            options: 'Desktop and mobile, or desktop only.',
-            decision: 'Desktop only.',
-            why: 'Hosts work mainly on desktop.',
-            shipped: 'A desktop-only v1.',
-          },
-        ],
-      },
-      {
-        label: '05 · Key product moments',
+        label: '04 · Key product moments',
         heading: 'Three screens, and the decision behind each.',
         moments: [
           {
@@ -468,10 +421,57 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         ],
       },
       {
+        label: '05 · Decisions that shaped the release',
+        heading: 'What we chose, what we gave up, what shipped.',
+        decisions: [
+          {
+            title: 'Research before redesign',
+            problem:
+              'Four separate products, and pressure for a redesign driven by stakeholder opinion and support tickets.',
+            options: 'Redesign from stakeholder opinion and tickets, or run round-table research with hosts first.',
+            decision: 'I advocated for round-table research.',
+            why: 'Hosts wanted clear signals of growth and return, not more features.',
+            shipped: 'A consolidation strategy built around making revenue clear.',
+          },
+          {
+            title: 'Structure over completeness',
+            problem: 'Three months before peak season.',
+            options: 'Polish the surface and the full feature set, or ship a coherent structure first.',
+            decision: 'I chose structure over completeness.',
+            why: 'A coherent system mattered more than surface polish before peak season.',
+            shipped:
+              'Unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
+          },
+          {
+            title: '3D Studio',
+            problem: '3D Studio was one of the four tools, and legacy dependencies blocked full integration.',
+            options: 'Integrate fully, or embed it and defer migration.',
+            decision: 'Embed it in the proposal flow and defer migration.',
+            why: 'Legacy dependencies blocked full integration.',
+            shipped: '3D Studio embedded in the proposal flow.',
+          },
+          {
+            title: 'Reporting',
+            problem: 'The data needed cleaning first.',
+            options: 'Full reporting, or marketplace reporting only.',
+            decision: 'Ship marketplace reporting only.',
+            why: 'Reporting depends on a clean data layer.',
+            shipped: 'Marketplace reporting. Full reporting is in what comes next.',
+          },
+          {
+            title: 'Mobile',
+            problem: 'Three months, and hosts work mainly on desktop.',
+            options: 'Desktop and mobile, or desktop only.',
+            decision: 'Desktop only.',
+            why: 'Hosts work mainly on desktop.',
+            shipped: 'A desktop-only v1.',
+          },
+        ],
+      },
+      {
         label: '06 · With 12 months instead of 3',
         heading: 'What comes next.',
         list: [
-          { text: 'Group hosts by maturity and revenue band.' },
           { text: 'Predictive insights, plus risk and opportunity scoring for event briefs.' },
           { text: 'Automated recommendations to improve listings.' },
           { text: 'AI demand signals on the dashboard.' },
@@ -501,7 +501,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     subtitle:
       'Findmypast is a family history subscription. As Product Designer, I owned the UI and experiment design for three onboarding tests that got new users to value sooner with AI-powered relative suggestions.',
     meta: [
-      { label: 'Role', value: 'Product Designer, with the Lead Product Designer' },
+      { label: 'Role', value: 'Product Designer, embedded in core product squad' },
       { label: 'Team', value: 'PM, data science and engineering' },
       { label: 'Stakeholders', value: 'New users, Head of Tree Product, Head of Product Experience' },
       { label: 'Timescale', value: '2 months, 2-week experiment cycles' },
