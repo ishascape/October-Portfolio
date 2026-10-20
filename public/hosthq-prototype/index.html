@@ -32,7 +32,7 @@ var SCREENS = [
   { f: '01.webp', h: 2748, to: [96, 283] },     // Requests -> Leads (sidebar)
   { f: '02.webp', h: 2477, to: [591, 277] },    // Leads -> filter menu
   { f: '03.webp', h: 1024, to: [1332, 976] },   // Filter events -> Apply filters
-  { f: '04.webp', h: 3183, to: [566, 3030] },   // Send a prospective proposal -> Send Proposal
+  { f: '04.webp', h: 3183, to: [697, 221] },    // Send a prospective proposal -> space selector (no scrolling, so the click stays in view)
   { f: '05.webp', h: 3108, to: [1291, 115] },   // Proposal sent -> All Proposals
   { f: '06.webp', h: 2343, to: [93, 231] },     // Proposals -> Bookings (sidebar)
   { f: '08.webp', h: 2274, to: [100, 402] },    // Bookings -> Reports (sidebar)
@@ -76,14 +76,8 @@ async function play() {
     el.classList.add('on');
     await sleep(900);
     cur.classList.add('show');
-    var tx = s.to[0], ty = s.to[1], sy;
-    if (max > 0) {
-      // read down the page, then scroll to where the click happens
-      await scrollTo(el, 0, max, Math.min(5200, 1400 + max * 1.5));
-      await sleep(500);
-      sy = ty <= VH - 80 ? 0 : Math.min(max, ty - VH + 300);
-      if (sy !== max) await scrollTo(el, max, sy, Math.abs(max - sy) * 0.9 + 600);
-    } else sy = 0;
+    var tx = s.to[0], ty = s.to[1], sy = 0;
+    await sleep(1100);
     var fx = cx, fy = cy, vy = ty - sy;
     await tween(850, function (t) { place(fx + (tx - fx) * t, fy + (vy - fy) * t); });
     await sleep(250);
