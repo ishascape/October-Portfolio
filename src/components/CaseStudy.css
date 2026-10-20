@@ -561,6 +561,25 @@
   }
 }
 
+.case__hero-proto {
+  margin: 0;
+}
+.case__hero-proto iframe,
+.case__hero-proto img {
+  display: block;
+  width: 100%;
+  height: 720px;
+  border: 0;
+  background: transparent;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  .case__hero-proto iframe,
+  .case__hero-proto img {
+    height: 640px;
+  }
+}
+
 .case__caption-plain {
   font-size: 15px;
   line-height: 1.5;

@@ -52,12 +52,12 @@ export const caseStudies: CaseStudy[] = [
     district: 'HeadBox',
     role: 'Sole product designer, team of 4 engineers · 2 months',
     leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
-    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
+    supporting: ['27% more likely to finalise bookings', 'New sponsored-placement revenue'],
     system:
       'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
     tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
     existing: '13-step brief builder · 83% drop-off',
-    proposed: 'AI-assisted venue finder · 40% shorter journey',
+    proposed: 'AI-assisted venue finder · 27% more likely to finalise bookings',
     slug: 'venue-finder',
     images: [
       {
@@ -135,41 +135,6 @@ export const capabilities = [
   'Facilitation',
   'Research → vision',
   'Data-led decisions',
-]
-
-export interface Principle {
-  number: string
-  title: string
-  body: string
-  evidence: { source: string; text: string }[]
-}
-
-// Design ethos (Ashni, 15 Oct 2026). Evidence lines reuse facts already on the site.
-export const principles: Principle[] = [
-  {
-    number: '1',
-    title: "Show, don't tell.",
-    body: 'A prototype people can click settles more than a deck. I build to show the idea, then let people react to the real thing.',
-    evidence: [],
-  },
-  {
-    number: '2',
-    title: 'Let the data and research decide.',
-    body: 'Opinions start the conversation; evidence ends it.',
-    evidence: [],
-  },
-  {
-    number: '3',
-    title: 'Iterative development.',
-    body: 'Ship, measure, refine. Each version earns the next.',
-    evidence: [],
-  },
-  {
-    number: '4',
-    title: 'Stay curious, stay ambitious.',
-    body: 'From architecture to product, and from Kilimanjaro to AI tooling, I keep learning the next thing.',
-    evidence: [],
-  },
 ]
 
 export const revisions = [

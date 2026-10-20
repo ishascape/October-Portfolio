@@ -72,7 +72,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
-  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' // a compact native diagram for the Venue Finder story
+  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-prototype' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -107,7 +107,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     },
     kicker: 'HeadBox · Demand side',
     subtitle:
-      'HeadBox is a marketplace for event planners and venue hosts. As sole product designer, I redesigned how guests brief venues, so hosts got fewer, better-qualified enquiries.',
+      'HeadBox is a two-sided marketplace connecting event planners (demand) with venue hosts (supply). As the sole Product Designer, I redesigned how planners submitted event briefs and discovered venues, introducing AI-powered recommendations to improve matching quality, reduce low-quality enquiries for hosts, and help planners find the right venue faster.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
       { label: 'Team', value: '4 engineers' },
@@ -120,7 +120,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       'Guests share their event, see matched venues straight away, shortlist, then connect. A vector database ranks the inventory against what they need, boosting best-fit, active and premium venues, plus Spotlight Partner, a paid placement model.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
-      { value: '40%', label: 'Shorter journey than the 13-step builder' },
+      { value: '27%', label: 'More likely to finalise bookings when venues selected by guest' },
       { value: 'New', label: 'Revenue from paid Spotlight placement' },
     ],
     impactNote:
@@ -184,7 +184,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       {
         label: '04 · Key product moments',
         heading: 'Intent in, relevant venues out.',
-        diagram: 'vf-experience',
+        diagram: 'vf-prototype',
       },
       {
         label: '05 · Matching',
@@ -253,7 +253,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '08 · Reflections',
-        heading: 'A bold idea needs a strong business case.',
+        heading: 'Every bold new idea needs a strong business case.',
         list: [
           {
             title: 'The challenge',
