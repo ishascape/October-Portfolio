@@ -11,25 +11,26 @@ export type DecisionSketch = 'research' | 'structure' | 'embed' | 'reporting' | 
 function Research() {
   const around = [0, 1, 2, 3, 4].map((i) => {
     const a = (i / 5) * Math.PI * 2 - Math.PI / 2
-    return [44 + Math.cos(a) * 28, 82 + Math.sin(a) * 28]
+    return [30 + Math.cos(a) * 25, 60 + Math.sin(a) * 25]
   })
   return (
     <>
-      {[12, 26, 40].map((x) => (
-        <circle key={x} cx={x} cy={22} r={3} className="parti__dot" />
-      ))}
-      <path d="M50 22 H138 M130 16 L138 22 L130 28" className="parti__ghost" />
-      <text x={12} y={44} className="parti__tag">
-        opinion and tickets
-      </text>
-      <circle cx={44} cy={82} r={13} className="parti__key" />
+      <circle cx={30} cy={60} r={11} className="parti__key" />
       {around.map(([x, y]) => (
         <circle key={`${x}`} cx={x} cy={y} r={3.5} className="parti__node" />
       ))}
-      <path d="M82 82 H146 M138 76 L146 82 L138 88" className="parti__heavy" />
-      <text x={86} y={74} className="parti__tag">
-        round-table research
+      <path d="M62 72 H98 M90 66 L98 72 L90 78" className="parti__heavy" />
+      <text x={62} y={50} className="parti__tag">
+        round-table
       </text>
+      <text x={62} y={60} className="parti__tag">
+        research
+      </text>
+      {['high priority', 'core workflow', 'functionality', 'for MVP'].map((l, i) => (
+        <text key={l} x={108} y={54 + i * 12} className="parti__tag">
+          {l}
+        </text>
+      ))}
     </>
   )
 }
