@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HostHQ prototype</title>
+<style>
+  html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; }
+  #frame { position: relative; width: 100%; height: 100%; overflow: hidden; background: #fff; }
+  #stage { position: absolute; left: 0; top: 0; width: 1440px; height: 1024px; transform-origin: 0 0; }
+  .scr { position: absolute; left: 0; top: 0; width: 1440px; opacity: 0; transition: opacity 380ms ease; will-change: transform, opacity; }
+  .scr.on { opacity: 1; }
+  .scr img { display: block; width: 1440px; height: auto; }
+  #cur { position: absolute; left: 0; top: 0; width: 34px; height: 34px; margin: -3px 0 0 -3px; pointer-events: none; opacity: 0; transition: opacity 250ms; z-index: 5; filter: drop-shadow(0 2px 3px rgba(0,0,0,.35)); }
+  #cur.show { opacity: 1; }
+  #cur svg { display: block; transition: transform 120ms; transform-origin: 3px 3px; }
+  #cur.down svg { transform: scale(.82); }
+  .rip { position: absolute; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; border: 3px solid #b52121; pointer-events: none; z-index: 4; animation: rip 520ms ease-out forwards; }
+  @keyframes rip { from { transform: scale(.4); opacity: .9; } to { transform: scale(3); opacity: 0; } }
+</style>
+</head>
+<body>
+<div id="frame" role="img" aria-label="Auto-playing desktop prototype of HostHQ: Requests, Leads, filters, sending a proposal, the sent proposal, Proposals, Bookings and Reports.">
+  <div id="stage">
+    <div id="cur"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M3 3 L3 27 L9.6 21 L14.4 31.4 L19 29.2 L14.2 19 L23 18.6 Z" fill="#111" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/></svg></div>
+  </div>
+</div>
+<script>
+// Screens are the exported Figma frames, untouched. Coordinates are in the frames' own 1440px space.
+// "to" is the click that leads to the next screen.
+var SCREENS = [
+  { f: '01.webp', h: 2748, to: [96, 283] },     // Requests -> Leads (sidebar)
+  { f: '02.webp', h: 2477, to: [591, 277] },    // Leads -> filter menu
+  { f: '03.webp', h: 1024, to: [1332, 976] },   // Filter events -> Apply filters
+  { f: '04.webp', h: 3183, to: [697, 221] },    // Send a prospective proposal -> space selector (no scrolling, so the click stays in view)
+  { f: '05.webp', h: 3108, to: [1291, 115] },   // Proposal sent -> All Proposals
+  { f: '06.webp', h: 2343, to: [93, 231] },     // Proposals -> Bookings (sidebar)
+  { f: '08.webp', h: 2274, to: [100, 402] },    // Bookings -> Reports (sidebar)
+  { f: '09.webp', h: 1933, to: [100, 137] }     // Reports -> Requests (sidebar), loops
+];
+var VH = 1024;
+var stage = document.getElementById('stage'), frame = document.getElementById('frame'), cur = document.getElementById('cur');
+var els = SCREENS.map(function (s) {
+  var d = document.createElement('div'); d.className = 'scr';
+  var i = document.createElement('img'); i.src = '/hosthq-prototype/' + s.f; i.alt = ''; i.draggable = false; i.decoding = 'async';
+  d.appendChild(i); stage.insertBefore(d, cur); return d;
+});
+function fit() { stage.style.transform = 'scale(' + frame.clientWidth / 1440 + ')'; }
+fit(); window.addEventListener('resize', fit);
+
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+var ease = function (t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
+function tween(ms, fn) {
+  return new Promise(function (res) {
+    var t0 = performance.now();
+    (function step(now) {
+      var t = Math.min(1, (now - t0) / ms); fn(ease(t));
+      t < 1 ? requestAnimationFrame(step) : res();
+    })(t0);
+  });
+}
+var cx = 720, cy = 520;
+function place(x, y) { cx = x; cy = y; cur.style.transform = 'translate(' + x + 'px,' + y + 'px)'; }
+function scrollTo(el, from, to, ms) {
+  return tween(ms, function (t) { el.style.transform = 'translateY(' + -(from + (to - from) * t) + 'px)'; });
+}
+async function play() {
+  var i = 0;
+  place(cx, cy);
+  els[0].classList.add('on');
+  if (reduce) return;
+  for (;;) {
+    var s = SCREENS[i], el = els[i], max = Math.max(0, s.h - VH);
+    el.style.transform = 'translateY(0)';
+    el.classList.add('on');
+    await sleep(900);
+    cur.classList.add('show');
+    var tx = s.to[0], ty = s.to[1], sy = 0;
+    await sleep(1100);
+    var fx = cx, fy = cy, vy = ty - sy;
+    await tween(850, function (t) { place(fx + (tx - fx) * t, fy + (vy - fy) * t); });
+    await sleep(250);
+    cur.classList.add('down'); await sleep(140);
+    var r = document.createElement('div'); r.className = 'rip'; r.style.left = tx + 'px'; r.style.top = vy + 'px'; stage.appendChild(r);
+    setTimeout(function () { r.remove(); }, 600);
+    await sleep(140); cur.classList.remove('down');
+    await sleep(260);
+    var n = (i + 1) % SCREENS.length;
+    els[n].style.transform = 'translateY(0)';
+    // cursor stays on the nav spot; the next frame fades in underneath
+    els[n].classList.add('on');
+    await sleep(120);
+    el.classList.remove('on');
+    await sleep(420);
+    el.style.transform = 'translateY(0)';
+    i = n;
+    // the cursor is at its viewport spot, which is the same in the new frame
+  }
+}
+var ready = 0;
+els.forEach(function (d) { var im = d.firstChild; (im.complete ? Promise.resolve() : new Promise(function (r) { im.onload = im.onerror = r; })).then(function () { if (++ready === els.length) play(); }); });
+</script>
+</body>
+</html>

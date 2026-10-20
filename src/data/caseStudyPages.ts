@@ -72,7 +72,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
-  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-prototype' // a compact native diagram for the Venue Finder story
+  diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-prototype' | 'hq-prototype' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
   plan?: 'parti' | 'flow' // the existing/proposed drawing (parti) or the TreeAssist two-lane flow, shown under this section
@@ -351,6 +351,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           'With three months before peak season, I chose structure over completeness: unified navigation and IA, consolidated workflows, action-prompting dashboards and a stronger proposal builder as the main revenue lever.',
           'The cost: migrating the data slowed v1 load times for hosts with large datasets.',
         ],
+        diagram: 'hq-prototype',
       },
       {
         label: '04 · Key product moments',
