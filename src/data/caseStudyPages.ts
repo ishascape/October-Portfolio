@@ -243,7 +243,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '08 · Reflections',
-        heading: 'A bold idea needs a strong business case.',
+        heading: 'Every bold new idea needs a strong business case.',
         list: [
           {
             title: 'The challenge',
