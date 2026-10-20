@@ -337,7 +337,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { text: 'Bring performance data into one clear return-on-investment story.' },
           { text: 'Build a modular base ready for automation, AI and integrations.' },
         ],
-        planDiagram: 'mvp-scope',
         planImage2: {
           src: hosthqBeforeAfter,
           alt: 'HeadBox before and after on laptops. Before: the Lead Feed "Your interested guests" table of 2232 contact details, each row with a status and a Guest details button. After: the HostHQ Requests screen with a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) and event cards showing budget, date, location and a Send Proposal button.',
