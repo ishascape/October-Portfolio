@@ -249,7 +249,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   {s.decisions.map((d) => (
                     <li key={d.title}>
                       <h3 className="label">{d.title}</h3>
-                      {d.fork && <DecisionFork fork={d.fork} title={d.title} />}
+                      {d.sketch && <DecisionFork sketch={d.sketch} />}
                       <dl>
                         <div>
                           <dt className="label">Problem</dt>

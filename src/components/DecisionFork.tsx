@@ -1,153 +1,126 @@
-import { sketchRectPath } from './Sketch'
-import './MvpScopeFlow.css'
+import type { ReactNode } from 'react'
+import { SketchRect } from './Sketch'
+import './Parti.css'
 import './DecisionFork.css'
 
-// One decision, drawn as a fork in the graph-paper pencil style: the problem, what we chose, what we
-// gave up, and what shipped.
+// One small pencil sketch per HostHQ decision, drawn like the partis: ink for the situation, blue for
+// what we chose, dashed graphite for what we gave up.
 
-export type Fork = { problem: string; chose: string; gaveUp: string; shipped: string }
+export type DecisionSketch = 'research' | 'structure' | 'embed' | 'reporting' | 'desktop'
 
-function wrap(text: string, max: number) {
-  const lines: string[] = []
-  let line = ''
-  for (const word of text.split(' ')) {
-    if (line && (line + ' ' + word).length > max) {
-      lines.push(line)
-      line = word
-    } else {
-      line = line ? line + ' ' + word : word
-    }
-  }
-  if (line) lines.push(line)
-  return lines
-}
-
-type Box = { x: number; y: number; w: number; h: number; label: string; lines: string[]; kind: 'plain' | 'chose' | 'gave' | 'shipped' }
-type Arrow = { d: string; head: [number, number, number]; light?: boolean }
-
-const LINE = 20
-
-function layout(f: Fork, orient: 'wide' | 'tall') {
-  const wide = orient === 'wide'
-  const max = wide ? 22 : 34
-  const mk = (label: string, text: string, kind: Box['kind']) => ({ label, lines: wrap(text, max), kind })
-  const items = {
-    problem: mk('The problem', f.problem, 'plain'),
-    chose: mk('Chose', f.chose, 'chose'),
-    gave: mk('Gave up', f.gaveUp, 'gave'),
-    shipped: mk('Shipped', f.shipped, 'shipped'),
-  }
-  const height = (b: { lines: string[] }) => 34 + b.lines.length * LINE
-  const boxes: Box[] = []
-  const arrows: Arrow[] = []
-  if (wide) {
-    const W = 780
-    const colW = 220
-    const gapX = 60
-    const x1 = 0
-    const x2 = colW + gapX
-    const x3 = (colW + gapX) * 2
-    const hChose = height(items.chose)
-    const hGave = height(items.gave)
-    const rowGap = 24
-    const topH = Math.max(hChose, height(items.shipped))
-    const H = topH + rowGap + hGave
-    const hProb = height(items.problem)
-    const yProb = (H - hProb) / 2
-    boxes.push({ x: x1, y: yProb, w: colW, h: hProb, ...items.problem })
-    boxes.push({ x: x2, y: 0, w: colW, h: topH, ...items.chose })
-    boxes.push({ x: x3, y: 0, w: colW, h: topH, ...items.shipped })
-    boxes.push({ x: x2, y: topH + rowGap, w: colW, h: hGave, ...items.gave })
-    const midChose = topH / 2
-    const midGave = topH + rowGap + hGave / 2
-    arrows.push({ d: `M${x1 + colW} ${yProb + hProb / 2 - 8} H${x2 - 14}`, head: [x2 - 12, yProb + hProb / 2 - 8, 0] })
-    arrows.push({
-      d: `M${x1 + colW + gapX / 2} ${yProb + hProb / 2} V${midGave} H${x2 - 14}`,
-      head: [x2 - 12, midGave, 0],
-      light: true,
-    })
-    arrows.push({ d: `M${x2 + colW} ${midChose} H${x3 - 14}`, head: [x3 - 12, midChose, 0] })
-    return { W, H, boxes, arrows }
-  }
-  const W = 320
-  let y = 0
-  const place = (b: (typeof items)[keyof typeof items]) => {
-    const h = height(b)
-    boxes.push({ x: 0, y, w: W, h, ...b })
-    y += h
-    return { top: y - h, bottom: y }
-  }
-  const gap = 36
-  const p = place(items.problem)
-  y += gap
-  const c = place(items.chose)
-  y += gap
-  const s = place(items.shipped)
-  y += gap
-  const g = place(items.gave)
-  arrows.push({ d: `M${W / 2} ${p.bottom + 4} V${c.top - 14}`, head: [W / 2, c.top - 12, 90] })
-  arrows.push({ d: `M${W / 2} ${c.bottom + 4} V${s.top - 14}`, head: [W / 2, s.top - 12, 90] })
-  void g
-  return { W, H: y, boxes, arrows }
-}
-
-function Diagram({ fork, orient }: { fork: Fork; orient: 'wide' | 'tall' }) {
-  const { W, H, boxes, arrows } = layout(fork, orient)
-  const pad = 12
+function Research() {
+  const around = [0, 1, 2, 3, 4].map((i) => {
+    const a = (i / 5) * Math.PI * 2 - Math.PI / 2
+    return [44 + Math.cos(a) * 28, 82 + Math.sin(a) * 28]
+  })
   return (
-    <svg
-      className={`fork__svg fork__svg--${orient}`}
-      viewBox={`${-pad} ${-pad} ${W + pad * 2} ${H + pad * 2}`}
-      aria-hidden="true"
-      focusable="false"
-    >
-      <g className="scope__lines">
-        {boxes.map((b) => (
-          <path
-            key={b.label}
-            d={sketchRectPath(b.x, b.y, b.w, b.h)}
-            className={`scope__box${b.kind === 'gave' ? ' fork__box--gave' : ''}`}
-          />
-        ))}
-        {arrows.map((a, i) => (
-          <path key={i} d={a.d} className={`scope__edge${a.light ? ' scope__edge--light' : ''}`} />
-        ))}
-      </g>
-      {boxes
-        .filter((b) => b.kind === 'chose' || b.kind === 'shipped')
-        .map((b) => (
-          <rect key={b.label} x={b.x} y={b.y} width={b.w} height={b.h} className="fork__wash" />
-        ))}
-      {arrows.map((a, i) => (
-        <path
-          key={i}
-          d="M-9 -5 L0 0 L-9 5"
-          transform={`translate(${a.head[0]} ${a.head[1]}) rotate(${a.head[2]})`}
-          className={`scope__head${a.light ? ' scope__head--light' : ''}`}
-        />
+    <>
+      {[12, 26, 40].map((x) => (
+        <circle key={x} cx={x} cy={22} r={3} className="parti__dot" />
       ))}
-      {boxes.map((b) => (
-        <text key={b.label} x={b.x + 14} y={b.y + 22} className={`fork__text${b.kind === 'gave' ? ' fork__text--light' : ''}`}>
-          <tspan className="fork__label">{b.label}</tspan>
-          {b.lines.map((l, i) => (
-            <tspan key={i} x={b.x + 14} dy={i === 0 ? LINE + 4 : LINE}>
-              {l}
-            </tspan>
-          ))}
-        </text>
+      <path d="M50 22 H138 M130 16 L138 22 L130 28" className="parti__ghost" />
+      <text x={12} y={44} className="parti__tag">
+        opinion and tickets
+      </text>
+      <circle cx={44} cy={82} r={13} className="parti__key" />
+      {around.map(([x, y]) => (
+        <circle key={`${x}`} cx={x} cy={y} r={3.5} className="parti__node" />
       ))}
-    </svg>
+      <path d="M82 82 H146 M138 76 L146 82 L138 88" className="parti__heavy" />
+      <text x={86} y={74} className="parti__tag">
+        round-table research
+      </text>
+    </>
   )
 }
 
-export function DecisionFork({ fork, title }: { fork: Fork; title: string }) {
-  const alt = `${title}. The problem: ${fork.problem}. We chose: ${fork.chose}. We gave up: ${fork.gaveUp}. What shipped: ${fork.shipped}.`
+function Structure() {
   return (
-    <figure className="fork" role="img" aria-label={alt}>
-      <div className="scope__paper">
-        <Diagram fork={fork} orient="wide" />
-        <Diagram fork={fork} orient="tall" />
-      </div>
-    </figure>
+    <>
+      <SketchRect x={14} y={18} width={90} height={84} className="parti__heavy" />
+      <path d="M44 18 V102 M44 42 H104" className="parti__key" />
+      {[
+        [116, 26],
+        [136, 26],
+        [116, 52],
+        [136, 52],
+        [116, 78],
+        [136, 78],
+      ].map(([x, y]) => (
+        <rect key={`${x}-${y}`} x={x} y={y} width={14} height={14} className="parti__ghost" />
+      ))}
+      <text x={112} y={110} className="parti__tag">
+        full feature set
+      </text>
+    </>
+  )
+}
+
+function Embed() {
+  return (
+    <>
+      <SketchRect x={12} y={28} width={96} height={64} className="parti__heavy" />
+      <path d="M22 40 H70 M22 48 H56" className="parti__fine" />
+      <SketchRect x={60} y={56} width={32} height={26} className="parti__key" />
+      <path d="M66 56 L72 50 H98 L92 56 M98 50 V76 L92 82" className="parti__key" />
+      <text x={14} y={108} className="parti__tag">
+        3D Studio inside the proposal flow
+      </text>
+      <path d="M114 60 H122" className="parti__ghost" />
+      <rect x={124} y={42} width={28} height={36} className="parti__ghost" />
+      <text x={122} y={92} className="parti__tag">
+        migrate later
+      </text>
+    </>
+  )
+}
+
+function Reporting() {
+  return (
+    <>
+      <path d="M14 100 H146 M14 100 V16" className="parti__heavy" />
+      <path d="M26 100 V62 H42 V100 M50 100 V40 H66 V100" className="parti__key" />
+      <path d="M82 100 V56 H98 V100 M106 100 V72 H122 V100 M130 100 V48 H144 V100" className="parti__ghost" />
+      <text x={24} y={112} className="parti__tag">
+        marketplace
+      </text>
+      <text x={96} y={34} className="parti__tag">
+        full reporting, next
+      </text>
+    </>
+  )
+}
+
+function Desktop() {
+  return (
+    <>
+      <SketchRect x={14} y={20} width={86} height={58} className="parti__key" />
+      <path d="M57 78 V92 M40 92 H74" className="parti__heavy" />
+      <rect x={118} y={32} width={26} height={50} rx={3} className="parti__ghost" />
+      <path d="M126 76 H136" className="parti__ghost" />
+      <text x={14} y={110} className="parti__tag">
+        desktop first, where hosts work
+      </text>
+      <text x={112} y={96} className="parti__tag">
+        mobile later
+      </text>
+    </>
+  )
+}
+
+const drawings: Record<DecisionSketch, () => ReactNode> = {
+  research: Research,
+  structure: Structure,
+  embed: Embed,
+  reporting: Reporting,
+  desktop: Desktop,
+}
+
+export function DecisionFork({ sketch }: { sketch: DecisionSketch }) {
+  const Drawing = drawings[sketch]
+  return (
+    <svg className="parti decision-sketch" viewBox="0 0 160 120" aria-hidden="true" focusable="false">
+      <Drawing />
+    </svg>
   )
 }
