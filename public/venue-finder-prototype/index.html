@@ -1,0 +1,434 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>HeadBox Venue Finder</title>
+<base href="/venue-finder-prototype/">
+<style>html.embed,html.embed body{background:transparent!important}</style>
+<script>if(window.top!==window.self)document.documentElement.classList.add("embed")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#AF231C; --bg-top:#3D0B0C; --bg-bot:#04101F; --ink:#04101F;
+  --line:#BFBFBF; --field:#505050; --muted:#86858B; --stepc:#6E494A; --stepg:#BEBEBE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{height:100%}
+body{background:#1b1b1f;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',system-ui,sans-serif;overflow:hidden;color:var(--ink);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#fit{width:393px;height:852px;flex:none;transform-origin:center center}
+#phone{position:relative;width:393px;height:852px;background:#fff;border-radius:34px;overflow:hidden;box-shadow:0 0 0 8px #000,0 20px 60px rgba(0,0,0,.5)}
+/* status bar + header */
+#chrome{position:absolute;top:0;left:0;right:0;height:116px;background:#fff;z-index:20}
+.status{height:48px;position:relative}
+.status .t{position:absolute;left:24px;top:23px;font-size:13px;font-weight:700;color:#000}
+.status .cam{position:absolute;left:186px;top:17px;width:25px;height:25px;border-radius:50%;background:#0c0c0c}
+.status .ico{position:absolute;right:20px;top:24px;display:flex;gap:6px;align-items:center}
+.hdr{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 15px}
+.hdr img{height:36px;display:block}
+.burger{width:24px;height:18px;display:flex;flex-direction:column;justify-content:space-between}
+.burger i{display:block;height:2px;background:#000}
+#prog{position:absolute;top:116px;left:0;right:0;height:12px;background:#000;z-index:20;display:flex;align-items:center}
+#progF{height:100%;width:0;border-radius:0 6px 6px 0;background:linear-gradient(90deg,#F2CFCB,#AF231C);transition:width .6s ease}
+#progT{display:none;position:absolute;right:10px;color:#fff;font-size:9px;line-height:12px;font-weight:500}
+/* screens */
+#stage{position:absolute;inset:0}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg-bot);transform:translateX(100%);transition:none;padding-top:128px}
+.screen.on{transform:translateX(0)}
+.screen.off{transform:translateX(100%)}
+.body{flex:1;overflow-y:auto;scrollbar-width:none;background:linear-gradient(var(--bg-top),var(--bg-bot) 700px) no-repeat local,var(--bg-bot)}
+.body::-webkit-scrollbar{display:none}
+.foot{flex:none;background:#fff;height:64px;display:flex;gap:16px;padding:16px 17px;align-items:center}
+.btn{flex:1;height:32px;border-radius:3px;font:600 13px 'Montserrat';display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #444;background:#fff;color:#222;transition:transform .12s}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff;flex:1.25}
+.btn.full{flex:1}
+.btn svg{width:13px;height:13px}
+.tap{transform:scale(.96)}
+/* cards + fields */
+.card{background:#fff;border-radius:4px;padding:16px;margin:0 18px 18px}
+.card h2{font-size:17px;font-weight:700;line-height:1.35;color:#111}
+.lbl{font-size:15px;color:#333;margin:18px 0 6px;font-weight:500}
+.fld{height:40px;border:1px solid var(--line);border-radius:3px;padding:0 10px;display:flex;align-items:center;font-size:15px;color:var(--field);background:#fff;gap:8px;min-height:40px}
+.fld.ph{color:#9a9a9a}
+.fld svg{flex:none}
+.fld .chev{margin-left:auto}
+.caret::after{content:"";display:inline-block;width:1px;height:18px;background:#222;margin-left:1px;animation:bl 1s steps(1) infinite;vertical-align:middle}
+@keyframes bl{50%{opacity:0}}
+.radio{display:flex;align-items:center;gap:9px;font-size:15px;color:#333;font-weight:500}
+.radio i{width:20px;height:20px;border:1.5px solid #333;border-radius:50%;display:inline-block;position:relative;flex:none}
+.radio.sel i::after{content:"";position:absolute;inset:3px;background:#111;border-radius:50%}
+.chk{display:flex;align-items:flex-start;gap:9px;font-size:15px;color:#333;line-height:1.45;font-weight:500}
+.chk i{width:16px;height:16px;border:1.5px solid #333;border-radius:2px;flex:none;margin-top:4px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.chk.sel i{background:#111}
+.chk i svg{opacity:0;width:11px;height:11px}
+.chk.sel i svg{opacity:1}
+.chip{display:inline-flex;white-space:nowrap;max-width:100%;align-items:center;gap:6px;border:1px solid var(--red);color:#222;border-radius:20px;padding:5px 12px;font-size:13px;font-weight:600;background:#fff}
+.chip svg{width:14px;height:14px}
+.cta{height:46px;border-radius:3px;background:var(--red);color:#fff;font:700 17px 'Montserrat';display:flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:transform .12s}
+.cta svg{width:15px;height:15px}
+.white{color:#fff}
+/* landing */
+.hero h1{font-size:24px;font-weight:700;line-height:1.3;color:#fff;padding:18px 20px 0}
+.steps{padding:12px 20px 0}
+.step{display:flex;gap:14px;align-items:flex-start;color:#fff;font-size:15px;line-height:1.4;margin-bottom:12px;font-weight:500}
+.step b{flex:none;width:32px;height:32px;border-radius:50%;background:var(--stepc);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;margin-top:2px}
+.step span{padding-top:3px}
+.map{width:100%;display:block;border-radius:3px}
+.small{font-size:13px;color:#333;margin:18px 0 8px;line-height:1.4;font-weight:500}
+.rev{background:var(--muted);border-radius:4px;margin:0 18px 20px;padding:18px 20px;color:#16161a;font-size:17px;line-height:1.5;font-weight:500}
+.rev .stars{display:flex;gap:6px;margin:14px 0 14px}
+.rev .stars svg{width:20px;height:20px}
+.rev b{font-weight:700;display:block}
+/* venue cards */
+.vc{background:#fff;border-radius:4px;margin:0 18px 18px;overflow:hidden;transition:opacity .4s}
+.vc.no{opacity:.45}
+.vc .ph{position:relative;height:112px;background-size:cover;background-position:center}
+.vc .tags{position:absolute;left:8px;top:8px;display:flex;gap:6px}
+.tag{background:#fff;border-radius:14px;border:1px solid #cfcfcf;font-size:11px;padding:3px 9px;display:flex;align-items:center;gap:5px;color:#222;font-weight:500}
+.tag svg{width:11px;height:11px}
+.vc .in{padding:12px 11px 14px}
+.vc h3{font-size:13px;font-weight:700;color:#111;margin-bottom:9px;line-height:1.35}
+.meta{display:flex;align-items:center;gap:6px;font-size:11px;color:#333;margin-bottom:6px;font-weight:500}
+.meta svg{width:13px;height:13px;flex:none}
+.vc p{font-size:12px;line-height:1.55;color:#222;margin:10px 0 12px;font-weight:500}
+.vc .btn{height:28px;margin-bottom:8px;font-size:11px;flex:none;width:100%;transition:all .25s}
+.vc .btn:last-child{margin-bottom:0}
+.vc .btn.yes{background:var(--red);border-color:var(--red);color:#fff}
+.vc .btn.yes svg path{fill:#fff}
+.vc .btn.nob{background:var(--ink);border-color:var(--ink);color:#fff}
+.vc .btn svg{width:11px;height:11px}
+.more{color:#fff;font-size:13px;margin:6px 18px 14px;font-weight:500}
+.found{display:flex;gap:10px;align-items:center;color:#fff;font-size:15px;line-height:1.4;padding:6px 20px 18px;font-weight:500}
+.found svg{width:22px;height:22px;flex:none}
+.found.line{border-bottom:1px solid rgba(255,255,255,.5);margin:0 18px;padding:14px 4px 14px}
+.how{padding:16px 20px 0;color:#fff}
+.how h4{font-size:17px;font-weight:700;margin-bottom:12px}
+.how .step{font-size:13px;margin-bottom:10px}
+.how .step b{width:32px;height:32px}
+.how .step b.r{background:var(--red)}
+.how .step b.g{background:var(--stepg);color:#fff}
+.how .step span{padding-top:9px}
+.how .step.act span{font-weight:700}
+.how p{font-size:14px;margin:18px 0 90px;font-weight:500}
+/* success */
+.great{padding:36px 20px 0;text-align:center;color:#fff}
+.great h1{font-size:25px;font-weight:700}
+.great h2{font-size:18px;font-weight:600;margin-top:12px;line-height:1.35}
+.car{display:flex;gap:16px;padding:42px 31px 0;overflow:hidden}
+.vm{background:#fff;border-radius:4px;display:flex;gap:12px;align-items:center;padding:8px;width:287px;flex:none}
+.vm .im{width:60px;height:68px;background-size:cover;background-position:center;border-radius:2px;flex:none}
+.vm b{font-size:15px;color:#111;font-weight:700;line-height:1.35}
+.sbody{color:#fff;font-size:16px;line-height:1.55;padding:36px 35px;font-weight:500}
+.sbody p+p{margin-top:20px}
+/* touch cursor */
+#cur{position:absolute;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.55);border:2px solid rgba(0,0,0,.4);z-index:50;pointer-events:none;transition:transform .7s cubic-bezier(.4,0,.2,1),opacity .3s;opacity:0}
+#cur.press{scale:.7;background:rgba(175,35,28,.45)}
+#veil{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .5s;z-index:60}
+</style>
+<div id="fit"><div id="phone">
+
+<div id="chrome">
+  <div class="status"><span class="t">9:30</span><span class="cam"></span>
+    <span class="ico">
+      <svg width="16" height="14" viewBox="0 0 16 14"><path d="M8 13.5 0 4.5C2-.5 14-.5 16 4.5Z" fill="#cfcfcf"/></svg>
+      <svg width="14" height="14" viewBox="0 0 14 14"><path d="M14 0v14H0Z" fill="#111"/></svg>
+      <svg width="9" height="15" viewBox="0 0 9 15"><rect x="2" y="0" width="5" height="2" fill="#111"/><rect x="0" y="2" width="9" height="13" rx="1.5" fill="#111"/><rect x="0" y="2" width="9" height="5" fill="#cfcfcf"/></svg>
+    </span>
+  </div>
+  <div class="hdr"><img src="logo.png" alt="HeadBox"><div class="burger"><i></i><i></i><i></i></div></div>
+</div>
+
+<div id="prog"><div id="progF"></div><span id="progT">0%</span></div>
+<div id="stage">
+
+<!-- 1 LANDING -->
+<section class="screen" id="s1"><div class="body">
+  <div class="hero"><h1>Let’s find the perfect venue to host your event!</h1></div>
+  <div class="steps">
+    <div class="step"><b>1</b><span>Tell us about your event.<br>The more details, the better!</span></div>
+    <div class="step"><b>2</b><span>Get messages from venues available venues.</span></div>
+    <div class="step"><b>3</b><span>Choose your favourite and finish booking your event!</span></div>
+  </div>
+  <div class="card" style="margin-top:22px">
+    <div style="text-align:center;font-weight:700;font-size:15px;margin:6px 0 14px;color:#222">What location works best?</div>
+    <div class="fld" id="loc" style="height:38px"><span id="locT"></span></div>
+    <div class="small">You’ll mainly hear from venues within a 5km radius of this area</div>
+    <img class="map" src="map_landing.png" alt="">
+    <div style="font-weight:700;font-size:15px;margin:20px 0 14px;color:#222">What type of event are you planning?</div>
+    <div style="display:flex;justify-content:space-around;margin-bottom:20px">
+      <div class="radio" id="rCorp"><i></i>Corporate</div>
+      <div class="radio" id="rPers"><i></i>Personal</div>
+    </div>
+    <div class="cta" id="start">Start booking <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></div>
+    <div style="text-align:center;font-size:15px;line-height:1.45;margin:18px 6px 4px;font-weight:500;color:#111">We’ll help you shortlist a few venues, they’ll get back to you with quotes to compare.</div>
+  </div>
+  <div class="rev">“Simple easy and cost effective. HeadBox is super easy to work with. Shared a list of beautiful venues I hadn’t even heard of before and have been in the industry for a while.”
+    <div class="stars">STARS</div><b>Moll, England</b></div>
+  <div class="rev">HeadBox is a great service! It took a lot of the stress out of searching for a suitable, available and affordable venue - would definitely recommend!
+    <div class="stars">STARS</div><b>Zastra, England</b></div>
+  <div style="height:30px"></div>
+</div></section>
+
+<!-- 2 PROMPT -->
+<section class="screen" id="s2"><div class="body">
+  <div class="card" style="margin-top:28px">
+    <h2>Tell us about your event, is there anything specific you would like?</h2>
+    <div style="font-size:14px;margin:12px 0 10px;color:#333;font-weight:500">Example prompts:</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px"><span class="chip" style="background:#fff">Christmas party</span><span class="chip">Meeting</span><span class="chip">Birthday</span></div>
+    <div class="fld ph" id="prompt" style="height:190px;align-items:flex-start;padding:12px;font-size:16px;line-height:1.5;display:block"><span id="promptT">I’m looking for an elegant rooftop bar</span></div>
+    <div style="display:flex;gap:8px;margin-top:14px;font-size:14px;line-height:1.45;color:#333;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" style="flex:none;margin-top:3px"><path d="M12 2l2.2 6.3L21 10.5l-6.3 2.2L12 19l-2.2-6.3L3 10.5l6.3-2.2z" fill="#AF231C"/></svg><span>The more detailed the information you include here the better the suggestions we can find for you.</span></div>
+  </div>
+  <div style="text-align:center;margin-top:20px"><div style="display:inline-block;border:1px solid #fff;border-radius:3px;color:#fff;font-size:14px;font-weight:600;padding:8px 40px">Skip this step</div></div>
+  <div style="color:#fff;text-align:center;font-size:14px;line-height:1.55;padding:22px 34px 18px;font-weight:500">Skipping this step means you’ll have to add the in details manually.</div>
+  <div style="height:30px"></div>
+</div>
+<div class="foot"><div class="btn red full" id="s2next" style="flex:1">Next <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></div></div>
+</section>
+
+<!-- 3 DETAILS -->
+<section class="screen" id="s3"><div class="body">
+  <div style="color:#fff;text-align:center;font-size:17px;font-weight:600;line-height:1.4;padding:28px 36px 20px">Add a few more details to help us find you the best venues:</div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between"><h2 style="font-size:17px">Give your event a name:</h2><span style="font-size:13px;color:#666">1 of 6</span></div>
+    <div class="fld" id="evName" style="margin-top:14px"><span id="evNameT"></span></div>
+    <div style="font-size:13px;color:#333;margin:16px 0 8px;font-weight:500">Suggested name:</div>
+    <span class="chip"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.3L21 10.5l-6.3 2.2L12 19l-2.2-6.3L3 10.5l6.3-2.2z" fill="#AF231C"/></svg>Chill company social</span>
+    <div style="font-size:15px;margin:20px 0 14px;font-weight:500;color:#222">Whats the occasion?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;row-gap:14px;column-gap:6px">
+      <div class="radio sel" id="oParty"><i></i>Party</div><div class="radio"><i></i>Studio</div>
+      <div class="radio"><i></i>Team activity</div><div class="radio"><i></i>Presentation</div>
+      <div class="radio" id="oDining"><i></i>Private Dining</div><div class="radio"><i></i>Wedding</div>
+      <div class="radio"><i></i>Networking</div><div></div>
+      <div class="radio" style="grid-column:1/3"><i></i>Meeting/Workshop</div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between"><h2>Who’s attending?</h2><span style="font-size:13px;color:#666">2 of 6</span></div>
+    <div style="font-size:14px;color:#333;margin:18px 0 6px;font-weight:500">Attendees</div>
+    <div class="fld" id="att" style="width:146px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#555" stroke-width="1.2"><circle cx="8" cy="3.5" r="1.8"/><path d="M5 14l1-5 2-1 2 1 1 5M6 9l-1.5-2"/></svg><span id="attT">40</span></div>
+    <div style="display:flex;gap:30px;margin-top:20px"><div class="radio sel"><i></i>Seated</div><div class="radio"><i></i>Standing</div></div>
+  </div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between"><h2>When is it taking place?</h2><span style="font-size:13px;color:#666">3 of 6</span></div>
+    <div style="font-size:14px;color:#333;margin:18px 0 6px;font-weight:500">Date</div>
+    <div class="fld ph" id="date"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#666" stroke-width="1.2"><rect x="2" y="3" width="12" height="11" rx="1"/><path d="M2 6.5h12M5 1.5v3M11 1.5v3"/></svg><span id="dateT">Text</span><svg class="chev" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#666" stroke-width="1.3"><path d="M2 4l4 4 4-4"/></svg></div>
+    <div class="chk sel" style="margin-top:14px"><i><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6.5l3 3 5-6"/></svg></i>I’m flexible with the date</div>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <div style="flex:1"><div style="font-size:14px;color:#333;margin-bottom:6px;font-weight:500">Starting time:</div><div class="fld ph" id="t1"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#666" stroke-width="1.2"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg><span id="t1T">00:00</span><svg class="chev" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#666" stroke-width="1.3"><path d="M2 4l4 4 4-4"/></svg></div></div>
+      <div style="flex:1"><div style="font-size:14px;color:#333;margin-bottom:6px;font-weight:500">Finishing time:</div><div class="fld ph" id="t2"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#666" stroke-width="1.2"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg><span id="t2T">00:00</span><svg class="chev" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#666" stroke-width="1.3"><path d="M2 4l4 4 4-4"/></svg></div></div>
+    </div>
+    <div class="chk sel" style="margin-top:14px"><i><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6.5l3 3 5-6"/></svg></i>I’m flexible on the time</div>
+    <h2 style="margin:22px 0 14px">How soon do you want to book?</h2>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="radio sel" id="b1"><i></i>Urgently, in the next few days</div>
+      <div class="radio" id="b2"><i></i>Within the next few weeks</div>
+      <div class="radio"><i></i>I’m just browsing</div>
+    </div>
+  </div>
+  <div style="padding:0 18px 18px"><img class="map" src="map.png" alt=""></div>
+  <div class="found line"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.3L21 10.5l-6.3 2.2L12 19l-2.2-6.3L3 10.5l6.3-2.2z" fill="#fff"/></svg><span>We found 32 Venues that could be a good fit!</span></div>
+  <div class="how" style="padding-bottom:20px">
+    <h4>How does HeadBox work?</h4>
+    <div class="step act"><b class="r">1</b><span>Tell us about your event</span></div>
+    <div class="step"><b class="g">2</b><span>We suggest some options for you to request quotes from</span></div>
+    <div class="step"><b class="g">3</b><span>Get quotes from available venues</span></div>
+  </div>
+</div>
+<div class="foot"><div class="btn"><svg viewBox="0 0 16 16" fill="none" stroke="#222" stroke-width="1.6"><path d="M14 8H2M7 3L2 8l5 5"/></svg>Back</div><div class="btn red" id="s3next">Next <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></div></div>
+</section>
+
+<!-- 4 CONTACT -->
+<section class="screen" id="s4"><div class="body">
+  <div class="card" style="margin-top:32px">
+    <h2>How should we contact you with quotes?</h2>
+    <div class="lbl">First name</div><div class="fld"><span class="v" data-v="Johan"></span></div>
+    <div class="lbl">Last name</div><div class="fld"><span class="v" data-v="Sundwall"></span></div>
+    <div class="lbl">Company name</div><div class="fld"><span class="v" data-v="XYZ Partners"></span></div>
+    <div class="lbl">Email</div><div class="fld"><span class="v" data-v="johan@xyz.com"></span></div>
+    <div class="lbl">Phone number</div><div class="fld"><span class="v" data-v="+4412345678"></span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:20px">
+      <div class="chk" id="c1"><i><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6.5l3 3 5-6"/></svg></i>I agree to the HeadBox Terms and Conditions</div>
+      <div class="chk" id="c2"><i><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6.5l3 3 5-6"/></svg></i>I want to hear about offers and promotions</div>
+    </div>
+  </div>
+</div>
+<div class="foot"><div class="btn"><svg viewBox="0 0 16 16" fill="none" stroke="#222" stroke-width="1.6"><path d="M14 8H2M7 3L2 8l5 5"/></svg>Back</div><div class="btn red" id="s4next">Next <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></div></div>
+</section>
+
+<!-- 5 OPTIONS -->
+<section class="screen" id="s5"><div class="body">
+  <div style="color:#fff;text-align:center;font-size:17px;font-weight:700;padding:24px 20px 6px">Do you like any of these options?</div>
+  <div style="color:#fff;text-align:center;font-size:14px;line-height:1.45;padding:6px 36px 20px;font-weight:500">Shortlist your favourite venues - you can review them at the end</div>
+
+  <div class="vc" id="v1"><div class="ph" style="background-image:url(junsei.png)"><div class="tags"><span class="tag">TAGSPOT Spotlight</span><span class="tag">Responds fast</span></div></div>
+    <div class="in"><h3>Junsei - Full venue hire</h3>
+      <div class="meta">PIN Marylebone, London</div><div class="meta">PPL 200 standing</div><div class="meta">GBP £££</div>
+      <p>We are a yakitori restaurant that specialises in the art of grilling chicken. This style of cooking ...</p>
+      <div class="btn yes0" id="v1y"><svg viewBox="0 0 16 16"><path d="M8 14S1.5 10 1.5 5.8A3.3 3.3 0 0 1 8 4.6a3.3 3.3 0 0 1 6.5 1.2C14.5 10 8 14 8 14z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>I’m interested</div>
+      <div class="btn" id="v1n"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3l10 10M13 3L3 13"/></svg>Not for me</div></div></div>
+
+  <div class="vc" id="v2"><div class="ph" style="background-image:url(radisson.png)"><div class="tags"><span class="tag">Popular</span><span class="tag">Responds fast</span></div></div>
+    <div class="in"><h3>Radisson Blu Hotel, London South Kensington</h3>
+      <div class="meta">PIN South Kensington, London</div><div class="meta">PPL 200 standing</div>
+      <p>We’ve got private dining spaces with breakout rooms and private bar areas available for hire. We host ...</p>
+      <div class="btn" id="v2y"><svg viewBox="0 0 16 16"><path d="M8 14S1.5 10 1.5 5.8A3.3 3.3 0 0 1 8 4.6a3.3 3.3 0 0 1 6.5 1.2C14.5 10 8 14 8 14z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span>I’m interested</span></div>
+      <div class="btn" id="v2n"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3l10 10M13 3L3 13"/></svg>Not for me</div></div></div>
+
+  <div class="vc" id="v3"><div class="ph" style="background-image:url(caia.png)"><div class="tags"><span class="tag">TAGSPOT Spotlight</span></div></div>
+    <div class="in"><h3>Caia - Full venue hire</h3>
+      <div class="meta">PIN Marylebone, London</div><div class="meta">PPL 200 standing</div><div class="meta">GBP £££</div>
+      <p>Seasonally crafted menu of wine-friendly fare cooked on a custom-made, open fire grill. Simple...</p>
+      <div class="btn" id="v3y"><svg viewBox="0 0 16 16"><path d="M8 14S1.5 10 1.5 5.8A3.3 3.3 0 0 1 8 4.6a3.3 3.3 0 0 1 6.5 1.2C14.5 10 8 14 8 14z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>I’m interested</div>
+      <div class="btn" id="v3n"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3l10 10M13 3L3 13"/></svg>Not for me</div></div></div>
+
+  <div class="more">+ Show 6 more</div>
+  <div style="padding:0 18px 18px"><img class="map" src="map.png" alt=""></div>
+  <div class="found line"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.3L21 10.5l-6.3 2.2L12 19l-2.2-6.3L3 10.5l6.3-2.2z" fill="#fff"/></svg><span>45 Venues in Shoreditch</span></div>
+  <div class="how">
+    <h4>How does HeadBox work?</h4>
+    <div class="step act"><b class="r">1</b><span>Tell us about your event</span></div>
+    <div class="step"><b class="g">2</b><span>We suggest some options for you to request quotes from</span></div>
+    <div class="step"><b class="g">3</b><span>Get quotes from available venues</span></div>
+    <p>We are 100% free to use - only pay the venue you book!</p>
+  </div>
+</div>
+<div class="foot"><div class="btn"><svg viewBox="0 0 16 16" fill="none" stroke="#222" stroke-width="1.6"><path d="M14 8H2M7 3L2 8l5 5"/></svg>Back</div><div class="btn red" id="s5next">Next <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></div></div>
+</section>
+
+<!-- 6 SUCCESS -->
+<section class="screen" id="s6"><div class="body">
+  <div class="great"><div style="font-size:44px;line-height:1;margin-bottom:12px">🎉</div><h1>Great!</h1><h2 id="sentTxt">We’ve sent your event to 1 venue</h2></div>
+  <div class="car" id="car"></div>
+  <div class="sbody"><p>We’ll notify you when they get back with quotes to compare.</p><p style="display:flex;gap:10px;align-items:flex-start"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.5" style="flex:none;margin-top:2px"><circle cx="10" cy="10" r="8.5"/><path d="M10 9v5.5" stroke-linecap="round"/><circle cx="10" cy="6.2" r=".6" fill="#fff"/></svg><span>Other HeadBox partner venues might also reach out if they fit your brief</span></p></div>
+</div>
+<div class="foot"><div class="btn red full" style="flex:1;height:32px">View your event <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></div></div>
+</section>
+
+</div>
+<div id="cur"></div>
+<div id="veil"></div>
+</div></div>
+
+<script>
+/* icon + star substitutions (kept as text tokens in markup above) */
+const ICON={
+ PIN:'<svg viewBox="0 0 16 16" fill="none" stroke="#333" stroke-width="1.2"><path d="M8 14.5S3 10 3 6.5a5 5 0 0 1 10 0C13 10 8 14.5 8 14.5z"/><circle cx="8" cy="6.5" r="1.7"/></svg>',
+ PPL:'<svg viewBox="0 0 16 16" fill="none" stroke="#333" stroke-width="1.2"><circle cx="8" cy="3.5" r="1.8"/><path d="M5 14l1-5 2-1 2 1 1 5M6 9l-1.5-2"/></svg>',
+ GBP:'<svg viewBox="0 0 16 16" fill="none" stroke="#333" stroke-width="1.2"><rect x="1.5" y="3.5" width="13" height="9" rx="1"/><path d="M1.5 6.5h13"/></svg>',
+ TAGSPOT:'<svg viewBox="0 0 16 16" fill="none" stroke="#AF231C" stroke-width="1.4"><path d="M3 2h10v12l-5-3-5 3z"/></svg>',
+ STARS:Array(5).fill('<svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 14.5 4.6 17.5l1.2-6L1.3 7.3l6.1-.7z" fill="#000"/></svg>').join('')
+};
+document.body.innerHTML=document.body.innerHTML.replace(/\b(PIN|PPL|GBP|TAGSPOT|STARS)\b(?= |<)/g,(m)=>ICON[m]);
+</script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const fit=$('#fit'), phone=$('#phone'), cur=$('#cur'), veil=$('#veil'), stage=$('#stage');
+const INITIAL=stage.innerHTML;
+function resize(){const s=Math.min(1,(innerHeight-30)/852,(innerWidth-32)/393);fit.style.transform=`scale(${s})`;fit.style.margin=`${-(852*(1-s))/2}px ${-(393*(1-s))/2}px`;}
+addEventListener('resize',resize);resize();
+
+let scale=()=>phone.getBoundingClientRect().width/393;
+function pos(x,y){cur.style.transform=`translate(${x}px,${y}px)`}
+function center(el){const p=phone.getBoundingClientRect(),r=el.getBoundingClientRect(),s=scale();return[(r.left+r.width/2-p.left)/s,(r.top+r.height/2-p.top)/s]}
+async function reveal(el,bodyEl){
+  const b=bodyEl||el.closest('.body');if(!b)return;const br=b.getBoundingClientRect(),er=el.getBoundingClientRect(),s=scale();
+  const vis=er.top>br.top+20&&er.bottom<br.bottom-20;
+  if(!vis){b.scrollTo({top:b.scrollTop+(er.top-br.top)/s-170,behavior:'smooth'});await wait(750);}
+}
+async function scrollBody(sel,y,ms=900){$(sel+' .body').scrollTo({top:y,behavior:'smooth'});await wait(ms)}
+async function tap(el,{fast=false}={}){
+  await reveal(el);
+  const[x,y]=center(el);cur.style.opacity=1;pos(x+8,y+10);await wait(fast?280:760);
+  cur.classList.add('press');el.classList.add('tap');await wait(130);
+  cur.classList.remove('press');el.classList.remove('tap');await wait(120);
+}
+async function type(el,txt,ms=40,clear=true){
+  if(clear)el.textContent='';el.parentElement.classList.remove('ph');
+  el.parentElement.classList.add('caret');
+  for(const ch of txt){el.textContent+=ch;await wait(ms)}
+  el.parentElement.classList.remove('caret');
+}
+function sel(group,el){group.forEach(g=>g.classList.remove('sel'));el.classList.add('sel')}
+const PROG={'#s1':0,'#s2':25,'#s3':50,'#s4':75,'#s5':100,'#s6':100};
+function setProg(n){$('#progF').style.width=n+'%';$('#progT').textContent=n+'%'}
+async function go(from,to){setProg(PROG[to]);
+  const a=$(from),b=$(to);b.classList.add('on');if(a){a.classList.add('off');a.classList.remove('on')}await wait(250);
+  if(a)a.classList.remove('off');cur.style.opacity=0;
+}
+
+async function play(){
+  stage.innerHTML=INITIAL;setProg(0);
+  cur.style.opacity=0;pos(300,700);
+  veil.style.opacity=0;
+  $('#s1').style.transition='none';$('#s1').classList.add('on');void $('#s1').offsetWidth;$('#s1').style.transition='';
+  await wait(1200);
+
+  /* 1 landing */
+  await tap($('#loc'));
+  await type($('#locT'),'Shoreditch, London, UK',60);
+  await wait(500);
+  await tap($('#rCorp'));sel([$('#rCorp'),$('#rPers')],$('#rCorp'));
+  await wait(500);
+  await tap($('#start'));
+  await go('#s1','#s2');
+
+  /* 2 prompt */
+  await tap($('#prompt'));
+  $('#promptT').textContent='';
+  await type($('#promptT'),'I’m looking for a private dining space for 7 members of our management team - we need vegan options',32);
+  await wait(900);
+  await tap($('#s2next'));
+  await go('#s2','#s3');
+
+  /* 3 details — filled quickly */
+  await wait(400);
+  await tap($('#evName'),{fast:true});
+  await type($('#evNameT'),'Management team dinner',18);
+  await tap($('#oDining'),{fast:true});sel($$('#s3 .radio').slice(0,9),$('#oDining'));
+  await scrollBody('#s3',330,700);
+  await tap($('#att'),{fast:true});$('#attT').textContent='7';
+  await wait(250);
+  await scrollBody('#s3',640,700);
+  await tap($('#date'),{fast:true});$('#date').classList.remove('ph');$('#dateT').textContent='Fri 20 Nov 2026';
+  await tap($('#t1'),{fast:true});$('#t1').classList.remove('ph');$('#t1T').textContent='18:00';
+  await tap($('#t2'),{fast:true});$('#t2').classList.remove('ph');$('#t2T').textContent='22:00';
+  await tap($('#b2'),{fast:true});sel([$('#b1'),$('#b2')],$('#b2'));
+  await wait(500);
+  await tap($('#s3next'),{fast:true});
+  await go('#s3','#s4');
+
+  /* 4 contact — all at once */
+  await wait(900);
+  $$('#s4 .v').forEach(v=>v.textContent=v.dataset.v);
+  await wait(700);
+  await tap($('#c1'),{fast:true});$('#c1').classList.add('sel');
+  await tap($('#c2'),{fast:true});$('#c2').classList.add('sel');
+  await wait(600);
+  await tap($('#s4next'));
+  await go('#s4','#s5');
+
+  /* 5 options */
+  await wait(900);
+  await tap($('#v1n'));$('#v1').classList.add('no');$('#v1n').classList.add('nob');
+  await wait(600);
+  await tap($('#v2y'));$('#v2y').classList.add('yes');
+  $('#v2y').lastChild.textContent='Interested';
+  await wait(600);
+  await tap($('#v3y'));$('#v3y').classList.add('yes');$('#v3y').lastChild.textContent='Interested';
+  await wait(1100);
+  await tap($('#s5next'));
+
+  /* 6 success — reflects shortlisted venues */
+  const picked=[{id:'v2',name:'Radisson Blu Hotel, London South Kensington',img:'radisson.png'},{id:'v3',name:'Caia - Full venue hire',img:'caia.png'}].filter(v=>$('#'+v.id+'y').classList.contains('yes'));
+  $('#sentTxt').textContent=`We’ve sent your event to ${picked.length} venue${picked.length>1?'s':''}`;
+  $('#car').innerHTML=picked.map(v=>`<div class="vm"><div class="im" style="background-image:url(${v.img})"></div><b>${v.name}</b></div>`).join('');
+  await go('#s5','#s6');
+  await wait(4200);
+
+  veil.style.opacity=1;await wait(700);
+}
+(async()=>{await document.fonts?.ready;for(;;){await play()}})();
+</script>
+
+
+</body></html>

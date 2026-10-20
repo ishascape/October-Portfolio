@@ -1,5 +1,5 @@
 import { caseHref, homeHref } from '../links'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Lightbox } from './Lightbox'
 import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
@@ -14,6 +14,27 @@ import { LegacyBriefPrototype } from './LegacyBriefPrototype'
 import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
+
+// The Key product moments prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
+function VenuePrototype() {
+  const src = '/venue-finder-prototype/'
+  const poster = '/venue-finder-prototype/poster.webp'
+  const title =
+    'Auto-playing prototype of the Venue Finder flow on a phone: landing, prompt, event details, contact details, venue shortlist and confirmation.'
+  const [still, setStill] = useState(false)
+  useEffect(() => {
+    setStill(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  }, [])
+  return (
+    <figure className="case__hero-proto">
+      {still ? (
+        <img src={poster} alt={title} width={420} height={720} />
+      ) : (
+        <iframe src={src} title={title} loading="lazy" tabIndex={-1} />
+      )}
+    </figure>
+  )
+}
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
   const [mode, setMode] = useState<PlanMode>('proposed')
@@ -272,6 +293,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               {s.diagram === 'vf-ranking' && <VenueRankingDiagram />}
               {s.diagram === 'vf-problem' && <VenueProblemDiagram />}
               {s.diagram === 'vf-experience' && <VenueExperienceTrio />}
+              {s.diagram === 'vf-prototype' && <VenuePrototype />}
               {s.diagram === 'vf-gaps' && <VenueGapsFlow />}
               {s.image && (
                 <figure
