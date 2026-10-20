@@ -53,8 +53,6 @@ const signals = [
   { name: 'Spotlight', text: 'paid promotion', paid: true },
 ]
 
-// Illustrative only: three of eight retrieved venues fall below the threshold or fail eligibility.
-const retrieved = [false, false, true, false, false, true, false, true]
 // Illustrative only: a mini ranked list with two promoted placements.
 const ranked = [
   { paid: false },
@@ -82,7 +80,7 @@ export function VenueRankingDiagram() {
           <div className="vf-pipe__body">
           <ul>
             <li>Natural-language prompt</li>
-            <li>Or generated from location, capacity, event type and vibe</li>
+            <li>Or generated prompt under the hood - from location, capacity, event type and vibe if prompt step skipped by user</li>
           </ul></div>
         </li>
         <li className="vf-pipe__stage vf-pipe__stage--retrieve">
@@ -104,12 +102,7 @@ export function VenueRankingDiagram() {
             <li>Max 32 candidate venues per brief</li>
             <li>Ineligible or low-relevance venues excluded</li>
           </ul>
-          <div className="vf-pipe__pool" role="img" aria-label="Illustration: some retrieved venues are excluded">
-            {retrieved.map((out, i) => (
-              <span key={i} className={out ? 'is-out' : undefined} />
-            ))}
-          </div>
-          <p className="vf-pipe__key">Struck-through venues are excluded</p></div>
+</div>
         </li>
         <li className="vf-pipe__stage vf-pipe__stage--rank">
           <div className="vf-pipe__head"><p className="vf-pipe__num">04</p>

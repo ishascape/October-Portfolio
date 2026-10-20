@@ -155,32 +155,6 @@
 .vf-pipe__stage li + li {
   margin-top: 4px;
 }
-.vf-pipe__pool {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 4px;
-  margin-top: 4px;
-}
-.vf-pipe__pool span {
-  position: relative;
-  height: 14px;
-  border: var(--line-thin) solid var(--ink);
-  border-radius: 2px;
-}
-.vf-pipe__pool span.is-out {
-  border-color: var(--graphite);
-  opacity: 0.55;
-}
-.vf-pipe__pool span.is-out::after {
-  content: '';
-  position: absolute;
-  left: -1px;
-  right: -1px;
-  top: 50%;
-  border-top: var(--line-thin) solid var(--ink);
-  transform: rotate(-24deg);
-}
-.vf-pipe__key,
 .vf-pipe__scope {
   margin: 0;
   font-size: 12px;
