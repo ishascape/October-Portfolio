@@ -10,6 +10,7 @@ import vfConcierge from '../assets/venue-finder-concierge.webp'
 import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
 import hosthqProposalAccepted from '../assets/hosthq-proposal-accepted.webp'
+import hosthqMvpScope from '../assets/hosthq-mvp-scope.webp'
 import hosthqFilterEvents from '../assets/hosthq-filter-events.webp'
 import hosthqRequestsDashboard from '../assets/hosthq-requests-dashboard.webp'
 import treeassistHero from '../assets/treeassist-hero.webp'
@@ -337,7 +338,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           { text: 'Bring performance data into one clear return-on-investment story.' },
           { text: 'Build a modular base ready for automation, AI and integrations.' },
         ],
-        planDiagram: 'mvp-scope',
+        planImage: {
+          src: hosthqMvpScope,
+          alt: 'MVP scope. The first connected workflow. An information architecture diagram: One Platform Host branches into nine modules (Demand, Reports, Presentation 3D, Content, Tools, Sales Channels, Resources, Your Venues, My Account), with Demand highlighted in blue. A dashed MVP scope boundary encloses the four Demand sections: Leads (Lead Feed, Business Board), Requests (Business Invitations, Direct Enquiries, Rejected Requests), Proposals (Sent, Accepted, Rejected / lost) and Bookings (Confirmed, Cancelled, Add Your Own, Booking Calendar), joined by arrows.',
+          width: 1672,
+          height: 941,
+        },
         planImage2: {
           src: hosthqBeforeAfter,
           alt: 'HeadBox before and after on laptops. Before: the Lead Feed "Your interested guests" table of 2232 contact details, each row with a status and a Guest details button. After: the HostHQ Requests screen with a Your Events menu (Requests, Proposals, Bookings, Leads, Reports) and event cards showing budget, date, location and a Send Proposal button.',
