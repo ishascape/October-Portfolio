@@ -188,7 +188,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '05 · Matching',
-        heading: 'Semantic matching, not just filters.',
+        heading: 'Semantic matching + hard filters.',
         body: [
           'Guests describe their event in their own words, or the system writes a prompt from their capacity, location, event type and vibe. That intent is compared with every venue in the inventory.',
           'The aim wasn’t venues that technically fit. It was venues a guest would want to book. Ranking then balances four signals: best fit, active venues, premium and paid Spotlight.',
