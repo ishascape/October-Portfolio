@@ -39,53 +39,104 @@ export function VenueShiftDiagram() {
   )
 }
 
+const metrics = [
+  { value: '≥0.85', label: 'similarity threshold' },
+  { value: '32', label: 'candidates max per brief' },
+  { value: '≤2', label: 'paid placements per brief' },
+  { value: '<1s', label: 'recommendation load' },
+]
+
 const signals = [
-  { name: 'Best fit', text: 'Ranks high even on a free plan' },
-  { name: 'Active venues', text: 'Engaged hosts are surfaced' },
-  { name: 'Premium', text: 'Extra visibility' },
-  { name: 'Spotlight', text: 'Paid boost' },
+  { name: 'Best fit', text: 'relevance first' },
+  { name: 'Active hosts', text: 'engagement boost' },
+  { name: 'Premium', text: 'subscription visibility' },
+  { name: 'Spotlight', text: 'paid promotion', paid: true },
+]
+
+// Illustrative only: a mini ranked list with two promoted placements.
+const ranked = [
+  { paid: false },
+  { paid: true },
+  { paid: false },
+  { paid: false },
+  { paid: true },
 ]
 
 export function VenueRankingDiagram() {
   return (
-    <figure className="vf-flow vf-flow--rank" aria-label="How Venue Finder ranks recommended venues">
-      <div className="vf-rank">
-        <div className="vf-rank__col">
-          <p className="vf-flow__tag">Guest intent</p>
+    <figure className="vf-flow vf-pipe" aria-label="How Venue Finder retrieves, filters and ranks recommended venues">
+      <ul className="vf-pipe__metrics">
+        {metrics.map((m) => (
+          <li key={m.value}>
+            <b>{m.value}</b>
+            <span>{m.label}</span>
+          </li>
+        ))}
+      </ul>
+      <ol className="vf-pipe__stages">
+        <li className="vf-pipe__stage">
+          <div className="vf-pipe__head"><p className="vf-pipe__num">01</p>
+          <h4>Guest intent</h4></div>
+          <div className="vf-pipe__body">
           <ul>
-            <li>A prompt they write</li>
-            <li>Or one we write from location, capacity, event type, vibe</li>
-          </ul>
-        </div>
-        <span className="vf-rank__arrow" aria-hidden="true" />
-        <div className="vf-rank__col">
-          <p className="vf-flow__tag">Vector-based matching</p>
+            <li>Natural-language prompt</li>
+            <li>Or generated prompt under the hood - from location, capacity, event type and vibe if prompt step skipped by user</li>
+          </ul></div>
+        </li>
+        <li className="vf-pipe__stage vf-pipe__stage--retrieve">
+          <div className="vf-pipe__head"><p className="vf-pipe__num">02</p>
+          <h4>Vector database</h4></div>
+          <div className="vf-pipe__body">
           <ul>
-            <li>Intent compared with every venue in the inventory</li>
+            <li>Intent converted into embeddings</li>
+            <li>Semantic similarity search across venue inventory</li>
+          </ul></div>
+        </li>
+        <li className="vf-pipe__stage vf-pipe__stage--filter">
+          <div className="vf-pipe__head"><p className="vf-pipe__num">03</p>
+          <h4>Relevance &amp; performance guardrails</h4></div>
+          <div className="vf-pipe__body">
+          <ul>
+            <li>Hard eligibility filters applied, i.e. must include parking, wheelchair access etc.</li>
+            <li>Similarity threshold ≥ 0.85</li>
+            <li>Max 32 candidate venues per brief</li>
+            <li>Ineligible or low-relevance venues excluded</li>
           </ul>
-        </div>
-        <span className="vf-rank__arrow" aria-hidden="true" />
-        <div className="vf-rank__col vf-rank__col--wide">
-          <p className="vf-flow__tag">Ranking and discovery boosts</p>
-          <ul className="vf-rank__signals">
-            {signals.map((s) => (
-              <li key={s.name}>
-                <b>{s.name}</b> {s.text}
+</div>
+        </li>
+        <li className="vf-pipe__stage vf-pipe__stage--rank">
+          <div className="vf-pipe__head"><p className="vf-pipe__num">04</p>
+          <h4>Secondary ranking</h4></div>
+          <div className="vf-pipe__body">
+          <p className="vf-pipe__scope">Applied to the candidate set only, not the whole database</p>
+          <ul className="vf-pipe__signals">
+            {signals.map((sg) => (
+              <li key={sg.name} className={sg.paid ? 'is-paid' : undefined}>
+                <b>{sg.name}</b> {sg.text}
               </li>
             ))}
           </ul>
-        </div>
-        <span className="vf-rank__arrow" aria-hidden="true" />
-        <div className="vf-rank__col vf-rank__col--end">
-          <p className="vf-flow__tag">Recommended venues</p>
-          <ul>
-            <li>A varied, relevant mix</li>
-          </ul>
-        </div>
-      </div>
-      <figcaption className="annotation vf-flow__caption">
-        We balanced relevance, variety, active venues and revenue. Paid visibility helps discovery but doesn’t override
-        relevance.
+          <p className="vf-pipe__guard">Max 2 paid Spotlight placements per brief. Paid boosts never override relevance.</p></div>
+        </li>
+        <li className="vf-pipe__stage vf-pipe__stage--out">
+          <div className="vf-pipe__head"><p className="vf-pipe__num">05</p>
+          <h4>Recommended venues</h4></div>
+          <div className="vf-pipe__body">
+          <ol className="vf-pipe__list" aria-label="Illustration: ranked venues, two of them promoted">
+            {ranked.map((r, i) => (
+              <li key={i} className={r.paid ? 'is-paid' : undefined}>
+                <span className="vf-pipe__rank">{i + 1}</span>
+                <span className="vf-pipe__bar" />
+                {r.paid && <em>Promoted</em>}
+              </li>
+            ))}
+          </ol>
+          <p className="vf-pipe__perf">Loads in under 1 second</p></div>
+        </li>
+      </ol>
+      <figcaption className="vf-pipe__trade">
+        <b>The trade-off:</b> We constrained retrieval volume and paid visibility to protect recommendation quality and
+        performance, while creating commercial value for paying hosts.
       </figcaption>
     </figure>
   )
