@@ -52,12 +52,12 @@ export const caseStudies: CaseStudy[] = [
     district: 'HeadBox',
     role: 'Sole product designer, team of 4 engineers · 2 months',
     leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
-    supporting: ['40% shorter user journey', 'New sponsored-placement revenue'],
+    supporting: ['27% more likely to finalise bookings', 'New sponsored-placement revenue'],
     system:
       'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
     tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
     existing: '13-step brief builder · 83% drop-off',
-    proposed: 'AI-assisted venue finder · 40% shorter journey',
+    proposed: 'AI-assisted venue finder · 27% more likely to finalise bookings',
     slug: 'venue-finder',
     images: [
       {
