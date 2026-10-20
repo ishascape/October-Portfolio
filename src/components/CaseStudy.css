@@ -560,3 +560,8 @@
     gap: var(--space-1);
   }
 }
+
+.case__caption-plain {
+  font-size: 15px;
+  line-height: 1.5;
+}
