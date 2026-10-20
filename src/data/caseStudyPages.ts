@@ -482,7 +482,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     subtitle:
       'Findmypast is a family history subscription. As Product Designer, I owned the UI and experiment design for three onboarding tests that got new users to value sooner with AI-powered relative suggestions.',
     meta: [
-      { label: 'Role', value: 'Product Designer, with the Lead Product Designer' },
+      { label: 'Role', value: 'Product Designer, embedded in core product squad' },
       { label: 'Team', value: 'PM, data science and engineering' },
       { label: 'Stakeholders', value: 'New users, Head of Tree Product, Head of Product Experience' },
       { label: 'Timescale', value: '2 months, 2-week experiment cycles' },
