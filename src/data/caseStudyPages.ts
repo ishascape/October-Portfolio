@@ -189,19 +189,19 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         keyDecisions: [
           {
             title: '01 / Put venue selection in the guest’s hands',
-            text: 'Shifted from automatically distributing enquiries to presenting guests with relevant venues they could evaluate and shortlist themselves, creating an explicit signal of booking intent.',
+            text: 'Guests evaluate and shortlist relevant venues themselves, creating an explicit signal of booking intent.',
           },
           {
             title: '02 / Prioritise paying venues without compromising relevance',
-            text: 'Introduced a ranking boost for paying venues, conditional on their suitability for the brief. Balanced commercial visibility with recommendation quality to protect guest trust.',
+            text: 'Paying venues get a ranking boost only when they suit the brief, protecting guest trust.',
           },
           {
             title: '03 / Optimise for qualified enquiries, not lead volume',
-            text: 'Routed enquiries to venues guests had already expressed interest in, giving paying hosts higher-intent leads with a stronger likelihood of converting into bookings.',
+            text: 'Enquiries go only to venues guests have shown interest in, giving paying hosts higher-intent leads.',
           },
           {
             title: '04 / Balance both sides of the marketplace',
-            text: 'Designed the funnel to keep discovery free and valuable for guests, while strengthening the commercial proposition for paying hosts through visibility and better-qualified demand.',
+            text: 'Discovery stays free for guests, while paying hosts get visibility and better-qualified demand.',
           },
         ],
       },
