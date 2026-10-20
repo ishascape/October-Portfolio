@@ -1,5 +1,5 @@
 import { caseHref, homeHref } from '../links'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Lightbox } from './Lightbox'
 import { caseStudies, type CaseStudyId } from '../data/content'
 import { caseStudyPages } from '../data/caseStudyPages'
@@ -14,6 +14,23 @@ import { LegacyBriefPrototype } from './LegacyBriefPrototype'
 import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
+
+// The header prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
+function HeroPrototype({ src, poster, title }: { src: string; poster: string; title: string }) {
+  const [still, setStill] = useState(false)
+  useEffect(() => {
+    setStill(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  }, [])
+  return (
+    <figure className="case__hero-proto">
+      {still ? (
+        <img src={poster} alt={title} width={420} height={720} />
+      ) : (
+        <iframe src={src} title={title} loading="lazy" tabIndex={-1} />
+      )}
+    </figure>
+  )
+}
 
 export function CaseStudy({ id }: { id: CaseStudyId }) {
   const [mode, setMode] = useState<PlanMode>('proposed')
@@ -56,8 +73,10 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <p className="case__subtitle">{page.subtitle}</p>
             </div>
 
-            <div className={page.heroImage ? 'case__visual case__visual--image' : 'case__visual'}>
-              {page.heroImage ? (
+            <div className={page.heroImage || page.heroPrototype ? 'case__visual case__visual--image' : 'case__visual'}>
+              {page.heroPrototype ? (
+                <HeroPrototype {...page.heroPrototype} />
+              ) : page.heroImage ? (
                 <figure className="case__hero-image">
                   <img
                     src={page.heroImage.src}
