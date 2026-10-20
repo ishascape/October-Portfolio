@@ -21,14 +21,14 @@
   --text-label: 14px;
   --measure: 64ch;
 
-  /* Space: 8px scale */
+  /* Space: 8px scale. The small steps stay tight for UI; the larger steps give sections room to breathe. */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 16px;
-  --space-4: 24px;
-  --space-5: 40px;
-  --space-6: 64px;
-  --space-7: 104px;
+  --space-4: 28px;
+  --space-5: 48px;
+  --space-6: 80px;
+  --space-7: 128px;
 
   /* Layout */
   --content-max: 1280px;
@@ -53,6 +53,10 @@
 @media (min-width: 600px) {
   :root {
     --margin: 32px;
+    --space-4: 32px;
+    --space-5: 56px;
+    --space-6: 96px;
+    --space-7: 160px;
   }
 }
 
