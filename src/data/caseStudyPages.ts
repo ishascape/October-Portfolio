@@ -452,7 +452,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '06 · With 12 months instead of 3',
         heading: 'What comes next.',
         list: [
-          { text: 'Group hosts by maturity and revenue band.' },
           { text: 'Predictive insights, plus risk and opportunity scoring for event briefs.' },
           { text: 'Automated recommendations to improve listings.' },
           { text: 'AI demand signals on the dashboard.' },
