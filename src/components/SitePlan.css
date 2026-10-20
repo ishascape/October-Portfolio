@@ -21,11 +21,11 @@
   font-weight: 500;
 }
 .plan__tiny {
-  font-size: 15px;
+  font-size: 16px;
   fill: var(--graphite) !important;
 }
 .plan__name {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
 }
 .plan__metric {
@@ -35,7 +35,7 @@
 }
 
 .plan--portrait .plan__label {
-  font-size: 15px;
+  font-size: 16px;
 }
 .plan--portrait .plan__name {
   font-size: 18px;
@@ -44,7 +44,7 @@
   font-size: 16px;
 }
 .plan--portrait .plan__tiny {
-  font-size: 17px;
+  font-size: 18px;
 }
 
 /* District boundaries: chain line, like a site boundary */
@@ -178,7 +178,7 @@
 }
 
 .plan .plan__note {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   fill: var(--marker) !important;
 }

@@ -65,7 +65,7 @@
   border-radius: 2px;
   background: #efefef;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
 }
 .bsw__row[data-current] .bsw__num {
   background: #dbeef7;
@@ -100,12 +100,12 @@
   }
   .bsw__title,
   .bsw__pill {
-    font-size: 15px;
+    font-size: 16px;
   }
   .bsw__row {
     grid-template-columns: 24px minmax(0, 1fr);
     gap: 4px 14px;
-    font-size: 15px;
+    font-size: 16px;
   }
   .bsw__date {
     grid-column: 2;

@@ -1,10 +1,10 @@
 /* A day in the life of a venue host: shares the scope flow's graph paper and pencil linework. */
 .day__title {
-  font-size: 15px;
+  font-size: 16px;
 }
 .day__note {
   font-family: var(--font-hand);
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 500;
   fill: var(--marker);
 }

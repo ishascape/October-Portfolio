@@ -54,7 +54,7 @@
   cursor: default;
 }
 .case__drawing .plan__tiny {
-  font-size: 9px;
+  font-size: 10px;
 }
 .case__drawing figcaption {
   display: grid;
@@ -121,7 +121,7 @@
 }
 .case__meta dd {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 /* ---------- TL;DR ---------- */
@@ -581,6 +581,6 @@
 }
 
 .case__caption-plain {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
 }
