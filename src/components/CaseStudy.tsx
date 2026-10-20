@@ -312,7 +312,21 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               {s.diagram === 'vf-ranking' && <VenueRankingDiagram />}
               {s.diagram === 'vf-problem' && <VenueProblemDiagram />}
               {s.diagram === 'vf-experience' && <VenueExperienceTrio />}
-              {s.diagram === 'vf-prototype' && <VenuePrototype />}
+              {s.diagram === 'vf-prototype' && (
+                <div className="case__proto-split">
+                  <VenuePrototype />
+                  {s.keyDecisions && (
+                    <div className="case__key-decisions">
+                      {s.keyDecisions.map((d) => (
+                        <div key={d.title}>
+                          <strong>{d.title}</strong>
+                          <p>{d.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
               {s.diagram === 'vf-gaps' && <VenueGapsFlow />}
               {s.diagram === 'hq-prototype' && <HostHqPrototype />}
               {s.image && (

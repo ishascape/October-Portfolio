@@ -72,6 +72,7 @@ export interface Section {
   planImage4?: { src: string; alt: string; title?: string; width: number; height: number } // a fourth, below the third
   bookingStatus?: { callout: { title: string; text: string }[] } // the animated booking status widget, below the fourth image
   planImage2?: { src: string; alt: string; caption?: string; width: number; height: number } // a second one, below it
+  keyDecisions?: { title: string; text: string }[] // numbered decisions shown beside the prototype
   diagram?: 'vf-shift' | 'vf-ranking' | 'vf-problem' | 'vf-experience' | 'vf-gaps' | 'vf-prototype' | 'hq-prototype' // a compact native diagram for the Venue Finder story
   dayDiagram?: { caption: string } // a day in the life of a venue host, drawn in the scope flow style, in place of an image
   planDiagram?: 'mvp-scope' // the HostHQ MVP scope, drawn in the TreeAssist flow style, shown under this section
@@ -185,6 +186,24 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         label: '04 · Key product decisions',
         heading: 'Intent in, relevant venues out.',
         diagram: 'vf-prototype',
+        keyDecisions: [
+          {
+            title: '01 / Put venue selection in the guest’s hands',
+            text: 'Shifted from automatically distributing enquiries to presenting guests with relevant venues they could evaluate and shortlist themselves, creating an explicit signal of booking intent.',
+          },
+          {
+            title: '02 / Prioritise paying venues without compromising relevance',
+            text: 'Introduced a ranking boost for paying venues, conditional on their suitability for the brief. Balanced commercial visibility with recommendation quality to protect guest trust.',
+          },
+          {
+            title: '03 / Optimise for qualified enquiries, not lead volume',
+            text: 'Routed enquiries to venues guests had already expressed interest in, giving paying hosts higher-intent leads with a stronger likelihood of converting into bookings.',
+          },
+          {
+            title: '04 / Balance both sides of the marketplace',
+            text: 'Designed the funnel to keep discovery free and valuable for guests, while strengthening the commercial proposition for paying hosts through visibility and better-qualified demand.',
+          },
+        ],
       },
       {
         label: '05 · Matching',
