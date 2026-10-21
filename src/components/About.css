@@ -252,3 +252,29 @@
     column-gap: max(60px, var(--gutter));
   }
 }
+
+/* ---------- Sketchbook: a stack of papers on phones, like Core Expertise ---------- */
+.field-notes__deck {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch; /* every sheet as tall as the longest caption, so only paper edges peek out */
+  gap: 0;
+  padding: 0 var(--space-2) 40px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  outline-offset: 4px;
+}
+.field-notes__paper {
+  grid-area: 1 / 1;
+  padding: var(--space-3);
+  background: color-mix(in srgb, #fff 45%, var(--paper));
+  border: var(--line-thin) solid rgb(28 27 25 / 0.55);
+  box-shadow:
+    0 1px 0 rgb(28 27 25 / 0.08),
+    0 14px 24px -14px rgb(28 27 25 / 0.35);
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+.field-notes__paper .figure__photo {
+  aspect-ratio: 4 / 5 !important; /* every sheet the same size, so the pile reads as one stack */
+}

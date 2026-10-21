@@ -1,6 +1,7 @@
 import { education, fieldNotes, revisions } from '../data/content'
 import { SheetLabel } from './SheetLabel'
 import { Skills } from './Skills'
+import { FieldStrip } from './FieldStrip'
 import './About.css'
 
 export function About() {
@@ -118,26 +119,7 @@ export function About() {
             {groups.map((g) => (
               <div key={g} className="field-notes__group">
                 <p className="label field-notes__group-label">{g}</p>
-                <ul className="field-notes__strip">
-                  {fieldNotes
-                    .filter((f) => f.group === g)
-                    .map((f) => (
-                      <li key={f.fig}>
-                        <figure className="figure">
-                          {f.src ? (
-                            <div className="figure__photo" style={{ aspectRatio: f.ratio }}>
-                              <img src={f.src} alt={f.alt} loading="lazy" decoding="async" />
-                            </div>
-                          ) : (
-                            <div className="figure__frame" style={{ aspectRatio: f.ratio }} aria-hidden="true">
-                              <span className="label">Fig. {f.fig}</span>
-                            </div>
-                          )}
-                          <figcaption className="annotation">{f.caption}</figcaption>
-                        </figure>
-                      </li>
-                    ))}
-                </ul>
+                <FieldStrip notes={fieldNotes.filter((f) => f.group === g)} stack={g === 'Sketchbook'} />
               </div>
             ))}
           </div>
