@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
+import { useRef, useState, type CSSProperties, type PointerEvent } from 'react'
 import type { FieldNote } from '../data/content'
 import { paperStyle } from './Skills'
 
@@ -19,35 +19,20 @@ function Figure({ f }: { f: FieldNote }) {
   )
 }
 
-// A group of field notes. The sketchbook is a stack of papers on a phone (swipe the top sheet away, or use
-// the arrows), like the Core Expertise cards; every other group, and every wider screen, is the plain strip.
-export function FieldStrip({ notes, stack }: { notes: FieldNote[]; stack?: boolean }) {
-  const [deck, setDeck] = useState(false)
+// A group of field notes as a stack of papers, like the Core Expertise cards on a phone: swipe the top sheet away,
+// or use the arrows. Every sheet in a group is cropped to the group's median ratio so the pile reads as one stack.
+function ratioOf(r: string) {
+  const [w, h] = r.split('/').map((n) => parseFloat(n))
+  return w / h
+}
+
+export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string }) {
   const [index, setIndex] = useState(0)
   const [drag, setDrag] = useState(0)
   const [dragging, setDragging] = useState(false)
   const from = useRef<{ x: number; t: number } | null>(null)
-
-  useEffect(() => {
-    if (!stack) return
-    const mq = window.matchMedia('(max-width: 599px)')
-    const sync = () => setDeck(mq.matches)
-    sync()
-    mq.addEventListener('change', sync)
-    return () => mq.removeEventListener('change', sync)
-  }, [stack])
-
-  if (!deck) {
-    return (
-      <ul className="field-notes__strip">
-        {notes.map((f) => (
-          <li key={f.fig}>
-            <Figure f={f} />
-          </li>
-        ))}
-      </ul>
-    )
-  }
+  const ratios = notes.map((n) => ratioOf(n.ratio)).sort((x, y) => x - y)
+  const sheet = ratios[Math.floor(ratios.length / 2)].toFixed(3)
 
   const go = (n: number) => setIndex(Math.min(notes.length - 1, Math.max(0, n)))
   const onDown = (e: PointerEvent) => {
@@ -72,6 +57,7 @@ export function FieldStrip({ notes, stack }: { notes: FieldNote[]; stack?: boole
     <>
       <ul
         className="field-notes__strip field-notes__deck"
+        style={{ '--sheet': sheet } as CSSProperties}
         onPointerDown={onDown}
         onPointerMove={onMove}
         onPointerUp={onUp}
@@ -82,7 +68,7 @@ export function FieldStrip({ notes, stack }: { notes: FieldNote[]; stack?: boole
         }}
         tabIndex={0}
         aria-roledescription="carousel"
-        aria-label="Sketchbook, swipe or use the arrows"
+        aria-label={`${label}, swipe or use the arrows`}
       >
         {notes.map((f, i) => (
           <li

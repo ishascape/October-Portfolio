@@ -119,7 +119,7 @@ export function About() {
             {groups.map((g) => (
               <div key={g} className="field-notes__group">
                 <p className="label field-notes__group-label">{g}</p>
-                <FieldStrip notes={fieldNotes.filter((f) => f.group === g)} stack={g === 'Sketchbook'} />
+                <FieldStrip notes={fieldNotes.filter((f) => f.group === g)} label={g} />
               </div>
             ))}
           </div>
