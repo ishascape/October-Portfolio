@@ -379,3 +379,30 @@
     aspect-ratio: auto;
   }
 }
+
+/* ---------- Desktop fold: the top of Selected work always peeks above the fold ---------- */
+/* On short desktop windows the hero spacing tightens (vh-based, never looser than the original) so about 128px of
+   the Work sheet and its label stay visible under the buttons. Taller windows keep the full spacing. */
+@media (min-width: 900px) {
+  .hero {
+    padding-block: min(var(--space-4), 3vh) min(calc(var(--space-6) + 24px), 3vh);
+  }
+  .hero__sheet {
+    margin-bottom: min(calc(var(--space-5) + 16px), 3.5vh);
+  }
+  .hero__title {
+    padding-bottom: min(calc(var(--space-4) + 32px), 3vh);
+  }
+  .hero__title .hero__hello {
+    margin-bottom: min(calc(var(--space-2) + 16px), 1.6vh);
+  }
+  .hero__support {
+    gap: min(calc(var(--space-4) + 24px), 3vh);
+  }
+  .hero__copy {
+    gap: min(calc(var(--space-3) + 8px), 1.6vh);
+  }
+  .hero__intro {
+    margin-bottom: min(var(--space-4), 1vh);
+  }
+}
