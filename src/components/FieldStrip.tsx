@@ -34,7 +34,7 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
   const [hovering, setHovering] = useState(false)
   useEffect(() => {
     if (!hovering || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % notes.length), 3000)
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % notes.length), 2500)
     return () => window.clearInterval(id)
   }, [hovering, notes.length])
   const onDown = (e: PointerEvent) => {
