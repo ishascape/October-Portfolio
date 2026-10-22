@@ -30,7 +30,7 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
 
   const go = (n: number) => setIndex((n + notes.length) % notes.length) // wraps: past the last sheet is the first
 
-  // While a mouse is over the stack the sheets swipe by themselves, one every 3 seconds, looping back to the first.
+  // While a mouse is over the stack the sheets swipe by themselves, one every 2.5 seconds, looping back to the first.
   const [hovering, setHovering] = useState(false)
   useEffect(() => {
     if (!hovering || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
