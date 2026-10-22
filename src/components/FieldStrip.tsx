@@ -28,7 +28,7 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
   const [dragging, setDragging] = useState(false)
   const from = useRef<{ x: number; t: number } | null>(null)
 
-  const go = (n: number) => setIndex(Math.min(notes.length - 1, Math.max(0, n)))
+  const go = (n: number) => setIndex((n + notes.length) % notes.length) // wraps: past the last sheet is the first
 
   // While a mouse is over the stack the sheets swipe by themselves, one every 3 seconds, looping back to the first.
   const [hovering, setHovering] = useState(false)
@@ -89,7 +89,6 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
           type="button"
           className="deck__button"
           onClick={() => go(index - 1)}
-          disabled={index === 0}
           aria-label="Previous"
         >
           <span aria-hidden="true">←</span>
@@ -98,7 +97,6 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
           type="button"
           className="deck__button"
           onClick={() => go(index + 1)}
-          disabled={index === notes.length - 1}
           aria-label="Next"
         >
           <span aria-hidden="true">→</span>
