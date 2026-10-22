@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
 import type { FieldNote } from '../data/content'
 import { paperStyle } from './Skills'
 
@@ -27,6 +27,28 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
   const [drag, setDrag] = useState(0)
   const [dragging, setDragging] = useState(false)
   const from = useRef<{ x: number; t: number } | null>(null)
+
+  // The sheet that was just on top slides out a little, then tucks in at the back of the pile.
+  const [leaving, setLeaving] = useState<number | null>(null)
+  const prev = useRef(0)
+  useLayoutEffect(() => {
+    const was = prev.current
+    prev.current = index
+    if (was === index || (index - was + notes.length) % notes.length !== 1) return
+    setLeaving(was)
+    const id = window.setTimeout(() => setLeaving(null), 260)
+    return () => window.clearTimeout(id)
+  }, [index, notes.length])
+
+  const sheetStyle = (i: number): CSSProperties => {
+    if (i === leaving) {
+      return { transform: 'translateX(34%) rotate(4deg)', zIndex: 101, transition: 'transform 260ms ease-out' }
+    }
+    const n = notes.length
+    const d = (i - index + n) % n
+    if (d === n - 1 && n > 4) return { ...paperStyle(3, 0, false), opacity: 1, zIndex: 90 } // the one that just went to the back
+    return paperStyle(d, i === index ? drag : 0, dragging)
+  }
 
   const go = (n: number) => setIndex((n + notes.length) % notes.length) // wraps: past the last sheet is the first
 
@@ -77,7 +99,7 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
           <li
             key={f.fig}
             className="field-notes__paper"
-            style={paperStyle(i - index, i === index ? drag : 0, dragging, 1) as CSSProperties}
+            style={sheetStyle(i)}
             aria-hidden={i !== index ? true : undefined}
           >
             <Figure f={f} />
