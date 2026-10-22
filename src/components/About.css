@@ -244,8 +244,8 @@
     gap: var(--gutter);
   }
   .field-notes {
-    grid-template-columns: 4fr 8fr;
-    column-gap: max(60px, var(--gutter));
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* two equal columns, 80px apart */
+    column-gap: 80px;
   }
 }
 
@@ -285,4 +285,14 @@
 .field-notes__sheet-label {
   margin: 0 0 var(--space-1);
   color: var(--graphite);
+}
+
+/* On desktop the stack sits in the middle of its column at 75% of its width. */
+@media (min-width: 1024px) {
+  .field-notes__deck,
+  .field-notes__figures .deck__nav {
+    max-width: none;
+    width: 75%;
+    margin-inline: auto;
+  }
 }
