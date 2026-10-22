@@ -235,14 +235,7 @@
   color: var(--ink);
 }
 
-@media (min-width: 600px) {
-  /* Four stacks of papers, two across. */
-  .field-notes__figures {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-5) var(--space-4);
-    align-items: start;
-  }
-}
+
 
 @media (min-width: 1024px) {
   .about__intro {
@@ -258,7 +251,7 @@
 
 /* ---------- Every group of field notes is a stack of papers, like Core Expertise ---------- */
 .field-notes__deck {
-  max-width: 420px;
+  max-width: 480px;
   grid-template-columns: minmax(0, 1fr);
   align-items: stretch; /* every sheet as tall as the longest caption, so only paper edges peek out */
   gap: 0;
@@ -280,5 +273,12 @@
   will-change: transform;
 }
 .field-notes__paper .figure__photo {
-  aspect-ratio: var(--sheet) !important; /* every sheet in a group the same size, so the pile reads as one stack */
+  aspect-ratio: 1 / 1 !important; /* every sheet the same size, so the pile reads as one stack */
+}
+.field-notes__figures .deck__nav {
+  max-width: 480px;
+}
+.field-notes__sheet-label {
+  margin-bottom: var(--space-2);
+  color: var(--graphite);
 }

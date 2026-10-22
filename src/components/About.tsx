@@ -5,8 +5,6 @@ import { FieldStrip } from './FieldStrip'
 import './About.css'
 
 export function About() {
-  const groups = [...new Set(fieldNotes.map((f) => f.group))]
-
   return (
     <section id="about" className="section about paper-sheet" aria-labelledby="about-heading">
       <div className="container">
@@ -116,12 +114,7 @@ export function About() {
           </div>
 
           <div className="field-notes__figures">
-            {groups.map((g) => (
-              <div key={g} className="field-notes__group">
-                <p className="label field-notes__group-label">{g}</p>
-                <FieldStrip notes={fieldNotes.filter((f) => f.group === g)} label={g} />
-              </div>
-            ))}
+            <FieldStrip notes={fieldNotes} label="Field notes" />
           </div>
         </div>
       </div>

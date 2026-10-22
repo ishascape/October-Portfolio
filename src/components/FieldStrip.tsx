@@ -1,4 +1,4 @@
-import { useRef, useState, type CSSProperties, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
 import type { FieldNote } from '../data/content'
 import { paperStyle } from './Skills'
 
@@ -19,22 +19,23 @@ function Figure({ f }: { f: FieldNote }) {
   )
 }
 
-// A group of field notes as a stack of papers, like the Core Expertise cards on a phone: swipe the top sheet away,
-// or use the arrows. Every sheet in a group is cropped to the group's median ratio so the pile reads as one stack.
-function ratioOf(r: string) {
-  const [w, h] = r.split('/').map((n) => parseFloat(n))
-  return w / h
-}
-
+// All the field notes as one stack of papers, like the Core Expertise cards on a phone: swipe the top sheet away,
+// or use the arrows. Every sheet is cropped to the same square so the pile reads as one stack.
 export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string }) {
   const [index, setIndex] = useState(0)
   const [drag, setDrag] = useState(0)
   const [dragging, setDragging] = useState(false)
   const from = useRef<{ x: number; t: number } | null>(null)
-  const ratios = notes.map((n) => ratioOf(n.ratio)).sort((x, y) => x - y)
-  const sheet = ratios[Math.floor(ratios.length / 2)].toFixed(3)
 
   const go = (n: number) => setIndex(Math.min(notes.length - 1, Math.max(0, n)))
+
+  // While a mouse is over the stack the sheets swipe by themselves, one every 3 seconds, looping back to the first.
+  const [hovering, setHovering] = useState(false)
+  useEffect(() => {
+    if (!hovering || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % notes.length), 3000)
+    return () => window.clearInterval(id)
+  }, [hovering, notes.length])
   const onDown = (e: PointerEvent) => {
     from.current = { x: e.clientX, t: performance.now() }
     setDragging(true)
@@ -57,7 +58,8 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
     <>
       <ul
         className="field-notes__strip field-notes__deck"
-        style={{ '--sheet': sheet } as CSSProperties}
+        onPointerEnter={(e) => e.pointerType === 'mouse' && setHovering(true)}
+        onPointerLeave={() => setHovering(false)}
         onPointerDown={onDown}
         onPointerMove={onMove}
         onPointerUp={onUp}
@@ -77,6 +79,7 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
             style={paperStyle(i - index, i === index ? drag : 0, dragging) as CSSProperties}
             aria-hidden={i !== index ? true : undefined}
           >
+            <p className="label field-notes__sheet-label">{f.group}</p>
             <Figure f={f} />
           </li>
         ))}
@@ -91,9 +94,6 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
         >
           <span aria-hidden="true">←</span>
         </button>
-        <p className="annotation deck__count" aria-live="polite">
-          {index + 1} of {notes.length}, swipe the sheet
-        </p>
         <button
           type="button"
           className="deck__button"
