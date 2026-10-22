@@ -52,7 +52,7 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
     if (!start) return
     const dx = e.clientX - start.x
     const fast = Math.abs(dx) / Math.max(1, performance.now() - start.t) > 0.4
-    if (Math.abs(dx) > 70 || (fast && Math.abs(dx) > 24)) go(index + (dx < 0 ? 1 : -1))
+    if (Math.abs(dx) > 70 || (fast && Math.abs(dx) > 24)) go(index + (dx > 0 ? 1 : -1))
   }
 
   return (
@@ -77,7 +77,7 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
           <li
             key={f.fig}
             className="field-notes__paper"
-            style={paperStyle(i - index, i === index ? drag : 0, dragging) as CSSProperties}
+            style={paperStyle(i - index, i === index ? drag : 0, dragging, 1) as CSSProperties}
             aria-hidden={i !== index ? true : undefined}
           >
             <Figure f={f} />

@@ -297,11 +297,11 @@ const FAN = [
   { x: -6, r: -1.6 },
   { x: 5, r: 1.2 },
 ]
-export function paperStyle(d: number, drag: number, dragging: boolean): CSSProperties {
+export function paperStyle(d: number, drag: number, dragging: boolean, dir: 1 | -1 = -1): CSSProperties {
   const transition = dragging && d === 0 ? 'none' : 'transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 320ms'
   if (d < 0) {
     return {
-      transform: 'translateX(-118%) rotate(-10deg)',
+      transform: `translateX(${dir * 118}%) rotate(${dir * 10}deg)`,
       opacity: 0,
       pointerEvents: 'none',
       zIndex: 100 + d,
