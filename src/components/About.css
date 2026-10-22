@@ -287,10 +287,12 @@
   color: var(--graphite);
 }
 
-/* On desktop the stack fills its column. */
+/* On desktop the stack sits in the middle of its column at 75% of its width. */
 @media (min-width: 1024px) {
   .field-notes__deck,
   .field-notes__figures .deck__nav {
     max-width: none;
+    width: 75%;
+    margin-inline: auto;
   }
 }
