@@ -14,13 +14,14 @@ function Figure({ f }: { f: FieldNote }) {
           <span className="label">Fig. {f.fig}</span>
         </div>
       )}
+      <p className="label field-notes__sheet-label">{f.group}</p>
       <figcaption className="annotation">{f.caption}</figcaption>
     </figure>
   )
 }
 
 // All the field notes as one stack of papers, like the Core Expertise cards on a phone: swipe the top sheet away,
-// or use the arrows. Every sheet is cropped to the same square so the pile reads as one stack.
+// or use the arrows. Each sheet is cut to its own photo, category and caption, so taller sheets show behind the one on top.
 export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string }) {
   const [index, setIndex] = useState(0)
   const [drag, setDrag] = useState(0)
@@ -79,7 +80,6 @@ export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string
             style={paperStyle(i - index, i === index ? drag : 0, dragging) as CSSProperties}
             aria-hidden={i !== index ? true : undefined}
           >
-            <p className="label field-notes__sheet-label">{f.group}</p>
             <Figure f={f} />
           </li>
         ))}
