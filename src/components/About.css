@@ -235,11 +235,7 @@
   color: var(--ink);
 }
 
-@media (min-width: 600px) {
-  .field-notes__strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+
 
 @media (min-width: 1024px) {
   .about__intro {
@@ -251,4 +247,42 @@
     grid-template-columns: 4fr 8fr;
     column-gap: max(60px, var(--gutter));
   }
+}
+
+/* ---------- Every group of field notes is a stack of papers, like Core Expertise ---------- */
+.field-notes__deck {
+  max-width: 480px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start; /* each sheet is as tall as its own content; taller ones show behind the top sheet */
+  gap: 0;
+  padding: 0 var(--space-2) 40px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  outline-offset: 4px;
+}
+.field-notes__paper {
+  grid-area: 1 / 1;
+  padding: var(--space-3) var(--space-3) 16px;
+  background: color-mix(in srgb, #fff 45%, var(--paper));
+  border: var(--line-thin) solid rgb(28 27 25 / 0.55);
+  box-shadow:
+    0 1px 0 rgb(28 27 25 / 0.08),
+    0 14px 24px -14px rgb(28 27 25 / 0.35);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+.field-notes__paper .figure {
+  gap: 0;
+}
+.field-notes__paper .figure__photo,
+.field-notes__paper .figure__frame {
+  margin-bottom: var(--space-2);
+}
+.field-notes__figures .deck__nav {
+  max-width: 480px;
+}
+.field-notes__sheet-label {
+  margin: 0 0 var(--space-1);
+  color: var(--graphite);
 }
