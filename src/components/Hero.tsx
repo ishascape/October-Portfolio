@@ -30,8 +30,7 @@ export function Hero() {
               </svg>
             </p>
             <h1 id="hero-heading" className="display">
-              <span className="hero__line">I love a good product puzzle.</span>{' '}
-              <span className="hero__line">Especially a messy one.</span>
+              <span className="hero__line">I love a good product puzzle.</span>
             </h1>
           </div>
           <figure className="hero__portrait">
