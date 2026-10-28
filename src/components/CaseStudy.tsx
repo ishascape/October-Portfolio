@@ -13,6 +13,8 @@ import { VenueFinderPrototype } from './VenueFinderPrototype'
 import { LegacyBriefPrototype } from './LegacyBriefPrototype'
 import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
+import { HostHqPrototype } from './HostHqPrototype'
+import { EditorialCaseStudy } from './EditorialCaseStudy'
 import './CaseStudy.css'
 
 // The Key product moments prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
@@ -36,25 +38,6 @@ function VenuePrototype() {
   )
 }
 
-// The HostHQ MVP prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
-function HostHqPrototype() {
-  const title =
-    'Auto-playing desktop prototype of the HostHQ MVP: Requests, Leads and filters, sending a proposal, the sent proposal, Proposals, Bookings and Reports.'
-  const [still, setStill] = useState(false)
-  useEffect(() => {
-    setStill(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-  }, [])
-  return (
-    <figure className="case__hq-proto">
-      {still ? (
-        <img src="/hosthq-prototype/poster.webp" alt={title} width={1440} height={1024} />
-      ) : (
-        <iframe src="/hosthq-prototype/" title={title} loading="lazy" tabIndex={-1} />
-      )}
-    </figure>
-  )
-}
-
 export function CaseStudy({ id }: { id: CaseStudyId }) {
   const [mode, setMode] = useState<PlanMode>('proposed')
   const study = caseStudies.find((s) => s.id === id)!
@@ -62,6 +45,8 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
   const index = caseStudies.indexOf(study)
   const next = caseStudies[(index + 1) % caseStudies.length]
   const Art = buildingArt[id]
+
+  if (page.editorial) return <EditorialCaseStudy id={id} />
 
   const planFigure = (
     <figure className="case__drawing">

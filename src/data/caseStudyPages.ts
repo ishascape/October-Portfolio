@@ -83,6 +83,8 @@ export interface Section {
 
 export interface CaseStudyPage {
   id: CaseStudyId
+  // Renders with the editorial component system (components/editorial) instead of the original layout.
+  editorial?: boolean
   // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
   // under the first section instead of the header.
   heroImage?: { src: string; alt: string; width: number; height: number }
@@ -299,6 +301,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
 
   hosthq: {
     id: 'hosthq',
+    editorial: true,
     heroImage: {
       src: hosthqHero,
       alt: 'Three HostHQ screens floating around a monitor: proposals with an urgent-requests alert, a leads list, and Lead Feed reports.',

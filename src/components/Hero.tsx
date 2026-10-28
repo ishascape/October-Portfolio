@@ -1,4 +1,5 @@
-import { contact } from '../data/content'
+import { caseHref } from '../links'
+import { caseStudies, contact } from '../data/content'
 import { HeroPuzzle } from './HeroPuzzle'
 import './Hero.css'
 
@@ -12,7 +13,9 @@ export function Hero() {
       </span>
       <div className="container">
         <p className="label hero__sheet">
-          <span>Sheet 00 / 03 · Introduction · Senior Product Designer, Sydney, AU</span>
+          <span>
+            Sheet 00 / 03 · Introduction<span className="hero__sheet-role"> · Senior Product Designer, Sydney, AU</span>
+          </span>
           <span aria-hidden="true">Scale: Responsive NTS</span>
         </p>
 
@@ -57,6 +60,32 @@ export function Hero() {
             </div>
           </div>
         </div>
+
+        {/* Title block: who and where, and the index of drawings (case studies) that follow. */}
+        <dl className="hero__titleblock">
+          <div>
+            <dt className="label">Role</dt>
+            <dd>Senior Product Designer</dd>
+          </div>
+          <div>
+            <dt className="label">Based</dt>
+            <dd>Sydney, AU</dd>
+          </div>
+          <div className="hero__index">
+            <dt className="label">Drawing index</dt>
+            <dd>
+              <ol>
+                {caseStudies.map((c) => (
+                  <li key={c.id}>
+                    <a href={caseHref(c.slug)}>
+                      <span className="hero__index-no">{c.number}</span> {c.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </dd>
+          </div>
+        </dl>
       </div>
     </section>
   )

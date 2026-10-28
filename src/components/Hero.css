@@ -379,3 +379,63 @@
     aspect-ratio: auto;
   }
 }
+
+/* ---------- Title block: positioning at a glance, set like the title block of a drawing sheet ---------- */
+.hero__sheet-role {
+  display: inline;
+}
+.hero__titleblock {
+  display: none;
+}
+@media (min-width: 600px) {
+  .hero__sheet-role {
+    display: none;
+  }
+  .hero__titleblock {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 7fr);
+    margin-top: var(--space-4);
+    border: var(--line-thin) solid var(--line);
+    background: var(--surface-raised);
+  }
+  .hero__titleblock > div {
+    padding: var(--space-2) var(--space-3);
+    border-right: var(--line-thin) solid var(--line);
+  }
+  .hero__titleblock > div:last-child {
+    border-right: 0;
+  }
+  .hero__titleblock dt {
+    color: var(--text-muted);
+  }
+  .hero__titleblock dd {
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+  .hero__index ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-4);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .hero__index a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .hero__index a:hover,
+  .hero__index a:focus-visible {
+    color: var(--accent);
+  }
+  .hero__index-no {
+    color: var(--accent);
+    font-weight: 500;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__titleblock {
+    animation: hero-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: 1000ms;
+  }
+}

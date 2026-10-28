@@ -50,6 +50,56 @@
   --tap: 44px;
 }
 
+/* ---------- Foundations for the editorial system (additive; nothing above is changed) ----------
+   Semantic aliases: components read these, so a theme or a restyle changes one place.
+   Breakpoints (media queries cannot read variables, so these are the only three used by editorial components):
+   --bp-tablet 600px · --bp-desktop 900px · --bp-wide 1200px */
+:root {
+  --surface: var(--paper);
+  --surface-sunk: var(--paper-shade); /* wells behind screenshots, title blocks */
+  --surface-raised: color-mix(in srgb, #fff 45%, var(--paper)); /* a sheet lying on the page */
+  --text: var(--ink);
+  --text-muted: var(--graphite);
+  --line: var(--ink); /* structural rules: sheet borders, section heads */
+  --line-soft: var(--rule); /* secondary rules: table rows, grid ticks */
+  --accent: var(--marker); /* the one accent: annotations, keynotes, leader lines */
+  --accent-wash: var(--marker-wash);
+
+  /* Type scale, even sizes only. Display and metric are fluid; the rest are steps. */
+  --text-2xs: 12px; /* drawing numbers, tick labels */
+  --text-xs: 14px; /* labels */
+  --text-sm: 16px;
+  --text-lg: clamp(20px, 1.8vw, 24px); /* lead paragraphs */
+  --text-xl: clamp(28px, 3.4vw, 44px); /* section statements */
+  --text-mega: clamp(56px, 9vw, 128px); /* one oversized numeral per page */
+  --lh-tight: 1.1;
+  --lh-snug: 1.3;
+  --lh-body: 1.55;
+
+  /* Grid: 12 columns inside --content-max, one gutter. Editorial layouts name columns, never raw widths. */
+  --cols: 12;
+  --ed-rail: 3fr; /* left annotation rail of a sheet */
+  --ed-main: 9fr;
+
+  /* Annotation language */
+  --leader: var(--line-thin) solid var(--accent); /* leader lines and keynote rings */
+  --tick: 8px; /* length of a dimension tick */
+}
+
+/* Opt-in dark sheet ("blueprint"). Nothing sets data-theme yet, so the live site is unchanged. */
+:root[data-theme='dark'] {
+  --surface: #14171c;
+  --surface-sunk: #1b1f26;
+  --surface-raised: #1f242c;
+  --text: #ece9e1;
+  --text-muted: #a6a39a;
+  --line: #ece9e1;
+  --line-soft: #343a44;
+  --accent: #7aa2ff;
+  --accent-wash: rgb(122 162 255 / 0.16);
+  color-scheme: dark;
+}
+
 @media (min-width: 600px) {
   :root {
     --margin: 32px;
