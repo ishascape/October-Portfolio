@@ -222,6 +222,19 @@
   }
 }
 
+/* Role line under the headline. */
+.hero__role {
+  margin: var(--space-2) 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.hero__role span {
+  white-space: nowrap; /* wraps between the dots, never leaves one orphaned */
+}
+
 /* Two columns from tablet up: the copy block is centred against the card stack on the right.
    The stack scales with the screen height so the next sheet always shows below the fold. */
 .hero__text {

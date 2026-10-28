@@ -33,6 +33,9 @@ export function Hero() {
               <h1 id="hero-heading" className="display">
                 <span className="hero__line">I love a good product puzzle!</span>
               </h1>
+              <p className="hero__role">
+                <span>Senior Product Designer ·</span> <span>Systems Thinker ·</span> <span>Hands-on Builder</span>
+              </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
