@@ -20,7 +20,7 @@ export function Hero() {
           <div className="hero__text">
             <div className="hero__title">
               <p className="annotation hero__hello">
-                Hey, I'm Ashni
+                Hi! I'm Ashni
                 {/* A pen-drawn smile, eyes and mouth only. On hover it winks and smirks. */}
                 <svg className="hero__smile" viewBox="0 0 32 24" aria-hidden="true">
                   <path className="smile__eye" d="M11.5 6.8 v3.2" />
@@ -31,16 +31,19 @@ export function Hero() {
                 </svg>
               </p>
               <h1 id="hero-heading" className="display">
-                <span className="hero__line">I love a good product puzzle.</span>
+                <span className="hero__line">I love a good product puzzle!</span>
               </h1>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
+                <p className="hero__scene">Give me the complicated stuff.</p>
                 <p className="hero__questions">
-                  Complex workflows? Disconnected systems? A marketplace with untapped potential? An MVP that needs to
-                  scale? User behaviour that doesn't quite add up?
+                  The disconnected workflows. The underperforming funnels. The products with more potential than polish.
                 </p>
-                <p className="hero__scene">That's my scene.</p>
+                <p className="hero__questions">
+                  I'm a product designer who finds the patterns, challenges the assumptions and turns complexity into
+                  experiences that feel remarkably simple.
+                </p>
               </div>
               <div className="hero__actions">
                 <a className="button button--primary" href="#work">
