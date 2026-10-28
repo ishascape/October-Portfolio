@@ -64,7 +64,7 @@ const sheets: Sheet[] = [
   {
     id: 'design-systems',
     name: 'Design systems',
-    line: 'Component states, tokens and rules written down once.',
+    line: 'Component states, tokens and rules written down for AI agents and Developer handoff.',
     chips: ['Components', 'Tokens', 'Accessibility'],
     src: dsShot,
     alt: 'A component sheet showing enabled, disabled, hovered, focused and pressed states.',
