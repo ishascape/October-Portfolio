@@ -319,39 +319,79 @@
     translate: 0 0;
   }
 }
+/* Entrance, about 2.3s end to end: hello 0-0.5s, portrait drops in 0.5-1.4s, the card flips at 1.4s, the rest settles by 2.3s. */
 .hero__sheet,
 .hero__hello,
 .hero__title .display,
+.hero__role,
 .hero__copy > *,
 .hero__actions,
 .hero__piece {
-  animation: hero-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  animation-delay: calc(var(--in, 0) * 70ms + 450ms);
-}
-.hero__sheet {
-  --in: 0;
+  animation: hero-in var(--dur, 500ms) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--at, 0ms);
 }
 .hero__hello {
-  --in: 1;
+  --at: 0ms;
 }
 .hero__title .display {
-  --in: 2;
+  --at: 250ms;
+}
+.hero__role {
+  --at: 450ms;
 }
 .hero__copy > :nth-child(1) {
-  --in: 3;
+  --at: 1400ms;
+  --dur: 450ms;
 }
 .hero__copy > :nth-child(2) {
-  --in: 4;
+  --at: 1550ms;
+  --dur: 450ms;
 }
 .hero__copy > :nth-child(3) {
-  --in: 5;
+  --at: 1700ms;
+  --dur: 450ms;
 }
 .hero__actions {
-  --in: 7;
+  --at: 1850ms;
+  --dur: 450ms;
+}
+.hero__sheet {
+  --at: 0ms;
 }
 .hero__piece {
   animation-name: hero-in-fade;
-  --in: 4;
+  --at: 600ms;
+}
+.hero__portrait {
+  animation: hero-drop 900ms both;
+  animation-delay: 500ms;
+}
+/* A soft landing: drops in, dips a touch past rest, settles. */
+@keyframes hero-drop {
+  0% {
+    opacity: 0;
+    translate: 0 -56px;
+    rotate: -5deg;
+    animation-timing-function: cubic-bezier(0.3, 0.1, 0.5, 1);
+  }
+  45% {
+    opacity: 1;
+  }
+  62% {
+    translate: 0 7px;
+    rotate: 0.8deg;
+    animation-timing-function: ease-out;
+  }
+  82% {
+    translate: 0 -2px;
+    rotate: -0.2deg;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+  }
 }
 @keyframes hero-in-fade {
   from {
@@ -368,9 +408,11 @@
   .hero__sheet,
   .hero__hello,
   .hero__title .display,
+  .hero__role,
   .hero__copy > *,
   .hero__actions,
-  .hero__piece {
+  .hero__piece,
+  .hero__portrait {
     animation: none;
   }
 }
