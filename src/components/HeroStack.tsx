@@ -1,45 +1,90 @@
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react'
 import portrait from '../assets/ashni-portrait.webp'
 import portraitSketch from '../assets/ashni-portrait-sketch.webp'
-import vfShot from '../assets/vf-card-desktop.webp'
-import hostShot from '../assets/hosthq-card-workspace.webp'
-import taShot from '../assets/ta-card-desktop.webp'
+import vfShot from '../assets/hero-sheet-venue-finder.webp'
+import hostShot from '../assets/hero-sheet-hosthq.webp'
+import taShot from '../assets/hero-sheet-treeassist.webp'
+import dsShot from '../assets/hero-sheet-design-systems.webp'
 import { revealAt, revealEnd } from './reveal'
 import { paperStyle } from './Skills'
 
 const HOLD_MS = 4800
 
-type Sheet = { id: string; name: string; line: string; src?: string; alt: string }
+type Sheet = {
+  id: string
+  name: string
+  line: string
+  chips: string[]
+  src?: string
+  alt: string
+  w?: number
+  h?: number
+  pos?: string
+}
 
 const sheets: Sheet[] = [
   {
     id: 'ashni',
     name: 'Ashni Dave',
     line: 'Senior Product Designer who thinks like a product manager.',
+    chips: ['Product strategy', 'UX/UI', 'Commercial growth'],
     alt: 'Ashni Dave smiling, with long dark hair, in a blue denim top, standing in a garden.',
   },
   {
     id: 'venue-finder',
     name: 'Venue Finder',
     line: 'Reworked marketplace search: +30% qualified enquiries.',
+    chips: ['B2C marketplace', 'Guided matching'],
     src: vfShot,
-    alt: 'Venue Finder search results on desktop.',
+    alt: "Venue Finder results on a phone: venue cards with I'm interested and Not for me buttons.",
+    w: 900,
+    h: 900,
   },
   {
     id: 'hosthq',
     name: 'HostHQ',
     line: 'Took a host platform from research to a scoped MVP.',
+    chips: ['B2B SaaS', 'Host platform', 'MVP'],
     src: hostShot,
-    alt: 'HostHQ host workspace showing requests and proposals.',
+    alt: 'HostHQ leads dashboard on a desktop monitor.',
+    w: 700,
+    h: 700,
   },
   {
     id: 'treeassist',
     name: 'TreeAssist',
-    line: 'Made a complex research workflow easy to finish.',
+    line: 'Guided onboarding for a complex family-tree build.',
+    chips: ['B2C subscription', 'Onboarding'],
     src: taShot,
-    alt: 'TreeAssist family tree research workflow on desktop.',
+    alt: "TreeAssist onboarding screens on phones: Let's build your tree together.",
+    w: 1200,
+    h: 851,
+    pos: '44% 50%',
+  },
+  {
+    id: 'design-systems',
+    name: 'Design systems',
+    line: 'Button states, tokens and rules written down once.',
+    chips: ['Components', 'Tokens', 'Accessibility'],
+    src: dsShot,
+    alt: 'A button component sheet showing enabled, disabled, hovered, focused and pressed states.',
+    w: 800,
+    h: 800,
   },
 ]
+
+// The sheets behind fan out like the Field notes pile, but stay full size so their edges show under the top one.
+const FAN = [
+  { x: 0, r: 0 },
+  { x: 7, r: 1.8 },
+  { x: -6, r: -1.6 },
+  { x: 5, r: 1.2 },
+]
+const behind = (d: number) => {
+  const k = Math.min(d, 3)
+  const style = paperStyle(d, 0, false)
+  return d < 1 ? style : { ...style, transform: `translate(${FAN[k].x}px, ${k * 9}px) rotate(${FAN[k].r}deg)` }
+}
 
 // A stack of paper sheets that moves like the Field notes pile: the top sheet slides out and tucks in at the
 // back, the rest fan behind it. Swipe, click, use the arrow keys or the dots. It turns by itself until hovered.
@@ -124,7 +169,11 @@ export function HeroStack() {
           const style =
             k === leaving
               ? { transform: 'translateX(34%) rotate(4deg)', zIndex: 101, transition: 'transform 260ms ease-out' }
-              : paperStyle(d, k === index ? drag : 0, dragging)
+              : d === n - 1 && n > 4
+                ? { ...behind(3), opacity: 1, zIndex: 90 } // the one that just went to the back
+                : d === 0
+                  ? paperStyle(0, drag, dragging)
+                  : behind(d)
           return (
             <article key={s.id} className="deck-sheet" style={style} aria-hidden={d === 0 ? undefined : true}>
               <div
@@ -138,8 +187,9 @@ export function HeroStack() {
                   className="hero__piece-photo"
                   src={s.src ?? portrait}
                   alt={d === 0 ? s.alt : ''}
-                  width={s.src ? 1600 : 960}
-                  height={s.src ? 1000 : 1200}
+                  style={s.pos ? { objectPosition: s.pos } : undefined}
+                  width={s.w ?? 960}
+                  height={s.h ?? 1200}
                   fetchPriority={k === 0 ? 'high' : undefined}
                   decoding="async"
                   draggable={false}
@@ -150,25 +200,40 @@ export function HeroStack() {
                   </div>
                 )}
               </div>
-              <p className="deck-sheet__cap">
-                <strong>{s.name}</strong>
-                <span>{s.line}</span>
-              </p>
+              <div className="deck-sheet__cap">
+                <ul className="deck-sheet__chips">
+                  {s.chips.map((c) => (
+                    <li key={c}>{c}</li>
+                  ))}
+                </ul>
+                <p>
+                  <strong>{s.name}</strong>
+                  <span>{s.line}</span>
+                </p>
+              </div>
             </article>
           )
         })}
       </div>
-      <div className="hero__dots" role="group" aria-label="Choose a sheet">
-        {sheets.map((s, k) => (
-          <button
-            key={s.id}
-            type="button"
-            className="hero__dot"
-            aria-label={s.name}
-            aria-current={k === index ? 'true' : undefined}
-            onClick={() => go(k)}
-          />
-        ))}
+      <div className="hero__nav">
+        <button type="button" className="deck__button" onClick={() => go(index - 1)} aria-label="Previous">
+          <span aria-hidden="true">←</span>
+        </button>
+        <div className="hero__dots" role="group" aria-label="Choose a sheet">
+          {sheets.map((s, k) => (
+            <button
+              key={s.id}
+              type="button"
+              className="hero__dot"
+              aria-label={s.name}
+              aria-current={k === index ? 'true' : undefined}
+              onClick={() => go(k)}
+            />
+          ))}
+        </div>
+        <button type="button" className="deck__button" onClick={() => go(index + 1)} aria-label="Next">
+          <span aria-hidden="true">→</span>
+        </button>
       </div>
     </div>
   )

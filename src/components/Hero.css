@@ -383,53 +383,81 @@
 /* ---------- Paper stack: moves like the Field notes pile ---------- */
 .hero__deck {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
   gap: 12px;
   min-width: 0;
-  height: 100%;
 }
 .hero__sheets {
-  position: relative;
+  display: grid; /* every sheet in one cell, as tall as the tallest */
   cursor: pointer;
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
   outline-offset: 4px;
-  min-height: 0;
   margin: 8px 10px 0 6px; /* room for the sheets peeking out behind */
-  aspect-ratio: 4 / 5;
+  padding-bottom: 28px;
 }
 .deck-sheet {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  background: color-mix(in srgb, #fff 45%, var(--paper));
   border: 1.5px solid var(--ink);
   box-shadow: 0 6px 16px -10px rgb(28 27 25 / 0.45);
   transform-origin: 50% 0;
   will-change: transform;
-  background: color-mix(in srgb, #fff 45%, var(--paper));
+}
+.deck-sheet[aria-hidden='true'] .deck-sheet__cap {
+  visibility: hidden; /* only the edges of the sheets behind show */
 }
 .deck-sheet__media {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 1 / 1;
   background: var(--paper-shade);
-  min-height: 0;
+  border-bottom: 1.5px solid var(--ink);
 }
 .deck-sheet__cap {
   display: grid;
-  gap: 2px;
+  align-content: start;
+  gap: 8px;
   padding: 10px 12px 12px;
-  border-top: 1.5px solid var(--ink);
   font-size: 14px;
   line-height: 1.35;
 }
+.deck-sheet__cap p {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
 .deck-sheet__cap strong {
   font-weight: 600;
+  font-size: 16px;
 }
 .deck-sheet__cap span {
   color: var(--graphite);
   text-wrap: pretty;
+}
+.deck-sheet__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.deck-sheet__chips li {
+  padding: 2px 8px;
+  border: var(--line-thin) solid var(--ink);
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.hero__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
 }
 .hero__dots {
   display: flex;
@@ -464,28 +492,6 @@
 }
 @media (min-width: 600px) {
   .hero__deck {
-    position: absolute;
-    inset: 40px 0 0;
+    margin-top: 40px; /* air under the sheet line */
   }
-  .hero__sheets {
-    aspect-ratio: auto;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .deck-sheet {
-    transition: opacity 300ms ease-out;
-  }
-  
-/* Case study screens sit whole on the sheet, never cropped. */
-.deck-sheet__media--screen {
-  display: grid;
-  place-items: center;
-  padding: 12px;
-}
-.deck-sheet__media--screen .hero__piece-photo {
-  position: static;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: 50% 50%;
 }
