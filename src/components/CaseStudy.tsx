@@ -17,7 +17,7 @@ import './CaseStudy.css'
 
 // The Key product moments prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
 function VenuePrototype() {
-  const src = '/venue-finder-prototype/'
+  const src = '/venue-finder-prototype/index.html'
   const poster = '/venue-finder-prototype/poster.webp'
   const title =
     'Auto-playing prototype of the Venue Finder flow on a phone: landing, prompt, event details, contact details, venue shortlist and confirmation.'
@@ -49,7 +49,7 @@ function HostHqPrototype() {
       {still ? (
         <img src="/hosthq-prototype/poster.webp" alt={title} width={1440} height={1024} />
       ) : (
-        <iframe src="/hosthq-prototype/" title={title} loading="lazy" tabIndex={-1} />
+        <iframe src="/hosthq-prototype/index.html" title={title} loading="lazy" tabIndex={-1} />
       )}
     </figure>
   )
