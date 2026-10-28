@@ -9,6 +9,7 @@ import { revealAt, revealEnd } from './reveal'
 import { paperStyle } from './Skills'
 
 const HOLD_MS = 3000
+const FIRST_FLIP_MS = 1400
 
 type Sheet = {
   id: string
@@ -99,9 +100,11 @@ export function HeroStack() {
   // The sheet that was just on top slides out a little, then tucks in at the back of the pile.
   const [leaving, setLeaving] = useState<number | null>(null)
   const prev = useRef(0)
+  const turned = useRef(false)
   useLayoutEffect(() => {
     const was = prev.current
     prev.current = index
+    if (was !== index) turned.current = true
     if (was === index || (index - was + n) % n !== 1) return
     setLeaving(was)
     const id = window.setTimeout(() => setLeaving(null), 260)
@@ -112,7 +115,9 @@ export function HeroStack() {
 
   useEffect(() => {
     if (paused || dragging || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = window.setTimeout(() => setIndex((i) => (i + 1) % n), HOLD_MS)
+    // The first flip lands at 1.4s after the page started, right after the portrait settles.
+    const wait = turned.current ? HOLD_MS : Math.max(300, FIRST_FLIP_MS - performance.now())
+    const id = window.setTimeout(() => setIndex((i) => (i + 1) % n), wait)
     return () => window.clearTimeout(id)
   }, [paused, dragging, index, n])
 
@@ -190,7 +195,8 @@ export function HeroStack() {
                   style={s.pos ? { objectPosition: s.pos } : undefined}
                   width={s.w ?? 960}
                   height={s.h ?? 1200}
-                  fetchPriority={k === 0 ? 'high' : undefined}
+                  fetchPriority={k < 2 ? 'high' : undefined}
+                  loading={k < 2 ? 'eager' : undefined}
                   decoding="async"
                   draggable={false}
                 />
