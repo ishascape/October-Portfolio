@@ -43,7 +43,6 @@ export function Hero() {
                 scale? User behaviour that doesn't quite add up?
               </p>
               <p className="hero__scene">That's my scene.</p>
-              <p>Product strategy · Systems thinking · UX/UI · Commercial growth</p>
             </div>
             <div className="hero__actions">
               <a className="button button--primary" href="#work">

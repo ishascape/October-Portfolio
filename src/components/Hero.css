@@ -419,7 +419,7 @@
 .deck-sheet__cap {
   display: grid;
   align-content: start;
-  gap: 8px;
+  gap: 24px; /* copy to chips */
   padding: 10px 12px 12px;
   font-size: 14px;
   line-height: 1.35;
@@ -448,7 +448,7 @@
 }
 .deck-sheet__chips li {
   padding: 2px 8px;
-  border: var(--line-thin) solid var(--ink);
+  border: var(--line-thin) solid rgb(97 94 88 / 0.45); /* light graphite */
   border-radius: 999px;
   font-size: 12px;
   line-height: 1.4;

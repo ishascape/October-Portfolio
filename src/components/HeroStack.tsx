@@ -27,14 +27,14 @@ const sheets: Sheet[] = [
     id: 'ashni',
     name: 'Ashni Dave',
     line: 'Senior Product Designer who thinks like a product manager.',
-    chips: ['Product strategy', 'UX/UI', 'Commercial growth'],
+    chips: ['Product strategy', 'Systems thinking', 'UX/UI', 'Commercial growth'],
     alt: 'Ashni Dave smiling, with long dark hair, in a blue denim top, standing in a garden.',
   },
   {
     id: 'venue-finder',
     name: 'Venue Finder',
     line: 'Reworked marketplace search: +30% qualified enquiries.',
-    chips: ['B2C marketplace', 'Guided matching'],
+    chips: ['B2C marketplace', 'AI recommendations'],
     src: vfShot,
     alt: "Venue Finder results on a phone: venue cards with I'm interested and Not for me buttons.",
     w: 900,
@@ -201,15 +201,15 @@ export function HeroStack() {
                 )}
               </div>
               <div className="deck-sheet__cap">
+                <p>
+                  <strong>{s.name}</strong>
+                  <span>{s.line}</span>
+                </p>
                 <ul className="deck-sheet__chips">
                   {s.chips.map((c) => (
                     <li key={c}>{c}</li>
                   ))}
                 </ul>
-                <p>
-                  <strong>{s.name}</strong>
-                  <span>{s.line}</span>
-                </p>
               </div>
             </article>
           )
