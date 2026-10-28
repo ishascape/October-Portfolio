@@ -9,7 +9,7 @@ import { revealAt, revealEnd } from './reveal'
 import { paperStyle } from './Skills'
 
 const HOLD_MS = 3000
-const FIRST_FLIP_MS = 1400
+const FIRST_FLIP_MS = 1900
 
 type Sheet = {
   id: string
@@ -115,7 +115,7 @@ export function HeroStack() {
 
   useEffect(() => {
     if (paused || dragging || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    // The first flip lands at 1.4s after the page started, right after the portrait settles.
+    // The first flip lands at 1.9s after the page started, right after the portrait settles.
     const wait = turned.current ? HOLD_MS : Math.max(300, FIRST_FLIP_MS - performance.now())
     const id = window.setTimeout(() => setIndex((i) => (i + 1) % n), wait)
     return () => window.clearTimeout(id)

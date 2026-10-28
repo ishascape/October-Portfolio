@@ -319,7 +319,8 @@
     translate: 0 0;
   }
 }
-/* Entrance, about 2.3s end to end: hello 0-0.5s, portrait drops in 0.5-1.4s, the card flips at 1.4s, the rest settles by 2.3s. */
+/* Entrance, about 2.4s end to end: the title shows large and centred (0-1.3s) while the pile is dealt in (0.5-1.4s),
+   then glides into place (1.3-1.9s), the card flips at 1.9s and the rest of the copy follows by 2.4s. */
 .hero__sheet,
 .hero__hello,
 .hero__title .display,
@@ -340,20 +341,20 @@
   --at: 450ms;
 }
 .hero__copy > :nth-child(1) {
-  --at: 1400ms;
-  --dur: 450ms;
+  --at: 1700ms;
+  --dur: 400ms;
 }
 .hero__copy > :nth-child(2) {
-  --at: 1550ms;
-  --dur: 450ms;
+  --at: 1800ms;
+  --dur: 400ms;
 }
 .hero__copy > :nth-child(3) {
-  --at: 1700ms;
-  --dur: 450ms;
+  --at: 1900ms;
+  --dur: 400ms;
 }
 .hero__actions {
-  --at: 1850ms;
-  --dur: 450ms;
+  --at: 2000ms;
+  --dur: 400ms;
 }
 .hero__sheet {
   --at: 0ms;
@@ -403,6 +404,48 @@
     rotate: 0deg;
   }
 }
+@media (min-width: 600px) {
+  .hero__intro {
+    container-type: inline-size;
+  }
+  .hero__title {
+    width: fit-content;
+    max-width: 100%;
+    position: relative;
+    z-index: 200;
+    animation: hero-title-center 1900ms both;
+  }
+  /* The copy block starts collapsed so the title sits in the middle, then opens as the title moves up. */
+  .hero__support {
+    animation: hero-expand 600ms cubic-bezier(0.5, 0, 0.2, 1) 1300ms backwards;
+  }
+}
+@keyframes hero-title-center {
+  0%,
+  68% {
+    translate: calc((100cqw - min(var(--deck-w), 38vw) - var(--gutter)) / 2 - 50%) 0;
+    scale: 1.2;
+    animation-timing-function: cubic-bezier(0.5, 0, 0.2, 1);
+  }
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+@keyframes hero-expand {
+  from {
+    max-height: 0;
+    overflow: hidden;
+  }
+  99% {
+    max-height: 520px;
+    overflow: hidden;
+  }
+  to {
+    max-height: 520px;
+    overflow: visible;
+  }
+}
 @keyframes hero-in-fade {
   from {
     opacity: 0;
@@ -422,6 +465,8 @@
   .hero__copy > *,
   .hero__actions,
   .hero__piece,
+  .hero__title,
+  .hero__support,
   .hero__sheets .deck-sheet {
     animation: none;
   }
