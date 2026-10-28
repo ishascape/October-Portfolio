@@ -8,7 +8,7 @@ import dsShot from '../assets/hero-sheet-design-systems.webp'
 import { revealAt, revealEnd } from './reveal'
 import { paperStyle } from './Skills'
 
-const HOLD_MS = 4800
+const HOLD_MS = 2000
 
 type Sheet = {
   id: string
@@ -87,7 +87,7 @@ const behind = (d: number) => {
 }
 
 // A stack of paper sheets that moves like the Field notes pile: the top sheet slides out and tucks in at the
-// back, the rest fan behind it. Swipe, click, use the arrow keys or the dots. It turns by itself until hovered.
+// back, the rest fan behind it. Swipe, click, use the arrow keys or the dots. It turns by itself every 2 seconds until hovered.
 export function HeroStack() {
   const [index, setIndex] = useState(0)
   const [drag, setDrag] = useState(0)
@@ -147,7 +147,7 @@ export function HeroStack() {
       className="hero__deck"
       onPointerEnter={(e) => e.pointerType === 'mouse' && setPaused(true)}
       onPointerLeave={(e) => e.pointerType === 'mouse' && setPaused(false)}
-      onFocus={() => setPaused(true)}
+      onFocus={(e) => e.target.matches(':focus-visible') && setPaused(true)}
       onBlur={() => setPaused(false)}
     >
       <div
