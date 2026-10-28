@@ -1,6 +1,5 @@
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import type { FieldNote } from '../data/content'
-import { paperStyle } from './Skills'
 
 function Figure({ f }: { f: FieldNote }) {
   return (
@@ -20,107 +19,88 @@ function Figure({ f }: { f: FieldNote }) {
   )
 }
 
-// All the field notes as one stack of papers, like the Core Expertise cards on a phone: swipe the top sheet away,
-// or use the arrows. Each sheet is cut to its own photo, category and caption, so taller sheets show behind the one on top.
-export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string }) {
-  const [index, setIndex] = useState(0)
-  const [drag, setDrag] = useState(0)
-  const [dragging, setDragging] = useState(false)
-  const from = useRef<{ x: number; t: number } | null>(null)
+// All the field notes as a loose pile of papers. Click a page and it lifts out of the pile, straightens up and shows
+// its photo and caption; click it again (or Esc, or the pile button) and it drops back on top of the pile.
+// Each sheet sits at its own scatter position, worked out from its place in the list so it never jumps on render.
+const PILE_SCALE = 0.6
 
-  // The sheet that was just on top slides out a little, then tucks in at the back of the pile.
-  const [leaving, setLeaving] = useState<number | null>(null)
-  const prev = useRef(0)
-  useLayoutEffect(() => {
-    const was = prev.current
-    prev.current = index
-    if (was === index || (index - was + notes.length) % notes.length !== 1) return
-    setLeaving(was)
-    const id = window.setTimeout(() => setLeaving(null), 260)
-    return () => window.clearTimeout(id)
-  }, [index, notes.length])
+function scatter(i: number) {
+  const a = i * 2.399963 // golden angle, so neighbours never land on top of each other
+  return {
+    x: Math.cos(a) * 18,
+    y: Math.sin(a) * 15,
+    r: ((i * 37) % 23) - 11, // -11 to +11 degrees, but never the same run twice in a row
+  }
+}
+
+export function FieldStrip({ notes, label }: { notes: FieldNote[]; label: string }) {
+  const [open, setOpen] = useState<number | null>(null)
+  // Pile order, bottom to top. A sheet that was just put back goes on top.
+  const [order, setOrder] = useState(() => notes.map((_, i) => i))
+
+  const close = () => {
+    if (open === null) return
+    setOrder((o) => [...o.filter((i) => i !== open), open])
+    setOpen(null)
+  }
+  const show = (i: number) => {
+    if (open !== null && open !== i) setOrder((o) => [...o.filter((j) => j !== open), open])
+    setOpen(i)
+  }
+  const step = (by: number) => show(((((open ?? (by > 0 ? -1 : 0)) + by) % notes.length) + notes.length) % notes.length)
+
+  useEffect(() => {
+    if (open === null) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
 
   const sheetStyle = (i: number): CSSProperties => {
-    if (i === leaving) {
-      return { transform: 'translateX(34%) rotate(4deg)', zIndex: 101, transition: 'transform 260ms ease-out' }
-    }
-    const n = notes.length
-    const d = (i - index + n) % n
-    if (d === n - 1 && n > 4) return { ...paperStyle(3, 0, false), opacity: 1, zIndex: 90 } // the one that just went to the back
-    return paperStyle(d, i === index ? drag : 0, dragging)
-  }
-
-  const go = (n: number) => setIndex((n + notes.length) % notes.length) // wraps: past the last sheet is the first
-
-  // While a mouse is over the stack the sheets swipe by themselves, one every 2.5 seconds, looping back to the first.
-  const [hovering, setHovering] = useState(false)
-  useEffect(() => {
-    if (!hovering || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % notes.length), 2500)
-    return () => window.clearInterval(id)
-  }, [hovering, notes.length])
-  const onDown = (e: PointerEvent) => {
-    from.current = { x: e.clientX, t: performance.now() }
-    setDragging(true)
-  }
-  const onMove = (e: PointerEvent) => {
-    if (from.current) setDrag(e.clientX - from.current.x)
-  }
-  const onUp = (e: PointerEvent) => {
-    const start = from.current
-    from.current = null
-    setDragging(false)
-    setDrag(0)
-    if (!start) return
-    const dx = e.clientX - start.x
-    const fast = Math.abs(dx) / Math.max(1, performance.now() - start.t) > 0.4
-    if (Math.abs(dx) > 70 || (fast && Math.abs(dx) > 24)) go(index + (dx > 0 ? 1 : -1))
+    const z = i === open ? 200 : order.indexOf(i) + 1
+    if (i === open) return { transform: 'translate(0, 0) rotate(0deg) scale(1)', zIndex: z }
+    const { x, y, r } = scatter(i)
+    return { transform: `translate(${x}%, ${y}%) rotate(${r}deg) scale(${PILE_SCALE})`, zIndex: z }
   }
 
   return (
     <>
-      <ul
-        className="field-notes__strip field-notes__deck"
-        onPointerEnter={(e) => e.pointerType === 'mouse' && setHovering(true)}
-        onPointerLeave={() => setHovering(false)}
-        onPointerDown={onDown}
-        onPointerMove={onMove}
-        onPointerUp={onUp}
-        onPointerCancel={onUp}
-        onKeyDown={(e) => {
-          if (e.key === 'ArrowRight') go(index + 1)
-          if (e.key === 'ArrowLeft') go(index - 1)
-        }}
-        tabIndex={0}
-        aria-roledescription="carousel"
-        aria-label={`${label}, swipe or use the arrows`}
-      >
+      <ul className="field-notes__strip field-notes__pile" aria-label={label}>
         {notes.map((f, i) => (
           <li
             key={f.fig}
-            className="field-notes__paper"
+            className={i === open ? 'field-notes__paper is-open' : 'field-notes__paper'}
             style={sheetStyle(i)}
-            aria-hidden={i !== index ? true : undefined}
+            role="button"
+            tabIndex={0}
+            aria-expanded={i === open}
+            aria-label={`${i === open ? 'Put back' : 'Open'} ${f.caption}`}
+            onClick={() => (i === open ? close() : show(i))}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                i === open ? close() : show(i)
+              }
+            }}
           >
             <Figure f={f} />
           </li>
         ))}
       </ul>
       <div className="deck__nav">
-        <button
-          type="button"
-          className="deck__button"
-          onClick={() => go(index - 1)}
-          aria-label="Previous"
-        >
+        <button type="button" className="deck__button" onClick={() => step(-1)} aria-label="Previous page">
           <span aria-hidden="true">←</span>
         </button>
         <button
           type="button"
-          className="deck__button"
-          onClick={() => go(index + 1)}
-          aria-label="Next"
+          className="field-notes__back label"
+          onClick={close}
+          disabled={open === null}
+          tabIndex={open === null ? -1 : 0}
         >
+          {open === null ? 'Pick a page' : 'Back to the pile'}
+        </button>
+        <button type="button" className="deck__button" onClick={() => step(1)} aria-label="Next page">
           <span aria-hidden="true">→</span>
         </button>
       </div>

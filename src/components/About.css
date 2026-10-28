@@ -249,17 +249,18 @@
   }
 }
 
-/* ---------- Every group of field notes is a stack of papers, like Core Expertise ---------- */
-.field-notes__deck {
-  max-width: 480px;
+/* ---------- Field notes are a scattered pile of papers; click one to read it ---------- */
+.field-notes__pile {
+  display: grid;
   grid-template-columns: minmax(0, 1fr);
-  align-items: start; /* each sheet is as tall as its own content; taller ones show behind the top sheet */
+  align-items: center; /* every sheet centres on the same point, whatever its height */
   gap: 0;
-  padding: 0 var(--space-2) 40px;
-  touch-action: pan-y;
+  max-width: 480px;
+  margin: 0;
+  padding: var(--space-2) var(--space-2) var(--space-3);
+  list-style: none;
   user-select: none;
   -webkit-user-select: none;
-  outline-offset: 4px;
 }
 .field-notes__paper {
   grid-area: 1 / 1;
@@ -269,8 +270,27 @@
   box-shadow:
     0 1px 0 rgb(28 27 25 / 0.08),
     0 14px 24px -14px rgb(28 27 25 / 0.35);
-  transform-origin: 50% 0;
+  transition:
+    transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 240ms ease;
+  cursor: pointer;
   will-change: transform;
+}
+.field-notes__paper:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+.field-notes__paper.is-open {
+  box-shadow:
+    0 1px 0 rgb(28 27 25 / 0.08),
+    0 28px 40px -18px rgb(28 27 25 / 0.45);
+}
+@media (hover: hover) {
+  .field-notes__paper:not(.is-open):hover {
+    box-shadow:
+      0 1px 0 rgb(28 27 25 / 0.08),
+      0 20px 30px -14px rgb(28 27 25 / 0.5);
+  }
 }
 .field-notes__paper .figure {
   gap: 0;
@@ -282,17 +302,32 @@
 .field-notes__figures .deck__nav {
   max-width: 480px;
 }
+.field-notes__back {
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  background: none;
+  color: var(--graphite);
+  cursor: pointer;
+}
+.field-notes__back:disabled {
+  cursor: default;
+}
 .field-notes__sheet-label {
   margin: 0 0 var(--space-1);
   color: var(--graphite);
 }
 
-/* On desktop the stack sits in the middle of its column at 75% of its width. */
+/* On desktop the pile sits in the middle of its column at 75% of its width. */
 @media (min-width: 1024px) {
-  .field-notes__deck,
+  .field-notes__pile,
   .field-notes__figures .deck__nav {
     max-width: none;
     width: 75%;
     margin-inline: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .field-notes__paper {
+    transition-duration: 1ms;
   }
 }
