@@ -222,36 +222,33 @@
   }
 }
 
-/* Two columns from tablet up: copy on the left, the puzzle spanning the full height of the copy on the right. */
+/* Two columns from tablet up: the copy block is centred against the card stack on the right.
+   The stack scales with the screen height so the next sheet always shows below the fold. */
+.hero__text {
+  display: contents;
+}
 @media (min-width: 600px) {
   .hero__intro {
-    grid-template-columns: minmax(0, 1fr) clamp(260px, 38vw, 460px);
-    grid-template-areas:
-      'title portrait'
-      'support portrait';
-    grid-template-rows: auto 1fr;
+    --deck-w: clamp(240px, calc((100svh - 293px) / 1.75), 420px);
+    grid-template-columns: minmax(0, 1fr) min(var(--deck-w), 38vw);
+    align-items: center;
     gap: 0 var(--gutter);
-    margin-bottom: var(--space-4);
+    margin-bottom: 0;
+  }
+  .hero__text {
+    display: block;
   }
   .hero__title {
-    grid-area: title;
-    align-self: start;
-    padding-bottom: calc(var(--space-4) + 32px);
+    padding-bottom: calc(var(--space-4) + 16px);
   }
-  .hero__portrait {
-    grid-area: portrait;
+  .hero__deck {
+    margin-top: 0;
   }
-  .hero__puzzle {
-    position: absolute;
-    inset: 40px 0 0; /* 40px of air under the sheet line, bottom still level with the buttons */
-    grid-template-rows: 1fr 1fr;
+  .hero {
+    padding-bottom: var(--space-4);
   }
-  .hero__piece {
-    aspect-ratio: auto;
-  }
-  .hero__support {
-    grid-area: support;
-    align-self: start;
+  .hero__sheet {
+    margin-bottom: var(--space-4);
   }
 }
 
