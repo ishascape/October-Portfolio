@@ -225,7 +225,7 @@
 /* Two columns from tablet up: copy on the left, the puzzle spanning the full height of the copy on the right. */
 @media (min-width: 600px) {
   .hero__intro {
-    grid-template-columns: minmax(0, 1fr) clamp(220px, 34vw, 340px);
+    grid-template-columns: minmax(0, 1fr) clamp(260px, 38vw, 460px);
     grid-template-areas:
       'title portrait'
       'support portrait';
@@ -377,5 +377,135 @@
 @media (min-width: 760px) {
   .hero__puzzle--single .hero__piece {
     aspect-ratio: auto;
+  }
+}
+
+/* ---------- Paper stack: the top sheet flips up over its top edge to show the next ---------- */
+.hero__deck {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  min-width: 0;
+  height: 100%;
+}
+.hero__sheets {
+  position: relative;
+  perspective: 1400px;
+  cursor: pointer;
+  min-height: 0;
+  margin: 8px 10px 0 6px; /* room for the sheets peeking out behind */
+  aspect-ratio: 4 / 5;
+}
+.deck-sheet {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: 0 6px 16px -10px rgb(28 27 25 / 0.45);
+  transform-origin: 50% 0;
+  transition:
+    transform 700ms cubic-bezier(0.3, 0.7, 0.2, 1),
+    opacity 400ms ease-out 300ms;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.deck-sheet[data-p='0'] {
+  z-index: 4;
+}
+.deck-sheet[data-p='1'] {
+  z-index: 3;
+  transform: translate(5px, 5px) rotate(1.2deg);
+}
+.deck-sheet[data-p='2'] {
+  z-index: 2;
+  transform: translate(9px, 9px) rotate(-0.8deg);
+}
+.deck-sheet[data-p='3'] {
+  z-index: 1;
+  transform: translate(2px, 12px) rotate(1.6deg);
+}
+.deck-sheet[data-flip='on'] {
+  transform: rotateX(-104deg);
+  opacity: 0;
+}
+.deck-sheet[data-jump='on'] {
+  transition: none;
+}
+/* Back sheets are only edges: their contents stay hidden until they come to the top. */
+.deck-sheet:not([data-p='0']) > * {
+  visibility: hidden;
+}
+.deck-sheet[data-p='1'] > * {
+  visibility: visible;
+}
+.deck-sheet__media {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-shade);
+  min-height: 0;
+}
+.deck-sheet__cap {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px 12px;
+  border-top: 1.5px solid var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+}
+.deck-sheet__cap strong {
+  font-weight: 600;
+}
+.deck-sheet__cap span {
+  color: var(--graphite);
+  text-wrap: pretty;
+}
+.hero__dots {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+.hero__dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.hero__dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  transition: background var(--dur-micro) var(--ease-pen);
+}
+.hero__dot[aria-current='true']::before {
+  background: var(--ink);
+}
+.hero__dot:focus-visible {
+  outline: 2px solid var(--marker);
+  outline-offset: 0;
+}
+@media (min-width: 600px) {
+  .hero__deck {
+    position: absolute;
+    inset: 40px 0 0;
+  }
+  .hero__sheets {
+    aspect-ratio: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck-sheet {
+    transition: opacity 300ms ease-out;
+  }
+  .deck-sheet[data-flip='on'] {
+    transform: none;
   }
 }

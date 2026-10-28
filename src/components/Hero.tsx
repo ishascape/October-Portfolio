@@ -1,5 +1,5 @@
 import { contact } from '../data/content'
-import { HeroPuzzle } from './HeroPuzzle'
+import { HeroStack } from './HeroStack'
 import './Hero.css'
 
 export function Hero() {
@@ -30,11 +30,11 @@ export function Hero() {
               </svg>
             </p>
             <h1 id="hero-heading" className="display">
-              <span className="hero__line">I love a good product puzzle.</span>
+              <span className="hero__line">I design products and the strategy behind them.</span>
             </h1>
           </div>
           <figure className="hero__portrait">
-            <HeroPuzzle />
+            <HeroStack />
           </figure>
           <div className="hero__support">
             <div className="hero__copy">
