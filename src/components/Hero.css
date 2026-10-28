@@ -312,7 +312,7 @@
 @keyframes hero-in {
   from {
     opacity: 0;
-    translate: 0 12px;
+    translate: 0 4px;
   }
   to {
     opacity: 1;
@@ -358,6 +358,11 @@
 }
 .hero__sheet {
   --at: 0ms;
+}
+.hero__role,
+.hero__copy > *,
+.hero__actions {
+  animation-name: hero-blur-in;
 }
 .hero__piece {
   animation-name: hero-in-fade;
@@ -444,6 +449,17 @@
   to {
     max-height: 520px;
     overflow: visible;
+  }
+}
+/* Body text comes into focus rather than rising into place. */
+@keyframes hero-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
   }
 }
 @keyframes hero-in-fade {
