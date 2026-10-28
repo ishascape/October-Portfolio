@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react'
 import portrait from '../assets/ashni-portrait.webp'
 import portraitSketch from '../assets/ashni-portrait-sketch.webp'
 import vfShot from '../assets/vf-card-desktop.webp'
 import hostShot from '../assets/hosthq-card-workspace.webp'
 import taShot from '../assets/ta-card-desktop.webp'
 import { revealAt, revealEnd } from './reveal'
+import { paperStyle } from './Skills'
 
-const FLIP_MS = 700
 const HOLD_MS = 4800
 
-type Sheet = { id: string; name: string; line: string; src?: string; alt: string; position?: string }
+type Sheet = { id: string; name: string; line: string; src?: string; alt: string }
 
 const sheets: Sheet[] = [
   {
@@ -24,7 +24,6 @@ const sheets: Sheet[] = [
     line: 'Reworked marketplace search: +30% qualified enquiries.',
     src: vfShot,
     alt: 'Venue Finder search results on desktop.',
-    position: '0% 30%',
   },
   {
     id: 'hosthq',
@@ -32,7 +31,6 @@ const sheets: Sheet[] = [
     line: 'Took a host platform from research to a scoped MVP.',
     src: hostShot,
     alt: 'HostHQ host workspace showing requests and proposals.',
-    position: '0% 30%',
   },
   {
     id: 'treeassist',
@@ -40,47 +38,64 @@ const sheets: Sheet[] = [
     line: 'Made a complex research workflow easy to finish.',
     src: taShot,
     alt: 'TreeAssist family tree research workflow on desktop.',
-    position: '0% 30%',
   },
 ]
 
-// A stack of paper sheets. The top sheet flips up over its top edge, like a Field Notes pad,
-// to show the next one: Ashni, then a case study, each with a one-line summary.
+// A stack of paper sheets that moves like the Field notes pile: the top sheet slides out and tucks in at the
+// back, the rest fan behind it. Swipe, click, use the arrow keys or the dots. It turns by itself until hovered.
 export function HeroStack() {
-  const [top, setTop] = useState(0)
-  const [flipping, setFlipping] = useState(false)
-  const [wrapped, setWrapped] = useState<number | null>(null)
+  const [index, setIndex] = useState(0)
+  const [drag, setDrag] = useState(0)
+  const [dragging, setDragging] = useState(false)
   const [paused, setPaused] = useState(false)
-  const target = useRef(0)
+  const from = useRef<{ x: number; t: number } | null>(null)
   const n = sheets.length
 
-  const flipTo = useCallback(
-    (next: number) => {
-      if (flipping || next === top) return
-      target.current = next
-      setFlipping(true)
-      window.setTimeout(() => {
-        setWrapped(top)
-        setTop(target.current)
-        setFlipping(false)
-        window.setTimeout(() => setWrapped(null), 60)
-      }, FLIP_MS)
-    },
-    [flipping, top],
-  )
+  // The sheet that was just on top slides out a little, then tucks in at the back of the pile.
+  const [leaving, setLeaving] = useState<number | null>(null)
+  const prev = useRef(0)
+  useLayoutEffect(() => {
+    const was = prev.current
+    prev.current = index
+    if (was === index || (index - was + n) % n !== 1) return
+    setLeaving(was)
+    const id = window.setTimeout(() => setLeaving(null), 260)
+    return () => window.clearTimeout(id)
+  }, [index, n])
+
+  const go = (i: number) => setIndex((i + n) % n)
 
   useEffect(() => {
-    if (paused || flipping) return
-    const t = window.setTimeout(() => flipTo((top + 1) % n), HOLD_MS)
-    return () => window.clearTimeout(t)
-  }, [paused, flipping, top, n, flipTo])
+    if (paused || dragging || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = window.setTimeout(() => setIndex((i) => (i + 1) % n), HOLD_MS)
+    return () => window.clearTimeout(id)
+  }, [paused, dragging, index, n])
 
-  // No point flipping a hidden tab.
+  // No point turning sheets in a hidden tab.
   useEffect(() => {
     const onVis = () => setPaused(document.hidden)
     document.addEventListener('visibilitychange', onVis)
     return () => document.removeEventListener('visibilitychange', onVis)
   }, [])
+
+  const onDown = (e: PointerEvent) => {
+    from.current = { x: e.clientX, t: performance.now() }
+    setDragging(true)
+  }
+  const onMove = (e: PointerEvent) => {
+    if (from.current) setDrag(e.clientX - from.current.x)
+  }
+  const onUp = (e: PointerEvent) => {
+    const start = from.current
+    from.current = null
+    setDragging(false)
+    setDrag(0)
+    if (!start) return
+    const dx = e.clientX - start.x
+    const fast = Math.abs(dx) / Math.max(1, performance.now() - start.t) > 0.4
+    if (Math.abs(dx) > 70 || (fast && Math.abs(dx) > 24)) go(index + (dx > 0 ? 1 : -1))
+    else if (Math.abs(dx) < 6) go(index + 1) // a tap turns the sheet
+  }
 
   return (
     <div
@@ -90,32 +105,44 @@ export function HeroStack() {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="hero__sheets" onClick={() => flipTo((top + 1) % n)}>
+      <div
+        className="hero__sheets"
+        onPointerDown={onDown}
+        onPointerMove={onMove}
+        onPointerUp={onUp}
+        onPointerCancel={onUp}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowRight') go(index + 1)
+          if (e.key === 'ArrowLeft') go(index - 1)
+        }}
+        tabIndex={0}
+        aria-roledescription="carousel"
+        aria-label="Ashni and selected work, swipe or use the arrows"
+      >
         {sheets.map((s, k) => {
-          const p = (k - top + n) % n
+          const d = (k - index + n) % n
+          const style =
+            k === leaving
+              ? { transform: 'translateX(34%) rotate(4deg)', zIndex: 101, transition: 'transform 260ms ease-out' }
+              : paperStyle(d, k === index ? drag : 0, dragging)
           return (
-            <article
-              key={s.id}
-              className="deck-sheet"
-              data-p={p}
-              data-flip={flipping && p === 0 ? 'on' : undefined}
-              data-jump={wrapped === k ? 'on' : undefined}
-              aria-hidden={p === 0 ? undefined : true}
-            >
+            <article key={s.id} className="deck-sheet" style={style} aria-hidden={d === 0 ? undefined : true}>
               <div
-                className={s.src ? 'deck-sheet__media' : 'deck-sheet__media hero__piece--face'}
+                className={
+                  s.src ? 'deck-sheet__media deck-sheet__media--screen' : 'deck-sheet__media hero__piece--face'
+                }
                 onPointerMove={s.src ? undefined : revealAt}
                 onPointerLeave={s.src ? undefined : revealEnd}
               >
                 <img
                   className="hero__piece-photo"
                   src={s.src ?? portrait}
-                  alt={p === 0 ? s.alt : ''}
+                  alt={d === 0 ? s.alt : ''}
                   width={s.src ? 1600 : 960}
                   height={s.src ? 1000 : 1200}
-                  style={s.position ? { objectPosition: s.position } : undefined}
                   fetchPriority={k === 0 ? 'high' : undefined}
                   decoding="async"
+                  draggable={false}
                 />
                 {!s.src && (
                   <div className="hero__piece-sketch" aria-hidden="true">
@@ -138,8 +165,8 @@ export function HeroStack() {
             type="button"
             className="hero__dot"
             aria-label={s.name}
-            aria-current={k === top ? 'true' : undefined}
-            onClick={() => flipTo(k)}
+            aria-current={k === index ? 'true' : undefined}
+            onClick={() => go(k)}
           />
         ))}
       </div>
