@@ -124,6 +124,22 @@
   font-size: 16px;
 }
 
+/* HostHQ: the product image runs the full width, with the facts in a row under it. */
+@media (min-width: 900px) {
+  .case__visual--wide {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+  .case__visual--wide .case__meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1200px) {
+  .case__visual--wide .case__meta {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
 /* ---------- TL;DR ---------- */
 
 .case__tldr {

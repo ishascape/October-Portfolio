@@ -96,7 +96,13 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <p className="case__subtitle">{page.subtitle}</p>
             </div>
 
-            <div className={page.heroImage ? 'case__visual case__visual--image' : 'case__visual'}>
+            <div
+              className={
+                page.heroImage
+                  ? `case__visual case__visual--image${id === 'hosthq' ? ' case__visual--wide' : ''}`
+                  : 'case__visual'
+              }
+            >
               {page.heroImage ? (
                 <figure className="case__hero-image">
                   <img
