@@ -8,7 +8,7 @@ import dsShot from '../assets/hero-sheet-design-systems.webp'
 import { revealAt, revealEnd } from './reveal'
 import { paperStyle } from './Skills'
 
-const HOLD_MS = 2000
+const HOLD_MS = 3000
 
 type Sheet = {
   id: string
