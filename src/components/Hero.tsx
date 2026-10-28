@@ -45,7 +45,7 @@ export function Hero() {
                 </p>
                 <p className="hero__questions">
                   I'm a product designer who finds the patterns, challenges the assumptions and turns complexity into
-                  experiences that feel remarkably simple.
+                  experiences that feel simple.
                 </p>
               </div>
               <div className="hero__actions">
