@@ -64,12 +64,12 @@ const sheets: Sheet[] = [
   {
     id: 'design-systems',
     name: 'Design systems',
-    line: 'Button states, tokens and rules written down once.',
+    line: 'Component states, tokens and rules written down once.',
     chips: ['Components', 'Tokens', 'Accessibility'],
     src: dsShot,
-    alt: 'A button component sheet showing enabled, disabled, hovered, focused and pressed states.',
-    w: 800,
-    h: 800,
+    alt: 'A component sheet showing enabled, disabled, hovered, focused and pressed states.',
+    w: 1200,
+    h: 1200,
   },
 ]
 
