@@ -149,6 +149,7 @@ body::after {
   min-height: var(--tap);
   padding: 0 var(--space-4);
   border: var(--line-building) solid var(--ink);
+  border-radius: var(--radius);
   background: transparent;
   text-decoration: none;
   cursor: pointer;
@@ -206,7 +207,7 @@ body::after {
   background-color: var(--paper);
   box-shadow:
     0 -1px 0 var(--ink),
-    0 -12px 24px -12px rgb(28 27 25 / 0.18);
+    0 -12px 24px -12px rgb(var(--shadow-ink) / 0.18);
 }
 .paper-sheet:first-child {
   box-shadow: none;
