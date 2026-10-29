@@ -84,7 +84,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         <div className="container">
           <p className="label case__sheet">
             <a href={homeHref('#work')}>← Selected work</a>
-            <span>Drawing {study.number} · Case study</span>
           </p>
 
           <div className="case__intro">
@@ -341,7 +340,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                     loading="lazy"
                     decoding="async"
                   />
-                  <figcaption className={s.image.plainCaption ? 'case__caption-plain' : 'annotation'}>{s.image.caption}</figcaption>
+                  <figcaption className={s.image.plainCaption ? 'case__caption-plain' : 'annotation'}>
+                    {s.image.caption}
+                  </figcaption>
                 </figure>
               )}
               {s.figures?.map((f) => (

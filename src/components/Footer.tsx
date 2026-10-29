@@ -100,21 +100,21 @@ export function Footer({ onHome }: { onHome: boolean }) {
                     </div>
                   )}
                   <div className="titlesheet__row">
-                    <dt className="label titlesheet__field">Sheets</dt>
+                    <dt className="label titlesheet__field">Pages</dt>
                     <dd>
-                      <nav aria-label="Sheet index">
+                      <nav aria-label="Page index">
                         <ul className="titlesheet__index">
                           <li>
-                            <a href={sectionHref('top', onHome)}>00 Introduction</a>
+                            <a href={sectionHref('top', onHome)}>Introduction</a>
                           </li>
                           <li>
-                            <a href={sectionHref('work', onHome)}>01 Work</a>
+                            <a href={sectionHref('work', onHome)}>Work</a>
                           </li>
                           <li>
-                            <a href={sectionHref('about', onHome)}>02 About</a>
+                            <a href={sectionHref('about', onHome)}>About</a>
                           </li>
                           <li>
-                            <a href={sectionHref('contact', onHome)}>03 Contact</a>
+                            <a href={sectionHref('contact', onHome)}>Contact</a>
                           </li>
                           {contact.resume && (
                             <li>

@@ -15,20 +15,14 @@ export function Hero() {
         <i />
       </span>
       <div className="container">
-        <p className="label hero__sheet">
-          <span>Sheet 00 / 03 · Introduction · Senior Product Designer, Sydney, AU</span>
-          <span className="hero__sheet-right">
-            <span aria-hidden="true">Scale: Responsive NTS</span>
-            {/* Appears once something has been drawn with the marker (see inkReveal.ts). */}
-            <button
-              type="button"
-              className="hero__clear"
-              onClick={() => ref.current?.dispatchEvent(new Event('hero:clear'))}
-            >
-              Clear scribbles
-            </button>
-          </span>
-        </p>
+        {/* Appears once something has been drawn with the marker (see inkReveal.ts). */}
+        <button
+          type="button"
+          className="hero__clear"
+          onClick={() => ref.current?.dispatchEvent(new Event('hero:clear'))}
+        >
+          Clear scribbles
+        </button>
 
         <div className="hero__intro">
           <div className="hero__text">
@@ -56,10 +50,6 @@ export function Hero() {
                 <p className="hero__scene">Give me the complicated stuff.</p>
                 <p className="hero__questions">
                   The disconnected workflows. The underperforming funnels. The products with more potential than polish.
-                </p>
-                <p className="hero__questions">
-                  I'm a product designer who finds the patterns, challenges the assumptions and turns complexity into
-                  experiences that feel simple.
                 </p>
               </div>
               <div className="hero__actions">

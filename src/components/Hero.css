@@ -1,20 +1,12 @@
 .hero {
   position: relative;
-  padding-block: var(--space-4) calc(var(--space-6) + 24px);
+  padding-block: calc(var(--space-4) + 24px) calc(var(--space-6) + 24px);
   /* Faint 24px drawing grid, on the hero only */
   background-image:
     linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
     linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
   background-size: 24px 24px;
   border-bottom: var(--line-thin) solid var(--ink);
-}
-
-.hero__sheet {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
-  margin-bottom: calc(var(--space-5) + 16px);
 }
 
 .hero__intro {
@@ -258,16 +250,6 @@
   .hero {
     padding-bottom: var(--space-4);
   }
-  .hero__sheet {
-    margin-bottom: var(--space-4);
-  }
-}
-
-/* On phones the label has room for the role or the scale, not both. */
-@media (max-width: 599px) {
-  .hero__sheet span[aria-hidden='true'] {
-    display: none;
-  }
 }
 
 /* ---------- Load: a stack of sheets fans out and settles, then the page comes in ---------- */
@@ -318,7 +300,6 @@
 }
 /* Entrance, about 2.4s end to end: the title shows large and centred (0-1.3s) while the pile is dealt in (0.5-1.4s),
    then glides into place (1.3-1.9s), the card flips at 1.9s and the rest of the copy follows by 2.4s. */
-.hero__sheet,
 .hero__hello,
 .hero__title .display,
 .hero__role,
@@ -352,9 +333,6 @@
 .hero__actions {
   --at: 2000ms;
   --dur: 400ms;
-}
-.hero__sheet {
-  --at: 0ms;
 }
 .hero__role,
 .hero__copy > *,
@@ -471,7 +449,6 @@
   .hero__stack {
     display: none;
   }
-  .hero__sheet,
   .hero__hello,
   .hero__title .display,
   .hero__role,
@@ -784,9 +761,6 @@
 .hero__ink .hero__clear {
   visibility: hidden; /* the live ones sit on top */
 }
-.hero__sheet-right {
-  position: relative;
-}
 .hero__clear {
   display: none;
 }
@@ -794,8 +768,8 @@
   .hero[data-scribbled] .hero__clear {
     display: inline-flex;
     position: absolute;
-    top: calc(100% + 14px);
-    right: 0;
+    top: 0;
+    right: var(--margin);
     align-items: center;
     padding: 4px 12px;
     border: var(--line-thin) solid var(--ink);
