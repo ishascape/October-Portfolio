@@ -1,6 +1,7 @@
-// Marker reveal for the hero: drawing with the pointer uncovers a dark copy of the hero underneath.
-// The copy is a clone of the section made when the pointer enters, so it matches the live puzzle state.
-const BRUSH = 38 // px, marker width
+// Marker reveal for the hero: drawing with the pointer held down uncovers a dark copy of the hero underneath.
+// The copy is a clone of the section made when a stroke starts, so it matches the live puzzle state.
+const NIB_W = 9 // px, chisel nib thickness
+const NIB_H = 36 // px, chisel nib length
 const HOLD = 2200 // ms a stroke stays before it fades
 const FADE = 1400 // ms fade out
 const NOTE_AFTER = 320 // px of drawing before the "Draw smth" note goes
@@ -13,6 +14,7 @@ export function inkReveal(hero: HTMLElement) {
   ink.className = 'hero__ink'
   ink.setAttribute('aria-hidden', 'true')
   ink.inert = true
+  ink.style.opacity = '0' // shown only once the pen is down
   hero.appendChild(ink)
 
   const canvas = document.createElement('canvas')
@@ -26,6 +28,7 @@ export function inkReveal(hero: HTMLElement) {
   note.textContent = 'Draw smth 😉'
   hero.appendChild(note)
   let drawn = 0
+  let pen = false
 
   let last: { x: number; y: number } | null = null
   let lastDrawn = 0
@@ -77,54 +80,78 @@ export function inkReveal(hero: HTMLElement) {
     raf = requestAnimationFrame(tick)
   }
 
-  const onEnter = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return
-    if (!ink.firstChild || ink.style.opacity === '0') rebuild()
+  // Angled chisel tip: a flat nib tilted 50deg, stamped along the path so strokes thicken and thin with direction.
+  const stamp = (x: number, y: number) => {
+    ctx.save()
+    ctx.translate(x, y)
+    ctx.rotate((-50 * Math.PI) / 180)
+    ctx.fillRect((-NIB_W * SCALE) / 2, (-NIB_H * SCALE) / 2, NIB_W * SCALE, NIB_H * SCALE)
+    ctx.restore()
   }
 
-  const onMove = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return
-    const r = hero.getBoundingClientRect()
-    const x = (e.clientX - r.left) * SCALE
-    const y = (e.clientY - r.top) * SCALE
-    if (!ink.firstChild) rebuild()
-    ink.style.opacity = '1'
-    ctx.globalCompositeOperation = 'source-over'
-    ctx.strokeStyle = '#000'
-    ctx.lineCap = 'round'
-    ctx.lineJoin = 'round'
-    ctx.lineWidth = BRUSH * SCALE
-    ctx.beginPath()
-    const from = last ?? { x, y }
-    ctx.moveTo(from.x, from.y)
-    ctx.lineTo(x + 0.01, y)
-    ctx.stroke()
-    drawn += Math.hypot(x - from.x, y - from.y) / SCALE
+  const nearNote = (x: number, y: number) => {
     if (drawn < NOTE_AFTER) {
-      note.style.transform = `translate(${x / SCALE + 20}px, ${y / SCALE + 26}px)`
       note.style.left = '0'
       note.style.top = '0'
-      note.dataset.following = 'on'
+      note.style.transform = `translate(${x / SCALE + 20}px, ${y / SCALE + 26}px)`
     } else {
       note.dataset.gone = 'on'
     }
+  }
+
+  const point = (e: PointerEvent) => {
+    const r = hero.getBoundingClientRect()
+    return { x: (e.clientX - r.left) * SCALE, y: (e.clientY - r.top) * SCALE }
+  }
+
+  // Drawing needs the button held down; clicks on links, buttons and puzzle tiles still do their own thing.
+  const onDown = (e: PointerEvent) => {
+    if (e.pointerType === 'touch' || e.button !== 0) return
+    if ((e.target as Element).closest('a, button, [role="button"], input, textarea, select')) return
+    e.preventDefault() // no text selection or image drag while drawing
+    if (!ink.firstChild || ink.style.opacity === '0') rebuild()
+    hero.setPointerCapture(e.pointerId)
+    pen = true
+    ink.style.opacity = '1'
+    ctx.globalCompositeOperation = 'source-over'
+    ctx.fillStyle = '#000'
+    const { x, y } = point(e)
+    stamp(x, y)
     last = { x, y }
     lastDrawn = performance.now()
     dirty = true
     if (!raf) raf = requestAnimationFrame(tick)
   }
 
-  const onLeave = () => {
+  const onMove = (e: PointerEvent) => {
+    if (e.pointerType === 'touch') return
+    const { x, y } = point(e)
+    nearNote(x, y)
+    if (!pen || !last) return
+    const dist = Math.hypot(x - last.x, y - last.y)
+    const steps = Math.max(1, Math.ceil(dist / 1.5))
+    for (let k = 1; k <= steps; k++) stamp(last.x + ((x - last.x) * k) / steps, last.y + ((y - last.y) * k) / steps)
+    drawn += dist / SCALE
+    last = { x, y }
+    lastDrawn = performance.now()
+    dirty = true
+    if (!raf) raf = requestAnimationFrame(tick)
+  }
+
+  const onUp = () => {
+    pen = false
     last = null
   }
 
-  hero.addEventListener('pointerenter', onEnter)
+  hero.addEventListener('pointerdown', onDown)
   hero.addEventListener('pointermove', onMove)
-  hero.addEventListener('pointerleave', onLeave)
+  hero.addEventListener('pointerup', onUp)
+  hero.addEventListener('pointercancel', onUp)
   return () => {
-    hero.removeEventListener('pointerenter', onEnter)
+    hero.removeEventListener('pointerdown', onDown)
     hero.removeEventListener('pointermove', onMove)
-    hero.removeEventListener('pointerleave', onLeave)
+    hero.removeEventListener('pointerup', onUp)
+    hero.removeEventListener('pointercancel', onUp)
     cancelAnimationFrame(raf)
     ink.remove()
     note.remove()
