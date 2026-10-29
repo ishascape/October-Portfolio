@@ -1,10 +1,14 @@
+import { useEffect, useRef } from 'react'
 import { contact } from '../data/content'
 import { HeroStack } from './HeroStack'
+import { inkReveal } from './inkReveal'
 import './Hero.css'
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null)
+  useEffect(() => (ref.current ? inkReveal(ref.current) : undefined), [])
   return (
-    <section id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
+    <section ref={ref} id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
       {/* Loose sheets that fan out behind the page on load, then settle into it. */}
       <span className="hero__stack" aria-hidden="true">
         <i />
@@ -13,7 +17,17 @@ export function Hero() {
       <div className="container">
         <p className="label hero__sheet">
           <span>Sheet 00 / 03 · Introduction · Senior Product Designer, Sydney, AU</span>
-          <span aria-hidden="true">Scale: Responsive NTS</span>
+          <span className="hero__sheet-right">
+            <span aria-hidden="true">Scale: Responsive NTS</span>
+            {/* Appears once something has been drawn with the marker (see inkReveal.ts). */}
+            <button
+              type="button"
+              className="hero__clear"
+              onClick={() => ref.current?.dispatchEvent(new Event('hero:clear'))}
+            >
+              Clear scribbles
+            </button>
+          </span>
         </p>
 
         <div className="hero__intro">

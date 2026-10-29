@@ -1,8 +1,8 @@
 .case__header {
   padding-block: var(--space-4) var(--space-5);
   background-image:
-    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
   background-size: 24px 24px;
   border-bottom: var(--line-thin) solid var(--ink);
 }

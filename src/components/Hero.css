@@ -3,8 +3,8 @@
   padding-block: var(--space-4) calc(var(--space-6) + 24px);
   /* Faint 24px drawing grid, on the hero only */
   background-image:
-    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
   background-size: 24px 24px;
   border-bottom: var(--line-thin) solid var(--ink);
 }
@@ -275,15 +275,14 @@
   overflow-x: clip;
 }
 .hero > .container {
-  position: relative;
-  z-index: 1;
+  position: relative; /* no z-index: the marker layer (.hero__ink) has to slot between the page and the foreground pieces */
 }
 .hero__stack i {
   position: absolute;
   inset: 14px;
   background: var(--paper);
   border: var(--line-thin) solid var(--rule);
-  box-shadow: 0 6px 18px -10px rgb(28 27 25 / 0.35);
+  box-shadow: 0 6px 18px -10px rgb(var(--shadow-ink) / 0.35);
   animation: hero-sheet 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   pointer-events: none;
 }
@@ -519,11 +518,11 @@
   grid-area: 1 / 1;
   display: grid;
   grid-template-rows: auto 1fr;
-  background: color-mix(in srgb, #fff 45%, var(--paper));
+  background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 6px 16px -10px rgb(28 27 25 / 0.45);
+  box-shadow: 0 6px 16px -10px rgb(var(--shadow-ink) / 0.45);
   cursor: pointer;
   transition:
     transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1),
@@ -535,7 +534,7 @@
   outline-offset: 4px;
 }
 .deck-sheet[aria-expanded='true'] {
-  box-shadow: 0 28px 40px -18px rgb(28 27 25 / 0.45);
+  box-shadow: 0 28px 40px -18px rgb(var(--shadow-ink) / 0.45);
 }
 .hero__back {
   padding: var(--space-1) var(--space-2);
@@ -656,5 +655,211 @@
 @media (min-width: 600px) {
   .hero__deck {
     margin-top: 40px; /* air under the sheet line */
+  }
+}
+
+/* Marker reveal: a dark copy of the hero, shown only where the pointer has drawn (see inkReveal.ts). */
+.hero__ink {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.hero__ink .hero {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  box-shadow: none;
+  border-bottom: 0;
+  color: var(--ink); /* body sets colour from the light tokens; the dark copy re-reads them */
+}
+.hero__ink *,
+.hero__ink *::before,
+.hero__ink *::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none' stroke='%232f5fb3' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 22 L22 8 L26 12 L12 26 Z' fill='%232f5fb3' fill-opacity='0.12'/%3E%3Cpath d='M8.7 21.5 L21.5 8.6 L25.8 11.7 L12.4 25.6 L8.2 22.3'/%3E%3Cpath d='M20.4 9.6 L24.6 13.6'/%3E%3Cpath d='M12.5 19.5 L19.5 12.5 M14.5 21.5 L21.2 14.8'/%3E%3Cpath d='M8 22 L3 28.6 L12 26'/%3E%3Cpath d='M7.5 22.6 L3.3 28.2 L11.5 26.3'/%3E%3C/svg%3E") 3 28, crosshair;
+  }
+  .hero a,
+  .hero button,
+  .hero [role='button'] {
+    cursor: pointer;
+  }
+}
+.hero__draw-note {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__draw-note {
+    display: block;
+    position: absolute;
+    left: 46%;
+    top: 36%;
+    z-index: 7;
+    pointer-events: none;
+    font-family: var(--font-hand);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--marker);
+    white-space: nowrap;
+    transform: rotate(-4deg);
+    animation: hero-note-in 500ms var(--ease-pen) 2600ms backwards;
+    transition: opacity 400ms var(--ease-pen);
+  }
+  .hero__draw-note[data-gone] {
+    opacity: 0;
+  }
+}
+@keyframes hero-note-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The note's smile blinks into a wink every few seconds. */
+.hero__draw-note .hero__smile {
+  margin-left: 0.2em;
+  width: 1.15em;
+  height: 0.9em;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__draw-note .smile__eye--open,
+  .hero__draw-note .smile__mouth--grin {
+    animation: note-open 3.2s steps(1, end) infinite;
+  }
+  .hero__draw-note .smile__eye--wink,
+  .hero__draw-note .smile__mouth--smirk {
+    animation: note-wink 3.2s steps(1, end) infinite;
+  }
+}
+@keyframes note-open {
+  0%,
+  62% {
+    opacity: 1;
+  }
+  64%,
+  82% {
+    opacity: 0;
+  }
+  84%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes note-wink {
+  0%,
+  62% {
+    opacity: 0;
+  }
+  64%,
+  82% {
+    opacity: 1;
+  }
+  84%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Foreground: the card pile, the buttons and the clear button stay above the marker layer. */
+.hero__actions,
+.hero__portrait,
+.hero__clear {
+  position: relative;
+  z-index: 7;
+}
+.hero__ink .hero__actions,
+.hero__ink .hero__portrait,
+.hero__ink .hero__clear {
+  visibility: hidden; /* the live ones sit on top */
+}
+.hero__sheet-right {
+  position: relative;
+}
+.hero__clear {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero[data-scribbled] .hero__clear {
+    display: inline-flex;
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    align-items: center;
+    padding: 4px 12px;
+    border: var(--line-thin) solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .hero[data-scribbled] .hero__clear:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+/* Over 20% scribbled: the message, then the clear button pulses while the sheet is wiped. */
+.hero__enough {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__enough {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    z-index: 7;
+    pointer-events: none;
+    font-family: var(--font-hand);
+    font-size: 34px;
+    line-height: 1.1;
+    color: var(--marker);
+    white-space: nowrap;
+    text-align: center;
+    transform: translateX(-50%) rotate(-3deg);
+    padding: 8px 18px;
+    border-radius: 16px;
+    background: var(--paper);
+    opacity: 0;
+    transition: opacity 300ms var(--ease-pen);
+  }
+  .hero__enough[data-on='on'] {
+    opacity: 1;
+  }
+  .hero[data-pulse] .hero__clear {
+    animation: clear-pulse 700ms ease-in-out infinite;
+  }
+}
+@keyframes clear-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--marker) 55%, transparent);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--marker) 0%, transparent);
+  }
+}
+@media (max-width: 900px) {
+  .hero__enough {
+    white-space: normal;
+    width: 80%;
   }
 }
