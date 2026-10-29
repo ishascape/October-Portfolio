@@ -5,10 +5,10 @@ import { sheetTop, NAV_HEIGHT } from '../sheetNav'
 import './Nav.css'
 
 const sections = [
-  { id: 'top', sheet: '00', label: 'Introduction', inBar: false },
-  { id: 'work', sheet: '01', label: 'Work', inBar: true },
-  { id: 'about', sheet: '02', label: 'About', inBar: true },
-  { id: 'contact', sheet: '03', label: 'Contact', inBar: true },
+  { id: 'top', label: 'Introduction', inBar: false },
+  { id: 'work', label: 'Work', inBar: true },
+  { id: 'about', label: 'About', inBar: true },
+  { id: 'contact', label: 'Contact', inBar: true },
 ]
 
 export function Nav({ onHome }: { onHome: boolean }) {
@@ -92,7 +92,7 @@ export function Nav({ onHome }: { onHome: boolean }) {
       >
         <div className="container nav__menu-inner">
           <div className="nav__menu-head">
-            <p className="label">Drawing list</p>
+            <p className="label">Menu</p>
             <button type="button" className="nav__menu-button label" onClick={() => menu.current?.close()}>
               Close
             </button>
@@ -100,10 +100,7 @@ export function Nav({ onHome }: { onHome: boolean }) {
           <ol>
             {sections.map((s) => (
               <li key={s.id}>
-                <a href={sectionHref(s.id, onHome)}>
-                  <span className="label">{s.sheet}</span>
-                  {s.label}
-                </a>
+                <a href={sectionHref(s.id, onHome)}>{s.label}</a>
               </li>
             ))}
             {contact.resume && (
