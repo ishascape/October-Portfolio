@@ -22,8 +22,8 @@
   border: var(--line-thin) solid var(--ink);
   background-color: var(--paper);
   background-image:
-    linear-gradient(rgb(var(--shadow-ink) / 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--shadow-ink) / 0.06) 1px, transparent 1px);
+    linear-gradient(rgb(28 27 25 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(28 27 25 / 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 .flow__svg {
@@ -51,7 +51,7 @@
 
 /* lanes */
 .flow__lane rect {
-  fill: rgb(var(--shadow-ink) / 0.025);
+  fill: rgb(28 27 25 / 0.025);
   stroke: var(--graphite);
   stroke-width: 1;
   stroke-dasharray: 2 4;
