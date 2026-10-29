@@ -25,7 +25,15 @@ export function inkReveal(hero: HTMLElement) {
   const note = document.createElement('span')
   note.className = 'hero__draw-note'
   note.setAttribute('aria-hidden', 'true')
-  note.textContent = 'Draw smth 😉'
+  note.innerHTML =
+    'Draw smth' +
+    '<svg class="hero__smile" viewBox="0 0 32 24" aria-hidden="true">' +
+    '<path class="smile__eye" d="M11.5 6.8 v3.2" />' +
+    '<path class="smile__eye smile__eye--open" d="M20.5 6.8 v3.2" />' +
+    '<path class="smile__eye smile__eye--wink" d="M18.2 9.6 Q20.4 6.6 22.8 9.4" />' +
+    '<path class="smile__mouth smile__mouth--grin" d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />' +
+    '<path class="smile__mouth smile__mouth--smirk" d="M9.8 16.2 C13 18.4 19 18.2 23.6 12.4" />' +
+    '</svg>'
   hero.appendChild(note)
   let drawn = 0
   let pen = false
