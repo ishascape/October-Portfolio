@@ -511,13 +511,11 @@
 }
 .hero__sheets {
   display: grid; /* every sheet in one cell, as tall as the tallest */
-  cursor: pointer;
-  touch-action: pan-y;
+  align-items: center; /* every sheet centres on the same point */
   user-select: none;
   -webkit-user-select: none;
-  outline-offset: 4px;
-  margin: 8px 10px 0 6px; /* room for the sheets peeking out behind */
-  padding-bottom: 28px;
+  margin: 8px 0 0;
+  padding-bottom: 20px;
 }
 .deck-sheet {
   grid-area: 1 / 1;
@@ -526,11 +524,36 @@
   background: color-mix(in srgb, #fff 45%, var(--paper));
   border: 1.5px solid var(--ink);
   box-shadow: 0 6px 16px -10px rgb(28 27 25 / 0.45);
-  transform-origin: 50% 0;
+  cursor: pointer;
+  transition:
+    transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 240ms ease;
   will-change: transform;
 }
-.deck-sheet[aria-hidden='true'] .deck-sheet__cap {
-  visibility: hidden; /* only the edges of the sheets behind show */
+.deck-sheet:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+.deck-sheet[aria-expanded='true'] {
+  box-shadow: 0 28px 40px -18px rgb(28 27 25 / 0.45);
+}
+.hero__back {
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--graphite);
+  cursor: pointer;
+}
+.hero__back:disabled {
+  cursor: default;
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck-sheet {
+    transition-duration: 1ms;
+  }
 }
 .deck-sheet__media {
   position: relative;

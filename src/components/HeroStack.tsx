@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import portrait from '../assets/ashni-portrait.webp'
 import portraitSketch from '../assets/ashni-portrait-sketch.webp'
 import vfShot from '../assets/hero-sheet-venue-finder.webp'
@@ -6,10 +6,6 @@ import hostShot from '../assets/hero-sheet-hosthq.webp'
 import taShot from '../assets/hero-sheet-treeassist.webp'
 import dsShot from '../assets/hero-sheet-design-systems.webp'
 import { revealAt, revealEnd } from './reveal'
-import { paperStyle } from './Skills'
-
-const HOLD_MS = 3000
-const FIRST_FLIP_MS = 4200
 
 type Sheet = {
   id: string
@@ -74,170 +70,127 @@ const sheets: Sheet[] = [
   },
 ]
 
-// The sheets behind fan out like the Field notes pile, but stay full size so their edges show under the top one.
-const FAN = [
-  { x: 0, r: 0 },
-  { x: 7, r: 1.8 },
-  { x: -6, r: -1.6 },
-  { x: 5, r: 1.2 },
-]
-const behind = (d: number) => {
-  const k = Math.min(d, 3)
-  const style = paperStyle(d, 0, false)
-  return d < 1 ? style : { ...style, transform: `translate(${FAN[k].x}px, ${k * 9}px) rotate(${FAN[k].r}deg)` }
+// The hero stack is the Field notes pile: loose sheets, Ashni's portrait always on top. Click a sheet and it lifts out,
+// straightens up and shows its caption; click it again (or Esc, or the pile button) and it drops back into the pile,
+// just under the portrait. Each sheet has its own scatter position, worked out from its place in the list.
+const PILE_SCALE = 0.8
+const PORTRAIT_SCALE = 0.82
+
+function scatter(i: number) {
+  const a = i * 2.399963 // golden angle, so neighbours never land on top of each other
+  return {
+    x: Math.cos(a) * 12,
+    y: Math.sin(a) * 10,
+    r: ((i * 37) % 21) - 10, // -10 to +10 degrees
+  }
 }
 
-// A stack of paper sheets that moves like the Field notes pile: the top sheet slides out and tucks in at the
-// back, the rest fan behind it. Swipe, click, use the arrow keys or the dots. It turns by itself every 2 seconds until hovered.
 export function HeroStack() {
-  const [index, setIndex] = useState(0)
-  const [drag, setDrag] = useState(0)
-  const [dragging, setDragging] = useState(false)
-  const [paused, setPaused] = useState(false)
-  const from = useRef<{ x: number; t: number } | null>(null)
+  const [open, setOpen] = useState<number | null>(null)
+  // Pile order, bottom to top. The portrait (sheet 0) is always the last one, so it is always on top.
+  const [order, setOrder] = useState(() => [...sheets.keys()].slice(1).concat(0))
   const n = sheets.length
 
-  // The sheet that was just on top slides out a little, then tucks in at the back of the pile.
-  const [leaving, setLeaving] = useState<number | null>(null)
-  const prev = useRef(0)
-  const turned = useRef(false)
-  useLayoutEffect(() => {
-    const was = prev.current
-    prev.current = index
-    if (was !== index) turned.current = true
-    if (was === index || (index - was + n) % n !== 1) return
-    setLeaving(was)
-    const id = window.setTimeout(() => setLeaving(null), 260)
-    return () => window.clearTimeout(id)
-  }, [index, n])
-
-  const go = (i: number) => setIndex((i + n) % n)
+  // A sheet that goes back drops in just under the portrait, unless it is the portrait, which goes back on top.
+  const putBack = (o: number[], i: number) =>
+    i === 0 ? [...o.filter((j) => j !== 0), 0] : [...o.filter((j) => j !== i && j !== 0), i, 0]
+  const close = () => {
+    if (open === null) return
+    setOrder((o) => putBack(o, open))
+    setOpen(null)
+  }
+  const show = (i: number) => {
+    if (open !== null && open !== i) setOrder((o) => putBack(o, open))
+    setOpen(i)
+  }
+  const step = (by: number) => show(((((open ?? (by > 0 ? -1 : 0)) + by + n) % n) + n) % n)
 
   useEffect(() => {
-    if (paused || dragging || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    // The first flip waits 1.8s after the text has settled (2.4s), so it lands at 4.2s.
-    const wait = turned.current ? HOLD_MS : Math.max(300, FIRST_FLIP_MS - performance.now())
-    const id = window.setTimeout(() => setIndex((i) => (i + 1) % n), wait)
-    return () => window.clearTimeout(id)
-  }, [paused, dragging, index, n])
+    if (open === null) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
 
-  // No point turning sheets in a hidden tab.
-  useEffect(() => {
-    const onVis = () => setPaused(document.hidden)
-    document.addEventListener('visibilitychange', onVis)
-    return () => document.removeEventListener('visibilitychange', onVis)
-  }, [])
-
-  const onDown = (e: PointerEvent) => {
-    from.current = { x: e.clientX, t: performance.now() }
-    setDragging(true)
-  }
-  const onMove = (e: PointerEvent) => {
-    if (from.current) setDrag(e.clientX - from.current.x)
-  }
-  const onUp = (e: PointerEvent) => {
-    const start = from.current
-    from.current = null
-    setDragging(false)
-    setDrag(0)
-    if (!start) return
-    const dx = e.clientX - start.x
-    const fast = Math.abs(dx) / Math.max(1, performance.now() - start.t) > 0.4
-    if (Math.abs(dx) > 70 || (fast && Math.abs(dx) > 24)) go(index + (dx > 0 ? 1 : -1))
-    else if (Math.abs(dx) < 6) go(index + 1) // a tap turns the sheet
+  const sheetStyle = (i: number): CSSProperties => {
+    const z = i === open ? 200 : order.indexOf(i) + 1
+    if (i === open) return { transform: 'translate(0, 0) rotate(0deg) scale(1)', zIndex: z }
+    if (i === 0) return { transform: `translate(0, 0) rotate(-2deg) scale(${PORTRAIT_SCALE})`, zIndex: z }
+    const { x, y, r } = scatter(i)
+    return { transform: `translate(${x}%, ${y}%) rotate(${r}deg) scale(${PILE_SCALE})`, zIndex: z }
   }
 
   return (
-    <div
-      className="hero__deck"
-      onPointerEnter={(e) => e.pointerType === 'mouse' && setPaused(true)}
-      onPointerLeave={(e) => e.pointerType === 'mouse' && setPaused(false)}
-      onFocus={(e) => e.target.matches(':focus-visible') && setPaused(true)}
-      onBlur={() => setPaused(false)}
-    >
-      <div
-        className="hero__sheets"
-        onPointerDown={onDown}
-        onPointerMove={onMove}
-        onPointerUp={onUp}
-        onPointerCancel={onUp}
-        onKeyDown={(e) => {
-          if (e.key === 'ArrowRight') go(index + 1)
-          if (e.key === 'ArrowLeft') go(index - 1)
-        }}
-        tabIndex={0}
-        aria-roledescription="carousel"
-        aria-label="Ashni and selected work, swipe or use the arrows"
-      >
-        {sheets.map((s, k) => {
-          const d = (k - index + n) % n
-          const style =
-            k === leaving
-              ? { transform: 'translateX(34%) rotate(4deg)', zIndex: 101, transition: 'transform 260ms ease-out' }
-              : d === n - 1 && n > 4
-                ? { ...behind(3), opacity: 1, zIndex: 90 } // the one that just went to the back
-                : d === 0
-                  ? paperStyle(0, drag, dragging)
-                  : behind(d)
-          return (
-            <article key={s.id} className="deck-sheet" style={style} aria-hidden={d === 0 ? undefined : true}>
-              <div
-                className={
-                  s.src ? 'deck-sheet__media deck-sheet__media--screen' : 'deck-sheet__media hero__piece--face'
-                }
-                onPointerMove={s.src ? undefined : revealAt}
-                onPointerLeave={s.src ? undefined : revealEnd}
-              >
-                <img
-                  className="hero__piece-photo"
-                  src={s.src ?? portrait}
-                  alt={d === 0 ? s.alt : ''}
-                  style={s.pos ? { objectPosition: s.pos } : undefined}
-                  width={s.w ?? 960}
-                  height={s.h ?? 1200}
-                  fetchPriority={k < 2 ? 'high' : undefined}
-                  loading={k < 2 ? 'eager' : undefined}
-                  decoding="async"
-                  draggable={false}
-                />
-                {!s.src && (
-                  <div className="hero__piece-sketch" aria-hidden="true">
-                    <img className="hero__piece-photo" src={portraitSketch} alt="" width={960} height={1200} />
-                  </div>
-                )}
-              </div>
-              <div className="deck-sheet__cap">
-                <p>
-                  <strong>{s.name}</strong>
-                  <span>{s.line}</span>
-                </p>
-                <ul className="deck-sheet__chips">
-                  {s.chips.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          )
-        })}
+    <div className="hero__deck">
+      <div className="hero__sheets" role="group" aria-label="Ashni and selected work, pick a sheet">
+        {sheets.map((s, i) => (
+          <article
+            key={s.id}
+            className="deck-sheet"
+            style={sheetStyle(i)}
+            role="button"
+            tabIndex={0}
+            aria-expanded={i === open}
+            aria-label={`${i === open ? 'Put back' : 'Open'} ${s.name}`}
+            onClick={() => (i === open ? close() : show(i))}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                i === open ? close() : show(i)
+              }
+            }}
+          >
+            <div
+              className={s.src ? 'deck-sheet__media deck-sheet__media--screen' : 'deck-sheet__media hero__piece--face'}
+              onPointerMove={s.src ? undefined : revealAt}
+              onPointerLeave={s.src ? undefined : revealEnd}
+            >
+              <img
+                className="hero__piece-photo"
+                src={s.src ?? portrait}
+                alt={s.alt}
+                style={s.pos ? { objectPosition: s.pos } : undefined}
+                width={s.w ?? 960}
+                height={s.h ?? 1200}
+                fetchPriority={i < 2 ? 'high' : undefined}
+                loading={i < 2 ? 'eager' : undefined}
+                decoding="async"
+                draggable={false}
+              />
+              {!s.src && (
+                <div className="hero__piece-sketch" aria-hidden="true">
+                  <img className="hero__piece-photo" src={portraitSketch} alt="" width={960} height={1200} />
+                </div>
+              )}
+            </div>
+            <div className="deck-sheet__cap">
+              <p>
+                <strong>{s.name}</strong>
+                <span>{s.line}</span>
+              </p>
+              <ul className="deck-sheet__chips">
+                {s.chips.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
       </div>
       <div className="hero__nav">
-        <button type="button" className="deck__button" onClick={() => go(index - 1)} aria-label="Previous">
+        <button type="button" className="deck__button" onClick={() => step(-1)} aria-label="Previous sheet">
           <span aria-hidden="true">←</span>
         </button>
-        <div className="hero__dots" role="group" aria-label="Choose a sheet">
-          {sheets.map((s, k) => (
-            <button
-              key={s.id}
-              type="button"
-              className="hero__dot"
-              aria-label={s.name}
-              aria-current={k === index ? 'true' : undefined}
-              onClick={() => go(k)}
-            />
-          ))}
-        </div>
-        <button type="button" className="deck__button" onClick={() => go(index + 1)} aria-label="Next">
+        <button
+          type="button"
+          className="hero__back"
+          onClick={close}
+          disabled={open === null}
+          tabIndex={open === null ? -1 : 0}
+        >
+          {open === null ? 'Pick a page' : 'Back to the pile'}
+        </button>
+        <button type="button" className="deck__button" onClick={() => step(1)} aria-label="Next sheet">
           <span aria-hidden="true">→</span>
         </button>
       </div>
