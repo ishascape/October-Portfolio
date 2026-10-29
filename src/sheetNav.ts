@@ -33,8 +33,8 @@ export function goTo(target: HTMLElement) {
     sheet.getAnimations().forEach((a) => a.cancel())
     sheet.animate(
       [
-        { transform: 'translateY(55vh)', boxShadow: '0 -1px 0 var(--ink), 0 -24px 48px -12px rgb(28 27 25 / 0.32)' },
-        { transform: 'translateY(0)', boxShadow: '0 -1px 0 var(--ink), 0 -12px 24px -12px rgb(28 27 25 / 0.18)' },
+        { transform: 'translateY(55vh)', boxShadow: '0 -1px 0 var(--ink), 0 -24px 48px -12px rgb(var(--shadow-ink) / 0.32)' },
+        { transform: 'translateY(0)', boxShadow: '0 -1px 0 var(--ink), 0 -12px 24px -12px rgb(var(--shadow-ink) / 0.18)' },
       ],
       { duration: 650, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)' },
     )

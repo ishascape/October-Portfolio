@@ -10,6 +10,9 @@
   --marker: #2f5fb3;
   --paper-deep: #dcd9d2; /* paper, 10% darker: the Selected work sheet */
   --marker-wash: rgb(47 95 179 / 0.12);
+  --grid-line: 216 210 196; /* graph-paper lines, as rgb channels */
+  --shadow-ink: 28 27 25; /* shadow colour, as rgb channels */
+  --sheet-lift: #fff; /* mixed 45% into paper for the raised cards */
 
   /* Type */
   --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif; /* condensed, inked headlines */
@@ -82,4 +85,20 @@
     transition-duration: 0ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Dark mode, opt-in with ?theme=dark (or localStorage 'theme'): graphite paper, light ink, brighter marker. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #171614;
+  --paper-shade: #1f1d1a;
+  --paper-deep: #100f0e;
+  --ink: #efebe1;
+  --graphite: #a8a398;
+  --rule: #38352f;
+  --marker: #7ba3f0;
+  --marker-wash: rgb(123 163 240 / 0.16);
+  --grid-line: 70 67 60;
+  --shadow-ink: 0 0 0;
+  --sheet-lift: #3a3732;
 }

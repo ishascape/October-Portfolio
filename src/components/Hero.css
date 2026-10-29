@@ -3,8 +3,8 @@
   padding-block: var(--space-4) calc(var(--space-6) + 24px);
   /* Faint 24px drawing grid, on the hero only */
   background-image:
-    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
   background-size: 24px 24px;
   border-bottom: var(--line-thin) solid var(--ink);
 }
@@ -285,7 +285,7 @@
   inset: 14px;
   background: var(--paper);
   border: var(--line-thin) solid var(--rule);
-  box-shadow: 0 6px 18px -10px rgb(28 27 25 / 0.35);
+  box-shadow: 0 6px 18px -10px rgb(var(--shadow-ink) / 0.35);
   animation: hero-sheet 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   pointer-events: none;
 }
@@ -521,11 +521,11 @@
   grid-area: 1 / 1;
   display: grid;
   grid-template-rows: auto 1fr;
-  background: color-mix(in srgb, #fff 45%, var(--paper));
+  background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 6px 16px -10px rgb(28 27 25 / 0.45);
+  box-shadow: 0 6px 16px -10px rgb(var(--shadow-ink) / 0.45);
   cursor: pointer;
   transition:
     transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1),
@@ -537,7 +537,7 @@
   outline-offset: 4px;
 }
 .deck-sheet[aria-expanded='true'] {
-  box-shadow: 0 28px 40px -18px rgb(28 27 25 / 0.45);
+  box-shadow: 0 28px 40px -18px rgb(var(--shadow-ink) / 0.45);
 }
 .hero__back {
   padding: var(--space-1) var(--space-2);

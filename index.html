@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!--head--><title>Ashni Dave · Senior Product Designer</title><!--/head-->
+    <script>
+      try {
+        var q = new URLSearchParams(location.search).get('theme')
+        if (q) localStorage.setItem('theme', q === 'dark' ? 'dark' : 'light')
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark'
+      } catch (e) {}
+    </script>
     <meta name="theme-color" content="#F5F2EA" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
