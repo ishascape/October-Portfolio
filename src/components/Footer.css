@@ -15,6 +15,8 @@
   border: var(--line-building) solid var(--ink);
   outline: var(--line-thin) solid var(--ink);
   outline-offset: 4px; /* the double border of a drawing frame */
+  border-radius: var(--radius);
+  overflow: hidden;
   background: var(--paper-shade);
   margin: 6px;
 }
