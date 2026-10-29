@@ -198,13 +198,31 @@
     display: none;
   }
   .hero__support {
-    gap: var(--space-4);
+    gap: 0;
+  }
+  /* The card pile sits inside the gutters, smaller, and centred (its tilted sheets stay within the margins too). */
+  .hero__portrait {
+    width: 80%;
+    justify-self: center;
   }
   .hero__line {
     display: block;
   }
   .hero .hero__title h1.display {
-    font-size: calc(7.6vw + 8px);
+    font-size: calc(12.5vw + 8px);
+  }
+  .hero__title .hero__hello {
+    font-size: 32px;
+  }
+  .hero .hero__role {
+    font-size: 18px;
+  }
+  /* Role line to the buttons: 24px. */
+  .hero__intro {
+    gap: 24px;
+  }
+  .hero__title {
+    padding-bottom: 0;
   }
 }
 
