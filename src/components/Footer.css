@@ -3,7 +3,7 @@
    labels over each value, a key plan with a north point, and a sign-off box. */
 .footer {
   position: relative;
-  padding-block: var(--space-4) var(--space-3);
+  padding-block: 0;
   background: var(--paper);
   border-top: var(--line-thin) solid var(--ink);
 }
@@ -11,14 +11,13 @@
 .titlesheet {
   --tint-ink: 28 27 25; /* hatching and grid on paper */
   --tint-soft: 97 94 88; /* contours and suburb lines on paper */
+  /* The sheet bleeds edge to edge; the ruled frame inside keeps to the page margins. */
+  padding-block: var(--space-4);
+  background: var(--paper-shade);
+}
+.titlesheet__frame {
   display: grid;
   border: var(--line-building) solid var(--ink);
-  outline: var(--line-thin) solid var(--ink);
-  outline-offset: 4px; /* the double border of a drawing frame */
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--paper-shade);
-  margin: 6px;
 }
 
 /* Printed as a blueprint (home page only): the palette flips to white linework on cyanotype
@@ -34,8 +33,6 @@
   --rule: rgb(242 246 251 / 0.45);
   --marker: #ffffff;
   color: var(--ink);
-  outline: 6px solid var(--blueprint); /* the blue margin round the drawing frame */
-  outline-offset: 0;
   background-color: var(--blueprint);
   background-image:
     linear-gradient(rgb(242 246 251 / 0.07) 1px, transparent 1px),
@@ -300,19 +297,8 @@
 
 .footer .footer__bar {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin-top: var(--space-4);
-}
-.footer__made {
-  font-weight: 500;
-}
-.footer .footer__copy {
-  margin-top: 2px;
-  font-size: 14px;
-  color: var(--graphite);
+  justify-content: flex-end;
+  padding-block: var(--space-3);
 }
 .footer__ai {
   display: inline-flex;
@@ -333,12 +319,9 @@
 .footer__ai:focus-visible {
   color: var(--marker);
 }
-.footer .footer__bar--plain {
-  margin-top: 0;
-}
 
 @media (min-width: 900px) {
-  .titlesheet {
+  .titlesheet__frame {
     grid-template-columns: 5fr 7fr;
   }
   .titlesheet__plan {
