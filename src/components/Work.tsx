@@ -1,6 +1,5 @@
 import { caseHref } from '../links'
 import { caseStudies } from '../data/content'
-import { SheetLabel } from './SheetLabel'
 import { CardCarousel } from './CardCarousel'
 import './Work.css'
 
@@ -8,11 +7,6 @@ export function Work() {
   return (
     <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
-        <SheetLabel
-          sheet="01 / 03"
-          title="Selected work"
-          tags={['B2B SaaS', 'Marketplace', 'Platform', 'Mobile', 'B2C']}
-        />
         <h2 id="work-heading" className="display work__heading">
           Form follows function: first solve the problem, then the pixels.
         </h2>
@@ -33,7 +27,6 @@ export function Work() {
                     </a>
                   </h3>
                   <p className="card__summary">{s.summary}</p>
-                  <p className="card__role">{s.role}</p>
 
                   <p className="card__metric">
                     <span className="card__metric-value">{s.leadMetric.value}</span>

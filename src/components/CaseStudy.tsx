@@ -18,7 +18,7 @@ import './CaseStudy.css'
 
 // The Key product moments prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
 function VenuePrototype() {
-  const src = '/venue-finder-prototype/'
+  const src = '/venue-finder-prototype/index.html'
   const poster = '/venue-finder-prototype/poster.webp'
   const title =
     'Auto-playing prototype of the Venue Finder flow on a phone: landing, prompt, event details, contact details, venue shortlist and confirmation.'
@@ -50,7 +50,7 @@ function HostHqPrototype() {
       {still ? (
         <img src="/hosthq-prototype/poster.webp" alt={title} width={1440} height={1024} />
       ) : (
-        <iframe src="/hosthq-prototype/" title={title} loading="lazy" tabIndex={-1} />
+        <iframe src="/hosthq-prototype/index.html" title={title} loading="lazy" tabIndex={-1} />
       )}
     </figure>
   )
@@ -85,7 +85,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         <div className="container">
           <p className="label case__sheet">
             <a href={homeHref('#work')}>← Selected work</a>
-            <span>Drawing {study.number} · Case study</span>
           </p>
 
           <div className="case__intro">
@@ -97,7 +96,13 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <p className="case__subtitle">{page.subtitle}</p>
             </div>
 
-            <div className={page.heroImage ? 'case__visual case__visual--image' : 'case__visual'}>
+            <div
+              className={
+                page.heroImage
+                  ? `case__visual case__visual--image${id === 'hosthq' ? ' case__visual--wide' : ''}`
+                  : 'case__visual'
+              }
+            >
               {page.heroImage ? (
                 <figure className="case__hero-image">
                   <img
@@ -343,7 +348,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                     loading="lazy"
                     decoding="async"
                   />
-                  <figcaption className={s.image.plainCaption ? 'case__caption-plain' : 'annotation'}>{s.image.caption}</figcaption>
+                  <figcaption className={s.image.plainCaption ? 'case__caption-plain' : 'annotation'}>
+                    {s.image.caption}
+                  </figcaption>
                 </figure>
               )}
               {s.figures?.map((f) => (

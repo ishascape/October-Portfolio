@@ -1,20 +1,12 @@
 .hero {
   position: relative;
-  padding-block: var(--space-4) calc(var(--space-6) + 24px);
+  padding-block: calc(var(--space-4) + 24px) calc(var(--space-6) + 24px);
   /* Faint 24px drawing grid, on the hero only */
   background-image:
-    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
   background-size: 24px 24px;
   border-bottom: var(--line-thin) solid var(--ink);
-}
-
-.hero__sheet {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
-  margin-bottom: calc(var(--space-5) + 16px);
 }
 
 .hero__intro {
@@ -222,43 +214,41 @@
   }
 }
 
-/* Two columns from tablet up: copy on the left, the puzzle spanning the full height of the copy on the right. */
-@media (min-width: 600px) {
-  .hero__intro {
-    grid-template-columns: minmax(0, 1fr) clamp(220px, 34vw, 340px);
-    grid-template-areas:
-      'title portrait'
-      'support portrait';
-    grid-template-rows: auto 1fr;
-    gap: 0 var(--gutter);
-    margin-bottom: var(--space-4);
-  }
-  .hero__title {
-    grid-area: title;
-    align-self: start;
-    padding-bottom: calc(var(--space-4) + 32px);
-  }
-  .hero__portrait {
-    grid-area: portrait;
-  }
-  .hero__puzzle {
-    position: absolute;
-    inset: 40px 0 0; /* 40px of air under the sheet line, bottom still level with the buttons */
-    grid-template-rows: 1fr 1fr;
-  }
-  .hero__piece {
-    aspect-ratio: auto;
-  }
-  .hero__support {
-    grid-area: support;
-    align-self: start;
-  }
+/* Role line under the headline. */
+.hero__role {
+  margin: var(--space-2) 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--graphite);
+}
+.hero__role span {
+  white-space: nowrap; /* wraps between the dots, never leaves one orphaned */
 }
 
-/* On phones the label has room for the role or the scale, not both. */
-@media (max-width: 599px) {
-  .hero__sheet span[aria-hidden='true'] {
-    display: none;
+/* Two columns from tablet up: the copy block is centred against the card stack on the right.
+   The stack scales with the screen height so the next sheet always shows below the fold. */
+.hero__text {
+  display: contents;
+}
+@media (min-width: 600px) {
+  .hero__intro {
+    --deck-w: clamp(240px, calc((100svh - 293px) / 1.75), 420px);
+    grid-template-columns: minmax(0, 1fr) min(var(--deck-w), 38vw);
+    align-items: center;
+    gap: 0 var(--gutter);
+    margin-bottom: 0;
+  }
+  .hero__text {
+    display: block;
+  }
+  .hero__title {
+    padding-bottom: calc(var(--space-4) + 16px);
+  }
+  .hero__deck {
+    margin-top: 0;
+  }
+  .hero {
+    padding-bottom: var(--space-4);
   }
 }
 
@@ -267,15 +257,14 @@
   overflow-x: clip;
 }
 .hero > .container {
-  position: relative;
-  z-index: 1;
+  position: relative; /* no z-index: the marker layer (.hero__ink) has to slot between the page and the foreground pieces */
 }
 .hero__stack i {
   position: absolute;
   inset: 14px;
   background: var(--paper);
   border: var(--line-thin) solid var(--rule);
-  box-shadow: 0 6px 18px -10px rgb(28 27 25 / 0.35);
+  box-shadow: 0 6px 18px -10px rgb(var(--shadow-ink) / 0.35);
   animation: hero-sheet 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   pointer-events: none;
 }
@@ -302,46 +291,151 @@
 @keyframes hero-in {
   from {
     opacity: 0;
-    translate: 0 12px;
+    translate: 0 4px;
   }
   to {
     opacity: 1;
     translate: 0 0;
   }
 }
-.hero__sheet,
+/* Entrance, about 2.4s end to end: the title shows large and centred (0-1.3s) while the pile is dealt in (0.5-1.4s),
+   then glides into place (1.3-1.9s), the card flips at 1.9s and the rest of the copy follows by 2.4s. */
 .hero__hello,
 .hero__title .display,
+.hero__role,
 .hero__copy > *,
 .hero__actions,
 .hero__piece {
-  animation: hero-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  animation-delay: calc(var(--in, 0) * 70ms + 450ms);
-}
-.hero__sheet {
-  --in: 0;
+  animation: hero-in var(--dur, 500ms) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--at, 0ms);
 }
 .hero__hello {
-  --in: 1;
+  --at: 0ms;
 }
 .hero__title .display {
-  --in: 2;
+  --at: 250ms;
+}
+.hero__role {
+  --at: 450ms;
 }
 .hero__copy > :nth-child(1) {
-  --in: 3;
+  --at: 1700ms;
+  --dur: 400ms;
 }
 .hero__copy > :nth-child(2) {
-  --in: 4;
+  --at: 1800ms;
+  --dur: 400ms;
 }
 .hero__copy > :nth-child(3) {
-  --in: 5;
+  --at: 1900ms;
+  --dur: 400ms;
 }
 .hero__actions {
-  --in: 7;
+  --at: 2000ms;
+  --dur: 400ms;
+}
+.hero__role,
+.hero__copy > *,
+.hero__actions {
+  animation-name: hero-blur-in;
 }
 .hero__piece {
   animation-name: hero-in-fade;
-  --in: 4;
+  --at: 600ms;
+}
+/* The pile is dealt in from the right: the back sheets land first, the top one last (0.5-1.4s). */
+.hero__sheets .deck-sheet {
+  animation: hero-deal 520ms both;
+  animation-delay: calc(500ms + var(--deal, 0) * 90ms);
+}
+.hero__sheets .deck-sheet:nth-child(5) {
+  --deal: 0;
+}
+.hero__sheets .deck-sheet:nth-child(4) {
+  --deal: 1;
+}
+.hero__sheets .deck-sheet:nth-child(3) {
+  --deal: 2;
+}
+.hero__sheets .deck-sheet:nth-child(2) {
+  --deal: 3;
+}
+.hero__sheets .deck-sheet:nth-child(1) {
+  --deal: 4;
+}
+@keyframes hero-deal {
+  0% {
+    opacity: 0;
+    translate: 60vw -4%;
+    rotate: 14deg;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  15% {
+    opacity: 1;
+  }
+  75% {
+    translate: -6px 0;
+    rotate: -1.2deg;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+  }
+}
+@media (min-width: 600px) {
+  .hero__intro {
+    container-type: inline-size;
+  }
+  .hero__title {
+    width: fit-content;
+    max-width: 100%;
+    position: relative;
+    z-index: 200;
+    animation: hero-title-center 1900ms both;
+  }
+  /* The copy block starts collapsed so the title sits in the middle, then opens as the title moves up. */
+  .hero__support {
+    animation: hero-expand 600ms cubic-bezier(0.5, 0, 0.2, 1) 1300ms backwards;
+  }
+}
+@keyframes hero-title-center {
+  0%,
+  68% {
+    translate: calc((100cqw - min(var(--deck-w), 38vw) - var(--gutter)) / 2 - 50%) 0;
+    scale: 1.2;
+    animation-timing-function: cubic-bezier(0.5, 0, 0.2, 1);
+  }
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+@keyframes hero-expand {
+  from {
+    max-height: 0;
+    overflow: hidden;
+  }
+  99% {
+    max-height: 520px;
+    overflow: hidden;
+  }
+  to {
+    max-height: 520px;
+    overflow: visible;
+  }
+}
+/* Body text comes into focus rather than rising into place. */
+@keyframes hero-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
 }
 @keyframes hero-in-fade {
   from {
@@ -355,12 +449,15 @@
   .hero__stack {
     display: none;
   }
-  .hero__sheet,
   .hero__hello,
   .hero__title .display,
+  .hero__role,
   .hero__copy > *,
   .hero__actions,
-  .hero__piece {
+  .hero__piece,
+  .hero__title,
+  .hero__support,
+  .hero__sheets .deck-sheet {
     animation: none;
   }
 }
@@ -377,5 +474,366 @@
 @media (min-width: 760px) {
   .hero__puzzle--single .hero__piece {
     aspect-ratio: auto;
+  }
+}
+
+/* ---------- Paper stack: moves like the Field notes pile ---------- */
+.hero__deck {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.hero__sheets {
+  display: grid; /* every sheet in one cell, as tall as the tallest */
+  align-items: center; /* every sheet centres on the same point */
+  user-select: none;
+  -webkit-user-select: none;
+  margin: 0;
+  padding-bottom: 0;
+}
+.deck-sheet {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 16px -10px rgb(var(--shadow-ink) / 0.45);
+  cursor: pointer;
+  transition:
+    transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 240ms ease;
+  will-change: transform;
+}
+.deck-sheet:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+.deck-sheet[aria-expanded='true'] {
+  box-shadow: 0 28px 40px -18px rgb(var(--shadow-ink) / 0.45);
+}
+.hero__back {
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--graphite);
+  cursor: pointer;
+}
+/* Pick a page: every sheet as an image-only tile. */
+.hero__sheets.is-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 12px;
+  padding-inline: 7%;
+}
+.is-grid .deck-sheet {
+  grid-area: auto;
+  grid-template-rows: 1fr;
+  aspect-ratio: 1 / 1;
+}
+.is-grid .deck-sheet__cap {
+  display: none;
+}
+.is-grid .deck-sheet__media {
+  height: 100%;
+  aspect-ratio: auto;
+  border-bottom: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck-sheet {
+    transition-duration: 1ms;
+  }
+}
+.deck-sheet__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--paper-shade);
+  border-bottom: 1.5px solid var(--ink);
+}
+.deck-sheet__cap {
+  display: grid;
+  align-content: start;
+  gap: 24px; /* copy to chips */
+  padding: 10px 12px 12px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+.deck-sheet__cap p {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
+.deck-sheet__cap strong {
+  font-weight: 600;
+  font-size: 16px;
+}
+.deck-sheet__cap span {
+  color: var(--graphite);
+  text-wrap: pretty;
+}
+.deck-sheet__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.deck-sheet__chips li {
+  padding: 2px 8px;
+  border: var(--line-thin) solid rgb(97 94 88 / 0.45); /* light graphite */
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.hero__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.hero__dots {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+.hero__dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.hero__dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  transition: background var(--dur-micro) var(--ease-pen);
+}
+.hero__dot[aria-current='true']::before {
+  background: var(--ink);
+}
+.hero__dot:focus-visible {
+  outline: 2px solid var(--marker);
+  outline-offset: 0;
+}
+@media (min-width: 600px) {
+  .hero__deck {
+    margin-top: 40px; /* air under the sheet line */
+  }
+}
+
+/* Marker reveal: a dark copy of the hero, shown only where the pointer has drawn (see inkReveal.ts). */
+.hero__ink {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.hero__ink .hero {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  box-shadow: none;
+  border-bottom: 0;
+  color: var(--ink); /* body sets colour from the light tokens; the dark copy re-reads them */
+}
+.hero__ink *,
+.hero__ink *::before,
+.hero__ink *::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none' stroke='%232f5fb3' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 22 L22 8 L26 12 L12 26 Z' fill='%232f5fb3' fill-opacity='0.12'/%3E%3Cpath d='M8.7 21.5 L21.5 8.6 L25.8 11.7 L12.4 25.6 L8.2 22.3'/%3E%3Cpath d='M20.4 9.6 L24.6 13.6'/%3E%3Cpath d='M12.5 19.5 L19.5 12.5 M14.5 21.5 L21.2 14.8'/%3E%3Cpath d='M8 22 L3 28.6 L12 26'/%3E%3Cpath d='M7.5 22.6 L3.3 28.2 L11.5 26.3'/%3E%3C/svg%3E") 3 28, crosshair;
+  }
+  .hero a,
+  .hero button,
+  .hero [role='button'] {
+    cursor: pointer;
+  }
+}
+.hero__draw-note {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__draw-note {
+    display: block;
+    position: absolute;
+    left: 46%;
+    top: 36%;
+    z-index: 7;
+    pointer-events: none;
+    font-family: var(--font-hand);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--marker);
+    white-space: nowrap;
+    transform: rotate(-4deg);
+    animation: hero-note-in 500ms var(--ease-pen) 2600ms backwards;
+    transition: opacity 400ms var(--ease-pen);
+  }
+  .hero__draw-note[data-gone] {
+    opacity: 0;
+  }
+}
+@keyframes hero-note-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The note's smile blinks into a wink every few seconds. */
+.hero__draw-note .hero__smile {
+  margin-left: 0.2em;
+  width: 1.15em;
+  height: 0.9em;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__draw-note .smile__eye--open,
+  .hero__draw-note .smile__mouth--grin {
+    animation: note-open 3.2s steps(1, end) infinite;
+  }
+  .hero__draw-note .smile__eye--wink,
+  .hero__draw-note .smile__mouth--smirk {
+    animation: note-wink 3.2s steps(1, end) infinite;
+  }
+}
+@keyframes note-open {
+  0%,
+  62% {
+    opacity: 1;
+  }
+  64%,
+  82% {
+    opacity: 0;
+  }
+  84%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes note-wink {
+  0%,
+  62% {
+    opacity: 0;
+  }
+  64%,
+  82% {
+    opacity: 1;
+  }
+  84%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Foreground: the card pile, the buttons and the clear button stay above the marker layer. */
+.hero__actions,
+.hero__portrait,
+.hero__clear {
+  position: relative;
+  z-index: 7;
+}
+.hero__ink .hero__actions,
+.hero__ink .hero__portrait,
+.hero__ink .hero__clear {
+  visibility: hidden; /* the live ones sit on top */
+}
+.hero__clear {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero[data-scribbled] .hero__clear {
+    display: inline-flex;
+    position: absolute;
+    top: 0;
+    right: var(--margin);
+    align-items: center;
+    padding: 4px 12px;
+    border: var(--line-thin) solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .hero[data-scribbled] .hero__clear:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+/* Over 20% scribbled: the message, then the clear button pulses while the sheet is wiped. */
+.hero__enough {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__enough {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    z-index: 7;
+    pointer-events: none;
+    font-family: var(--font-hand);
+    font-size: 34px;
+    line-height: 1.1;
+    color: var(--marker);
+    white-space: nowrap;
+    text-align: center;
+    transform: translateX(-50%) rotate(-3deg);
+    padding: 8px 18px;
+    border-radius: 16px;
+    background: var(--paper);
+    opacity: 0;
+    transition: opacity 300ms var(--ease-pen);
+  }
+  .hero__enough[data-on='on'] {
+    opacity: 1;
+  }
+  .hero[data-pulse] .hero__clear {
+    animation: clear-pulse 700ms ease-in-out infinite;
+  }
+}
+@keyframes clear-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--marker) 55%, transparent);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--marker) 0%, transparent);
+  }
+}
+@media (max-width: 900px) {
+  .hero__enough {
+    white-space: normal;
+    width: 80%;
   }
 }
