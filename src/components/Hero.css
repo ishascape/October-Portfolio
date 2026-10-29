@@ -547,8 +547,25 @@
   color: var(--graphite);
   cursor: pointer;
 }
-.hero__back:disabled {
-  cursor: default;
+/* Pick a page: every sheet as an image-only tile. */
+.hero__sheets.is-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 12px;
+  padding-inline: 7%;
+}
+.is-grid .deck-sheet {
+  grid-area: auto;
+  grid-template-rows: 1fr;
+  aspect-ratio: 1 / 1;
+}
+.is-grid .deck-sheet__cap {
+  display: none;
+}
+.is-grid .deck-sheet__media {
+  height: 100%;
+  aspect-ratio: auto;
+  border-bottom: 0;
 }
 @media (prefers-reduced-motion: reduce) {
   .deck-sheet {

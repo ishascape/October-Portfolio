@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import portrait from '../assets/ashni-portrait.webp'
 import portraitSketch from '../assets/ashni-portrait-sketch.webp'
 import vfShot from '../assets/hero-sheet-venue-finder.webp'
@@ -87,42 +87,111 @@ function scatter(i: number) {
 
 export function HeroStack() {
   const [open, setOpen] = useState<number | null>(null)
+  // "Pick a page" lays every sheet out as an image-only grid; picking one goes back to the pile with that sheet open.
+  const [grid, setGrid] = useState(false)
+  const [lockH, setLockH] = useState(0)
+  const [moving, setMoving] = useState(false)
   // Pile order, bottom to top. The portrait (sheet 0) is always the last one, so it is always on top.
   const [order, setOrder] = useState(() => [...sheets.keys()].slice(1).concat(0))
   const n = sheets.length
+  const sheetsEl = useRef<HTMLDivElement>(null)
+  const firstRects = useRef<DOMRect[] | null>(null)
+
+  // Remember where every sheet is now, so the next layout can slide them from there (FLIP).
+  const measure = () => {
+    const el = sheetsEl.current
+    if (!el) return
+    firstRects.current = [...el.querySelectorAll('.deck-sheet')].map((e) => e.getBoundingClientRect())
+    setLockH(el.offsetHeight)
+    setMoving(true)
+  }
+  useLayoutEffect(() => {
+    const first = firstRects.current
+    firstRects.current = null
+    const el = sheetsEl.current
+    if (!first || !el) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const done = window.setTimeout(() => setMoving(false), 520)
+    if (reduce || !el.animate) return () => window.clearTimeout(done)
+    el.querySelectorAll<HTMLElement>('.deck-sheet').forEach((sheet, i) => {
+      const a = first[i]
+      const b = sheet.getBoundingClientRect()
+      if (!a || !b.width || !b.height) return
+      const rest = sheet.style.transform === 'none' ? '' : sheet.style.transform
+      const dx = a.left + a.width / 2 - (b.left + b.width / 2)
+      const dy = a.top + a.height / 2 - (b.top + b.height / 2)
+      sheet.animate(
+        [
+          { transform: `translate(${dx}px, ${dy}px) scale(${a.width / b.width}, ${a.height / b.height}) ${rest}` },
+          { transform: rest || 'none' },
+        ],
+        { duration: 480, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)' },
+      )
+    })
+    return () => window.clearTimeout(done)
+  }, [grid, open])
 
   // A sheet that goes back drops in just under the portrait, unless it is the portrait, which goes back on top.
   const putBack = (o: number[], i: number) =>
     i === 0 ? [...o.filter((j) => j !== 0), 0] : [...o.filter((j) => j !== i && j !== 0), i, 0]
   const close = () => {
+    if (grid) {
+      measure()
+      setGrid(false)
+      return
+    }
     if (open === null) return
     setOrder((o) => putBack(o, open))
     setOpen(null)
   }
   const show = (i: number) => {
+    if (grid) {
+      measure()
+      setGrid(false)
+    }
     if (open !== null && open !== i) setOrder((o) => putBack(o, open))
     setOpen(i)
   }
   const step = (by: number) => show(((((open ?? (by > 0 ? -1 : 0)) + by + n) % n) + n) % n)
+  const pick = () => {
+    measure()
+    if (open !== null) setOrder((o) => putBack(o, open))
+    setOpen(null)
+    setGrid(true)
+  }
 
   useEffect(() => {
-    if (open === null) return
+    if (open === null && !grid) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close()
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   })
 
   const sheetStyle = (i: number): CSSProperties => {
+    const transition = moving ? 'none' : undefined // the slide between layouts does the moving
+    if (grid) return { transform: 'none', zIndex: 1, transition }
     const z = i === open ? 200 : order.indexOf(i) + 1
-    if (i === open) return { transform: 'translate(0, 0) rotate(0deg) scale(1)', zIndex: z }
-    if (i === 0) return { transform: `translate(0, 0) rotate(-2deg) scale(${PORTRAIT_SCALE})`, zIndex: z }
+    if (i === open) return { transform: 'translate(0, 0) rotate(0deg) scale(1)', zIndex: z, transition }
+    if (i === 0) return { transform: `translate(0, 0) rotate(-2deg) scale(${PORTRAIT_SCALE})`, zIndex: z, transition }
     const { x, y, r } = scatter(i)
-    return { transform: `translate(${x}%, ${y}%) rotate(${r}deg) scale(${PILE_SCALE})`, zIndex: z }
+    return { transform: `translate(${x}%, ${y}%) rotate(${r}deg) scale(${PILE_SCALE})`, zIndex: z, transition }
   }
 
   return (
-    <div className="hero__deck">
-      <div className="hero__sheets" role="group" aria-label="Ashni and selected work, pick a sheet">
+    <div
+      className="hero__deck"
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowRight') step(1)
+        if (e.key === 'ArrowLeft') step(-1)
+      }}
+    >
+      <div
+        ref={sheetsEl}
+        className={grid ? 'hero__sheets is-grid' : 'hero__sheets'}
+        style={grid ? { minHeight: lockH } : undefined}
+        role="group"
+        aria-label="Ashni and selected work, pick a sheet"
+      >
         {sheets.map((s, i) => (
           <article
             key={s.id}
@@ -130,13 +199,13 @@ export function HeroStack() {
             style={sheetStyle(i)}
             role="button"
             tabIndex={0}
-            aria-expanded={i === open}
-            aria-label={`${i === open ? 'Put back' : 'Open'} ${s.name}`}
-            onClick={() => (i === open ? close() : show(i))}
+            aria-expanded={grid ? undefined : i === open}
+            aria-label={`${grid ? 'Open' : i === open ? 'Put back' : 'Open'} ${s.name}`}
+            onClick={() => (!grid && i === open ? close() : show(i))}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                i === open ? close() : show(i)
+                !grid && i === open ? close() : show(i)
               }
             }}
           >
@@ -181,14 +250,8 @@ export function HeroStack() {
         <button type="button" className="deck__button" onClick={() => step(-1)} aria-label="Previous sheet">
           <span aria-hidden="true">←</span>
         </button>
-        <button
-          type="button"
-          className="hero__back"
-          onClick={close}
-          disabled={open === null}
-          tabIndex={open === null ? -1 : 0}
-        >
-          {open === null ? 'Pick a page' : 'Back to the pile'}
+        <button type="button" className="hero__back" onClick={open === null && !grid ? pick : close}>
+          {open === null && !grid ? 'Pick a page' : 'Back to the pile'}
         </button>
         <button type="button" className="deck__button" onClick={() => step(1)} aria-label="Next sheet">
           <span aria-hidden="true">→</span>
