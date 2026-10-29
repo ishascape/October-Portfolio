@@ -523,6 +523,8 @@
   grid-template-rows: auto 1fr;
   background: color-mix(in srgb, #fff 45%, var(--paper));
   border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
   box-shadow: 0 6px 16px -10px rgb(28 27 25 / 0.45);
   cursor: pointer;
   transition:
