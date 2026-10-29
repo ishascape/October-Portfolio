@@ -34,6 +34,7 @@ export function inkReveal(hero: HTMLElement) {
   let lastDrawn = 0
   let raf = 0
   let dirty = false
+  let stale = true // the hero changed since the dark copy was made
 
   const rebuild = () => {
     const clone = hero.cloneNode(true) as HTMLElement
@@ -47,6 +48,7 @@ export function inkReveal(hero: HTMLElement) {
     const r = hero.getBoundingClientRect()
     canvas.width = Math.max(1, Math.round(r.width * SCALE))
     canvas.height = Math.max(1, Math.round(r.height * SCALE))
+    stale = false
   }
 
   const paintMask = () => {
@@ -70,6 +72,7 @@ export function inkReveal(hero: HTMLElement) {
         paintMask()
         ink.style.opacity = '0'
         dirty = false
+        if (stale) rebuild() // refreshed while nobody can see it
         return
       }
     }
@@ -109,7 +112,8 @@ export function inkReveal(hero: HTMLElement) {
     if (e.pointerType === 'touch' || e.button !== 0) return
     if ((e.target as Element).closest('a, button, [role="button"], input, textarea, select')) return
     e.preventDefault() // no text selection or image drag while drawing
-    if (!ink.firstChild || ink.style.opacity === '0') rebuild()
+    if (!ink.firstChild || (stale && ink.style.opacity === '0')) rebuild()
+    ctx.clearRect(0, 0, canvas.width, canvas.height) // a new drawing replaces the last one
     hero.setPointerCapture(e.pointerId)
     pen = true
     ink.style.opacity = '1'
@@ -143,11 +147,27 @@ export function inkReveal(hero: HTMLElement) {
     last = null
   }
 
+  // Build the dark copy up front and keep it; it is only rebuilt while hidden, after the hero has changed.
+  const onEnter = () => {
+    if (!ink.firstChild || (stale && ink.style.opacity === '0')) rebuild()
+  }
+  const markStale = () => {
+    stale = true
+  }
+  const watch = new MutationObserver((records) => {
+    if (records.some((m) => !ink.contains(m.target) && m.target !== note)) markStale()
+  })
+  watch.observe(hero, { subtree: true, childList: true, attributes: true, characterData: true })
+  window.addEventListener('resize', markStale)
+  hero.addEventListener('pointerenter', onEnter)
   hero.addEventListener('pointerdown', onDown)
   hero.addEventListener('pointermove', onMove)
   hero.addEventListener('pointerup', onUp)
   hero.addEventListener('pointercancel', onUp)
   return () => {
+    watch.disconnect()
+    window.removeEventListener('resize', markStale)
+    hero.removeEventListener('pointerenter', onEnter)
     hero.removeEventListener('pointerdown', onDown)
     hero.removeEventListener('pointermove', onMove)
     hero.removeEventListener('pointerup', onUp)
