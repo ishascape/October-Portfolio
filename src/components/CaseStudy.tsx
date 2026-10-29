@@ -11,6 +11,7 @@ import { MvpScopeFlow } from './MvpScopeFlow'
 import { HostDayFlow } from './HostDayFlow'
 import { VenueFinderPrototype } from './VenueFinderPrototype'
 import { LegacyBriefPrototype } from './LegacyBriefPrototype'
+import { DecisionFork } from './DecisionFork'
 import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
@@ -253,6 +254,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   {s.decisions.map((d) => (
                     <li key={d.title}>
                       <h3 className="label">{d.title}</h3>
+                      {d.sketch && <DecisionFork sketch={d.sketch} />}
                       <dl>
                         <div>
                           <dt className="label">Problem</dt>

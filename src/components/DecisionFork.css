@@ -1,0 +1,5 @@
+.decision-sketch {
+  display: block;
+  max-width: 280px;
+  margin: var(--space-3) 0 0;
+}

@@ -2,6 +2,7 @@
 // The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
 // the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
 import type { CaseStudyId } from './content'
+import type { DecisionSketch } from '../components/DecisionFork'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
@@ -41,6 +42,7 @@ export interface Decision {
   decision: string
   why: string
   shipped: string
+  sketch?: DecisionSketch // a small pencil drawing of the choice
 }
 
 // A real screen with what it solves, the interaction decision and the reason for it.
@@ -421,6 +423,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         decisions: [
           {
             title: 'Research before redesign',
+            sketch: 'research',
             problem:
               'Four separate products, and pressure for a redesign driven by stakeholder opinion and support tickets.',
             options: 'Redesign from stakeholder opinion and tickets, or run round-table research with hosts first.',
@@ -430,6 +433,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: 'Structure over completeness',
+            sketch: 'structure',
             problem: 'Three months before peak season.',
             options: 'Polish the surface and the full feature set, or ship a coherent structure first.',
             decision: 'I chose structure over completeness.',
@@ -439,6 +443,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: '3D Studio',
+            sketch: 'embed',
             problem: '3D Studio was one of the four tools.',
             options: 'Integrate fully, or embed it and defer migration.',
             decision: 'Embed it in the proposal flow and defer migration.',
@@ -447,6 +452,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: 'Reporting',
+            sketch: 'reporting',
             problem: 'The data needed cleaning first.',
             options: 'Full reporting, or marketplace reporting only.',
             decision: 'Ship marketplace reporting only.',
