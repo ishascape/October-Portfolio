@@ -87,8 +87,9 @@
   }
 }
 
-/* Dark mode, opt-in with ?theme=dark (or localStorage 'theme'): graphite paper, light ink, brighter marker. */
-:root[data-theme='dark'] {
+/* Dark palette: graphite paper, light ink, brighter marker. Used only by the hero marker reveal (inkReveal.ts). */
+:root[data-theme='dark'],
+[data-theme='dark'] {
   color-scheme: dark;
   --paper: #171614;
   --paper-shade: #1f1d1a;

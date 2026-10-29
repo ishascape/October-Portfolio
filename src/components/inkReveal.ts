@@ -1,0 +1,132 @@
+// Marker reveal for the hero: drawing with the pointer uncovers a dark copy of the hero underneath.
+// The copy is a clone of the section made when the pointer enters, so it matches the live puzzle state.
+const BRUSH = 38 // px, marker width
+const HOLD = 2200 // ms a stroke stays before it fades
+const FADE = 1400 // ms fade out
+const NOTE_AFTER = 320 // px of drawing before the "Draw smth" note goes
+const SCALE = 0.5 // mask canvas resolution, relative to the hero
+
+export function inkReveal(hero: HTMLElement) {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return () => {}
+
+  const ink = document.createElement('div')
+  ink.className = 'hero__ink'
+  ink.setAttribute('aria-hidden', 'true')
+  ink.inert = true
+  hero.appendChild(ink)
+
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return () => {}
+
+  // "Draw smth" note: waits near the middle of the hero on load, follows the marker, goes once they have drawn.
+  const note = document.createElement('span')
+  note.className = 'hero__draw-note'
+  note.setAttribute('aria-hidden', 'true')
+  note.textContent = 'Draw smth 😉'
+  hero.appendChild(note)
+  let drawn = 0
+
+  let last: { x: number; y: number } | null = null
+  let lastDrawn = 0
+  let raf = 0
+  let dirty = false
+
+  const rebuild = () => {
+    const clone = hero.cloneNode(true) as HTMLElement
+    clone.querySelector('.hero__ink')?.remove()
+    clone.querySelector('.hero__draw-note')?.remove()
+    clone.removeAttribute('id')
+    clone.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'))
+    clone.querySelectorAll('a, button').forEach((n) => n.setAttribute('tabindex', '-1'))
+    clone.dataset.theme = 'dark'
+    ink.replaceChildren(clone)
+    const r = hero.getBoundingClientRect()
+    canvas.width = Math.max(1, Math.round(r.width * SCALE))
+    canvas.height = Math.max(1, Math.round(r.height * SCALE))
+  }
+
+  const paintMask = () => {
+    const url = `url(${canvas.toDataURL()})`
+    ink.style.webkitMaskImage = url
+    ink.style.maskImage = url
+  }
+
+  const tick = (now: number) => {
+    raf = 0
+    const idle = now - lastDrawn
+    if (idle > HOLD) {
+      // Fade the whole mask out a little each frame once the marker has rested.
+      ctx.globalCompositeOperation = 'destination-out'
+      ctx.fillStyle = `rgba(0 0 0 / ${Math.min(1, 16 / FADE + 0.02)})`
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.globalCompositeOperation = 'source-over'
+      dirty = true
+      if (idle > HOLD + FADE) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        paintMask()
+        ink.style.opacity = '0'
+        dirty = false
+        return
+      }
+    }
+    if (dirty) {
+      paintMask()
+      dirty = false
+    }
+    raf = requestAnimationFrame(tick)
+  }
+
+  const onEnter = (e: PointerEvent) => {
+    if (e.pointerType === 'touch') return
+    if (!ink.firstChild || ink.style.opacity === '0') rebuild()
+  }
+
+  const onMove = (e: PointerEvent) => {
+    if (e.pointerType === 'touch') return
+    const r = hero.getBoundingClientRect()
+    const x = (e.clientX - r.left) * SCALE
+    const y = (e.clientY - r.top) * SCALE
+    if (!ink.firstChild) rebuild()
+    ink.style.opacity = '1'
+    ctx.globalCompositeOperation = 'source-over'
+    ctx.strokeStyle = '#000'
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.lineWidth = BRUSH * SCALE
+    ctx.beginPath()
+    const from = last ?? { x, y }
+    ctx.moveTo(from.x, from.y)
+    ctx.lineTo(x + 0.01, y)
+    ctx.stroke()
+    drawn += Math.hypot(x - from.x, y - from.y) / SCALE
+    if (drawn < NOTE_AFTER) {
+      note.style.transform = `translate(${x / SCALE + 20}px, ${y / SCALE + 26}px)`
+      note.style.left = '0'
+      note.style.top = '0'
+      note.dataset.following = 'on'
+    } else {
+      note.dataset.gone = 'on'
+    }
+    last = { x, y }
+    lastDrawn = performance.now()
+    dirty = true
+    if (!raf) raf = requestAnimationFrame(tick)
+  }
+
+  const onLeave = () => {
+    last = null
+  }
+
+  hero.addEventListener('pointerenter', onEnter)
+  hero.addEventListener('pointermove', onMove)
+  hero.addEventListener('pointerleave', onLeave)
+  return () => {
+    hero.removeEventListener('pointerenter', onEnter)
+    hero.removeEventListener('pointermove', onMove)
+    hero.removeEventListener('pointerleave', onLeave)
+    cancelAnimationFrame(raf)
+    ink.remove()
+    note.remove()
+  }
+}
