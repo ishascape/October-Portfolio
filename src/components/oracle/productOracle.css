@@ -1,0 +1,560 @@
+/* The Product Oracle: Core Expertise as a tarot reading. Architectural line drawings on paper, cobalt for the one accent. */
+.oracle {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.oracle__eyebrow {
+  margin: 0;
+  color: var(--marker);
+}
+.oracle__title {
+  margin: 0;
+}
+.oracle__lede {
+  max-width: 56ch;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.oracle__view {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+  animation: oracle-in 360ms var(--ease-pen) both;
+}
+@keyframes oracle-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* ---------- Prompt ---------- */
+.oprompt {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 760px;
+}
+.oprompt__label {
+  color: var(--graphite);
+}
+.oprompt__field {
+  width: 100%;
+  padding: 14px 16px;
+  border: var(--line-building) solid var(--ink);
+  border-radius: 16px;
+  background: color-mix(in srgb, #fff 45%, var(--paper));
+  color: var(--ink);
+  font: inherit;
+  font-size: 18px;
+  line-height: 1.45;
+  resize: vertical;
+  transition: border-color var(--dur-micro) var(--ease-pen);
+}
+.oprompt__field:focus-visible {
+  border-color: var(--marker);
+  outline: 2px solid var(--marker);
+  outline-offset: 2px;
+}
+.oprompt__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+.oprompt__row .button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.oprompt__hint,
+.oracle__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.oprompt__hint {
+  color: var(--graphite);
+  font-size: 14px;
+}
+.oprompt__hint:hover,
+.oracle__link:hover {
+  color: var(--marker);
+  text-decoration-color: currentColor;
+}
+.oracle__link:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.oracle__link--quiet {
+  color: var(--graphite);
+  font-weight: 400;
+}
+.oprompt__error {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+.oprompt__error::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  background: var(--marker);
+}
+
+/* ---------- The reading ---------- */
+.oracle__cards,
+.oracle__grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Phones and tablets: the three cards sit in a row you can scroll; wide screens show all three at once. */
+.oracle__cards {
+  display: flex;
+  gap: 16px;
+  padding: 8px 4px 20px;
+  justify-content: safe center;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.oracle__cards .ocard {
+  flex: 0 0 min(78vw, 320px);
+  scroll-snap-align: center;
+}
+@media (min-width: 1280px) {
+  .oracle__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding-inline: 0;
+    overflow: visible;
+  }
+  .oracle__cards .ocard {
+    flex: none;
+    aspect-ratio: 10 / 13;
+  }
+}
+
+.ocard {
+  position: relative;
+  aspect-ratio: 5 / 8;
+  perspective: 1200px;
+  transition: transform 500ms var(--ease-pen);
+}
+.ocard__lift,
+.ocard__inner {
+  height: 100%;
+}
+.ocard__lift {
+  transition: transform var(--dur-state) var(--ease-pen);
+}
+.ocard__inner {
+  position: relative;
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  transition: transform 450ms cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+.ocard.is-up .ocard__inner {
+  transform: none;
+}
+.ocard__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: var(--line-building) solid var(--ink);
+  border-radius: 16px;
+  background: color-mix(in srgb, #fff 45%, var(--paper));
+  box-shadow:
+    0 1px 0 rgb(28 27 25 / 0.08),
+    0 14px 24px -16px rgb(28 27 25 / 0.4);
+  transition:
+    border-color var(--dur-state) var(--ease-pen),
+    box-shadow var(--dur-state) var(--ease-pen);
+}
+.ocard__front {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px 20px;
+  overflow: hidden;
+}
+/* A fine cobalt rule draws across the top edge on hover and focus. */
+.ocard__front::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--marker);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms var(--ease-pen);
+}
+.ocard.is-up:hover .ocard__front::before,
+.ocard.is-up:focus-within .ocard__front::before {
+  transform: scaleX(1);
+}
+.ocard.is-up:hover .ocard__face,
+.ocard.is-up:focus-within .ocard__face {
+  border-color: var(--marker);
+  box-shadow:
+    0 1px 0 rgb(28 27 25 / 0.08),
+    0 20px 28px -16px rgb(28 27 25 / 0.45);
+}
+@media (hover: hover) {
+  .ocard.is-up:hover .ocard__lift {
+    transform: translateY(-5px) rotate(-0.6deg);
+  }
+}
+.ocard__back {
+  transform: rotateY(180deg);
+  overflow: hidden;
+  background: var(--paper);
+}
+.ocard__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ocard__numeral {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.ocard__role {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--graphite);
+  font-size: 14px;
+  font-weight: 500;
+}
+.ocard__role::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--marker);
+}
+.ocard__parti {
+  align-self: center;
+  width: auto;
+  max-width: 100%;
+  height: 112px;
+  margin-block: 8px 4px;
+}
+.ocard__name {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.ocard__title {
+  margin: 0 0 6px;
+  color: var(--marker);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.ocard__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ocard__proof {
+  margin: auto 0 0;
+  padding-top: 10px;
+  border-top: var(--line-thin) solid var(--rule);
+  color: var(--graphite);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.ocard__text + .ocard__proof {
+  margin-top: auto;
+}
+/* The whole card is the tap target. */
+.ocard__open {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+}
+.ocard__open:disabled {
+  cursor: default;
+}
+.ocard__open:focus-visible {
+  outline: 2px solid var(--marker);
+  outline-offset: 3px;
+}
+
+/* Shuffle: the cards gather towards the middle one, overlapping a little, then spread out again. */
+.oracle__cards.is-gathering .ocard:nth-child(1) {
+  transform: translateX(calc(100% + 16px - 12%)) rotate(-4deg);
+}
+.oracle__cards.is-gathering .ocard:nth-child(2) {
+  transform: rotate(2.5deg);
+}
+.oracle__cards.is-gathering .ocard:nth-child(3) {
+  transform: translateX(calc(-100% - 16px + 12%)) rotate(5deg);
+}
+@media (min-width: 1280px) {
+  .oracle__cards.is-gathering .ocard:nth-child(1) {
+    transform: translateX(calc(100% + var(--space-4) - 14%)) rotate(-4deg);
+  }
+  .oracle__cards.is-gathering .ocard:nth-child(3) {
+    transform: translateX(calc(-100% - var(--space-4) + 14%)) rotate(5deg);
+  }
+}
+
+/* Card back: systems diagram in fine lines. */
+.oback {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.oback__frame {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.oback__frame--inner {
+  stroke-width: 0.75;
+}
+.oback__grid {
+  stroke: var(--rule);
+  stroke-width: 0.75;
+}
+.oback__line {
+  fill: none;
+  stroke: var(--graphite);
+  stroke-width: 0.75;
+}
+.oback__dot {
+  fill: var(--ink);
+}
+.oback__ring {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+.oback__ring--dash {
+  fill: none;
+  stroke: var(--marker);
+  stroke-dasharray: 4 3;
+}
+.oback__star {
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.oback__orbit {
+  fill: var(--marker);
+}
+
+/* ---------- Synthesis ---------- */
+.oracle__synthesis {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 64ch;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 420ms var(--ease-pen),
+    transform 420ms var(--ease-pen);
+}
+.oracle__synthesis.is-in {
+  opacity: 1;
+  transform: none;
+}
+.oracle__synthesis p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.55;
+}
+.oracle__synthesis-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.oracle__synthesis .oracle__note {
+  color: var(--graphite);
+  font-size: 14px;
+}
+.oracle__synthesis .oracle__link {
+  justify-self: start;
+  margin-top: var(--space-1);
+}
+.oracle__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+.oracle__actions--top {
+  justify-content: space-between;
+}
+.oracle__count {
+  margin: 0;
+  color: var(--graphite);
+  font-size: 14px;
+}
+
+/* ---------- All eight cards ---------- */
+.oracle__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (min-width: 700px) {
+  .oracle__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+}
+.oracle__grid .ocard {
+  display: grid;
+  aspect-ratio: auto;
+}
+.oracle__grid .ocard__lift,
+.oracle__grid .ocard__inner {
+  display: grid;
+  height: auto;
+}
+.oracle__grid .ocard__inner {
+  transform: none;
+}
+.oracle__grid .ocard__front {
+  position: relative;
+  padding: 12px 12px 16px;
+}
+.oracle__grid .ocard__back {
+  display: none;
+}
+.oracle__grid .ocard__parti {
+  height: 72px;
+}
+.oracle__grid .ocard__name {
+  font-size: 16px;
+}
+.oracle__grid .ocard__title,
+.oracle__grid .ocard__text {
+  font-size: 12px;
+}
+@media (min-width: 700px) {
+  .oracle__grid .ocard__front {
+    padding: 18px 18px 20px;
+  }
+  .oracle__grid .ocard__parti {
+    height: 96px;
+  }
+  .oracle__grid .ocard__name {
+    font-size: 18px;
+  }
+  .oracle__grid .ocard__title,
+  .oracle__grid .ocard__text {
+    font-size: 14px;
+  }
+}
+
+/* ---------- Card detail ---------- */
+.odialog {
+  width: min(92vw, 560px);
+  max-height: 90vh;
+  padding: 0;
+  border: var(--line-building) solid var(--ink);
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.odialog::backdrop {
+  background: rgb(0 0 0 / 0.7);
+}
+.odialog__body {
+  display: grid;
+  gap: 4px;
+  padding: 28px 24px 28px;
+}
+.odialog__body p {
+  margin: 0;
+  line-height: 1.55;
+}
+.odialog__close {
+  justify-self: end;
+  padding: 6px 4px;
+  border: 0;
+  background: none;
+  color: var(--graphite);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.odialog__close:hover {
+  color: var(--marker);
+}
+.odialog__parti {
+  justify-self: center;
+  width: auto;
+  max-width: 100%;
+  height: 150px;
+  margin-block: 4px 12px;
+}
+.odialog__numeral {
+  margin: 0;
+  color: var(--marker);
+}
+.odialog__name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.odialog__title {
+  color: var(--graphite);
+  font-weight: 500;
+}
+.odialog__meaning {
+  margin-top: 8px;
+  font-size: 18px;
+}
+.odialog__sub {
+  margin: 16px 0 0;
+  color: var(--graphite);
+}
+.odialog .oracle__link {
+  justify-self: start;
+  margin-top: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oracle__view,
+  .ocard,
+  .ocard__lift,
+  .ocard__inner,
+  .ocard__front::before,
+  .oracle__synthesis {
+    animation: none;
+    transition: none;
+  }
+  .ocard.is-up:hover .ocard__lift {
+    transform: none;
+  }
+}

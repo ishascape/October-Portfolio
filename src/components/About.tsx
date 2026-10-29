@@ -1,6 +1,7 @@
 import { education, fieldNotes, revisions } from '../data/content'
 import { SheetLabel } from './SheetLabel'
 import { Skills } from './Skills'
+import { ProductOracle } from './oracle/ProductOracle'
 import { FieldStrip } from './FieldStrip'
 import './About.css'
 
@@ -44,6 +45,8 @@ export function About() {
             </p>
           </div>
         </div>
+
+        <ProductOracle />
 
         <Skills />
 
