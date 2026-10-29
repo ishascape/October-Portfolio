@@ -67,8 +67,37 @@ export function inkReveal(hero: HTMLElement) {
     }
   }
 
+  // What the layer shows is the scribbles minus the foreground pieces, so nothing is ever drawn over the card pile or
+  // the buttons, even where they are see-through (the outline button, the arrows, the "Pick a page" label).
+  const out = document.createElement('canvas')
+  const outCtx = out.getContext('2d')
+  const FOREGROUND = '.hero__actions .button, .hero__portrait, .hero__clear'
   const paintMask = () => {
-    const url = `url(${canvas.toDataURL()})`
+    let source: HTMLCanvasElement = canvas
+    if (outCtx) {
+      out.width = canvas.width
+      out.height = canvas.height
+      outCtx.drawImage(canvas, 0, 0)
+      outCtx.globalCompositeOperation = 'destination-out'
+      outCtx.fillStyle = '#000'
+      const h = hero.getBoundingClientRect()
+      hero.querySelectorAll(FOREGROUND).forEach((el) => {
+        if (ink.contains(el)) return
+        const r = el.getBoundingClientRect()
+        if (r.width === 0 || r.height === 0) return
+        outCtx.beginPath()
+        outCtx.roundRect(
+          (r.left - h.left) * SCALE,
+          (r.top - h.top) * SCALE,
+          r.width * SCALE,
+          r.height * SCALE,
+          16 * SCALE,
+        )
+        outCtx.fill()
+      })
+      source = out
+    }
+    const url = `url(${source.toDataURL()})`
     ink.style.webkitMaskImage = url
     ink.style.maskImage = url
   }
