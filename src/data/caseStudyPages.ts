@@ -132,7 +132,6 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '27%', label: 'More likely to finalise bookings when venues selected by guest' },
       { value: 'New', label: 'Revenue from paid Spotlight placement' },
     ],
-    impactNote: 'Qualified enquiries is the measured V2 result against the control. No revenue figure is claimed.',
     sections: [
       {
         label: '01 · The problem',
