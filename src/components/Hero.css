@@ -506,7 +506,7 @@
 /* ---------- Paper stack: moves like the Field notes pile ---------- */
 .hero__deck {
   display: grid;
-  gap: 12px;
+  gap: 4px;
   min-width: 0;
 }
 .hero__sheets {
@@ -514,8 +514,8 @@
   align-items: center; /* every sheet centres on the same point */
   user-select: none;
   -webkit-user-select: none;
-  margin: 8px 0 0;
-  padding-bottom: 20px;
+  margin: 0;
+  padding-bottom: 0;
 }
 .deck-sheet {
   grid-area: 1 / 1;
@@ -547,8 +547,25 @@
   color: var(--graphite);
   cursor: pointer;
 }
-.hero__back:disabled {
-  cursor: default;
+/* Pick a page: every sheet as an image-only tile. */
+.hero__sheets.is-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 12px;
+  padding-inline: 7%;
+}
+.is-grid .deck-sheet {
+  grid-area: auto;
+  grid-template-rows: 1fr;
+  aspect-ratio: 1 / 1;
+}
+.is-grid .deck-sheet__cap {
+  display: none;
+}
+.is-grid .deck-sheet__media {
+  height: 100%;
+  aspect-ratio: auto;
+  border-bottom: 0;
 }
 @media (prefers-reduced-motion: reduce) {
   .deck-sheet {
