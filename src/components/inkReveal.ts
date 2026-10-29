@@ -1,9 +1,8 @@
-// Marker reveal for the hero: drawing with the pointer held down uncovers a dark copy of the hero underneath.
-// The copy is a clone of the section made when a stroke starts, so it matches the live puzzle state.
+// Marker reveal for the hero: drawing with the pointer held down uncovers a dark copy of the hero's background.
+// Scribbles stay until "Clear scribbles" is pressed. The card pile, the buttons and the clear button sit above the
+// layer (see .hero__ink in Hero.css), so the marker only ever draws on the background behind them.
 const NIB_W = 9 // px, chisel nib thickness
 const NIB_H = 36 // px, chisel nib length
-const HOLD = 2200 // ms a stroke stays before it fades
-const FADE = 1400 // ms fade out
 const NOTE_AFTER = 320 // px of drawing before the "Draw smth" note goes
 const SCALE = 0.5 // mask canvas resolution, relative to the hero
 
@@ -37,13 +36,12 @@ export function inkReveal(hero: HTMLElement) {
   hero.appendChild(note)
   let drawn = 0
   let pen = false
-
   let last: { x: number; y: number } | null = null
-  let lastDrawn = 0
   let raf = 0
   let dirty = false
-  let stale = true // the hero changed since the dark copy was made
 
+  // The dark copy: a clone of the hero, made once and remade only when the layout changes (a resize).
+  // The foreground pieces in it are hidden by CSS, because the live ones sit on top of the layer.
   const rebuild = () => {
     const clone = hero.cloneNode(true) as HTMLElement
     clone.querySelector('.hero__ink')?.remove()
@@ -54,9 +52,19 @@ export function inkReveal(hero: HTMLElement) {
     clone.dataset.theme = 'dark'
     ink.replaceChildren(clone)
     const r = hero.getBoundingClientRect()
-    canvas.width = Math.max(1, Math.round(r.width * SCALE))
-    canvas.height = Math.max(1, Math.round(r.height * SCALE))
-    stale = false
+    const w = Math.max(1, Math.round(r.width * SCALE))
+    const h = Math.max(1, Math.round(r.height * SCALE))
+    if (w !== canvas.width || h !== canvas.height) {
+      // Keep the scribbles through a resize by stretching them to the new size.
+      const old = document.createElement('canvas')
+      old.width = canvas.width
+      old.height = canvas.height
+      old.getContext('2d')?.drawImage(canvas, 0, 0)
+      canvas.width = w
+      canvas.height = h
+      if (old.width > 0 && old.height > 0) ctx.drawImage(old, 0, 0, w, h)
+      schedule()
+    }
   }
 
   const paintMask = () => {
@@ -64,31 +72,15 @@ export function inkReveal(hero: HTMLElement) {
     ink.style.webkitMaskImage = url
     ink.style.maskImage = url
   }
-
-  const tick = (now: number) => {
+  const flush = () => {
     raf = 0
-    const idle = now - lastDrawn
-    if (idle > HOLD) {
-      // Fade the whole mask out a little each frame once the marker has rested.
-      ctx.globalCompositeOperation = 'destination-out'
-      ctx.fillStyle = `rgba(0 0 0 / ${Math.min(1, 16 / FADE + 0.02)})`
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.globalCompositeOperation = 'source-over'
-      dirty = true
-      if (idle > HOLD + FADE) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        paintMask()
-        ink.style.opacity = '0'
-        dirty = false
-        if (stale) rebuild() // refreshed while nobody can see it
-        return
-      }
-    }
-    if (dirty) {
-      paintMask()
-      dirty = false
-    }
-    raf = requestAnimationFrame(tick)
+    if (!dirty) return
+    dirty = false
+    paintMask()
+  }
+  function schedule() {
+    dirty = true
+    if (!raf) raf = requestAnimationFrame(flush)
   }
 
   // Angled chisel tip: a flat nib tilted 50deg, stamped along the path so strokes thicken and thin with direction.
@@ -115,13 +107,12 @@ export function inkReveal(hero: HTMLElement) {
     return { x: (e.clientX - r.left) * SCALE, y: (e.clientY - r.top) * SCALE }
   }
 
-  // Drawing needs the button held down; clicks on links, buttons and puzzle tiles still do their own thing.
+  // Drawing needs the button held down. Presses on the card pile, the buttons and links do their own thing.
   const onDown = (e: PointerEvent) => {
     if (e.pointerType === 'touch' || e.button !== 0) return
-    if ((e.target as Element).closest('a, button, [role="button"], input, textarea, select')) return
+    if ((e.target as Element).closest('a, button, [role="button"], input, textarea, select, .hero__portrait')) return
     e.preventDefault() // no text selection or image drag while drawing
-    if (!ink.firstChild || (stale && ink.style.opacity === '0')) rebuild()
-    ctx.clearRect(0, 0, canvas.width, canvas.height) // a new drawing replaces the last one
+    if (!ink.firstChild) rebuild()
     hero.setPointerCapture(e.pointerId)
     pen = true
     ink.style.opacity = '1'
@@ -130,9 +121,8 @@ export function inkReveal(hero: HTMLElement) {
     const { x, y } = point(e)
     stamp(x, y)
     last = { x, y }
-    lastDrawn = performance.now()
-    dirty = true
-    if (!raf) raf = requestAnimationFrame(tick)
+    hero.dataset.scribbled = 'on'
+    schedule()
   }
 
   const onMove = (e: PointerEvent) => {
@@ -145,9 +135,7 @@ export function inkReveal(hero: HTMLElement) {
     for (let k = 1; k <= steps; k++) stamp(last.x + ((x - last.x) * k) / steps, last.y + ((y - last.y) * k) / steps)
     drawn += dist / SCALE
     last = { x, y }
-    lastDrawn = performance.now()
-    dirty = true
-    if (!raf) raf = requestAnimationFrame(tick)
+    schedule()
   }
 
   const onUp = () => {
@@ -155,31 +143,42 @@ export function inkReveal(hero: HTMLElement) {
     last = null
   }
 
-  // Build the dark copy up front and keep it; it is only rebuilt while hidden, after the hero has changed.
+  // The "Clear scribbles" button (in Hero.tsx) asks for a clean sheet.
+  const onClear = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ink.style.opacity = '0'
+    delete hero.dataset.scribbled
+    paintMask()
+  }
+
+  let resizeTimer = 0
+  const onResize = () => {
+    window.clearTimeout(resizeTimer)
+    resizeTimer = window.setTimeout(() => {
+      if (ink.firstChild) rebuild()
+    }, 150)
+  }
+
   const onEnter = () => {
-    if (!ink.firstChild || (stale && ink.style.opacity === '0')) rebuild()
+    if (!ink.firstChild) rebuild() // built up front so the first stroke has no delay
   }
-  const markStale = () => {
-    stale = true
-  }
-  const watch = new MutationObserver((records) => {
-    if (records.some((m) => !ink.contains(m.target) && m.target !== note)) markStale()
-  })
-  watch.observe(hero, { subtree: true, childList: true, attributes: true, characterData: true })
-  window.addEventListener('resize', markStale)
+
+  window.addEventListener('resize', onResize)
   hero.addEventListener('pointerenter', onEnter)
   hero.addEventListener('pointerdown', onDown)
   hero.addEventListener('pointermove', onMove)
   hero.addEventListener('pointerup', onUp)
   hero.addEventListener('pointercancel', onUp)
+  hero.addEventListener('hero:clear', onClear)
   return () => {
-    watch.disconnect()
-    window.removeEventListener('resize', markStale)
+    window.removeEventListener('resize', onResize)
+    window.clearTimeout(resizeTimer)
     hero.removeEventListener('pointerenter', onEnter)
     hero.removeEventListener('pointerdown', onDown)
     hero.removeEventListener('pointermove', onMove)
     hero.removeEventListener('pointerup', onUp)
     hero.removeEventListener('pointercancel', onUp)
+    hero.removeEventListener('hero:clear', onClear)
     cancelAnimationFrame(raf)
     ink.remove()
     note.remove()
