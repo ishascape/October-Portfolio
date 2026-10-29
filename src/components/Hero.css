@@ -506,7 +506,7 @@
 /* ---------- Paper stack: moves like the Field notes pile ---------- */
 .hero__deck {
   display: grid;
-  gap: 12px;
+  gap: 4px;
   min-width: 0;
 }
 .hero__sheets {
@@ -514,8 +514,8 @@
   align-items: center; /* every sheet centres on the same point */
   user-select: none;
   -webkit-user-select: none;
-  margin: 8px 0 0;
-  padding-bottom: 20px;
+  margin: 0;
+  padding-bottom: 0;
 }
 .deck-sheet {
   grid-area: 1 / 1;

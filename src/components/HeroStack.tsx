@@ -73,14 +73,14 @@ const sheets: Sheet[] = [
 // The hero stack is the Field notes pile: loose sheets, Ashni's portrait always on top. Click a sheet and it lifts out,
 // straightens up and shows its caption; click it again (or Esc, or the pile button) and it drops back into the pile,
 // just under the portrait. Each sheet has its own scatter position, worked out from its place in the list.
-const PILE_SCALE = 0.8
-const PORTRAIT_SCALE = 0.82
+const PILE_SCALE = 0.88
+const PORTRAIT_SCALE = 0.94
 
 function scatter(i: number) {
   const a = i * 2.399963 // golden angle, so neighbours never land on top of each other
   return {
-    x: Math.cos(a) * 12,
-    y: Math.sin(a) * 10,
+    x: Math.cos(a) * 8,
+    y: Math.sin(a) * 6,
     r: ((i * 37) % 21) - 10, // -10 to +10 degrees
   }
 }
