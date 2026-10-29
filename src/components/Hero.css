@@ -821,3 +821,53 @@
     color: var(--paper);
   }
 }
+
+/* Over 40% scribbled: the message, then the clear button pulses while the sheet is wiped. */
+.hero__enough {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__enough {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    z-index: 7;
+    pointer-events: none;
+    font-family: var(--font-hand);
+    font-size: 34px;
+    line-height: 1.1;
+    color: var(--marker);
+    white-space: nowrap;
+    text-align: center;
+    transform: translateX(-50%) rotate(-3deg);
+    padding: 8px 18px;
+    border-radius: 16px;
+    background: var(--paper);
+    opacity: 0;
+    transition: opacity 300ms var(--ease-pen);
+  }
+  .hero__enough[data-on='on'] {
+    opacity: 1;
+  }
+  .hero[data-pulse] .hero__clear {
+    animation: clear-pulse 700ms ease-in-out infinite;
+  }
+}
+@keyframes clear-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--marker) 55%, transparent);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--marker) 0%, transparent);
+  }
+}
+@media (max-width: 900px) {
+  .hero__enough {
+    white-space: normal;
+    width: 80%;
+  }
+}

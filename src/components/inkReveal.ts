@@ -5,6 +5,8 @@ const NIB_W = 9 // px, chisel nib thickness
 const NIB_H = 36 // px, chisel nib length
 const NOTE_AFTER = 320 // px of drawing before the "Draw smth" note goes
 const SCALE = 0.5 // mask canvas resolution, relative to the hero
+const ENOUGH = 0.4 // share of the hero that can be scribbled on before the marker is taken away
+const WIPE_AFTER = 2200 // ms the "enough" message is read before the scribbles are wiped
 
 export function inkReveal(hero: HTMLElement) {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return () => {}
@@ -34,6 +36,16 @@ export function inkReveal(hero: HTMLElement) {
     '<path class="smile__mouth smile__mouth--smirk" d="M9.8 16.2 C13 18.4 19 18.2 23.6 12.4" />' +
     '</svg>'
   hero.appendChild(note)
+
+  // Shown when 40% of the hero is covered, just before the scribbles are wiped.
+  const enough = document.createElement('span')
+  enough.className = 'hero__enough'
+  enough.setAttribute('aria-hidden', 'true')
+  enough.textContent = "ok picasso - i think you've had enough"
+  hero.appendChild(enough)
+  let wiping = false
+  let checked = 0
+  const timers: number[] = []
   let drawn = 0
   let pen = false
   let last: { x: number; y: number } | null = null
@@ -46,6 +58,7 @@ export function inkReveal(hero: HTMLElement) {
     const clone = hero.cloneNode(true) as HTMLElement
     clone.querySelector('.hero__ink')?.remove()
     clone.querySelector('.hero__draw-note')?.remove()
+    clone.querySelector('.hero__enough')?.remove()
     clone.removeAttribute('id')
     clone.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'))
     clone.querySelectorAll('a, button').forEach((n) => n.setAttribute('tabindex', '-1'))
@@ -131,6 +144,36 @@ export function inkReveal(hero: HTMLElement) {
     }
   }
 
+  // Share of the sheet the marker has covered (every 4th pixel is enough to tell).
+  const covered = () => {
+    const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    let hit = 0
+    for (let i = 3; i < data.length; i += 16) if (data[i] > 0) hit++
+    return hit / (data.length / 16)
+  }
+
+  // Too much ink: say so, pulse "Clear scribbles", then wipe the sheet clean.
+  const tooMuch = () => {
+    wiping = true
+    pen = false
+    last = null
+    enough.dataset.on = 'on'
+    hero.dataset.pulse = 'on'
+    timers.push(
+      window.setTimeout(() => {
+        ink.style.opacity = '0'
+        enough.dataset.on = ''
+      }, WIPE_AFTER),
+      window.setTimeout(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        delete hero.dataset.scribbled
+        delete hero.dataset.pulse
+        paintMask()
+        wiping = false
+      }, WIPE_AFTER + 700),
+    )
+  }
+
   const point = (e: PointerEvent) => {
     const r = hero.getBoundingClientRect()
     return { x: (e.clientX - r.left) * SCALE, y: (e.clientY - r.top) * SCALE }
@@ -138,7 +181,7 @@ export function inkReveal(hero: HTMLElement) {
 
   // Drawing needs the button held down. Presses on the card pile, the buttons and links do their own thing.
   const onDown = (e: PointerEvent) => {
-    if (e.pointerType === 'touch' || e.button !== 0) return
+    if (e.pointerType === 'touch' || e.button !== 0 || wiping) return
     if ((e.target as Element).closest('a, button, [role="button"], input, textarea, select, .hero__portrait')) return
     e.preventDefault() // no text selection or image drag while drawing
     if (!ink.firstChild) rebuild()
@@ -158,13 +201,18 @@ export function inkReveal(hero: HTMLElement) {
     if (e.pointerType === 'touch') return
     const { x, y } = point(e)
     nearNote(x, y)
-    if (!pen || !last) return
+    if (!pen || !last || wiping) return
     const dist = Math.hypot(x - last.x, y - last.y)
     const steps = Math.max(1, Math.ceil(dist / 1.5))
     for (let k = 1; k <= steps; k++) stamp(last.x + ((x - last.x) * k) / steps, last.y + ((y - last.y) * k) / steps)
     drawn += dist / SCALE
     last = { x, y }
     schedule()
+    const now = performance.now()
+    if (now - checked > 200) {
+      checked = now
+      if (covered() >= ENOUGH) tooMuch()
+    }
   }
 
   const onUp = () => {
@@ -174,6 +222,11 @@ export function inkReveal(hero: HTMLElement) {
 
   // The "Clear scribbles" button (in Hero.tsx) asks for a clean sheet.
   const onClear = () => {
+    timers.forEach((t) => window.clearTimeout(t))
+    timers.length = 0
+    wiping = false
+    enough.dataset.on = ''
+    delete hero.dataset.pulse
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ink.style.opacity = '0'
     delete hero.dataset.scribbled
@@ -211,5 +264,7 @@ export function inkReveal(hero: HTMLElement) {
     cancelAnimationFrame(raf)
     ink.remove()
     note.remove()
+    enough.remove()
+    timers.forEach((t) => window.clearTimeout(t))
   }
 }
