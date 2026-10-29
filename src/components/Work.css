@@ -28,6 +28,7 @@
   grid-template-rows: auto 1fr;
   height: 100%;
   border: var(--line-thin) solid var(--rule);
+  border-radius: var(--radius);
   background: var(--paper);
   transition:
     border-color var(--dur-micro) var(--ease-pen),
@@ -88,10 +89,11 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background:
-    linear-gradient(to right, rgb(216 210 196 / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
-    linear-gradient(to bottom, rgb(216 210 196 / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
+    linear-gradient(to right, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
+    linear-gradient(to bottom, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
     var(--paper-shade);
   border-bottom: var(--line-thin) solid var(--rule);
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 .card__image-note {
   color: var(--graphite);
@@ -211,6 +213,7 @@
 .card__tags li {
   padding: 2px var(--space-2);
   border: var(--line-thin) solid var(--rule);
+  border-radius: var(--radius);
   color: var(--graphite);
 }
 
@@ -226,6 +229,7 @@
   min-height: 56px;
   padding-inline: var(--space-3);
   border-width: var(--line-building) 0 0;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 .card__cta .button::before,
 .card__cta .button::after {
@@ -292,5 +296,9 @@
     min-height: 100%;
     border-bottom: 0;
     border-right: var(--line-thin) solid var(--rule);
+    border-radius: var(--radius) 0 0 var(--radius);
+  }
+  .card__cta .button {
+    border-radius: 0 0 var(--radius) 0;
   }
 }

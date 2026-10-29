@@ -53,11 +53,11 @@
   align-content: start;
   gap: var(--space-2);
   padding: var(--space-4) var(--space-3) var(--space-4);
-  background: color-mix(in srgb, #fff 45%, var(--paper));
-  border: var(--line-thin) solid rgb(28 27 25 / 0.55);
+  background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
+  border: var(--line-thin) solid rgb(var(--shadow-ink) / 0.55);
   box-shadow:
-    0 1px 0 rgb(28 27 25 / 0.08),
-    0 14px 24px -14px rgb(28 27 25 / 0.35);
+    0 1px 0 rgb(var(--shadow-ink) / 0.08),
+    0 14px 24px -14px rgb(var(--shadow-ink) / 0.35);
   transform-origin: 50% 100%;
   will-change: transform;
 }
@@ -113,11 +113,12 @@
     grid-template-columns: 1fr;
     align-content: start;
     padding: var(--space-4) var(--space-3);
-    background: color-mix(in srgb, #fff 45%, var(--paper));
-    border: var(--line-thin) solid rgb(28 27 25 / 0.55);
+    background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
+    border: var(--line-thin) solid rgb(var(--shadow-ink) / 0.55);
+    border-radius: var(--radius);
     box-shadow:
-      0 1px 0 rgb(28 27 25 / 0.08),
-      0 14px 24px -14px rgb(28 27 25 / 0.35);
+      0 1px 0 rgb(var(--shadow-ink) / 0.08),
+      0 14px 24px -14px rgb(var(--shadow-ink) / 0.35);
     transition:
       transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1),
       box-shadow 300ms;
@@ -142,8 +143,8 @@
   .skill:hover {
     transition-delay: 0s;
     box-shadow:
-      0 1px 0 rgb(28 27 25 / 0.08),
-      0 20px 28px -14px rgb(28 27 25 / 0.4);
+      0 1px 0 rgb(var(--shadow-ink) / 0.08),
+      0 20px 28px -14px rgb(var(--shadow-ink) / 0.4);
   }
   .skills--fan > .skill:hover {
     transition:

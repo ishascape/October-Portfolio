@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { availability, contact } from '../data/content'
-import { SheetLabel } from './SheetLabel'
 import './Contact.css'
 
 export function Contact() {
@@ -24,14 +23,11 @@ export function Contact() {
   return (
     <section id="contact" className="section contact paper-sheet" aria-labelledby="contact-heading">
       <div className="container">
-        <SheetLabel sheet="03 / 03" title="Contact" />
         <h2 id="contact-heading" className="display contact__heading">
           Got an interesting problem? Let's work together!
         </h2>
         <div className="contact__body">
-          <p>
-            {availability.headline} {availability.location}
-          </p>
+          <p>{availability.headline}</p>
         </div>
 
         <div className="contact__links">

@@ -297,7 +297,7 @@ const FAN = [
   { x: -6, r: -1.6 },
   { x: 5, r: 1.2 },
 ]
-function paperStyle(d: number, drag: number, dragging: boolean): CSSProperties {
+export function paperStyle(d: number, drag: number, dragging: boolean): CSSProperties {
   const transition = dragging && d === 0 ? 'none' : 'transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 320ms'
   if (d < 0) {
     return {

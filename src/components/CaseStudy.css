@@ -1,8 +1,8 @@
 .case__header {
   padding-block: var(--space-4) var(--space-5);
   background-image:
-    linear-gradient(to right, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(216 210 196 / 0.4) var(--line-hair), transparent var(--line-hair));
+    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
+    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
   background-size: 24px 24px;
   border-bottom: var(--line-thin) solid var(--ink);
 }
@@ -122,6 +122,22 @@
 .case__meta dd {
   margin: 0;
   font-size: 16px;
+}
+
+/* HostHQ: the product image runs the full width, with the facts in a row under it. */
+@media (min-width: 900px) {
+  .case__visual--wide {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+  .case__visual--wide .case__meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1200px) {
+  .case__visual--wide .case__meta {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
 }
 
 /* ---------- TL;DR ---------- */
@@ -249,7 +265,7 @@
   margin: 0;
   padding: var(--space-4);
   border: var(--line-building) solid var(--ink);
-  border-radius: 20px;
+  border-radius: var(--radius);
   background: var(--paper);
   color: var(--ink);
 }
