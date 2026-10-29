@@ -300,11 +300,6 @@ export function HeroStack() {
           </article>
         ))}
       </div>
-      {grid && (
-        <p className="hero__hint" aria-live="polite">
-          {solved ? 'Solved. Pick a page.' : 'Slide the tiles back into place, then pick a page.'}
-        </p>
-      )}
       <div className="hero__nav">
         <button type="button" className="deck__button" onClick={() => step(-1)} aria-label="Previous sheet">
           <span aria-hidden="true">←</span>
