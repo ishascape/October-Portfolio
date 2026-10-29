@@ -249,7 +249,7 @@
   margin: 0;
   padding: var(--space-4);
   border: var(--line-building) solid var(--ink);
-  border-radius: 20px;
+  border-radius: var(--radius);
   background: var(--paper);
   color: var(--ink);
 }

@@ -149,6 +149,7 @@ body::after {
   min-height: var(--tap);
   padding: 0 var(--space-4);
   border: var(--line-building) solid var(--ink);
+  border-radius: var(--radius);
   background: transparent;
   text-decoration: none;
   cursor: pointer;

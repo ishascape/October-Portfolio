@@ -85,10 +85,36 @@ function scatter(i: number) {
   }
 }
 
+// "Pick a page" is a sliding puzzle: five tiles in a 2 x 3 grid with one gap. Tiles next to the gap slide into it, and once
+// every tile is back in its place the puzzle is solved and a tile opens its page. slots[sheet] is the cell the sheet sits in.
+const COLS = 2
+const CELLS = 6
+const solvedSlots = (count: number) => Array.from({ length: count }, (_, i) => i)
+const gapOf = (slots: number[]) => [...Array(CELLS).keys()].find((c) => !slots.includes(c)) ?? CELLS - 1
+const touches = (a: number, b: number) =>
+  (Math.floor(a / COLS) === Math.floor(b / COLS) && Math.abs(a - b) === 1) || Math.abs(a - b) === COLS
+const isSolved = (slots: number[]) => slots.every((c, i) => c === i)
+
+// A light shuffle made of legal moves from the solved board, so it can always be solved again.
+function shuffled(count: number) {
+  let slots = solvedSlots(count)
+  let last = -1
+  for (let k = 0; k < 40 && (k < 8 || isSolved(slots)); k++) {
+    const gap = gapOf(slots)
+    const options = slots.map((c, i) => (touches(c, gap) && i !== last ? i : -1)).filter((i) => i >= 0)
+    const pick = options[Math.floor(Math.random() * options.length)]
+    slots = slots.map((c, i) => (i === pick ? gap : c))
+    last = pick
+  }
+  return slots
+}
+
 export function HeroStack() {
   const [open, setOpen] = useState<number | null>(null)
   // "Pick a page" lays every sheet out as an image-only grid; picking one goes back to the pile with that sheet open.
   const [grid, setGrid] = useState(false)
+  const [slots, setSlots] = useState(() => solvedSlots(sheets.length))
+  const solved = isSolved(slots)
   const [lockH, setLockH] = useState(0)
   const [moving, setMoving] = useState(false)
   // Pile order, bottom to top. The portrait (sheet 0) is always the last one, so it is always on top.
@@ -129,7 +155,7 @@ export function HeroStack() {
       )
     })
     return () => window.clearTimeout(done)
-  }, [grid, open])
+  }, [grid, open, slots])
 
   // A sheet that goes back drops in just under the portrait, unless it is the portrait, which goes back on top.
   const putBack = (o: number[], i: number) =>
@@ -157,7 +183,27 @@ export function HeroStack() {
     measure()
     if (open !== null) setOrder((o) => putBack(o, open))
     setOpen(null)
+    setSlots(shuffled(n))
     setGrid(true)
+  }
+  // Slide a sheet into the gap, if it is next to it.
+  const slide = (i: number) => {
+    if (!touches(slots[i], gapOf(slots))) return
+    measure()
+    setSlots((sl) => sl.map((c, j) => (j === i ? gapOf(sl) : c)))
+  }
+  // An arrow key moves the tile on the far side of the gap into it.
+  const slideKey = (key: string) => {
+    const gap = gapOf(slots)
+    const from = { ArrowRight: gap - 1, ArrowLeft: gap + 1, ArrowDown: gap - COLS, ArrowUp: gap + COLS }[key]
+    if (from === undefined || from < 0 || from >= CELLS || !touches(from, gap)) return
+    const i = slots.indexOf(from)
+    if (i >= 0) slide(i)
+  }
+  const tap = (i: number) => {
+    if (!grid) return i === open ? close() : show(i)
+    if (solved) return show(i)
+    slide(i)
   }
 
   useEffect(() => {
@@ -169,7 +215,10 @@ export function HeroStack() {
 
   const sheetStyle = (i: number): CSSProperties => {
     const transition = moving ? 'none' : undefined // the slide between layouts does the moving
-    if (grid) return { transform: 'none', zIndex: 1, transition }
+    if (grid) {
+      const c = slots[i]
+      return { transform: 'none', zIndex: 1, transition, gridColumn: (c % COLS) + 1, gridRow: Math.floor(c / COLS) + 1 }
+    }
     const z = i === open ? 200 : order.indexOf(i) + 1
     if (i === open) return { transform: 'translate(0, 0) rotate(0deg) scale(1)', zIndex: z, transition }
     if (i === 0) return { transform: `translate(0, 0) rotate(-2deg) scale(${PORTRAIT_SCALE})`, zIndex: z, transition }
@@ -181,6 +230,11 @@ export function HeroStack() {
     <div
       className="hero__deck"
       onKeyDown={(e) => {
+        if (grid && !solved && e.key.startsWith('Arrow')) {
+          e.preventDefault()
+          slideKey(e.key)
+          return
+        }
         if (e.key === 'ArrowRight') step(1)
         if (e.key === 'ArrowLeft') step(-1)
       }}
@@ -200,12 +254,12 @@ export function HeroStack() {
             role="button"
             tabIndex={0}
             aria-expanded={grid ? undefined : i === open}
-            aria-label={`${grid ? 'Open' : i === open ? 'Put back' : 'Open'} ${s.name}`}
-            onClick={() => (!grid && i === open ? close() : show(i))}
+            aria-label={`${grid ? (solved ? 'Open' : 'Slide') : i === open ? 'Put back' : 'Open'} ${s.name}`}
+            onClick={() => tap(i)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                !grid && i === open ? close() : show(i)
+                tap(i)
               }
             }}
           >
@@ -246,6 +300,11 @@ export function HeroStack() {
           </article>
         ))}
       </div>
+      {grid && (
+        <p className="hero__hint" aria-live="polite">
+          {solved ? 'Solved. Pick a page.' : 'Slide the tiles back into place, then pick a page.'}
+        </p>
+      )}
       <div className="hero__nav">
         <button type="button" className="deck__button" onClick={() => step(-1)} aria-label="Previous sheet">
           <span aria-hidden="true">←</span>

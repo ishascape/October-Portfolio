@@ -1,6 +1,7 @@
 /* Design tokens. Values from notes/homepage-content.md › Look and feel. */
 :root {
   /* Colour: drawing on paper, one accent */
+  --radius: 16px; /* corner radius for buttons, cards and frames; Field notes polaroids stay square */
   --paper: #f5f2ea;
   --paper-shade: #ece7da;
   --ink: #1c1b19;
