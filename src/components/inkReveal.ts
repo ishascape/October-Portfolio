@@ -5,7 +5,7 @@ const NIB_W = 9 // px, chisel nib thickness
 const NIB_H = 36 // px, chisel nib length
 const NOTE_AFTER = 320 // px of drawing before the "Draw smth" note goes
 const SCALE = 0.5 // mask canvas resolution, relative to the hero
-const ENOUGH = 0.4 // share of the hero that can be scribbled on before the marker is taken away
+const ENOUGH = 0.2 // share of the hero that can be scribbled on before the marker is taken away
 const WIPE_AFTER = 2200 // ms the "enough" message is read before the scribbles are wiped
 
 export function inkReveal(hero: HTMLElement) {
@@ -37,7 +37,7 @@ export function inkReveal(hero: HTMLElement) {
     '</svg>'
   hero.appendChild(note)
 
-  // Shown when 40% of the hero is covered, just before the scribbles are wiped.
+  // Shown when 20% of the hero is covered, just before the scribbles are wiped.
   const enough = document.createElement('span')
   enough.className = 'hero__enough'
   enough.setAttribute('aria-hidden', 'true')
