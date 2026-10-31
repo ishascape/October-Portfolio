@@ -47,7 +47,7 @@ export const caseStudies: CaseStudy[] = [
     id: 'venue-finder',
     number: '01',
     title: 'Venue Finder',
-    summary: 'An AI-assisted way to find venues, replacing a 13-step brief builder.',
+    summary: 'Vague leads were driving paying venues away. I replaced a 13-step brief with AI venue matching.',
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Sole product designer, team of 4 engineers · 2 months',
@@ -55,7 +55,7 @@ export const caseStudies: CaseStudy[] = [
     supporting: ['27% more likely to finalise bookings', 'New sponsored-placement revenue'],
     system:
       'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
-    tags: ['Marketplace', 'AI Products', 'Workflow automation', 'User research', 'Experiment design'],
+    tags: ['Marketplace', 'Lead quality', 'New revenue line'],
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 27% more likely to finalise bookings',
     slug: 'venue-finder',
@@ -78,7 +78,7 @@ export const caseStudies: CaseStudy[] = [
     id: 'hosthq',
     number: '02',
     title: 'HostHQ',
-    summary: 'Four separate host tools combined into one platform.',
+    summary: 'Hosts had to juggle four tools. I set the strategy to merge them into one platform, live in 3 months.',
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Senior Product Designer · 3 months, discovery to release',
@@ -86,7 +86,7 @@ export const caseStudies: CaseStudy[] = [
     supporting: ['+32% hosts reporting closed bookings', '-25% navigation support tickets'],
     system:
       'Hosts, leadership, Sales, Support · four product lines rebuilt around host workflows · proposals, dashboards and reporting in one place',
-    tags: ['B2B SaaS', 'Systems thinking', 'Information architecture', 'Product strategy', 'Platform design'],
+    tags: ['B2B SaaS', 'Supply growth', 'Platform consolidation'],
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
     slug: 'hosthq',
@@ -110,14 +110,14 @@ export const caseStudies: CaseStudy[] = [
     id: 'treeassist',
     number: '03',
     title: 'TreeAssist',
-    summary: 'Onboarding for a family history subscription: eight forms cut to three with AI suggestions.',
+    summary: '41% of new users quit before seeing value. Three experiments cut onboarding from 8 forms to 3.',
     company: 'Findmypast',
     district: 'Findmypast',
     role: 'Product Designer · 2 months, 2-week experiment cycles',
     leadMetric: { value: '+18%', label: 'free-trial starts' },
     supporting: ['+8% trial-to-subscription conversion', '-13% onboarding drop-off'],
     system: 'PM, data science, engineering · sign-up-to-subscription funnel · record matching replaces manual entry',
-    tags: ['B2C Conversion', 'AI Products', 'Experiment design', 'Mobile first'],
+    tags: ['Subscription', 'Activation', 'Experimentation'],
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
     slug: 'tree-assist',
@@ -127,6 +127,14 @@ export const caseStudies: CaseStudy[] = [
       { src: taLanding, alt: 'The Findmypast landing page with a short "Let\'s start with you" sign-up form' },
     ],
   },
+]
+
+// Hero proof strip. All four figures are from the CV profile; -28% is the guest booking journeys work, not HostHQ.
+export const proof = [
+  { value: '£500k+', label: 'first-year revenue from an MVP' },
+  { value: '5×', label: 'free-trial conversion' },
+  { value: '12 → 2', label: 'weeks to launch a new city' },
+  { value: '-28%', label: 'churn' },
 ]
 
 export const capabilities = [
@@ -256,7 +264,7 @@ export const fieldNotes: FieldNote[] = [
 
 // Ashni, 15 Oct 2026: permanent or contract; design, product or operator roles. No mention of visa sponsorship.
 export const availability = {
-  headline: "I'm looking for Senior Product Designer roles in Sydney, permanent or contract.",
+  headline: 'Open to permanent or contract roles in B2B SaaS, marketplaces and AI products.',
   location: "I'm particularly interested in B2B platforms, marketplaces and AI-native products.",
   short: 'Looking for Senior Product Designer roles in Sydney, permanent or contract',
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { contact } from '../data/content'
+import { contact, proof } from '../data/content'
 import { HeroStack } from './HeroStack'
 import { inkReveal } from './inkReveal'
 import './Hero.css'
@@ -42,19 +42,28 @@ export function Hero() {
                 <span className="hero__line">I love a good product puzzle!</span>
               </h1>
               <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>Systems Thinker ·</span> <span>Hands-on Builder</span>
+                <span>Senior Product Designer ·</span> <span>B2B SaaS, marketplaces & AI</span>
               </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__scene">Give me the complicated stuff.</p>
                 <p className="hero__questions">
-                  The disconnected workflows. The underperforming funnels. The products with more potential than polish.
+                  I partner with Product, Engineering and Commercial teams to turn messy problems into conversion,
+                  retention and new revenue.
                 </p>
+                <ul className="hero__proof" aria-label="Results">
+                  {proof.map((p) => (
+                    <li key={p.value}>
+                      <span className="hero__proof-value">{p.value}</span>
+                      <span className="hero__proof-label">{p.label}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
               <div className="hero__actions">
                 <a className="button button--primary" href="#work">
-                  Selected work <span aria-hidden="true">↓</span>
+                  See the results <span aria-hidden="true">↓</span>
                 </a>
                 {contact.resume && (
                   <a className="button" href={contact.resume} target="_blank" rel="noreferrer">

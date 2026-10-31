@@ -26,17 +26,20 @@ export function About() {
             </h2>
           </div>
           <div className="about__body">
-            <p>I trained as an architect in the UK. Turns out, I never stopped thinking like one.</p>
+            <p>
+              Trained as an architect, so I start with the system: who pays, who uses it, and what must be true for
+              both.
+            </p>
             <p className="about__mantra">Understand the space. Challenge the brief. Design for the people using it.</p>
             <p>
-              <strong>Designing complex systems.</strong> Untangling messy workflows and making complicated things feel
-              simple.
+              <strong>Complex systems, made simple.</strong> Four host tools became one platform.
             </p>
             <p>
-              <strong>Driving commercial outcomes.</strong> Experiences that work for users and make business sense.
+              <strong>Commercial outcomes.</strong> £500k+ from a Gift Subscription MVP. 28% less churn on guest booking
+              journeys.
             </p>
             <p>
-              <strong>Shipping through ambiguity.</strong> From discovery to delivery.
+              <strong>Speed through ambiguity.</strong> New-city launch planning cut from 12+ weeks to 2.
             </p>
           </div>
         </div>

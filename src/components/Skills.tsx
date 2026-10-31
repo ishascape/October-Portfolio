@@ -182,19 +182,19 @@ const skills: Skill[] = [
   {
     title: 'Product strategy & systems thinking',
     drawing: principleDrawings['0'],
-    text: "Connecting user journeys to the wider product. Helped shape HeadBox's One Platform, joining marketplace and SaaS experiences.",
+    text: "Joined marketplace and SaaS into HeadBox's One Platform. Set strategy from research, not opinion.",
     hover: [{ h: 'user', to: 'translateY(6px)' }],
   },
   {
     title: 'B2B SaaS & platform design',
     drawing: PlatformParti,
-    text: 'Turning complex workflows into simple, scalable products. Redesigned HostHQ, merging four host tools into one.',
+    text: 'Merged four host tools into one: 55+ new clients in 3 months.',
     hover: [{ h: 'right', to: 'translateX(-6px)' }],
   },
   {
     title: 'Marketplaces',
     drawing: MarketplaceParti,
-    text: 'Designing both sides of the marketplace. Improved venue discovery at HeadBox, contributing to a 30% rise in qualified inbound enquiries.',
+    text: '+30% qualified inbound enquiries by fixing lead quality on both sides of the marketplace.',
     hover: [
       { h: 'match', to: 'scale(1.25)' },
       { h: 'base', to: 'scaleX(1.12)' },
@@ -203,7 +203,7 @@ const skills: Skill[] = [
   {
     title: 'Growth & monetisation',
     drawing: principleDrawings['4'],
-    text: 'Designing for customer value and commercial return. At Findmypast, covered acquisition, retention and gifting, including a Gift Subscription MVP that brought in over £500k in first-year revenue.',
+    text: '£500k+ first-year revenue from a Gift Subscription MVP, a new acquisition channel at Findmypast.',
     hover: [
       { h: 'turn', to: 'scale(1.2)' },
       { h: 'forecast', to: 'translate(2px, -3px)' },
@@ -212,13 +212,13 @@ const skills: Skill[] = [
   {
     title: 'Experimentation & optimisation',
     drawing: ExperimentationParti,
-    text: 'Using data and experiments to remove friction. At Findmypast, ran behavioural analysis and A/B tests in a growth squad, lifting free-trial conversion 5×. Redesigned onboarding to raise 14-day retention by 25% and cut checkout drop-off by 23%.',
+    text: '5× free-trial conversion, +25% 14-day retention and -23% checkout drop-off through A/B testing.',
     hover: [{ h: 'lead', to: 'translate(5px, -3.5px)' }],
   },
   {
     title: 'User research & analytics',
     drawing: principleDrawings['3'],
-    text: "Pairing customer insight with product data to challenge assumptions. Used research and funnel analysis to rethink HeadBox's AI Venue Finder.",
+    text: "Set up HeadBox's first continuous research programme in over four years.",
     hover: [
       { h: 'direction', to: 'translateX(5px)' },
       { h: 'lens', to: 'scaleX(1.15)' },

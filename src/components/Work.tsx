@@ -8,7 +8,7 @@ export function Work() {
     <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
         <h2 id="work-heading" className="display work__heading">
-          Form follows function: first solve the problem, then the pixels.
+          Three bets, measured in business outcomes.
         </h2>
 
         <ol className="work__list">
@@ -55,7 +55,10 @@ export function Work() {
           ))}
         </ol>
 
-        <p className="work__footer">More work, including growth and monetisation experiments, on request.</p>
+        <p className="work__footer">
+          Also shipped: a Gift Subscription MVP that made £500k+ in year one, and 5× free-trial conversion at
+          Findmypast. Happy to walk through either.
+        </p>
       </div>
     </section>
   )
