@@ -7,9 +7,13 @@ export function Work() {
   return (
     <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
-        <h2 id="work-heading" className="display work__heading">
+        <h2 id="work-heading" className="work__heading">
           Using design to solve for conversion, retention and activation.
         </h2>
+        <p className="work__intro">
+          I partner with Product, Engineering and Commercial teams to turn messy problems into conversion, retention and
+          new revenue.
+        </p>
 
         <ol className="work__list">
           {caseStudies.map((s) => (

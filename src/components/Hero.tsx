@@ -5,11 +5,6 @@ import './Hero.css'
 export function Hero() {
   return (
     <section id="top" className="hero paper-sheet" aria-labelledby="hero-heading">
-      {/* Loose sheets that fan out behind the page on load, then settle into it. */}
-      <span className="hero__stack" aria-hidden="true">
-        <i />
-        <i />
-      </span>
       <div className="container">
         <div className="hero__intro">
           <div className="hero__text">
@@ -35,10 +30,6 @@ export function Hero() {
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__scene">Give me the complicated stuff.</p>
-                <p className="hero__questions">
-                  I partner with Product, Engineering and Commercial teams to turn messy problems into conversion,
-                  retention and new revenue.
-                </p>
               </div>
               <div className="hero__actions">
                 <a className="button button--primary" href="#work">

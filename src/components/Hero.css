@@ -1,11 +1,11 @@
 .hero {
   position: relative;
   padding-block: calc(var(--space-4) + 24px) calc(var(--space-6) + 24px);
-  /* Faint 24px drawing grid, on the hero only */
-  background-image:
-    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
-  background-size: 24px 24px;
+  /* Cold-press watercolour sheet, same relief as Selected work but lighter */
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='5' seed='11' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' surfaceScale='2.6' lighting-color='%23fff' result='l'%3E%3CfeDistantLight azimuth='225' elevation='58'/%3E%3C/feDiffuseLighting%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.16' intercept='0.86'/%3E%3CfeFuncG type='linear' slope='0.16' intercept='0.86'/%3E%3CfeFuncB type='linear' slope='0.16' intercept='0.86'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23w%29'/%3E%3C/svg%3E");
+  background-size: 360px 360px;
+  background-blend-mode: multiply;
   border-bottom: var(--line-thin) solid var(--ink);
 }
 
@@ -277,35 +277,6 @@
 .hero > .container {
   position: relative;
 }
-.hero__stack i {
-  position: absolute;
-  inset: 14px;
-  background: var(--paper);
-  border: var(--line-thin) solid var(--rule);
-  box-shadow: 0 6px 18px -10px rgb(var(--shadow-ink) / 0.35);
-  animation: hero-sheet 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  pointer-events: none;
-}
-.hero__stack i:nth-child(1) {
-  --from: translate(12px, 10px) rotate(1.6deg);
-}
-.hero__stack i:nth-child(2) {
-  --from: translate(-10px, 16px) rotate(-1.3deg);
-  animation-delay: 90ms;
-}
-@keyframes hero-sheet {
-  from {
-    opacity: 1;
-    transform: var(--from);
-  }
-  60% {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: none;
-  }
-}
 @keyframes hero-in {
   from {
     opacity: 0;
@@ -464,9 +435,6 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero__stack {
-    display: none;
-  }
   .hero__hello,
   .hero__title .display,
   .hero__role,
