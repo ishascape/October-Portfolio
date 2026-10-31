@@ -172,6 +172,31 @@
 .hero__support p {
   text-wrap: pretty;
 }
+.hero__lede {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.hero .hero__title h1.display {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+.hero__spark {
+  position: absolute;
+  left: -1em;
+  top: -0.35em;
+  width: 0.85em;
+  height: 0.85em;
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+.hero__title .hero__hello {
+  position: relative;
+}
 .hero__copy {
   display: grid;
   gap: calc(var(--space-3) + 8px);
@@ -190,10 +215,6 @@
   .hero__portrait {
     order: 3;
   }
-  .hero__support .hero__questions,
-  .hero__support .hero__scene {
-    display: none;
-  }
   .hero__support {
     gap: 0;
   }
@@ -206,7 +227,14 @@
     display: block;
   }
   .hero .hero__title h1.display {
-    font-size: calc(12.5vw + 8px);
+    font-size: calc(9vw + 4px);
+  }
+  .hero__lede {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  .hero__spark {
+    display: none;
   }
   .hero__title .hero__hello {
     font-size: 32px;
@@ -225,14 +253,14 @@
 
 @media (min-width: 600px) {
   .hero .hero__title h1.display {
-    font-size: calc(var(--text-display) + 8px);
+    font-size: clamp(40px, 4.4vw, 64px);
   }
 }
 
 /* Role line under the headline. */
 .hero__role {
-  margin: var(--space-2) 0 0;
-  font-size: 14px;
+  margin: 16px 0 0;
+  font-size: 18px;
   font-weight: 500;
   color: var(--graphite);
 }

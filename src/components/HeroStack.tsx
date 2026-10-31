@@ -326,7 +326,7 @@ export function HeroStack() {
           <span aria-hidden="true">←</span>
         </button>
         <button type="button" className="hero__back" onClick={open === null && !grid ? pick : close}>
-          {open === null && !grid ? 'Pick a page' : 'Back to the pile'}
+          {open === null && !grid ? 'Explore more projects' : 'Back to the pile'}
         </button>
         <button type="button" className="deck__button" onClick={() => step(1)} aria-label="Next sheet">
           <span aria-hidden="true">→</span>

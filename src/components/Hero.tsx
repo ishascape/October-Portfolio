@@ -10,6 +10,12 @@ export function Hero() {
           <div className="hero__text">
             <div className="hero__title">
               <p className="annotation hero__hello">
+                {/* Three pen flicks, like a little wave of energy before the hello. */}
+                <svg className="hero__spark" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 3.5 L11 8.5" />
+                  <path d="M2.5 9 L8 11" />
+                  <path d="M3 17 L8.5 15" />
+                </svg>
                 Hi! I'm Ashni
                 {/* A pen-drawn smile, eyes and mouth only. On hover it winks and smirks. */}
                 <svg className="hero__smile" viewBox="0 0 32 24" aria-hidden="true">
@@ -21,19 +27,22 @@ export function Hero() {
                 </svg>
               </p>
               <h1 id="hero-heading" className="display">
-                <span className="hero__line">I love a good product puzzle!</span>
+                <span className="hero__line">I turn complex product problems into business growth.</span>
               </h1>
               <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>B2B SaaS, marketplaces & AI</span>
+                <span>Senior Product Designer ·</span> <span>Product Strategy, B2B SaaS & AI</span>
               </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
-                <p className="hero__scene">Give me the complicated stuff.</p>
+                <p className="hero__lede">
+                  I work across strategy, discovery and delivery to build products that improve conversion, retention
+                  and revenue.
+                </p>
               </div>
               <div className="hero__actions">
                 <a className="button button--primary" href="#work">
-                  See the results <span aria-hidden="true">↓</span>
+                  Explore my work <span aria-hidden="true">↓</span>
                 </a>
                 {contact.resume && (
                   <a className="button" href={contact.resume} target="_blank" rel="noreferrer">
