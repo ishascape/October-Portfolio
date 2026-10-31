@@ -8,7 +8,11 @@
   display: grid;
   gap: var(--space-3);
   max-width: var(--measure);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-3);
+}
+
+.contact__connect {
+  font-weight: 600;
 }
 
 .contact__links {

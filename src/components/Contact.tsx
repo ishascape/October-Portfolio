@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { availability, contact } from '../data/content'
+import { contact } from '../data/content'
 import './Contact.css'
 
 export function Contact() {
@@ -24,10 +24,14 @@ export function Contact() {
     <section id="contact" className="section contact paper-sheet" aria-labelledby="contact-heading">
       <div className="container">
         <h2 id="contact-heading" className="display contact__heading">
-          Hiring a Senior Product Designer in Sydney? Let's talk.
+          Got a complex product problem? I'd love to solve it with you.
         </h2>
         <div className="contact__body">
-          <p>{availability.headline}</p>
+          <p>
+            I'm a Sydney-based Product Designer experienced in turning messy challenges into experiences that work for
+            customers and move the business forward.
+          </p>
+          <p className="contact__connect">Let's connect:</p>
         </div>
 
         <div className="contact__links">
