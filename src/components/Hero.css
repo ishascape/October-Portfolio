@@ -172,6 +172,20 @@
 .hero__support p {
   text-wrap: pretty;
 }
+.hero__lede {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.hero .hero__title h1.display {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.hero__title .hero__hello {
+  position: relative;
+}
 .hero__copy {
   display: grid;
   gap: calc(var(--space-3) + 8px);
@@ -190,10 +204,6 @@
   .hero__portrait {
     order: 3;
   }
-  .hero__support .hero__questions,
-  .hero__support .hero__scene {
-    display: none;
-  }
   .hero__support {
     gap: 0;
   }
@@ -206,7 +216,11 @@
     display: block;
   }
   .hero .hero__title h1.display {
-    font-size: calc(12.5vw + 8px);
+    font-size: calc(10vw + 4px);
+  }
+  .hero__lede {
+    font-size: 16px;
+    margin-bottom: 24px;
   }
   .hero__title .hero__hello {
     font-size: 32px;

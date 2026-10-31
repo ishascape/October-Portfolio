@@ -24,16 +24,19 @@ export function Hero() {
                 <span className="hero__line">I love a good product puzzle!</span>
               </h1>
               <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>B2B SaaS, marketplaces & AI</span>
+                <span>Senior Product Designer ·</span> <span>Systems Thinker ·</span> <span>Hands-on Builder</span>
               </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
-                <p className="hero__scene">Give me the complicated stuff.</p>
+                <p className="hero__lede">
+                  I work across discovery, strategy and delivery to find what matters, make the right trade-offs and
+                  turn good ideas into measurable outcomes.
+                </p>
               </div>
               <div className="hero__actions">
                 <a className="button button--primary" href="#work">
-                  See the results <span aria-hidden="true">↓</span>
+                  Explore my work <span aria-hidden="true">↓</span>
                 </a>
                 {contact.resume && (
                   <a className="button" href={contact.resume} target="_blank" rel="noreferrer">
