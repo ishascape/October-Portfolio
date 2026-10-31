@@ -122,6 +122,8 @@ export function HeroStack() {
   const n = sheets.length
   const sheetsEl = useRef<HTMLDivElement>(null)
   const firstRects = useRef<DOMRect[] | null>(null)
+  const touched = useRef(false) // set by any tap or key on the deck; stops the auto-flip
+  const stepRef = useRef<(by: number) => void>(() => {})
 
   // Remember where every sheet is now, so the next layout can slide them from there (FLIP).
   const measure = () => {
@@ -179,6 +181,7 @@ export function HeroStack() {
     setOpen(i)
   }
   const step = (by: number) => show(((((open ?? (by > 0 ? -1 : 0)) + by + n) % n) + n) % n)
+  stepRef.current = (by: number) => (open === null ? show(1) : step(by))
   const pick = () => {
     measure()
     if (open !== null) setOrder((o) => putBack(o, open))
@@ -206,12 +209,19 @@ export function HeroStack() {
     slide(i)
   }
 
-  // Land on the portrait, then 2s after the pile settles (about 1.4s in) flip to the first project sheet, once.
-  // Any tap or key on the deck first cancels it, and reduced motion skips it.
-  const touched = useRef(false)
+  // Land on the portrait, then 2s after the pile settles (about 1.4s in) start flipping through the sheets, one every 3s,
+  // looping back round to the portrait. Any tap or key on the deck stops it for good, and reduced motion skips it.
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const t = window.setTimeout(() => !touched.current && show(1), 3400)
+    let t = 0
+    const flip = (delay: number) => {
+      t = window.setTimeout(() => {
+        if (touched.current) return
+        stepRef.current(1)
+        flip(3000)
+      }, delay)
+    }
+    flip(3400)
     return () => window.clearTimeout(t)
   }, [])
 
