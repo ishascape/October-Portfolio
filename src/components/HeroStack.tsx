@@ -206,6 +206,15 @@ export function HeroStack() {
     slide(i)
   }
 
+  // Land on the portrait, then 2s after the pile settles (about 1.4s in) flip to the first project sheet, once.
+  // Any tap or key on the deck first cancels it, and reduced motion skips it.
+  const touched = useRef(false)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const t = window.setTimeout(() => !touched.current && show(1), 3400)
+    return () => window.clearTimeout(t)
+  }, [])
+
   useEffect(() => {
     if (open === null && !grid) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close()
@@ -229,7 +238,9 @@ export function HeroStack() {
   return (
     <div
       className="hero__deck"
+      onPointerDown={() => (touched.current = true)}
       onKeyDown={(e) => {
+        touched.current = true
         if (grid && !solved && e.key.startsWith('Arrow')) {
           e.preventDefault()
           slideKey(e.key)
