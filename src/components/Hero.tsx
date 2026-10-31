@@ -36,8 +36,8 @@ export function Hero() {
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  I work across strategy, discovery and delivery to build products that improve conversion, retention
-                  and revenue.
+                  I partner with Product, Engineering and Commercial teams to turn messy problems into conversion,
+                  retention and new revenue.
                 </p>
               </div>
               <div className="hero__actions">
