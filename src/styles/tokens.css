@@ -86,20 +86,3 @@
     scroll-behavior: auto !important;
   }
 }
-
-/* Dark palette: graphite paper, light ink, brighter marker. Used only by the hero marker reveal (inkReveal.ts). */
-:root[data-theme='dark'],
-[data-theme='dark'] {
-  color-scheme: dark;
-  --paper: #171614;
-  --paper-shade: #1f1d1a;
-  --paper-deep: #100f0e;
-  --ink: #efebe1;
-  --graphite: #a8a398;
-  --rule: #38352f;
-  --marker: #7ba3f0;
-  --marker-wash: rgb(123 163 240 / 0.16);
-  --grid-line: 70 67 60;
-  --shadow-ink: 0 0 0;
-  --sheet-lift: #3a3732;
-}
