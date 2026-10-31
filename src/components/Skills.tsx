@@ -166,7 +166,7 @@ function DesignSystemParti() {
 interface Skill {
   title: string
   drawing: () => ReactNode
-  text: string
+  points: string[]
   hover: Nudge[] // the one or two parts of the drawing that move on hover
 }
 
@@ -182,19 +182,28 @@ const skills: Skill[] = [
   {
     title: 'Product strategy & systems thinking',
     drawing: principleDrawings['0'],
-    text: "Connecting user journeys to the wider product. Helped shape HeadBox's One Platform, joining marketplace and SaaS experiences.",
+    points: [
+      'Cut guest churn 28% by unifying fragmented booking journeys.',
+      'Joined marketplace and SaaS into one platform strategy.',
+    ],
     hover: [{ h: 'user', to: 'translateY(6px)' }],
   },
   {
     title: 'B2B SaaS & platform design',
     drawing: PlatformParti,
-    text: 'Turning complex workflows into simple, scalable products. Redesigned HostHQ, merging four host tools into one.',
+    points: [
+      'Merged four host tools: 55+ new clients in 3 months.',
+      '25% fewer navigation support tickets after launch.',
+    ],
     hover: [{ h: 'right', to: 'translateX(-6px)' }],
   },
   {
     title: 'Marketplaces',
     drawing: MarketplaceParti,
-    text: 'Designing both sides of the marketplace. Improved venue discovery at HeadBox, contributing to a 30% rise in qualified inbound enquiries.',
+    points: [
+      '+30% qualified inbound enquiries from better lead quality.',
+      'Guests 27% more likely to finalise bookings.',
+    ],
     hover: [
       { h: 'match', to: 'scale(1.25)' },
       { h: 'base', to: 'scaleX(1.12)' },
@@ -203,7 +212,10 @@ const skills: Skill[] = [
   {
     title: 'Growth & monetisation',
     drawing: principleDrawings['4'],
-    text: 'Designing for customer value and commercial return. At Findmypast, covered acquisition, retention and gifting, including a Gift Subscription MVP that brought in over £500k in first-year revenue.',
+    points: [
+      'Gift Subscription MVP: £500k+ revenue in year one.',
+      'Opened a new acquisition channel for a subscription business.',
+    ],
     hover: [
       { h: 'turn', to: 'scale(1.2)' },
       { h: 'forecast', to: 'translate(2px, -3px)' },
@@ -212,13 +224,19 @@ const skills: Skill[] = [
   {
     title: 'Experimentation & optimisation',
     drawing: ExperimentationParti,
-    text: 'Using data and experiments to remove friction. At Findmypast, ran behavioural analysis and A/B tests in a growth squad, lifting free-trial conversion 5×. Redesigned onboarding to raise 14-day retention by 25% and cut checkout drop-off by 23%.',
+    points: [
+      '5× free-trial conversion through A/B tests and iteration.',
+      '+25% 14-day retention, -23% checkout drop-off.',
+    ],
     hover: [{ h: 'lead', to: 'translate(5px, -3.5px)' }],
   },
   {
     title: 'User research & analytics',
     drawing: principleDrawings['3'],
-    text: "Pairing customer insight with product data to challenge assumptions. Used research and funnel analysis to rethink HeadBox's AI Venue Finder.",
+    points: [
+      "Built HeadBox's first continuous research programme in 4+ years.",
+      'New-city launch planning cut from 12 weeks to 2.',
+    ],
     hover: [
       { h: 'direction', to: 'translateX(5px)' },
       { h: 'lens', to: 'scaleX(1.15)' },
@@ -227,7 +245,10 @@ const skills: Skill[] = [
   {
     title: 'End-to-end UX/UI',
     drawing: EndToEndParti,
-    text: "Taking ambiguous problems from discovery to delivery. As HeadBox's sole product designer, owned its B2B platform and B2C marketplace.",
+    points: [
+      "Sole designer across HeadBox's B2B platform and B2C marketplace.",
+      'Discovery to release in 3 months: One Platform shipped.',
+    ],
     hover: [
       { h: 'line', to: 'scaleX(1.045)', origin: 'left center' },
       { h: 'tip', to: 'translateX(6px)' },
@@ -236,7 +257,10 @@ const skills: Skill[] = [
   {
     title: 'Design systems & scalability',
     drawing: DesignSystemParti,
-    text: "Reusable foundations for consistent design at scale. Supported Findmypast's migration from Sketch to Figma.",
+    points: [
+      "Migrated Findmypast's design system from Sketch to Figma.",
+      'Better collaboration between Product and Engineering at scale.',
+    ],
     hover: [
       { h: 'source', to: 'scale(1.12)' },
       { h: 'tile', to: 'scale(1.12)' },
@@ -362,7 +386,11 @@ function SkillCard({
         <Drawing />
       </HoverParti>
       <h3 className="skill__title">{skill.title}</h3>
-      <p className="skill__text">{skill.text}</p>
+      <ul className="skill__text skill__points">
+        {skill.points.map((pt) => (
+          <li key={pt}>{pt}</li>
+        ))}
+      </ul>
     </li>
   )
 }

@@ -24,7 +24,7 @@ export function Contact() {
     <section id="contact" className="section contact paper-sheet" aria-labelledby="contact-heading">
       <div className="container">
         <h2 id="contact-heading" className="display contact__heading">
-          Got an interesting problem? Let's work together!
+          Hiring a Senior Product Designer in Sydney? Let's talk.
         </h2>
         <div className="contact__body">
           <p>{availability.headline}</p>

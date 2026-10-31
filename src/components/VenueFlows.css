@@ -81,9 +81,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-3);
-  border-top: var(--line-thin) solid var(--ink);
-  border-bottom: var(--line-thin) solid var(--ink);
-  padding: var(--space-3) 0;
 }
 .vf-pipe__metrics li {
   display: grid;

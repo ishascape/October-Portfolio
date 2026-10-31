@@ -118,7 +118,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     },
     kicker: 'HeadBox · Demand side',
     subtitle:
-      'HeadBox is a two-sided marketplace connecting event planners with venue hosts. As sole Product Designer, I redesigned how planners brief and find venues, using AI recommendations to cut low-quality enquiries and speed up discovery.',
+      'AI venue matching that lifted qualified enquiries 30% on a two-sided events marketplace. Sole designer, 4 engineers, 2 months.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
       { label: 'Team', value: '4 engineers' },
@@ -126,9 +126,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Marketplace', value: 'Guests planning events (demand) · venue hosts (supply)' },
     ],
     problem:
-      'Guests filled in 13 steps without seeing a venue, then waited for replies that often missed the brief. 83% dropped off the builder, hosts got unqualified briefs and Lead Feed churn hit 55%. I argued for judging Venue Finder on lead quality, not volume.',
+      'Low-quality leads were costing HeadBox paying venues. Guests filled 13 steps before seeing a venue and 83% dropped off. Hosts got vague briefs and Lead Feed churn hit 55%.',
     solution:
-      'Guests share their event, see matched venues straight away, shortlist, then connect. A vector database ranks venues against their needs, with paid Spotlight Partner placements.',
+      'Judge success on lead quality, not volume. Guests describe their event and see matched venues straight away. Ranking blends relevance with paid Spotlight placements, which opened a new revenue line.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '27%', label: 'More likely to finalise bookings when venues selected by guest' },
@@ -310,7 +310,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     },
     kicker: 'HeadBox · Supply side',
     subtitle:
-      'Venue hosts on HeadBox used four separate tools. As Senior Product Designer, I ran host focus groups, set the consolidation strategy and scoped the MVP for one platform.',
+      'Four host tools merged into one platform, with 55+ new clients in 3 months. I set the consolidation strategy and scoped the MVP with stakeholders up to CEO and CTO.',
     meta: [
       { label: 'Role', value: 'Senior Product Designer - design strategy, execution, IA and workflow redesign' },
       { label: 'Stakeholders', value: 'Platform clients, CEO, CTO, Head of Marketing, Head of Venue Sales' },
@@ -322,9 +322,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Deferred', value: '3D Studio migration, full reporting and mobile (see 06 for what comes next)' },
     ],
     problem:
-      'Hosts’ platform was really four products (Lead Feed, PowerHost, HeadBox for Business, 3D Studio), with confusing navigation and inconsistent data. We were shipping our org chart. I advocated for round-table research over a redesign driven by opinion and support tickets.',
+      'Hosts came to HeadBox for leads but ran their business elsewhere. Our platform was four products with confusing navigation and inconsistent data. We were shipping our org chart.',
     solution:
-      'One Platform: a single system organised around the jobs hosts do. We shipped structure over completeness and deferred 3D Studio migration, full reporting and mobile.',
+      'Research before redesign, then structure before polish. One platform built around hosts’ jobs, shipped before peak season, with 3D Studio, full reporting and mobile deferred.',
     impact: [
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
@@ -490,7 +490,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     },
     kicker: 'Findmypast · Activation',
     subtitle:
-      'Findmypast is a family history subscription. As Product Designer, I owned the UI and experiment design for three onboarding tests that got new users to value sooner with AI relative suggestions.',
+      'Three onboarding experiments that lifted free-trial starts 18% and paid conversion 8% for a family history subscription. I owned UI and experiment design.',
     meta: [
       { label: 'Role', value: 'Product Designer, embedded in core product squad' },
       { label: 'Team', value: 'PM, data science and engineering' },
@@ -498,9 +498,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Timescale', value: '2 months, 2-week experiment cycles' },
     ],
     problem:
-      '41% of new users left before reaching value: onboarding was heavy on admin forms, then users faced a blank family-tree canvas.',
+      '41% of new users left before reaching value. Onboarding asked for 8 forms, then showed a blank family tree.',
     solution:
-      'AI-assisted onboarding: relative suggestions and step-by-step guidance replaced a form-heavy setup. I advocated for interactive states in desktop onboarding, not the view-only state engineers proposed. Three tests cut onboarding from 8 forms to 3.',
+      'Deliver value before asking for data. AI relative suggestions and guided steps replaced form-filling, tested in 2-week cycles. Onboarding went from 8 forms to 3.',
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },
