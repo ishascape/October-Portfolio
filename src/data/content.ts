@@ -48,7 +48,8 @@ export const caseStudies: CaseStudy[] = [
     id: 'venue-finder',
     number: '01',
     title: 'Venue Finder',
-    summary: 'Vague leads were driving paying venues away. I replaced a 13-step brief with AI venue matching.',
+    summary:
+      "Our marketplace was losing its supply because demand wasn't qualified. I rebuilt the discovery experience to connect buyers with the right venues faster.",
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Sole product designer, team of 4 engineers · 2 months',
