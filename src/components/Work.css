@@ -7,9 +7,28 @@
   background-blend-mode: multiply;
 }
 
+#work.section {
+  padding-top: 30px;
+}
 .work__heading {
-  margin-bottom: var(--space-6);
-  font-size: clamp(28px, 3.5vw, 44px);
+  margin-bottom: 12px;
+  font-family: var(--font-sans);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.work__intro {
+  max-width: 60ch;
+  margin: 0 0 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--graphite);
+}
+@media (max-width: 600px) {
+  .work__heading {
+    font-size: 24px;
+  }
 }
 
 .work__list {
