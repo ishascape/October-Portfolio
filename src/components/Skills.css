@@ -69,6 +69,16 @@
 .skills--deck .skill__title {
   font-size: 22px;
 }
+.skill__points {
+  display: grid;
+  gap: 4px;
+  padding-left: 18px;
+  list-style: disc outside;
+  text-wrap: wrap;
+}
+.skill__points li::marker {
+  color: var(--graphite);
+}
 .skills--deck .skill__text {
   font-size: 16px;
 }
