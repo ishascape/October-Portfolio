@@ -179,11 +179,9 @@
   color: var(--ink);
 }
 .hero .hero__title h1.display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.005em;
-  line-height: 1;
-  filter: url(#ink); /* slightly bitten edges, like letterpress or a fat marker */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 .hero__title .hero__hello {
   position: relative;
@@ -218,7 +216,7 @@
     display: block;
   }
   .hero .hero__title h1.display {
-    font-size: calc(12.5vw + 8px);
+    font-size: calc(10vw + 4px);
   }
   .hero__lede {
     font-size: 16px;
