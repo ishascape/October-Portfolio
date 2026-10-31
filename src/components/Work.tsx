@@ -8,7 +8,7 @@ export function Work() {
     <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
         <h2 id="work-heading" className="work__heading">
-          Using design to solve product puzzles
+          Combining strategy, discovery, experimentation and delivery to solve complex product puzzles
         </h2>
 
         <ol className="work__list">
