@@ -176,9 +176,6 @@
   display: grid;
   gap: calc(var(--space-3) + 8px);
 }
-.hero__support .hero__scene {
-  font-weight: 600;
-}
 .hero__actions {
   display: flex;
   flex-wrap: wrap;

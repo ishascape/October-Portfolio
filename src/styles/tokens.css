@@ -15,7 +15,6 @@
   --sheet-lift: #fff; /* mixed 45% into paper for the raised cards */
 
   /* Type */
-  --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif; /* condensed, inked headlines */
   --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-hand: 'Caveat', 'Bradley Hand', 'Segoe Print', cursive; /* marker lettering for labels and drawings */
   --text-display: clamp(32px, 4vw, 48px); /* halved 15 Oct 2026: Ashni found the H1 too big */
