@@ -89,8 +89,10 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background:
-    linear-gradient(to right, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
-    linear-gradient(to bottom, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px 24px,
+    linear-gradient(to right, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px
+      24px,
+    linear-gradient(to bottom, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px
+      24px,
     var(--paper-shade);
   border-bottom: var(--line-thin) solid var(--rule);
   border-radius: var(--radius) var(--radius) 0 0;
@@ -149,7 +151,20 @@
 }
 
 .card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
   color: var(--graphite);
+}
+/* Which of the heading's three levers this case study solves for. */
+.card__outcome {
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  background: var(--marker-wash);
+  color: var(--marker);
+  font-weight: 600;
 }
 .card__title {
   font-size: var(--text-heading);

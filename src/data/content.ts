@@ -32,6 +32,7 @@ export interface CaseStudy {
   company: string
   district: 'HeadBox' | 'Findmypast'
   role: string
+  outcome: 'Conversion' | 'Retention' | 'Activation' // the Work heading's three levers, one per case study
   leadMetric: { value: string; label: string }
   supporting: string[]
   system: string
@@ -51,6 +52,7 @@ export const caseStudies: CaseStudy[] = [
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Sole product designer, team of 4 engineers · 2 months',
+    outcome: 'Conversion',
     leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
     supporting: ['27% more likely to finalise bookings', 'New sponsored-placement revenue'],
     system:
@@ -82,6 +84,7 @@ export const caseStudies: CaseStudy[] = [
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Senior Product Designer · 3 months, discovery to release',
+    outcome: 'Retention',
     leadMetric: { value: '55+', label: 'new One Platform clients in 3 months' },
     supporting: ['+32% hosts reporting closed bookings', '-25% navigation support tickets'],
     system:
@@ -114,6 +117,7 @@ export const caseStudies: CaseStudy[] = [
     company: 'Findmypast',
     district: 'Findmypast',
     role: 'Product Designer · 2 months, 2-week experiment cycles',
+    outcome: 'Activation',
     leadMetric: { value: '+18%', label: 'free-trial starts' },
     supporting: ['+8% trial-to-subscription conversion', '-13% onboarding drop-off'],
     system: 'PM, data science, engineering · sign-up-to-subscription funnel · record matching replaces manual entry',
