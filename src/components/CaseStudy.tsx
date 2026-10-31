@@ -491,7 +491,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               </span>
             )}
             <span className="case__next-text">
-              <span className="label">Next · Drawing {next.number}</span>
+              <span className="label">Next case study</span>
               <span className="case__next-title">
                 {next.title} <span aria-hidden="true">→</span>
               </span>
