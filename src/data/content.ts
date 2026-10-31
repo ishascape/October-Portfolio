@@ -129,14 +129,6 @@ export const caseStudies: CaseStudy[] = [
   },
 ]
 
-// Hero proof strip. All four figures are from the CV profile; -28% is the guest booking journeys work, not HostHQ.
-export const proof = [
-  { value: '£500k+', label: 'first-year revenue from an MVP' },
-  { value: '5×', label: 'free-trial conversion' },
-  { value: '12 → 2', label: 'weeks to launch a new city' },
-  { value: '-28%', label: 'churn' },
-]
-
 export const capabilities = [
   'Systems thinking',
   'Commercial sense',

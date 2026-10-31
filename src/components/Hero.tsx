@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { contact, proof } from '../data/content'
+import { contact } from '../data/content'
 import { HeroStack } from './HeroStack'
 import { inkReveal } from './inkReveal'
 import './Hero.css'
@@ -52,14 +52,6 @@ export function Hero() {
                   I partner with Product, Engineering and Commercial teams to turn messy problems into conversion,
                   retention and new revenue.
                 </p>
-                <ul className="hero__proof" aria-label="Results">
-                  {proof.map((p) => (
-                    <li key={p.value}>
-                      <span className="hero__proof-value">{p.value}</span>
-                      <span className="hero__proof-label">{p.label}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
               <div className="hero__actions">
                 <a className="button button--primary" href="#work">
