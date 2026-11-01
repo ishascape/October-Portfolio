@@ -1,0 +1,31 @@
+/* ---------- Editorial type: Ranade (headlines) and Instrument Sans (text and navigation) ----------
+   Applied by the 'type-editorial' class on the homepage's main, nav and footer. To revert, remove that class
+   (App.tsx, Nav.tsx, Footer.tsx) and this file's import; nothing else depends on it. */
+
+.type-editorial {
+  --font-sans: var(--font-body); /* everything that used the old text font now uses Instrument Sans */
+  font-family: var(--font-body);
+}
+
+/* Instrument Sans runs a little smaller than Poppins at the same size, so body copy gets a touch more leading. */
+.type-editorial p,
+.type-editorial li {
+  line-height: 1.6;
+}
+
+/* Section headings: Ranade Medium */
+.type-editorial h1,
+.type-editorial h2,
+.type-editorial .display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Hero headline: Ranade Semibold, tighter and a little taller than the section headings. */
+.type-editorial .hero .hero__title h1.display {
+  font-weight: var(--weight-display-hero);
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+}
