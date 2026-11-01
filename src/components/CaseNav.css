@@ -83,8 +83,11 @@
     flex: none;
   }
   /* Icons only; the section you're on opens into a pill with its name. */
+  /* 24px icons in a 32px tap area. */
   .case-nav__link {
-    padding: 6px;
+    min-width: 32px;
+    height: 32px;
+    padding: 4px;
     font-size: 14px;
     white-space: nowrap;
   }
@@ -99,10 +102,7 @@
     clip-path: inset(50%);
     white-space: nowrap;
   }
-  .case-nav .case-icon {
-    width: 20px;
-    height: 20px;
-  }
+
   /* Room for the bar when a link jumps to a section. */
   .case__section,
   .case__tldr {
@@ -131,8 +131,8 @@
   }
   .case-nav__list {
     display: grid;
-    gap: 2px;
-    padding: 6px;
+    gap: 8px;
+    padding: 8px;
     background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
     border: var(--line-thin) solid rgb(var(--shadow-ink) / 0.55);
     border-radius: 999px;
@@ -143,8 +143,8 @@
   .case-nav__link {
     position: relative;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 32px; /* 24px icon in a 32px hit area */
+    height: 32px;
   }
   /* The section name, as a paper tag beside the icon. */
   .case-nav__label {
