@@ -78,6 +78,10 @@
   .case-nav__list::-webkit-scrollbar {
     display: none;
   }
+  /* Items keep their natural width, so the selected pill always wraps its whole label. */
+  .case-nav__list > li {
+    flex: none;
+  }
   /* Icons only; the section you're on opens into a pill with its name. */
   .case-nav__link {
     padding: 6px;
@@ -85,7 +89,7 @@
     white-space: nowrap;
   }
   .case-nav__link[aria-current='true'] {
-    padding-right: 12px;
+    padding-right: 14px;
   }
   .case-nav__link:not([aria-current='true']) .case-nav__label {
     position: absolute;
