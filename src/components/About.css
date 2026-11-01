@@ -64,9 +64,86 @@
 .about__wink:hover .wink__spark {
   transform: none;
 }
+
+/* Two winks, then it holds the wink. */
+.about__wink.is-winking .wink__eye--open,
+.about__wink.is-winking .wink__mouth--grin {
+  animation: wink-off 1.6s var(--ease-pen) forwards;
+}
+.about__wink.is-winking .wink__eye--shut,
+.about__wink.is-winking .wink__mouth--smirk {
+  animation: wink-on 1.6s var(--ease-pen) forwards;
+}
+.about__wink.is-winking .wink__spark {
+  animation: wink-spark 1.6s var(--ease-pen) forwards;
+}
+@keyframes wink-on {
+  0%,
+  4% {
+    opacity: 0;
+  }
+  14%,
+  34% {
+    opacity: 1;
+  }
+  42%,
+  56% {
+    opacity: 0;
+  }
+  66%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes wink-off {
+  0%,
+  4% {
+    opacity: 1;
+  }
+  14%,
+  34% {
+    opacity: 0;
+  }
+  42%,
+  56% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes wink-spark {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scale(0.4) rotate(-30deg);
+  }
+  14%,
+  34% {
+    opacity: 1;
+    transform: none;
+  }
+  42%,
+  56% {
+    opacity: 0;
+    transform: scale(0.4) rotate(-30deg);
+  }
+  66%,
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .wink__spark {
     transition: opacity 140ms linear;
+  }
+  .about__wink.is-winking .wink__eye--open,
+  .about__wink.is-winking .wink__eye--shut,
+  .about__wink.is-winking .wink__mouth,
+  .about__wink.is-winking .wink__spark {
+    animation-duration: 1ms;
   }
 }
 .about__body {
