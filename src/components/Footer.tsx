@@ -72,8 +72,10 @@ export function Footer({ onHome }: { onHome: boolean }) {
               <div className="titlesheet__side">
                 <dl className="titlesheet__legend">
                   <div className="titlesheet__row titlesheet__row--name">
-                    <dt className="label titlesheet__field">Drawn by</dt>
-                    <dd className="titlesheet__name">Ashni Dave &amp; Claude</dd>
+                    <dt className="label titlesheet__field">Credits</dt>
+                    <dd className="titlesheet__name">
+                      Designed by Ashni, built in React and TypeScript with Claude Code
+                    </dd>
                   </div>
                   <div className="titlesheet__row">
                     <dt className="label titlesheet__field">Role</dt>

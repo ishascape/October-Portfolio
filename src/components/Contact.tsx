@@ -28,8 +28,8 @@ export function Contact() {
         </h2>
         <div className="contact__body">
           <p>
-            I'm a Sydney-based Product Designer experienced in turning messy challenges into experiences that work for
-            customers and move the business forward.
+            I'm a Sydney-based Senior Product Designer experienced in turning messy challenges into experiences that
+            work for customers and move the business forward. I relocated from London to Sydney in Aug 2026.
           </p>
           <p className="contact__connect">Let's connect:</p>
         </div>

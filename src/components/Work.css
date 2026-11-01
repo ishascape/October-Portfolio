@@ -282,10 +282,6 @@
   line-height: 1;
 }
 
-.work__footer {
-  margin-top: var(--space-5);
-  color: var(--graphite);
-}
 
 @media (min-width: 600px) {
   .card__body {

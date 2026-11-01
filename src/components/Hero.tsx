@@ -21,17 +21,18 @@ export function Hero() {
                 </svg>
               </p>
               <h1 id="hero-heading" className="display">
-                <span className="hero__line">I love a good product puzzle!</span>
+                <span className="hero__line">I turn complex product problems into business growth.</span>
               </h1>
               <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>Systems Thinker ·</span> <span>Hands-on Builder</span>
+                <span>Senior Product Designer ·</span> <span>Strategy to shipped product ·</span>{' '}
+                <span>B2B SaaS, AI &amp; marketplaces</span>
               </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  I work across discovery, strategy and delivery to find what matters, make the right trade-offs and
-                  turn good ideas into measurable outcomes.
+                  I bring customer insight, data and business goals together to design, ship and improve products people
+                  love to use.
                 </p>
               </div>
               <div className="hero__actions">

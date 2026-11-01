@@ -128,11 +128,10 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     problem:
       'Low-quality leads were costing HeadBox paying venues. Guests filled 13 steps before seeing a venue and 83% dropped off. Hosts got vague briefs and Lead Feed churn hit 55%.',
     solution:
-      'Judge success on lead quality, not volume. Guests describe their event and see matched venues straight away. Ranking blends relevance with paid Spotlight placements, which opened a new revenue line.',
+      'Judge success on lead quality, not volume. Guests describe their event and see matched venues straight away. Ranking blends relevance with Spotlight, a paid boost hosts add to their subscription, which opened a new revenue line.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
-      { value: '27%', label: 'More likely to finalise bookings when venues selected by guest' },
-      { value: 'New', label: 'Revenue from paid Spotlight placement' },
+      { value: '27%', label: 'More likely to book when guests shortlisted venues themselves' },
     ],
     sections: [
       {
@@ -330,7 +329,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { value: '+32%', label: 'Hosts reporting closed bookings' },
       { value: '-25%', label: 'Navigation support tickets' },
     ],
-    impactNote: 'Reported project outcomes, not individual attribution.',
+    impactNote: 'Team outcomes from the One Platform launch.',
     sections: [
       {
         label: '01 · Research',

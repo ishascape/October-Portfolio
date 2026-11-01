@@ -202,7 +202,7 @@ const skills: Skill[] = [
     drawing: MarketplaceParti,
     points: [
       '+30% qualified inbound enquiries from better lead quality.',
-      'Guests 27% more likely to finalise bookings.',
+      'Guests who shortlisted venues were 27% more likely to book.',
     ],
     hover: [
       { h: 'match', to: 'scale(1.25)' },

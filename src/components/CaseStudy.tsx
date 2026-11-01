@@ -56,6 +56,14 @@ function HostHqPrototype() {
   )
 }
 
+// A stable anchor for each section, from its label: '06 · Edge cases' becomes 'edge-cases'.
+const sectionId = (label: string) =>
+  label
+    .replace(/^\d+\s*·\s*/, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+
 export function CaseStudy({ id }: { id: CaseStudyId }) {
   const [mode, setMode] = useState<PlanMode>('proposed')
   const study = caseStudies.find((s) => s.id === id)!
@@ -156,7 +164,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       </section>
 
       {page.sections.map((s) => (
-        <section key={s.label} className="case__section">
+        <section key={s.label} id={sectionId(s.label)} className="case__section">
           <div className="container case__section-grid">
             <p className="label case__section-label">{s.label}</p>
             <div className="case__section-body">

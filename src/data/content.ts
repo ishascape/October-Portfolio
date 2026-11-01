@@ -15,6 +15,7 @@ import hqFilter from '../assets/hosthq-card-filter.webp'
 import vfPhone from '../assets/vf-card-phone.webp'
 import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
+import vfSuggestions from '../assets/vf-v2-suggestions.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
 import taLanding from '../assets/ta-card-landing.webp'
@@ -32,7 +33,7 @@ export interface CaseStudy {
   company: string
   district: 'HeadBox' | 'Findmypast'
   role: string
-  outcome: 'Conversion' | 'Retention' | 'Activation' // the Work heading's three levers, one per case study
+  outcome: 'Conversion' | 'Supply growth' | 'Activation' // the Work heading's three levers, one per case study
   leadMetric: { value: string; label: string }
   supporting: string[]
   system: string
@@ -55,21 +56,25 @@ export const caseStudies: CaseStudy[] = [
     role: 'Sole product designer, team of 4 engineers · 2 months',
     outcome: 'Conversion',
     leadMetric: { value: '+30%', label: 'qualified inbound enquiries' },
-    supporting: ['27% more likely to finalise bookings', 'New sponsored-placement revenue'],
+    supporting: ['Guests who shortlisted venues were 27% more likely to book', 'New paid Spotlight boost for hosts'],
     system:
       'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
     tags: ['Marketplace', 'Lead quality', 'New revenue line'],
     existing: '13-step brief builder · 83% drop-off',
-    proposed: 'AI-assisted venue finder · 27% more likely to finalise bookings',
+    proposed: 'AI-assisted venue finder · 27% more likely to book',
     slug: 'venue-finder',
     images: [
       {
-        src: vfPhone,
-        alt: 'A hand holding a phone and tapping the HeadBox Venue Finder screen: a Junsei venue card with Spotlight and Responds fast tags and I’m interested and Not for me buttons',
+        src: vfSuggestions,
+        alt: 'The Venue Finder initial suggestions screen: two Spotlight venue cards, Junsei and Caia in Marylebone, each with I’m interested and Not for me buttons, beside a map of 32 venues in London and a How does HeadBox work panel.',
       },
       {
         src: vfJourney,
         alt: 'The Venue Finder 2.0 desktop prompt-input flow in Figma: a journey map with notes above the Start, Prompt and 1st recommendations screens, each annotated.',
+      },
+      {
+        src: vfPhone,
+        alt: 'A hand holding a phone and tapping the HeadBox Venue Finder screen: a Junsei venue card with Spotlight and Responds fast tags and I’m interested and Not for me buttons',
       },
       {
         src: vfDesktop,
@@ -85,7 +90,7 @@ export const caseStudies: CaseStudy[] = [
     company: 'HeadBox',
     district: 'HeadBox',
     role: 'Senior Product Designer · 3 months, discovery to release',
-    outcome: 'Retention',
+    outcome: 'Supply growth',
     leadMetric: { value: '55+', label: 'new One Platform clients in 3 months' },
     supporting: ['+32% hosts reporting closed bookings', '-25% navigation support tickets'],
     system:
@@ -96,12 +101,12 @@ export const caseStudies: CaseStudy[] = [
     slug: 'hosthq',
     images: [
       {
-        src: hqWorkspace,
-        alt: 'A laptop on a sunlit desk showing the HostHQ requests list: new and urgent events with budgets, dates and Send Proposal buttons. A ringing phone, a to-do notebook and a sticky note reading "Check availability?" sit beside it.',
-      },
-      {
         src: hqFilter,
         alt: 'The HostHQ Leads screen with a Filter events panel open: preset filters such as Weekend events and Corporate parties, sort options, Show checkboxes and a budget field, with Reset filters and Apply filters buttons.',
+      },
+      {
+        src: hqWorkspace,
+        alt: 'A laptop on a sunlit desk showing the HostHQ requests list: new and urgent events with budgets, dates and Send Proposal buttons. A ringing phone, a to-do notebook and a sticky note reading "Check availability?" sit beside it.',
       },
       {
         src: hqProposal,
@@ -127,8 +132,8 @@ export const caseStudies: CaseStudy[] = [
     proposed: '3 forms + AI-suggested relatives',
     slug: 'tree-assist',
     images: [
-      { src: taPhones, alt: 'Five phones showing the TreeAssist onboarding on the Findmypast mobile site' },
       { src: taDesktop, alt: 'The Findmypast family tree on desktop with a next-steps checklist on the canvas' },
+      { src: taPhones, alt: 'Five phones showing the TreeAssist onboarding on the Findmypast mobile site' },
       { src: taLanding, alt: 'The Findmypast landing page with a short "Let\'s start with you" sign-up form' },
     ],
   },

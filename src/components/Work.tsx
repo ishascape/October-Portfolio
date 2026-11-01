@@ -1,6 +1,7 @@
 import { caseHref } from '../links'
 import { caseStudies } from '../data/content'
 import { CardCarousel } from './CardCarousel'
+import { AiPrinciples } from './AiPrinciples'
 import './Work.css'
 
 export function Work() {
@@ -8,7 +9,7 @@ export function Work() {
     <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
         <h2 id="work-heading" className="work__heading">
-          Designing solutions for conversion, retention and activation.
+          Designing for conversion, supply growth and activation.
         </h2>
 
         <ol className="work__list">
@@ -56,10 +57,7 @@ export function Work() {
           ))}
         </ol>
 
-        <p className="work__footer">
-          Also shipped: a Gift Subscription MVP that made £500k+ in year one, and 5× free-trial conversion at
-          Findmypast. Happy to walk through either.
-        </p>
+        <AiPrinciples />
       </div>
     </section>
   )
