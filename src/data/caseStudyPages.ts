@@ -130,7 +130,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     solution:
       'Judge success on lead quality, not volume. Guests describe their event and see matched venues straight away. Ranking blends relevance with Spotlight, a paid boost hosts add to their subscription, which opened a new revenue line.',
     hypothesis:
-      'If guests discover and shortlist relevant venues themselves, instead of waiting after a 13-step brief, they will show clearer booking intent, and paying hosts will receive better-qualified enquiries.',
+      'If we enable guests to independently discover and shortlist relevant venues, rather than relying on lengthy briefs and manual matching, we expect to increase qualified booking enquiries, improve value for paying hosts and reduce the operational cost of matching supply with demand.',
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '27%', label: 'More likely to book when guests shortlisted venues themselves' },
@@ -327,7 +327,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     solution:
       'Research before redesign, then structure before polish. One platform built around hosts’ jobs, shipped before peak season, with 3D Studio, full reporting and mobile deferred.',
     hypothesis:
-      'If hosts run leads, proposals and reporting in one platform built around their jobs, instead of four separate products, more of them will close bookings and fewer will need support to find their way around.',
+      'If we consolidate lead management, proposals and reporting into a unified workflow built around how hosts operate, we expect hosts to respond to enquiries more efficiently, convert more bookings and become more likely to retain their HeadBox subscription.',
     impact: [
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
@@ -505,7 +505,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     solution:
       'Deliver value before asking for data. AI relative suggestions and guided steps replaced form-filling, tested in 2-week cycles. Onboarding went from 8 forms to 3.',
     hypothesis:
-      'If new users reach value before being asked for data, through AI-suggested relatives and fewer forms, more will start a trial and build a tree, and more will convert to a paid subscription.',
+      'If we help new users experience the value of building their family tree earlier, through AI-assisted discovery and reduced onboarding friction, we expect more users to activate, start trials and ultimately convert into paying subscribers.',
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },
