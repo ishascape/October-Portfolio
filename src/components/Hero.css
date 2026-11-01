@@ -246,7 +246,7 @@
 
 /* Role line under the headline. */
 .hero__role {
-  margin: var(--space-2) 0 0;
+  margin: 24px 0 0;
   font-size: 14px;
   font-weight: 500;
   color: var(--graphite);
