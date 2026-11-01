@@ -111,6 +111,10 @@ export function About() {
           </tbody>
         </table>
 
+        <div className="about__expertise">
+          <Skills />
+        </div>
+
         <div className="field-notes">
           <div className="field-notes__copy">
             <h3 className="display field-notes__heading">Field notes</h3>
@@ -129,10 +133,6 @@ export function About() {
           <div className="field-notes__figures">
             <FieldStrip notes={fieldNotes} label="Field notes" />
           </div>
-        </div>
-
-        <div className="about__expertise">
-          <Skills />
         </div>
       </div>
     </section>
