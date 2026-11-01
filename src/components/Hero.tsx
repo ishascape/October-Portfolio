@@ -86,21 +86,6 @@ export function Hero() {
             />
           </figure>
         </div>
-        {/* A quiet strip of results, straight under the hero and above the case studies. */}
-        <aside className="hero__outcomes" aria-label="Selected product outcomes">
-          <p className="hero__outcomes-label">Selected product outcomes · Findmypast &amp; HeadBox</p>
-          <ul className="hero__outcomes-list">
-            <li>
-              <strong>5×</strong> <span>free-trial conversion</span>
-            </li>
-            <li>
-              <strong>28%</strong> <span>less churn on guest booking journeys</span>
-            </li>
-            <li>
-              <strong>30%</strong> <span>more qualified inbound enquiries</span>
-            </li>
-          </ul>
-        </aside>
       </div>
     </section>
   )

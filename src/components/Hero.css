@@ -956,7 +956,7 @@
   }
 }
 
-/* ---------- 1 Nov 2026: value-led hero. Bigger headline, text-link resume, quiet outcomes strip. ---------- */
+/* ---------- 1 Nov 2026: value-led hero. Bigger headline, text-link resume. ---------- */
 @media (min-width: 600px) {
   .hero .hero__title h1.display {
     font-size: clamp(34px, 4.8vw, 60px);
@@ -992,49 +992,7 @@
 .hero__actions {
   align-items: center;
 }
-
-/* Outcomes strip: three figures on one hairline, understated. */
-.hero__outcomes {
-  margin-top: var(--space-5, 48px);
-  padding-top: 20px;
-  border-top: var(--line-thin) solid var(--rule);
-}
-.hero__outcomes-label {
-  margin: 0 0 12px;
-  font-size: 14px;
-  color: var(--graphite);
-}
-.hero__outcomes-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-4);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.hero__outcomes-list li {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--graphite);
-}
-.hero__outcomes-list strong {
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
 @media (max-width: 599px) {
-  .hero__outcomes {
-    margin-top: 32px;
-  }
-  .hero__outcomes-list {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
   .hero__actions {
     justify-content: center;
   }
