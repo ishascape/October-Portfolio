@@ -50,8 +50,7 @@ export function Nav({ onHome }: { onHome: boolean }) {
         <a className="nav__name" href={sectionHref('top', onHome)}>
           {/* A solid blue mountain, like the section icons. On hover a climber walks up the left slope and plants a flag. */}
           <svg className="nav__icon" viewBox="0 0 28 22" aria-hidden="true">
-            <g transform="rotate(-3 14 11)">
-              <path className="mt__far" d="M15 21 L21 8.6 Q22 7 23 8.6 L27.5 19.8 Q27.9 21 26.5 21 Z" />
+            <g>
               <path className="mt__main" d="M1 20 L11.2 4.2 Q12 3 12.8 4.2 L26 20 Q26.8 21 25.6 21 H2 Q0.6 21 1 20 Z" />
               <path className="mt__snow" d="M8.6 10.2 L10.6 12.2 L12.4 10 L14.4 12.2 L16.4 10" />
             </g>

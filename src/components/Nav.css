@@ -40,9 +40,6 @@
   overflow: visible;
   fill: currentColor;
 }
-.mt__far {
-  opacity: 0.75;
-}
 .mt__snow {
   fill: none;
   stroke: var(--paper);
@@ -145,7 +142,7 @@
     opacity: 0;
   }
 }
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 600px) {
   .nav__name:hover .mt__climber {
     animation: mt-climb 3.6s linear infinite;
   }
