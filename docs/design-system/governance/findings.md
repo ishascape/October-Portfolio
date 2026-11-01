@@ -16,6 +16,7 @@ Priority: **P1** do first, unlocks the rest · **P2** worth doing · **P3** tidy
 | P3 | Footer uses 10px uppercase labels | Keep or change | Only if changed | XS |
 | P3 | Off-scale spacing values | Map to scale or name them | None, or 2px | S |
 | P3 | Three link styles | Document (done), no change | None | n/a |
+| P3 | No error or danger colour for shadcn's `--destructive` | Pick one when a form or alert component needs it | Only where adopted | XS |
 | P3 | Dead code | Delete `HeroStack`, puzzle CSS, `Parti.tsx`, duplicate rules | None | XS |
 
 ---

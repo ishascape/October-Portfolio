@@ -1,0 +1,37 @@
+/* shadcn/ui vocabulary for the portfolio tokens. Every name aliases a primitive in tokens.css, so light, dark and
+   any future theme flow through with no extra work, and nothing here changes how the live site looks.
+
+   Why: shadcn/ui components and most of its tutorials expect these names (background, foreground, primary, muted,
+   border, ring). With them in place, a Radix primitive or a copied shadcn component can be styled from our own CSS
+   and still read the same palette. Tailwind is NOT used. Docs: docs/design-system/foundations/shadcn.md.
+
+   Not imported by the live site yet; only the /design-system style guide uses it. */
+:root,
+[data-theme] {
+  --background: var(--surface);
+  --foreground: var(--ink);
+
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-shade);
+  --secondary-foreground: var(--ink);
+
+  --muted: var(--paper-shade);
+  --muted-foreground: var(--graphite);
+  --accent: var(--marker-wash);
+  --accent-foreground: var(--marker);
+
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--marker);
+
+  /* --radius already exists in tokens.css (16px), and shadcn's name for it is the same. */
+
+  /* Not mapped, on purpose: --destructive. The site has no error or danger colour, so inventing one here would be a
+     design decision. Add it when a component needs it (see governance/findings.md). */
+}

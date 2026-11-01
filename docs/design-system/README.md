@@ -39,6 +39,7 @@ It documents **what is live today**. Nothing in here redesigns an approved compo
 - [Imagery](foundations/imagery.md)
 - [Voice and copy](foundations/voice-and-copy.md)
 - [Accessibility](foundations/accessibility.md)
+- [shadcn/ui vocabulary](foundations/shadcn.md)
 
 **Components**: [inventory and status](components/README.md)
 

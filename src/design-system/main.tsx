@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { StyleGuide } from './StyleGuide'
 import '../styles/tokens.css'
 import '../styles/semantic.css'
+import '../styles/shadcn.css'
 import '../styles/global.css'
 import './styleguide.css'
 
