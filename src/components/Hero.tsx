@@ -23,8 +23,8 @@ export function Hero() {
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  I bring customer insight, data and business goals together to design, ship and improve products that
-                  people love to use.
+                  Bringing customer insight, discovery, data and business goals together to design, ship and improve
+                  products that people love to use.
                 </p>
               </div>
               <div className="hero__actions">
