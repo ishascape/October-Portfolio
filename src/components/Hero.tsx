@@ -18,9 +18,8 @@ export function Hero() {
               </p>
               <h1 id="hero-heading" className="display">
                 <span className="hero__line">
-                  I find the right problems <br className="hero__br" />
-                  to solve, then design <br className="hero__br" />
-                  products that deliver.
+                  I find the problems worth solving and turn them into products that deliver value for customers and
+                  businesses.
                 </span>
               </h1>
             </div>
