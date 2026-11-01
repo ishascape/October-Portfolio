@@ -172,8 +172,6 @@
   display: grid;
   gap: var(--space-1);
   align-content: start;
-  padding-top: var(--space-3);
-  border-top: var(--line-building) solid var(--ink);
   color: var(--marker);
 }
 .case__impact-value {
