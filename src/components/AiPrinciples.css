@@ -24,6 +24,16 @@
   border-radius: var(--radius);
   background: var(--paper);
 }
+.ai-principles__icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .ai-principles__title {
   font-size: 18px;
   font-weight: 600;

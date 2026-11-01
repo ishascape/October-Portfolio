@@ -10,17 +10,47 @@
 #work.section {
   padding-top: 30px;
 }
+/* Same size and weight as the hero intro line (20px, 16px on phones), led by a blue crayon. */
 .work__heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 30px;
   font-family: var(--font-sans);
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.25;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.55;
   text-wrap: balance;
+}
+.work__crayon {
+  flex: none;
+  width: 52px;
+  height: 24px;
+  overflow: visible;
+}
+.crayon__body,
+.crayon__cap,
+.crayon__tip {
+  fill: var(--marker);
+}
+.crayon__cap {
+  opacity: 0.75;
+}
+.crayon__band,
+.crayon__zigzag {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 @media (max-width: 600px) {
   .work__heading {
-    font-size: 24px;
+    font-size: 16px;
+  }
+  .work__crayon {
+    width: 36px;
+    height: 16px;
   }
 }
 
