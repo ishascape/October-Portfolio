@@ -27,8 +27,8 @@ export function Hero() {
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  I connect customer needs, business priorities and what's possible to build - from figuring out the
-                  right problem to shipping the solution.
+                  I connect customer needs, business priorities and what's possible to build - from figuring out pain
+                  points to shipping the solution.
                 </p>
               </div>
               <div className="hero__actions">
