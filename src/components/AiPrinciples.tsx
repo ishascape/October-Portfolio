@@ -22,10 +22,10 @@ const principles = [
   {
     title: 'AI in my process.',
     body: [
-      "I designed and built this website using Claude Code, and I'm increasingly experimenting with Claude and Cursor to turn ideas into working prototypes.",
-      'Beyond coding, I use AI to accelerate research and discovery - synthesising project requirements, analysing data from multiple sources, conducting competitive research, writing engineer tickets for handover and more.',
-      'To me, AI is a tool to move faster, explore more possibilities, and spend more time on the decisions that matter. The judgement stays human.',
+      'I designed and built this website with Claude Code, and use Claude and Cursor to rapidly prototype ideas.',
+      'I also use AI to synthesise requirements, analyse data, research competitors and streamline engineering handovers.',
     ],
+    closing: 'AI helps me move faster and explore further. The judgement stays human.',
   },
 ]
 
@@ -43,6 +43,11 @@ export function AiPrinciples() {
               {(Array.isArray(p.body) ? p.body : [p.body]).map((para) => (
                 <p key={para}>{para}</p>
               ))}
+              {p.closing && (
+                <p>
+                  <strong>{p.closing}</strong>
+                </p>
+              )}
             </div>
             {p.link && (
               <a className="ai-principles__link" href={`${caseHref(p.link.slug)}#${p.link.hash}`}>
