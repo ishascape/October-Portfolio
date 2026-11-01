@@ -14,21 +14,21 @@ export function Hero() {
           <div className="hero__text">
             <div className="hero__title">
               <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>B2B SaaS, AI &amp; marketplaces,</span>{' '}
-                <span>Growth &amp; monetisation</span>
+                <span>Senior Product Designer ·</span> <span>SaaS, Marketplaces &amp; AI</span>
               </p>
               <h1 id="hero-heading" className="display">
                 <span className="hero__line">
-                  I turn complex product <br className="hero__br" />
-                  problems into business growth.
+                  I find the right problems <br className="hero__br" />
+                  to solve, then design <br className="hero__br" />
+                  products that deliver.
                 </span>
               </h1>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  Bringing customer insight, discovery, data and business goals together to design, ship and improve
-                  products that people love to use.
+                  Connecting customer needs, business priorities and what's possible to build - from figuring out pain
+                  points to shipping the solution.
                 </p>
               </div>
               <div className="hero__actions">
@@ -36,7 +36,7 @@ export function Hero() {
                   Explore my work <span aria-hidden="true">↓</span>
                 </a>
                 {contact.resume && (
-                  <a className="button" href={contact.resume} target="_blank" rel="noreferrer">
+                  <a className="hero__link" href={contact.resume} target="_blank" rel="noreferrer">
                     View resume <span aria-hidden="true">↗</span>
                   </a>
                 )}

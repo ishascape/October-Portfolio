@@ -955,3 +955,45 @@
     outline-offset: 4px;
   }
 }
+
+/* ---------- 1 Nov 2026: value-led hero. Bigger headline, text-link resume. ---------- */
+@media (min-width: 600px) {
+  .hero .hero__title h1.display {
+    font-size: clamp(26px, calc(4.8vw - 8px), 52px);
+    font-size: round(clamp(26px, calc(4.8vw - 8px), 52px), 2px); /* even px sizes only; 8px smaller on 1 Nov 2026 */
+    line-height: 1.08;
+  }
+}
+@media (min-width: 900px) {
+  .hero__br {
+    display: inline; /* three even lines: "I find the right problems / to solve, then design / products that deliver." */
+  }
+}
+.hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding-inline: var(--space-2);
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: rgb(28 27 25 / 0.4);
+  transition:
+    color var(--dur-micro) var(--ease-pen),
+    text-decoration-color var(--dur-micro) var(--ease-pen);
+}
+.hero__link:hover,
+.hero__link:focus-visible {
+  color: var(--marker);
+  text-decoration-color: currentColor;
+}
+.hero__actions {
+  align-items: center;
+}
+@media (max-width: 599px) {
+  .hero__actions {
+    justify-content: center;
+  }
+}
