@@ -871,3 +871,87 @@
     justify-content: center;
   }
 }
+
+/* ---------- Phones: the polaroid flips over to show the role line on its back ---------- */
+.hero__polaroid-back,
+.hero__flip,
+.hero__caption-role {
+  display: none;
+}
+@media (max-width: 599px) {
+  .hero__role {
+    display: none; /* it lives on the back of the polaroid on phones */
+  }
+  .hero__polaroid {
+    position: relative;
+    transform-style: preserve-3d;
+    transition:
+      transform 600ms cubic-bezier(0.3, 0.7, 0.2, 1),
+      rotate var(--dur-micro) var(--ease-pen);
+  }
+  .hero__polaroid.is-flipped {
+    transform: rotateY(180deg);
+  }
+  .hero__polaroid-photo,
+  .hero__polaroid .hero__hello {
+    backface-visibility: hidden;
+  }
+  .hero__polaroid .hero__hello {
+    font-size: 22px;
+    white-space: nowrap;
+    text-align: left;
+  }
+  /* Second caption line on the front, with a small flip mark that hints the card turns over. */
+  .hero__caption-role {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    margin-top: 2px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--graphite);
+  }
+  .hero__flip-hint {
+    display: inline;
+    font-size: 16px;
+    color: var(--marker);
+  }
+  /* The back of the print: plain paper with the role line in blue handwriting. */
+  .hero__polaroid-back {
+    position: absolute;
+    inset: -1px;
+    display: grid;
+    align-content: center;
+    gap: 8px;
+    padding: var(--space-3);
+    background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
+    border: var(--line-thin) solid rgb(var(--shadow-ink) / 0.55);
+    color: var(--marker);
+    font-size: 26px;
+    line-height: 1.15;
+    text-align: center;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+  .hero__polaroid-back p {
+    margin: 0;
+  }
+  /* One invisible button over the whole card, so the tap target is the print itself. */
+  .hero__flip {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hero__flip:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+}
