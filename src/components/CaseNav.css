@@ -89,12 +89,9 @@
     position: relative;
     min-width: 32px;
     height: 32px;
-    padding: 4px;
+    padding: 4px 8px; /* 8px before the icon and the same after it (or after the label) */
     font-size: 14px;
     white-space: nowrap;
-  }
-  .case-nav__link[aria-current='true'] {
-    padding-right: 14px;
   }
   .case-nav__link:not([aria-current='true']) .case-nav__label {
     position: absolute;
