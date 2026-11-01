@@ -10,8 +10,10 @@ const icons = {
     <>
       <circle cx="16" cy="11" r="3.5" />
       <path d="M10 22.5 c0 -3.5 2.7 -6 6 -6 s6 2.5 6 6" />
-      <path d="M26.5 9.5 A12 12 0 1 0 28 16" />
-      <path d="M28.6 5.8 l-1.9 3.9 l-4 -1.6" />
+      <g className="aip-loop">
+        <path d="M26.5 9.5 A12 12 0 1 0 28 16" />
+        <path d="M28.6 5.8 l-1.9 3.9 l-4 -1.6" />
+      </g>
     </>
   ),
   // A shield with a tick: guardrails.
@@ -32,8 +34,8 @@ const icons = {
   // Sparkles: AI in the process.
   sparkle: (
     <>
-      <path d="M14 5 c0.8 5.2 2.8 7.2 8 8 c-5.2 0.8 -7.2 2.8 -8 8 c-0.8 -5.2 -2.8 -7.2 -8 -8 c5.2 -0.8 7.2 -2.8 8 -8 Z" />
-      <path d="M24 19 c0.4 2.6 1.4 3.6 4 4 c-2.6 0.4 -3.6 1.4 -4 4 c-0.4 -2.6 -1.4 -3.6 -4 -4 c2.6 -0.4 3.6 -1.4 4 -4 Z" />
+      <path className="aip-big" d="M14 5 c0.8 5.2 2.8 7.2 8 8 c-5.2 0.8 -7.2 2.8 -8 8 c-0.8 -5.2 -2.8 -7.2 -8 -8 c5.2 -0.8 7.2 -2.8 8 -8 Z" />
+      <path className="aip-small" d="M24 19 c0.4 2.6 1.4 3.6 4 4 c-2.6 0.4 -3.6 1.4 -4 4 c-0.4 -2.6 -1.4 -3.6 -4 -4 c2.6 -0.4 3.6 -1.4 4 -4 Z" />
     </>
   ),
 }
@@ -83,7 +85,7 @@ export function AiPrinciples() {
       <ol className="ai-principles__list">
         {principles.map((p) => (
           <li key={p.title} className="ai-principles__item">
-            <svg className="ai-principles__icon" viewBox="0 0 32 32" aria-hidden="true">
+            <svg className={`ai-principles__icon ai-principles__icon--${p.icon}`} viewBox="0 0 32 32" aria-hidden="true">
               {icons[p.icon]}
             </svg>
             <h3 className="ai-principles__title">{p.title}</h3>
