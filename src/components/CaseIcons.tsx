@@ -104,14 +104,13 @@ const shapes: Record<CaseIconName, ReactNode> = {
       <path className="d" d="M6.5 7.3 h7.5 M10 14.6 h7.5" />
     </g>
   ),
-  // A star with a sparkle: the moments that mattered.
+  // A star: the moments that mattered.
   moments: (
     <g transform="rotate(-8 12 12)">
       <path
         className="f"
         d="M12 2 l2.9 6 l6.6 0.9 l-4.8 4.6 l1.2 6.5 l-5.9 -3.1 l-5.9 3.1 l1.2 -6.5 l-4.8 -4.6 l6.6 -0.9 Z"
       />
-      <path className="d" d="M12 8.4 v4.8 M9.6 10.8 h4.8" />
     </g>
   ),
   // Scissors: cutting scope.
@@ -132,7 +131,6 @@ const shapes: Record<CaseIconName, ReactNode> = {
         className="f"
         d="M4 7 h4 a2.6 2.6 0 1 1 5 0 h4 v4 a2.6 2.6 0 1 1 0 5 v4 h-4 a2.6 2.6 0 1 0 -5 0 h-4 v-4 a2.6 2.6 0 1 0 0 -5 Z"
       />
-      <path className="d" d="M8 12.2 l2 2 l3.8 -4" />
     </g>
   ),
   // A warning triangle: the edge cases.
