@@ -962,11 +962,7 @@
     font-size: clamp(26px, calc(4.8vw - 8px), 52px);
     font-size: round(clamp(26px, calc(4.8vw - 8px), 52px), 2px); /* even px sizes only; 8px smaller on 1 Nov 2026 */
     line-height: 1.08;
-  }
-}
-@media (min-width: 900px) {
-  .hero__br {
-    display: inline; /* three even lines: "I find the right problems / to solve, then design / products that deliver." */
+    text-wrap: balance; /* even lines */
   }
 }
 .hero__link {
@@ -987,7 +983,12 @@
 .hero__link:hover,
 .hero__link:focus-visible {
   color: var(--marker);
-  text-decoration-color: currentColor;
+}
+.hero__link:hover {
+  text-decoration-color: transparent; /* no underline on hover */
+}
+.hero__link:focus-visible {
+  text-decoration-color: currentColor; /* keyboard focus keeps its underline */
 }
 .hero__actions {
   align-items: center;

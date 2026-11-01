@@ -17,18 +17,14 @@ export function Hero() {
                 <span>Senior Product Designer ·</span> <span>SaaS, Marketplaces &amp; AI</span>
               </p>
               <h1 id="hero-heading" className="display">
-                <span className="hero__line">
-                  I find the right problems <br className="hero__br" />
-                  to solve, then design <br className="hero__br" />
-                  products that deliver.
-                </span>
+                <span className="hero__line">Designing and delivering products that solve the right problems.</span>
               </h1>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  Connecting customer needs, business priorities and what's possible to build - from figuring out pain
-                  points to shipping the solution.
+                  Connecting customer needs, business priorities and what's possible to build - from uncovering pain
+                  points to shipping solutions.
                 </p>
               </div>
               <div className="hero__actions">
