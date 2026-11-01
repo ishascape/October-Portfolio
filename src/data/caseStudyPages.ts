@@ -101,7 +101,7 @@ export interface CaseStudyPage {
   meta: { label: string; value: string }[]
   problem: string
   solution: string
-  hypothesis: string // an if-then statement, shown under Problem and Bet in the summary
+  hypothesis: { if: string; then: string; when: string } // shown under Problem and Bet in the summary
   impact: Metric[]
   // Discreet line under the impact figures saying how far to trust them.
   impactNote?: string
@@ -129,8 +129,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       'Low-quality leads were costing HeadBox paying venues. Guests filled 13 steps before seeing a venue and 83% dropped off. Hosts got vague briefs and Lead Feed churn hit 55%.',
     solution:
       'Judge success on lead quality, not volume. Guests describe their event and see matched venues straight away. Ranking blends relevance with Spotlight, a paid boost hosts add to their subscription, which opened a new revenue line.',
-    hypothesis:
-      'If we enable guests to independently discover and shortlist relevant venues, rather than relying on lengthy briefs and manual matching, we expect to increase qualified booking enquiries, improve value for paying hosts and reduce the operational cost of matching supply with demand.',
+    hypothesis: {
+      if: 'we enable guests to discover and shortlist relevant venues independently, rather than relying on lengthy briefs and manual matching',
+      then: 'we will increase qualified booking enquiries and improve the value delivered to paying hosts',
+      when: 'guests can identify suitable venues and express clear booking intent with less friction',
+    },
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '27%', label: 'More likely to book when guests shortlisted venues themselves' },
@@ -326,8 +329,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       'Hosts came to HeadBox for leads but ran their business elsewhere. Our platform was four products with confusing navigation and inconsistent data. We were shipping our org chart.',
     solution:
       'Research before redesign, then structure before polish. One platform built around hosts’ jobs, shipped before peak season, with 3D Studio, full reporting and mobile deferred.',
-    hypothesis:
-      'If we consolidate lead management, proposals and reporting into a unified workflow built around how hosts operate, we expect hosts to respond to enquiries more efficiently, convert more bookings and become more likely to retain their HeadBox subscription.',
+    hypothesis: {
+      if: 'we consolidate lead management, proposals and reporting into a single workflow built around how hosts operate',
+      then: 'we will improve enquiry-to-booking conversion and strengthen host retention',
+      when: 'hosts can manage their entire booking pipeline efficiently without switching between disconnected tools',
+    },
     impact: [
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
@@ -504,8 +510,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       '41% of new users left before reaching value. Onboarding asked for 8 forms, then showed a blank family tree.',
     solution:
       'Deliver value before asking for data. AI relative suggestions and guided steps replaced form-filling, tested in 2-week cycles. Onboarding went from 8 forms to 3.',
-    hypothesis:
-      'If we help new users experience the value of building their family tree earlier, through AI-assisted discovery and reduced onboarding friction, we expect more users to activate, start trials and ultimately convert into paying subscribers.',
+    hypothesis: {
+      if: 'we reduce onboarding friction and help new users discover meaningful family connections earlier',
+      then: 'we will increase activation, trial starts and paid subscription conversion',
+      when: 'users experience the value of building their family tree before encountering significant effort or commitment',
+    },
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },
