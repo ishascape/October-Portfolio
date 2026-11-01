@@ -20,8 +20,12 @@ const principles = [
     link: { slug: 'tree-assist', hash: 'descope-dungeon', text: 'TreeAssist descope dungeon' },
   },
   {
-    title: 'AI in my own process.',
-    body: 'AI research agents helped cut new-city launch planning at HeadBox from 12+ weeks to 2, and I built this site in code with Claude Code.',
+    title: 'AI in my process.',
+    body: [
+      "I designed and built this website using Claude Code, and I'm increasingly experimenting with Claude and Cursor to turn ideas into working prototypes.",
+      'Beyond coding, I use AI to accelerate research and discovery - synthesising project requirements, analysing data from multiple sources, conducting competitive research, writing engineer tickets for handover and more.',
+      'To me, AI is a tool to move faster, explore more possibilities, and spend more time on the decisions that matter. The judgement stays human.',
+    ],
   },
 ]
 
@@ -35,7 +39,11 @@ export function AiPrinciples() {
         {principles.map((p) => (
           <li key={p.title} className="ai-principles__item">
             <h3 className="ai-principles__title">{p.title}</h3>
-            <p className="ai-principles__body">{p.body}</p>
+            <div className="ai-principles__body">
+              {(Array.isArray(p.body) ? p.body : [p.body]).map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+            </div>
             {p.link && (
               <a className="ai-principles__link" href={`${caseHref(p.link.slug)}#${p.link.hash}`}>
                 {p.link.text} <span aria-hidden="true">→</span>
