@@ -28,10 +28,12 @@
   opacity: 0;
 }
 .rk__crayon,
-.rk__rocket,
 .rk__saturn {
   transform-box: fill-box;
   transform-origin: center;
+}
+.rk__rocket {
+  transform-origin: 22px 10px; /* the middle of the rocket, so it can tip upright on the spot */
 }
 .rk__flame {
   fill: var(--marker);
@@ -109,33 +111,31 @@
     opacity: 1;
     transform: scale(1.15);
   }
-  26%,
-  38% {
+  26% {
     opacity: 1;
     transform: none;
   }
-  40% {
-    transform: translateX(-2px);
+  36%,
+  38% {
+    opacity: 1;
+    transform: rotate(-56deg);
   }
-  42% {
-    transform: translateX(1px);
-  }
-  44% {
-    transform: translateX(-2px);
+  41% {
+    transform: rotate(-56deg) translateX(-4px);
   }
   46% {
     opacity: 1;
-    transform: none;
+    transform: rotate(-56deg) translateX(-4px);
     animation-timing-function: cubic-bezier(0.55, 0, 1, 0.7);
   }
   66% {
     opacity: 1;
-    transform: translateX(40px);
+    transform: rotate(-56deg) translateX(10px);
   }
   69%,
   100% {
     opacity: 0;
-    transform: translateX(54px) scale(0.35);
+    transform: rotate(-56deg) translateX(14px) scale(0.35);
   }
 }
 @keyframes rk-flame {
