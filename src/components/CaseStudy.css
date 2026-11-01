@@ -143,6 +143,7 @@
 /* ---------- TL;DR ---------- */
 
 .case__tldr {
+  scroll-margin-top: 72px;
   padding-block: var(--space-6);
   border-bottom: var(--line-thin) solid var(--ink);
 }

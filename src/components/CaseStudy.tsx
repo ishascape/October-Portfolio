@@ -15,6 +15,8 @@ import { DecisionFork } from './DecisionFork'
 import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
+import { CaseNav } from './CaseNav'
+import { iconFor } from './CaseIcons'
 
 // The Key product moments prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
 function VenuePrototype() {
@@ -138,7 +140,18 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         </div>
       </header>
 
-      <section className="case__tldr" aria-label="Summary">
+      <CaseNav
+        items={[
+          { id: 'summary', label: 'Summary', icon: 'summary' },
+          ...page.sections.map((s) => ({
+            id: sectionId(s.label),
+            label: s.label.replace(/^\d+\s*·\s*/, ''),
+            icon: iconFor(s.label),
+          })),
+        ]}
+      />
+
+      <section id="summary" className="case__tldr" aria-label="Summary">
         <div className="container">
           <div className="case__ps">
             <div>
