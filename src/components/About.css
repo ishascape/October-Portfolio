@@ -330,6 +330,9 @@
     column-gap: 80px;
     align-items: center; /* the text sits on the same centre line as the polaroid stack */
   }
+  .field-notes__copy {
+    padding-bottom: 80px; /* the page arrows under the stack are 80px tall; centre on the stack alone */
+  }
 }
 
 /* ---------- Field notes are a scattered pile of papers; click one to read it ---------- */
