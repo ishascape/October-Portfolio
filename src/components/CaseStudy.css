@@ -449,6 +449,9 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--gutter);
   }
+  .case__ps > .case__hypothesis {
+    grid-column: 1 / -1;
+  }
   .case__experiments dl {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--gutter);
