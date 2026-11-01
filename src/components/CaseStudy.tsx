@@ -95,19 +95,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         <div className="container">
           <p className="label case__sheet">
             <a className="case__back" href={homeHref('#work')}>
-              {/* On hover a kid slides down a playground slide to the left of the link. */}
-              <svg className="slide" viewBox="0 0 44 30" aria-hidden="true">
-                <path className="slide__line" d="M2 27.5 H43" />
-                <path className="slide__line" d="M4 27 V6.5 M9 27 V6.5 M4 11 H9 M4 16 H9 M4 21 H9 M3 6.5 H13" />
-                <path className="slide__line" d="M12 6.5 Q26 8 39 25" />
-                <g className="slide__kid">
-                  <circle className="slide__head" cx="0" cy="-6.4" r="1.9" />
-                  <path
-                    className="slide__body"
-                    d="M0 -4.4 L0.3 -0.8 M0.1 -3.6 L-2.2 -5.6 M0.1 -3.6 L2.3 -5.8 M0.3 -0.8 L3.6 -1.4 L4.4 0.8"
-                  />
-                </g>
-              </svg>
               ← Back to case studies
             </a>
           </p>
