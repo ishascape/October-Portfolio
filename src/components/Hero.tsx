@@ -15,6 +15,18 @@ const process: { icon: CaseIconName; name: string; line: string }[] = [
   { icon: 'mvp', name: 'Ship', line: 'Launch the first version and measure it' },
 ]
 
+// Keep a tooltip inside the screen: measure it, then nudge it sideways if it runs past either edge.
+function keepTipOnScreen(button: Element | null) {
+  const tip = button?.querySelector<HTMLElement>('.hero__step-tip')
+  if (!tip) return
+  tip.style.setProperty('--tip-dx', '0px')
+  const { left, right } = tip.getBoundingClientRect()
+  const edge = 12
+  const width = document.documentElement.clientWidth
+  const dx = left < edge ? edge - left : right > width - edge ? width - edge - right : 0
+  tip.style.setProperty('--tip-dx', `${Math.round(dx)}px`)
+}
+
 export function Hero() {
   // Touch screens have no hover, so a tap on an icon opens its tooltip; tapping elsewhere closes it.
   const [openStep, setOpenStep] = useState<number | null>(null)
@@ -108,7 +120,12 @@ export function Hero() {
                 className={openStep === i ? `hero__step hero__step--${i} is-open` : `hero__step hero__step--${i}`}
                 aria-label={`${step.name}: ${step.line}`}
                 aria-expanded={openStep === i}
-                onClick={() => setOpenStep(openStep === i ? null : i)}
+                onClick={(e) => {
+                  keepTipOnScreen(e.currentTarget)
+                  setOpenStep(openStep === i ? null : i)
+                }}
+                onPointerEnter={(e) => keepTipOnScreen(e.currentTarget)}
+                onFocus={(e) => keepTipOnScreen(e.currentTarget)}
               >
                 <CaseIcon name={step.icon} />
                 <span className="hero__step-tip" aria-hidden="true">
