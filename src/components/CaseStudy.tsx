@@ -94,7 +94,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       <header className="case__header">
         <div className="container">
           <p className="label case__sheet">
-            <a href={homeHref('#work')}>← Selected work</a>
+            <a href={homeHref('#work')}>← Back to case studies</a>
           </p>
 
           <div className="case__intro">
