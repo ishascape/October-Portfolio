@@ -1,0 +1,121 @@
+/* Semantic tokens: what each value is for. Every token aliases a primitive in tokens.css, so adopting one changes
+   nothing visually. Docs: docs/design-system/tokens.md.
+
+   Not imported by the live site yet; only the /design-system style guide uses it. Adopting it site-wide is a
+   separate step (docs/design-system/governance/findings.md, P1).
+
+   Declared on [data-theme] as well as :root, because var() resolves where a custom property is declared: a scope
+   that swaps the primitives (the blueprint footer) must re-declare the semantic layer to pick them up. */
+:root,
+[data-theme] {
+  /* Surfaces */
+  --color-surface-page: var(--paper);
+  --color-surface-sunken: var(--paper-shade);
+  --color-surface-deep: var(--paper-deep);
+  --color-surface-raised: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
+  --color-surface-inverse: var(--ink);
+  --color-surface-accent-subtle: var(--marker-wash);
+  --color-surface-media: #fff;
+  --color-surface-scrim: rgb(0 0 0 / 0.7);
+
+  /* Text and icons */
+  --color-text-primary: var(--ink);
+  --color-text-secondary: var(--graphite);
+  --color-text-inverse: var(--paper);
+  --color-text-accent: var(--marker);
+  --color-text-accent-on-subtle: #1f4a99;
+  --color-icon-primary: var(--ink);
+  --color-icon-secondary: var(--graphite);
+  --color-icon-accent: var(--marker);
+
+  /* Borders and lines */
+  --color-border-strong: var(--ink);
+  --color-border-subtle: var(--rule);
+  --color-border-raised: rgb(var(--shadow-ink) / 0.55);
+  --color-border-registration: rgb(97 94 88 / 0.45);
+  --color-border-accent: var(--marker);
+  --color-border-focus: var(--marker);
+  --color-border-placeholder: var(--graphite);
+
+  /* Interactive */
+  --color-interactive-primary-bg: var(--ink);
+  --color-interactive-primary-bg-hover: var(--marker);
+  --color-interactive-primary-text: var(--paper);
+  --color-interactive-secondary-bg: transparent;
+  --color-interactive-secondary-bg-hover: var(--marker);
+  --color-interactive-secondary-text: var(--ink);
+  --color-interactive-secondary-text-hover: var(--paper);
+  --color-interactive-secondary-border: var(--ink);
+  --color-interactive-disabled-opacity: 0.3;
+
+  /* Type roles */
+  --type-display-hero: var(--text-display);
+  --type-display: var(--text-display);
+  --type-display-statement: clamp(28px, 3.5vw, 44px);
+  --type-heading-section: clamp(26px, 3.2vw, 40px);
+  --type-heading-card: var(--text-heading);
+  --type-heading-menu: 32px;
+  --type-title: 18px;
+  --type-lead: 20px;
+  --type-subtitle: clamp(18px, 1.8vw, 22px);
+  --type-body: var(--text-body);
+  --type-body-compact: 16px;
+  --type-label: var(--text-label);
+  --type-caption: 12px;
+  --type-micro: 10px;
+  --type-metric: var(--text-metric);
+  --type-annotation: 22px;
+
+  /* Space roles */
+  --space-inline-xs: var(--space-1);
+  --space-inline-sm: var(--space-2);
+  --space-inline-md: var(--space-3);
+  --space-stack-sm: var(--space-2);
+  --space-stack-md: var(--space-3);
+  --space-stack-lg: var(--space-4);
+  --space-inset-sm: var(--space-3);
+  --space-inset-md: var(--space-4);
+  --space-inset-lg: calc(var(--space-4) + 16px);
+  --space-section-top: var(--space-6);
+  --space-section-bottom: var(--space-7);
+
+  /* Shape */
+  --radius-md: var(--radius);
+  --radius-pill: 999px;
+  --radius-none: 0;
+
+  /* Elevation */
+  --elevation-sheet: 0 -1px 0 var(--ink), 0 -12px 24px -12px rgb(var(--shadow-ink) / 0.18);
+  --elevation-paper: 0 1px 0 rgb(var(--shadow-ink) / 0.08), 0 14px 24px -14px rgb(var(--shadow-ink) / 0.35);
+  --elevation-paper-hover: 0 1px 0 rgb(var(--shadow-ink) / 0.08), 0 20px 30px -14px rgb(var(--shadow-ink) / 0.5);
+  --elevation-paper-lifted: 0 1px 0 rgb(var(--shadow-ink) / 0.08), 0 28px 40px -18px rgb(var(--shadow-ink) / 0.45);
+
+  /* Motion */
+  --motion-easing-pen: var(--ease-pen);
+  --motion-easing-settle: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --motion-easing-enter: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-easing-glide: cubic-bezier(0.5, 0, 0.2, 1);
+  --motion-duration-micro: var(--dur-micro);
+  --motion-duration-state: var(--dur-state);
+  --motion-duration-entrance: 400ms;
+  --motion-duration-paper: 480ms;
+  --motion-duration-signature: var(--dur-signature);
+  --motion-stagger: 70ms;
+
+  /* Focus */
+  --focus-ring: 2px solid var(--color-border-focus);
+  --focus-offset: 3px;
+}
+
+/* The cyanotype sheet used by the home-page footer, expressed as a theme. Not applied anywhere on the live site:
+   the footer still sets these values itself in Footer.css. */
+[data-theme='blueprint'] {
+  --paper: #1d4e89;
+  --paper-shade: #1d4e89;
+  --ink: #f2f6fb;
+  --graphite: rgb(242 246 251 / 0.75);
+  --rule: rgb(242 246 251 / 0.45);
+  --marker: #ffffff;
+  --marker-wash: rgb(242 246 251 / 0.12);
+  --shadow-ink: 0 0 0;
+}

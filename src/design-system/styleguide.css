@@ -1,0 +1,280 @@
+/* Style guide page only. Uses semantic tokens throughout. The forced-state rules at the bottom repeat the real
+   hover and focus declarations from global.css and Work.css so a state can be shown without the pointer on it. */
+
+.ds-header {
+  padding-block: var(--space-5) var(--space-4);
+  border-bottom: var(--line-thin) solid var(--color-border-strong);
+}
+.ds-header .display {
+  margin-block: var(--space-2) var(--space-3);
+}
+.ds-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-4);
+  font-size: var(--type-label);
+}
+.ds-index a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+.ds-index a:hover {
+  color: var(--color-text-accent);
+}
+
+.ds-block {
+  padding-block: var(--space-5);
+  border-bottom: var(--line-hair) solid var(--color-border-subtle);
+  scroll-margin-top: 56px;
+}
+.ds-block__title {
+  margin-bottom: var(--space-2);
+  font-size: var(--type-heading-section);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+.ds-block__intro {
+  max-width: var(--measure);
+  margin-bottom: var(--space-4);
+  color: var(--color-text-secondary);
+}
+.ds-sub {
+  margin: var(--space-4) 0 var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--line-thin) solid var(--color-border-strong);
+  font-weight: 400;
+}
+.ds-muted {
+  color: var(--color-text-secondary);
+}
+.ds-note {
+  max-width: var(--measure);
+  font-size: var(--type-body-compact);
+  color: var(--color-text-secondary);
+}
+.ds-code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 12px;
+  color: var(--color-text-primary);
+}
+
+.ds-row,
+.ds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+.ds-specimen {
+  display: grid;
+  gap: var(--space-2);
+}
+.ds-specimen--wide {
+  grid-column: 1 / -1;
+}
+.ds-specimen__stage {
+  display: grid;
+  place-items: center start;
+  min-height: 96px;
+  padding: var(--space-3);
+  border: var(--line-thin) solid var(--color-border-subtle);
+  background: var(--color-surface-page);
+}
+.ds-specimen--wide .ds-specimen__stage {
+  display: block;
+}
+
+/* Colour */
+.ds-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+.ds-swatch {
+  display: grid;
+  gap: var(--space-1);
+}
+.ds-swatch__chip {
+  height: 64px;
+  margin-bottom: var(--space-1);
+  border: var(--line-thin) solid var(--color-border-raised);
+}
+.ds-swatch__name {
+  font-size: var(--type-label);
+  font-weight: 600;
+}
+.ds-theme-sample {
+  width: 100%;
+  padding: var(--space-3);
+  background: var(--color-surface-page);
+}
+
+/* Type */
+.ds-type {
+  display: grid;
+  gap: var(--space-4);
+}
+.ds-type li {
+  display: grid;
+  gap: var(--space-1);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--line-hair) solid var(--color-border-subtle);
+}
+
+/* Space */
+.ds-spaces {
+  display: grid;
+  gap: var(--space-2);
+}
+.ds-space {
+  display: grid;
+  grid-template-columns: 96px 1fr 56px;
+  align-items: center;
+  gap: var(--space-3);
+}
+.ds-space__bar {
+  height: 16px;
+  background: var(--color-surface-accent-subtle);
+  border-left: var(--line-building) solid var(--color-border-accent);
+}
+
+/* Lines and shape */
+.ds-line {
+  display: block;
+  width: 100%;
+  border-top: 0 solid var(--color-border-strong);
+}
+.ds-shape {
+  display: block;
+  width: 120px;
+  height: 64px;
+  border: var(--line-building) solid var(--color-border-strong);
+}
+.ds-shape--pill {
+  height: 32px;
+  border-radius: var(--radius-pill);
+}
+.ds-paper {
+  display: block;
+  width: 120px;
+  height: 80px;
+  border: var(--line-thin) solid var(--color-border-raised);
+  background: var(--color-surface-raised);
+}
+
+/* Motion */
+.ds-easings {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.ds-easings li {
+  display: grid;
+  grid-template-columns: 200px 140px 1fr;
+  align-items: center;
+  gap: var(--space-3);
+}
+.ds-track {
+  container-type: inline-size;
+  position: relative;
+  height: 24px;
+  border-bottom: var(--line-hair) solid var(--color-border-subtle);
+}
+.ds-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border: var(--line-building) solid var(--color-border-strong);
+  background: var(--color-surface-raised);
+  transition: transform var(--motion-duration-signature);
+}
+@media (max-width: 599px) {
+  .ds-easings li {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}
+
+/* Components */
+.ds-state {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+}
+.ds-stack .button {
+  white-space: nowrap;
+}
+.ds-stack {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+.ds-deck-demo {
+  max-width: 480px;
+}
+.ds-frame {
+  margin-top: var(--space-3);
+  border: var(--line-thin) solid var(--color-border-strong);
+  overflow: hidden;
+}
+.ds-frame .paper-sheet {
+  position: relative;
+  top: auto;
+  box-shadow: none;
+}
+.ds-cards {
+  display: grid;
+  gap: var(--space-5);
+}
+.ds-state-label {
+  margin-bottom: var(--space-2);
+}
+.ds-pile {
+  max-width: 560px;
+}
+.ds-pile .deck__nav {
+  max-width: 480px;
+  margin-inline: auto;
+}
+.ds-patterns {
+  display: grid;
+  gap: var(--space-4);
+}
+.ds .ai-principles {
+  margin-top: 0;
+}
+
+/* Forced states: the same declarations as the real :hover and :focus-visible rules. */
+.button.ds-hover {
+  background: var(--color-interactive-primary-bg-hover);
+  border-color: var(--color-interactive-primary-bg-hover);
+  color: var(--color-interactive-primary-text);
+}
+.button.ds-focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.button.ds-hover::before,
+.button.ds-hover::after,
+.button.ds-focus::before,
+.button.ds-focus::after {
+  opacity: 1;
+}
+.card.ds-hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 0 0 0.5px var(--color-border-strong);
+}
+.card.ds-hover::before,
+.card.ds-hover::after {
+  opacity: 1;
+}
+.card.ds-hover .card__cta .button {
+  background: var(--color-surface-inverse);
+  border-color: var(--color-surface-inverse);
+  color: var(--color-text-inverse);
+}
