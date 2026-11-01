@@ -13,16 +13,16 @@ export function Hero() {
         <div className="hero__intro">
           <div className="hero__text">
             <div className="hero__title">
+              <p className="hero__role">
+                <span>Senior Product Designer ·</span> <span>Strategy to shipped product ·</span>{' '}
+                <span>B2B SaaS, AI &amp; marketplaces</span>
+              </p>
               <h1 id="hero-heading" className="display">
                 <span className="hero__line">
                   I turn complex product <br className="hero__br" />
                   problems into business growth.
                 </span>
               </h1>
-              <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>Strategy to shipped product ·</span>{' '}
-                <span>B2B SaaS, AI &amp; marketplaces</span>
-              </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
