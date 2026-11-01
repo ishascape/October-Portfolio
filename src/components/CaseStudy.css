@@ -152,6 +152,7 @@
 }
 .case__ps > div {
   display: grid;
+  align-content: start; /* body copy sits straight under its title, never stretched down the row */
   gap: var(--space-2);
   max-width: var(--measure);
 }
@@ -159,6 +160,10 @@
 .case__impact-label {
   font-weight: 400;
   color: var(--graphite);
+}
+/* Fixed 16px from a section title to its body copy: 8px grid gap + 8px here. */
+.case__ps h2 {
+  margin-bottom: var(--space-2);
 }
 .case__impact-label {
   margin-bottom: var(--space-3);
