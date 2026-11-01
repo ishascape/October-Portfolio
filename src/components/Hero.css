@@ -226,7 +226,7 @@
     font-size: 32px;
   }
   .hero .hero__role {
-    font-size: 18px;
+    font-size: 16px; /* the longest role phrase must fit a 390px screen on one line */
   }
   /* Role line to the buttons: 24px. */
   .hero__intro {
