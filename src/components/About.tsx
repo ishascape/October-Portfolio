@@ -44,8 +44,6 @@ export function About() {
           </div>
         </div>
 
-        <Skills />
-
         <h3 className="label about__subhead">Work history</h3>
         <table className="revisions">
           <caption className="visually-hidden">Work history, most recent first</caption>
@@ -108,6 +106,10 @@ export function About() {
           <div className="field-notes__figures">
             <FieldStrip notes={fieldNotes} label="Field notes" />
           </div>
+        </div>
+
+        <div className="about__expertise">
+          <Skills />
         </div>
       </div>
     </section>

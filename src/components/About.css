@@ -149,6 +149,11 @@
   }
 }
 
+/* Core Expertise and Toolkit sit below Field notes. */
+.about__expertise {
+  margin-top: var(--space-6);
+}
+
 /* ---------- Field notes ---------- */
 
 .field-notes {
