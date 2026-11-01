@@ -158,10 +158,6 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               <h2 className="label">Problem</h2>
               <p>{page.problem}</p>
             </div>
-            <div>
-              <h2 className="label">Bet</h2>
-              <p>{page.solution}</p>
-            </div>
             <div className="case__hypothesis">
               <h2 className="label">Product hypothesis</h2>
               {(['if', 'then', 'when'] as const).map((k) => (

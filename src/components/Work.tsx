@@ -1,24 +1,34 @@
+import { useEffect, useRef } from 'react'
 import { caseHref } from '../links'
 import { caseStudies } from '../data/content'
 import { CardCarousel } from './CardCarousel'
 import { AiPrinciples } from './AiPrinciples'
+import { RocketCrayon } from './RocketCrayon'
 import './Work.css'
+import './RocketCrayon.css'
+
+// On touch screens there is no hover, so the rocket plays once each time the heading scrolls into view.
+function usePlayOnView(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current
+    if (!el || window.matchMedia('(hover: hover)').matches) return
+    const io = new IntersectionObserver(([e]) => el.classList.toggle('is-inview', e.isIntersecting), {
+      threshold: 1,
+    })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [ref])
+}
 
 export function Work() {
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  usePlayOnView(headingRef)
   return (
     <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
-        <h2 id="work-heading" className="work__heading">
-          {/* A hand-drawn crayon in brand blue, leading into the line like it's writing it. */}
-          <svg className="work__crayon" viewBox="0 0 44 20" aria-hidden="true">
-            <g transform="rotate(-18 22 10)">
-              <rect className="crayon__cap" x="3" y="5.5" width="5" height="9" rx="1.5" />
-              <rect className="crayon__body" x="7" y="5" width="25" height="10" rx="1.2" />
-              <path className="crayon__tip" d="M32 5 L40.5 9.2 Q41.4 10 40.5 10.8 L32 15 Z" />
-              <path className="crayon__band" d="M11 5.5 v9 M28 5.5 v9" />
-              <path className="crayon__zigzag" d="M14 10 l2 -2.2 l2 4.4 l2 -4.4 l2 4.4 l2 -4.4 l2 2.2" />
-            </g>
-          </svg>
+        <h2 id="work-heading" className="work__heading" ref={headingRef}>
+          {/* A hand-drawn crayon in brand blue that turns into a rocket and blasts to Saturn. */}
+          <RocketCrayon />
           <span>Designing for conversion, supply growth and activation.</span>
         </h2>
 
