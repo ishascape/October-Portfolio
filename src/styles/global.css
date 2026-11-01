@@ -223,3 +223,21 @@ body::after {
     top: auto;
   }
 }
+
+/* Phone start screen on the homepage: only the hero's polaroid and headline show at first; the nav and the rest of the
+   page fade in from 1.3s, so everything is in by 1.8s. The hero's own timings are in Hero.css. */
+@keyframes site-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 599px) and (prefers-reduced-motion: no-preference) {
+  body:has(.hero) .nav,
+  #main:has(> .hero) > :not(.hero),
+  body:has(.hero) .footer {
+    animation: site-in 500ms ease 1300ms backwards;
+  }
+}
