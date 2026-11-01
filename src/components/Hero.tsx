@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { contact } from '../data/content'
 import portrait from '../assets/ashni-portrait.webp'
+import portraitSmall from '../assets/ashni-portrait-640.webp'
 import './Hero.css'
 
 export function Hero() {
@@ -47,6 +48,8 @@ export function Hero() {
             <div className="hero__polaroid-photo">
               <img
                 src={portrait}
+                srcSet={`${portraitSmall} 640w, ${portrait} 960w`}
+                sizes="(max-width: 599px) 80vw, 480px"
                 alt="Ashni Dave smiling, with long dark hair, in a blue denim top, standing in a garden."
                 width={960}
                 height={1200}
