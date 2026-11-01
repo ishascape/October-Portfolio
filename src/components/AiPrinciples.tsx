@@ -5,12 +5,12 @@ import './AiPrinciples.css'
 // that isn't in one of them.
 const principles = [
   {
-    title: 'Know when not to use the AI.',
+    title: 'Know when not to use AI, introducing a human in the loop.',
     body: "Venue Finder only made recommendations where we had 200+ venues. Elsewhere it didn't force matches, and briefs over £50k went to a human concierge.",
     link: { slug: 'venue-finder', hash: 'edge-cases', text: 'Venue Finder edge cases' },
   },
   {
-    title: 'Guardrails before revenue.',
+    title: 'Always define the guardrails.',
     body: 'Matches needed a 0.85 similarity score, and paid Spotlight placements were capped at 2 per brief, so paying venues never outranked relevance.',
     link: { slug: 'venue-finder', hash: 'matching', text: 'Venue Finder matching' },
   },
