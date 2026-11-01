@@ -59,7 +59,7 @@ export const caseStudies: CaseStudy[] = [
     supporting: ['Guests who shortlisted venues were 27% more likely to book', 'New paid Spotlight boost for hosts'],
     system:
       'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
-    tags: ['Marketplace', 'Lead quality', 'New revenue line'],
+    tags: ['Marketplace', 'AI recommendation engine', 'Lead quality', 'New revenue line'],
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 27% more likely to book',
     slug: 'venue-finder',
