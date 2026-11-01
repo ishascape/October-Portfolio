@@ -992,3 +992,265 @@
     justify-content: center;
   }
 }
+
+/* ---------- Process icons, scattered around the polaroid like spilled sweets ---------- */
+/* Each icon sits 16 to 32px (--d) outside the print's border. The button is 44px with the 28px icon in its middle, so
+   the offset is the gap plus 36px. They are children of the print, so they arrive with it and never move the layout. */
+.hero__step {
+  --d: 24px;
+  --icon-gray: #8a877e; /* the grey of the link-preview thumbnail */
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.hero__step .case-icon {
+  width: 28px;
+  height: 28px;
+  overflow: visible;
+}
+.hero__step .case-icon .f {
+  fill: var(--icon-gray);
+  transition: fill var(--dur-micro) var(--ease-pen);
+}
+.hero__step .case-icon .o {
+  stroke: var(--icon-gray);
+  transition: stroke var(--dur-micro) var(--ease-pen);
+}
+.hero__step:hover .case-icon .f,
+.hero__step:focus-visible .case-icon .f,
+.hero__step.is-open .case-icon .f {
+  fill: var(--marker);
+}
+.hero__step:hover .case-icon .o,
+.hero__step:focus-visible .case-icon .o,
+.hero__step.is-open .case-icon .o {
+  stroke: var(--marker);
+}
+.hero__step:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -4px;
+  border-radius: 12px;
+}
+.hero__step:hover,
+.hero__step:focus-visible,
+.hero__step.is-open {
+  z-index: 3;
+}
+
+/* Scattered, not a ring: different sides, distances and spacing. */
+.hero__step--0 {
+  --d: 22px;
+  top: calc(-1 * (var(--d) + 36px));
+  left: 8%;
+}
+.hero__step--1 {
+  --d: 30px;
+  top: calc(-1 * (var(--d) + 36px));
+  left: 58%;
+}
+.hero__step--2 {
+  --d: 18px;
+  right: calc(-1 * (var(--d) + 36px));
+  top: 14%;
+}
+.hero__step--3 {
+  --d: 32px;
+  right: calc(-1 * (var(--d) + 36px));
+  top: 62%;
+}
+.hero__step--4 {
+  --d: 26px;
+  bottom: calc(-1 * (var(--d) + 36px));
+  left: 66%;
+}
+.hero__step--5 {
+  --d: 16px;
+  left: calc(-1 * (var(--d) + 36px));
+  top: 38%;
+}
+
+/* Tooltip: what part of the process the icon stands for. */
+.hero__step-tip {
+  position: absolute;
+  bottom: calc(100% - 6px);
+  left: 50%;
+  translate: -50% 4px;
+  width: max-content;
+  max-width: 200px;
+  padding: 8px 12px;
+  border: var(--line-thin) solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--dur-micro) var(--ease-pen),
+    translate var(--dur-micro) var(--ease-pen);
+}
+.hero__step-tip strong {
+  display: block;
+  font-weight: 600;
+}
+.hero__step--0 .hero__step-tip,
+.hero__step--5 .hero__step-tip {
+  left: 0;
+  translate: 0 4px;
+}
+.hero__step--2 .hero__step-tip,
+.hero__step--3 .hero__step-tip {
+  left: auto;
+  right: 0;
+  translate: 0 4px;
+}
+.hero__step:hover .hero__step-tip,
+.hero__step:focus-visible .hero__step-tip,
+.hero__step.is-open .hero__step-tip {
+  opacity: 1;
+  translate: -50% 0;
+}
+.hero__step--0:hover .hero__step-tip,
+.hero__step--0:focus-visible .hero__step-tip,
+.hero__step--0.is-open .hero__step-tip,
+.hero__step--5:hover .hero__step-tip,
+.hero__step--5:focus-visible .hero__step-tip,
+.hero__step--5.is-open .hero__step-tip,
+.hero__step--2:hover .hero__step-tip,
+.hero__step--2:focus-visible .hero__step-tip,
+.hero__step--2.is-open .hero__step-tip,
+.hero__step--3:hover .hero__step-tip,
+.hero__step--3:focus-visible .hero__step-tip,
+.hero__step--3.is-open .hero__step-tip {
+  translate: 0 0;
+}
+
+/* Little hover animations, mouse only and never with reduced motion. Each one acts out its step. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero__step--0:hover .case-icon {
+    animation: hs-draw 700ms ease-in-out;
+  }
+  .hero__step--1:hover .case-icon {
+    animation: hs-snap 600ms cubic-bezier(0.3, 0.7, 0.2, 1);
+  }
+  .hero__step--2:hover .case-icon {
+    animation: hs-pour 800ms ease-in-out;
+  }
+  .hero__step--3:hover .case-icon {
+    animation: hs-weigh 900ms ease-in-out;
+  }
+  .hero__step--4:hover .case-icon {
+    animation: hs-glow 800ms ease-in-out;
+  }
+  .hero__step--5:hover .case-icon {
+    animation: hs-launch 700ms cubic-bezier(0.5, 0, 0.3, 1);
+  }
+}
+@keyframes hs-draw {
+  25% {
+    transform: translate(3px, -2px) rotate(8deg);
+  }
+  50% {
+    transform: translate(-3px, 2px) rotate(-10deg);
+  }
+  75% {
+    transform: translate(2px, -1px) rotate(5deg);
+  }
+}
+@keyframes hs-snap {
+  35% {
+    transform: translate(-5px, 4px) rotate(-12deg);
+  }
+  70% {
+    transform: translate(1px, -1px) scale(1.18);
+  }
+}
+@keyframes hs-pour {
+  30% {
+    transform: rotate(-22deg);
+  }
+  60% {
+    transform: rotate(14deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes hs-weigh {
+  25% {
+    transform: rotate(-14deg);
+  }
+  55% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-4deg);
+  }
+}
+@keyframes hs-glow {
+  40% {
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 5px rgb(47 95 179 / 0.55));
+  }
+  70% {
+    transform: scale(0.94);
+  }
+}
+@keyframes hs-launch {
+  35% {
+    transform: translate(-2px, 3px) scale(0.94);
+  }
+  100% {
+    transform: translate(7px, -9px) scale(1.05);
+    opacity: 0;
+  }
+}
+
+/* Narrower screens: the print sits against the right edge, so the two side icons move to the top and bottom edges. */
+@media (min-width: 600px) and (max-width: 1279px) {
+  .hero__step--2 {
+    --d: 18px;
+    right: auto;
+    top: calc(-1 * (var(--d) + 36px));
+    left: 84%;
+  }
+  .hero__step--3 {
+    --d: 32px;
+    right: auto;
+    top: auto;
+    bottom: calc(-1 * (var(--d) + 36px));
+    left: 14%;
+  }
+}
+
+/* Tablets: a little more room under the print so the bottom icons stay inside the sheet. */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .hero {
+    padding-bottom: 96px;
+  }
+}
+
+/* Phones: the print is narrower, so nothing goes below it (the headline sits there); the Ship icon moves to the side. */
+@media (max-width: 599px) {
+  .hero__step--4 {
+    --d: 28px;
+    bottom: auto;
+    left: calc(-1 * (var(--d) + 36px));
+    top: 74%;
+  }
+  .hero__step--5 {
+    top: 30%;
+  }
+}
