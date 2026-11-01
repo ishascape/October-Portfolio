@@ -10,7 +10,7 @@
 #work.section {
   padding-top: 30px;
 }
-/* Same size and weight as the hero intro line (20px, 16px on phones), led by a blue crayon. */
+/* Same size and weight as the hero intro line (20px, 16px on phones), followed by a blue crayon. */
 .work__heading {
   display: flex;
   align-items: center;
