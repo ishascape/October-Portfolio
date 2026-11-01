@@ -57,6 +57,12 @@ svg {
   outline: 2px solid var(--marker);
   outline-offset: 3px;
 }
+/* Sections and headings that receive focus from in-page navigation (tabindex -1) aren't controls,
+   so they don't get the blue focus ring. Otherwise it draws a second line along the sheet edge. */
+[tabindex='-1']:focus,
+[tabindex='-1']:focus-visible {
+  outline: none;
+}
 
 .visually-hidden {
   position: absolute;
