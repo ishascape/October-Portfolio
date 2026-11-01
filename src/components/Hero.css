@@ -983,7 +983,12 @@
 .hero__link:hover,
 .hero__link:focus-visible {
   color: var(--marker);
-  text-decoration-color: currentColor;
+}
+.hero__link:hover {
+  text-decoration-color: transparent; /* no underline on hover */
+}
+.hero__link:focus-visible {
+  text-decoration-color: currentColor; /* keyboard focus keeps its underline */
 }
 .hero__actions {
   align-items: center;
