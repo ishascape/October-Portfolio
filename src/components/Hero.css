@@ -962,7 +962,11 @@
     font-size: clamp(26px, calc(4.8vw - 8px), 52px);
     font-size: round(clamp(26px, calc(4.8vw - 8px), 52px), 2px); /* even px sizes only; 8px smaller on 1 Nov 2026 */
     line-height: 1.08;
-    text-wrap: balance; /* even lines for the longer headline */
+  }
+}
+@media (min-width: 900px) {
+  .hero__br {
+    display: inline; /* three even lines: "I find the right problems / to solve, then design / products that deliver." */
   }
 }
 .hero__link {
