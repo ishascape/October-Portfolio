@@ -56,6 +56,7 @@
     z-index: 9;
     background: var(--paper);
     border-bottom: var(--line-thin) solid var(--rule);
+    overflow-x: clip; /* only the icon row scrolls sideways, never the page */
   }
   .case-nav__list {
     display: flex;
@@ -85,6 +86,7 @@
   /* Icons only; the section you're on opens into a pill with its name. */
   /* 24px icons in a 32px tap area. */
   .case-nav__link {
+    position: relative;
     min-width: 32px;
     height: 32px;
     padding: 4px;
