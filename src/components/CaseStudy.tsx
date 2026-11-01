@@ -182,7 +182,7 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               ))}
             </div>
           </div>
-          <h2 className="label case__impact-label">Result</h2>
+          <h2 className="label case__impact-label">Outcomes</h2>
           <ul className="case__impact">
             {page.impact.map((m) => (
               <li key={m.label}>
