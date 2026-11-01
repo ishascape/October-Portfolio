@@ -67,7 +67,7 @@ export function headFor(page: Page) {
   const image = `${SITE_URL}/og/${page === 'home' ? 'home' : page.caseSlug}.jpg`
   const imageAlt = found
     ? `${found.study.title} case study by ${NAME}: ${found.detail.subtitle}`
-    : `${NAME}, ${JOB} in Sydney: a portrait beside the headline I turn complex product problems into business growth.`
+    : `${NAME}, ${JOB} in Sydney: the headline I turn complex product problems into business growth, beside polaroids of her portrait, TreeAssist and HostHQ.`
 
   const graph: object[] = [
     person,
