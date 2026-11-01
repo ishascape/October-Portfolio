@@ -17,11 +17,7 @@ export function Hero() {
                 <span>Senior Product Designer ·</span> <span>SaaS, Marketplaces &amp; AI</span>
               </p>
               <h1 id="hero-heading" className="display">
-                <span className="hero__line">
-                  I find the right problems <br className="hero__br" />
-                  to solve, then design <br className="hero__br" />
-                  products that deliver.
-                </span>
+                <span className="hero__line">Designing and delivering products that solve the right problems.</span>
               </h1>
             </div>
             <div className="hero__support">
