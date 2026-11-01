@@ -24,14 +24,15 @@ export function Hero() {
                 <span className="hero__line">I love a good product puzzle!</span>
               </h1>
               <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>Systems Thinker ·</span> <span>Hands-on Builder</span>
+                <span>Senior Product Designer ·</span> <span>Trained architect ·</span>{' '}
+                <span>Designs and builds with AI</span>
               </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  I work across discovery, strategy and delivery to find what matters, make the right trade-offs and
-                  turn good ideas into measurable outcomes.
+                  I design AI and marketplace products. At HeadBox I led AI venue matching that lifted qualified
+                  enquiries 30%, and merged four host tools into one platform in 3 months.
                 </p>
               </div>
               <div className="hero__actions">

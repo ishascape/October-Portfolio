@@ -136,7 +136,7 @@
 }
 @media (min-width: 1200px) {
   .case__visual--wide .case__meta {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
@@ -195,6 +195,7 @@
 /* ---------- Sections ---------- */
 
 .case__section {
+  scroll-margin-top: 72px;
   padding-block: var(--space-6);
   border-bottom: var(--line-hair) solid var(--rule);
 }
