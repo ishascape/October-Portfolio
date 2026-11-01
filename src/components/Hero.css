@@ -216,7 +216,8 @@
     display: block;
   }
   .hero .hero__title h1.display {
-    font-size: calc(10vw + 4px);
+    font-size: calc(10vw - 4px);
+    font-size: round(calc(10vw - 4px), 2px); /* even px sizes only */
   }
   .hero__lede {
     font-size: 16px;
@@ -239,7 +240,7 @@
 
 @media (min-width: 600px) {
   .hero .hero__title h1.display {
-    font-size: calc(var(--text-display) + 8px);
+    font-size: var(--text-display);
   }
 }
 
@@ -762,8 +763,16 @@
     gap: 0;
   }
   .hero__polaroid {
+    order: 2;
     width: 56%;
     justify-self: center;
+    margin-block: 8px;
+  }
+  .hero__title {
+    order: 1;
+  }
+  .hero__support {
+    order: 3;
   }
   .hero__polaroid .hero__hello {
     font-size: 24px;
