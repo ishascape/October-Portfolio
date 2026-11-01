@@ -11,9 +11,7 @@
   display: flex;
   justify-content: space-between;
   gap: var(--space-3);
-  padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
-  margin-bottom: var(--space-5);
+  margin-bottom: 24px; /* gap to the kicker line below */
 }
 .case__sheet a {
   text-decoration: none;
