@@ -10,7 +10,10 @@ export function Hero() {
           <div className="hero__text">
             <div className="hero__title">
               <h1 id="hero-heading" className="display">
-                <span className="hero__line">I turn complex product problems into business growth.</span>
+                <span className="hero__line">
+                  I turn complex product <br className="hero__br" />
+                  problems into business growth.
+                </span>
               </h1>
               <p className="hero__role">
                 <span>Senior Product Designer ·</span> <span>Strategy to shipped product ·</span>{' '}
