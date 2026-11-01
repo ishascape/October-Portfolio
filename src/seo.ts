@@ -59,7 +59,7 @@ export function headFor(page: Page) {
   const title = found ? `${found.study.title}, a case study by ${NAME}` : `${NAME} · ${JOB}`
   const description = found
     ? `${found.detail.subtitle} ${found.study.role}.`
-    : 'I turn complex product challenges into intuitive experiences that move businesses forward. From strategy and discovery to shipped products, I help startups and scaleups improve conversion, retention and growth.'
+    : "I'm a product designer who loves connecting the dots between what people need, what businesses want and what's possible to build. From the first big question to the final shipped experience."
 
   // Link-preview cards (1200x630) live in public/og, one per page, named after the page.
   const image = `${SITE_URL}/og/${page === 'home' ? 'home' : page.caseSlug}.jpg`
