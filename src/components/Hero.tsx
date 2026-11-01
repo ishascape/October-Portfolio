@@ -1,10 +1,50 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { CaseIcon, type CaseIconName } from './CaseIcons'
 import { contact } from '../data/content'
 import portrait from '../assets/ashni-portrait.webp'
 import portraitSmall from '../assets/ashni-portrait-640.webp'
 import './Hero.css'
 
+// The steps of how I work, in the order of the link-preview thumbnail. They sit around the polaroid like spilled sweets.
+const process: { icon: CaseIconName; name: string; line: string }[] = [
+  { icon: 'summary', name: 'Frame', line: 'Sketch the problem before solving it' },
+  { icon: 'matching', name: 'Connect', line: 'Fit customer needs to business goals' },
+  { icon: 'experiments', name: 'Test', line: 'Run experiments to learn what works' },
+  { icon: 'tradeoffs', name: 'Decide', line: 'Weigh the trade-offs and make the call' },
+  { icon: 'reflections', name: 'Learn', line: 'Turn what I find into insight' },
+  { icon: 'mvp', name: 'Ship', line: 'Launch the first version and measure it' },
+]
+
+// Keep a tooltip inside the screen: measure it, then nudge it sideways if it runs past either edge.
+function keepTipOnScreen(button: Element | null) {
+  const tip = button?.querySelector<HTMLElement>('.hero__step-tip')
+  if (!tip) return
+  tip.style.setProperty('--tip-dx', '0px')
+  const { left, right } = tip.getBoundingClientRect()
+  const edge = 12
+  const width = document.documentElement.clientWidth
+  const dx = left < edge ? edge - left : right > width - edge ? width - edge - right : 0
+  tip.style.setProperty('--tip-dx', `${Math.round(dx)}px`)
+}
+
 export function Hero() {
+  // Touch screens have no hover, so a tap on an icon opens its tooltip; tapping elsewhere closes it.
+  const [openStep, setOpenStep] = useState<number | null>(null)
+  useEffect(() => {
+    if (openStep === null) return
+    const close = (e: Event) => {
+      if (e instanceof KeyboardEvent ? e.key === 'Escape' : !(e.target as Element).closest('.hero__step')) {
+        setOpenStep(null)
+      }
+    }
+    document.addEventListener('pointerdown', close)
+    document.addEventListener('keydown', close)
+    return () => {
+      document.removeEventListener('pointerdown', close)
+      document.removeEventListener('keydown', close)
+    }
+  }, [openStep])
+
   // Phones only: tapping the polaroid flips it over to show the role line, written on the back.
   const [flipped, setFlipped] = useState(false)
   return (
@@ -73,6 +113,26 @@ export function Hero() {
               <p>Strategy to shipped product</p>
               <p>B2B SaaS, AI &amp; marketplaces</p>
             </div>
+            {process.map((step, i) => (
+              <button
+                key={step.icon}
+                type="button"
+                className={openStep === i ? `hero__step hero__step--${i} is-open` : `hero__step hero__step--${i}`}
+                aria-label={`${step.name}: ${step.line}`}
+                aria-expanded={openStep === i}
+                onClick={(e) => {
+                  keepTipOnScreen(e.currentTarget)
+                  setOpenStep(openStep === i ? null : i)
+                }}
+                onPointerEnter={(e) => keepTipOnScreen(e.currentTarget)}
+                onFocus={(e) => keepTipOnScreen(e.currentTarget)}
+              >
+                <CaseIcon name={step.icon} />
+                <span className="hero__step-tip" aria-hidden="true">
+                  <strong>{step.name}</strong> {step.line}
+                </span>
+              </button>
+            ))}
             <button
               type="button"
               className="hero__flip"
