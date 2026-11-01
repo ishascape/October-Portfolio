@@ -18,7 +18,7 @@
   --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
   /* Editorial type (1 Nov 2026), used on the homepage only for now: Ranade for headlines, Instrument Sans for text.
      Delete the 'type-editorial' class from App, Nav and Footer to revert. */
-  --font-display: 'Ranade', 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Ranade', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --weight-display-hero: 600; /* Ranade Semibold */
   --weight-display: 500; /* Ranade Medium */
