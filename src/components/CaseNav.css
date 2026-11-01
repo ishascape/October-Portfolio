@@ -182,3 +182,21 @@
     padding-left: max(var(--margin), calc(80px - max(0px, (100vw - var(--content-max) - 2 * var(--margin)) / 2)));
   }
 }
+
+/* Under the pointer, an icon turns black. */
+.case-icon .f,
+.case-icon .o {
+  transition:
+    fill var(--dur-micro) var(--ease-pen),
+    stroke var(--dur-micro) var(--ease-pen);
+}
+@media (hover: hover) {
+  .case-nav__link:hover .case-icon .f,
+  .case-icon:hover .f {
+    fill: var(--ink);
+  }
+  .case-nav__link:hover .case-icon .o,
+  .case-icon:hover .o {
+    stroke: var(--ink);
+  }
+}

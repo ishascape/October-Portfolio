@@ -10,7 +10,7 @@
 #work.section {
   padding-top: 30px;
 }
-/* Same size and weight as the hero intro line (20px, 16px on phones), led by a blue crayon. */
+/* Same size and weight as the hero intro line (20px, 16px on phones), followed by a blue crayon. */
 .work__heading {
   display: flex;
   align-items: center;
@@ -212,6 +212,7 @@
 .card__supporting li {
   position: relative;
   padding-left: var(--space-4);
+  pointer-events: none; /* clicks fall through to the card's link, so the whole copy side is one tap target */
 }
 .card__supporting li::before {
   content: '';
@@ -256,7 +257,8 @@
   min-height: 56px;
   padding-inline: var(--space-3);
   border-width: var(--line-building) 0 0;
-  border-radius: 0 0 var(--radius) var(--radius);
+  /* The card's border is drawn outside this bar, so the bar's corners follow the card's inner curve: no sliver of paper. */
+  border-radius: 0 0 calc(var(--radius) - var(--line-thin)) calc(var(--radius) - var(--line-thin));
 }
 .card__cta .button::before,
 .card__cta .button::after {
@@ -268,6 +270,9 @@
   background: var(--ink);
   border-color: var(--ink);
   color: var(--paper);
+  /* Runs the black out under the card's own border so no hairline of paper shows at the curved corners. */
+  box-shadow: 0 0 0 1px var(--ink);
+  clip-path: inset(0 -1px -1px -1px);
 }
 .card:hover .card__cta .button::before,
 .card:hover .card__cta .button::after,

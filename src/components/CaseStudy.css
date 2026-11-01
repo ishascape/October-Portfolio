@@ -20,6 +20,97 @@
   color: var(--marker);
 }
 
+/* Hover: a kid slides down a playground slide in the margin to the left of the link. */
+.case__back {
+  position: relative;
+}
+.slide {
+  position: absolute;
+  right: 100%;
+  bottom: -3px;
+  width: min(44px, calc(var(--margin) - 4px)); /* never wider than the page margin */
+  aspect-ratio: 44 / 30;
+  height: auto;
+  margin-right: 4px;
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms var(--ease-pen);
+}
+.slide__line,
+.slide__body {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.slide__body,
+.slide__head {
+  stroke: var(--marker);
+}
+.slide__body {
+  stroke-width: 1.5;
+}
+.slide__head {
+  fill: var(--marker);
+}
+.slide__kid {
+  transform: translate(43px, 26.5px) scale(1.7);
+}
+@keyframes slide-kid {
+  0%,
+  10% {
+    opacity: 0;
+    transform: translate(12px, 6.4px) rotate(6deg) scale(1.7);
+  }
+  14% {
+    opacity: 1;
+    transform: translate(12px, 6.4px) rotate(6deg) scale(1.7);
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
+  }
+  30% {
+    transform: translate(18.9px, 8.2px) rotate(21deg) scale(1.7);
+  }
+  40% {
+    transform: translate(25.8px, 11.9px) rotate(34deg) scale(1.7);
+  }
+  47% {
+    transform: translate(32.4px, 17.5px) rotate(45deg) scale(1.7);
+  }
+  52% {
+    transform: translate(39px, 25px) rotate(52deg) scale(1.7);
+  }
+  56% {
+    transform: translate(41.5px, 21.5px) rotate(15deg) scale(1.7);
+  }
+  60%,
+  86% {
+    transform: translate(43px, 26.5px) rotate(0deg) scale(1.7);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translate(43px, 26.5px) rotate(0deg) scale(1.7);
+  }
+}
+@media (hover: hover) {
+  .case__back:hover .slide,
+  .case__back:focus-visible .slide {
+    opacity: 1;
+  }
+  .case__back:hover .slide__kid,
+  .case__back:focus-visible .slide__kid {
+    animation: slide-kid 3s linear infinite;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case__back:hover .slide__kid,
+  .case__back:focus-visible .slide__kid {
+    animation: none;
+  }
+}
+
 .case__intro {
   display: grid;
   gap: var(--space-5);

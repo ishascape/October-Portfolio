@@ -2,7 +2,7 @@
    Hover plays it as a loop on devices with a mouse; touch screens play it once when the heading scrolls into view. */
 .rk {
   flex: none;
-  width: 52px;
+  width: 99px; /* the crayon is 52px wide; the rest of the box is room for Saturn */
   height: 24px;
   overflow: visible;
 }
@@ -28,10 +28,16 @@
   opacity: 0;
 }
 .rk__crayon,
-.rk__rocket,
 .rk__saturn {
   transform-box: fill-box;
   transform-origin: center;
+}
+/* At rest the crayon points down and to the left, at the full stop of the line. */
+.rk__crayon {
+  transform: rotate(180deg);
+}
+.rk__rocket {
+  transform-origin: 22px 10px;
 }
 .rk__flame {
   fill: var(--marker);
@@ -72,31 +78,27 @@
 
 @keyframes rk-crayon {
   0%,
-  10% {
+  6% {
     opacity: 1;
-    transform: none;
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1);
   }
-  12% {
-    transform: rotate(-5deg);
-  }
-  14% {
-    transform: rotate(5deg);
-  }
-  16% {
-    transform: rotate(-5deg);
-  }
-  18% {
+  20% {
     opacity: 1;
-    transform: scale(1.12);
+    transform: rotate(360deg) scale(1.12);
   }
-  20%,
+  22%,
+  94% {
+    opacity: 0;
+    transform: rotate(360deg) scale(0.6);
+  }
   95% {
     opacity: 0;
-    transform: scale(0.6);
+    transform: rotate(180deg);
   }
   100% {
     opacity: 1;
-    transform: none;
+    transform: rotate(180deg);
   }
 }
 @keyframes rk-rocket {
@@ -114,28 +116,22 @@
     opacity: 1;
     transform: none;
   }
-  40% {
-    transform: translateX(-2px);
-  }
-  42% {
-    transform: translateX(1px);
-  }
-  44% {
-    transform: translateX(-2px);
+  41% {
+    transform: translateX(-4px);
   }
   46% {
     opacity: 1;
-    transform: none;
+    transform: translateX(-4px);
     animation-timing-function: cubic-bezier(0.55, 0, 1, 0.7);
   }
   66% {
     opacity: 1;
-    transform: translateX(40px);
+    transform: translateX(25px);
   }
   69%,
   100% {
     opacity: 0;
-    transform: translateX(54px) scale(0.35);
+    transform: translateX(30px) scale(0.35);
   }
 }
 @keyframes rk-flame {
@@ -255,8 +251,9 @@
 
 @media (max-width: 600px) {
   .rk {
-    width: 36px;
-    height: 16px;
+    width: 56px;
+    height: 13px;
+    margin-right: -14px; /* Saturn's room runs a little into the page margin so the line keeps its two-line wrap */
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -27,9 +27,9 @@ export function Work() {
     <section id="work" className="section paper-sheet" aria-labelledby="work-heading">
       <div className="container">
         <h2 id="work-heading" className="work__heading" ref={headingRef}>
-          {/* A hand-drawn crayon in brand blue that turns into a rocket and blasts to Saturn. */}
-          <RocketCrayon />
           <span>Designing for conversion, supply growth and activation.</span>
+          {/* A hand-drawn crayon at the end of the line, in brand blue that turns into a rocket and blasts to Saturn. */}
+          <RocketCrayon />
         </h2>
 
         <ol className="work__list">

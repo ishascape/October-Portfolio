@@ -48,10 +48,21 @@ export function Nav({ onHome }: { onHome: boolean }) {
     <header className="nav">
       <div className="container nav__inner">
         <a className="nav__name" href={sectionHref('top', onHome)}>
-          {/* A pen-drawn mountain, for the peaks she has climbed. */}
-          <svg className="nav__icon" viewBox="0 0 28 20" aria-hidden="true">
-            <path d="M1.2 18.3 L13.6 3.4 L26.8 18.5 L0.8 18.2" />
-            <path d="M9.6 8.6 L11.8 10.8 L13.6 8.8 L15.8 11 L17.6 8.8" />
+          {/* A solid blue mountain, like the section icons. On hover a climber walks up the left slope and plants a flag. */}
+          <svg className="nav__icon" viewBox="0 0 28 22" aria-hidden="true">
+            <g>
+              <path className="mt__main" d="M1 20 L11.2 4.2 Q12 3 12.8 4.2 L26 20 Q26.8 21 25.6 21 H2 Q0.6 21 1 20 Z" />
+              <path className="mt__snow" d="M8.6 10.2 L10.6 12.2 L12.4 10 L14.4 12.2 L16.4 10" />
+            </g>
+            <path className="mt__flag" d="M12 4 V0.6 L15.2 1.8 L12 3" />
+            <g className="mt__climber">
+              <g className="mt__walk">
+                <circle className="mt__head" cx="0" cy="-6.3" r="1.3" />
+                <path className="mt__limbs" d="M0 -5 L0.4 -2 M0.4 -2 L-1.2 0 M0.4 -2 L1.6 0" />
+                <path className="mt__arms" d="M0.1 -4.3 L1.9 -5.6 M0.1 -4.3 L-1 -3" />
+                <path className="mt__cheer" d="M0.1 -4.3 L-1.8 -6.9 M0.1 -4.3 L1.8 -6.9" />
+              </g>
+            </g>
           </svg>
           Ashni Dave
         </a>
