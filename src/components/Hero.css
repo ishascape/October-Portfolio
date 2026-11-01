@@ -955,3 +955,87 @@
     outline-offset: 4px;
   }
 }
+
+/* ---------- 1 Nov 2026: value-led hero. Bigger headline, text-link resume, quiet outcomes strip. ---------- */
+@media (min-width: 600px) {
+  .hero .hero__title h1.display {
+    font-size: clamp(34px, 4.8vw, 60px);
+    font-size: round(clamp(34px, 4.8vw, 60px), 2px); /* even px sizes only */
+    line-height: 1.08;
+  }
+}
+@media (min-width: 900px) {
+  .hero__br {
+    display: inline; /* three even lines: "I find the right problems / to solve, then design / products that deliver." */
+  }
+}
+.hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding-inline: var(--space-2);
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: rgb(28 27 25 / 0.4);
+  transition:
+    color var(--dur-micro) var(--ease-pen),
+    text-decoration-color var(--dur-micro) var(--ease-pen);
+}
+.hero__link:hover,
+.hero__link:focus-visible {
+  color: var(--marker);
+  text-decoration-color: currentColor;
+}
+.hero__actions {
+  align-items: center;
+}
+
+/* Outcomes strip: three figures on one hairline, understated. */
+.hero__outcomes {
+  margin-top: var(--space-5, 48px);
+  padding-top: 20px;
+  border-top: var(--line-thin) solid var(--rule);
+}
+.hero__outcomes-label {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--graphite);
+}
+.hero__outcomes-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hero__outcomes-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--graphite);
+}
+.hero__outcomes-list strong {
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+@media (max-width: 599px) {
+  .hero__outcomes {
+    margin-top: 32px;
+  }
+  .hero__outcomes-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .hero__actions {
+    justify-content: center;
+  }
+}
