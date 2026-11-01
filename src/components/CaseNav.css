@@ -1,0 +1,156 @@
+/* ---------- Case study section nav ---------- */
+.case-icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  overflow: visible;
+}
+.case-icon .f {
+  fill: var(--marker);
+}
+.case-icon .d,
+.case-icon .o {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.case-icon .d {
+  stroke: var(--paper);
+}
+.case-icon .o {
+  stroke: var(--marker);
+  stroke-width: 1.8;
+}
+
+.case-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.case-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 999px;
+  transition:
+    background-color var(--dur-micro) var(--ease-pen),
+    color var(--dur-micro) var(--ease-pen);
+}
+.case-nav__link[aria-current='true'] {
+  background: var(--marker-wash);
+  color: var(--marker);
+}
+.case-nav__link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Phones: a bar pinned under the site header, scrolling sideways. */
+@media (max-width: 599px) {
+  .case-nav {
+    position: sticky;
+    top: calc(57px + env(safe-area-inset-top)); /* just under the site header and its 1px rule */
+    z-index: 9;
+    background: var(--paper);
+    border-bottom: var(--line-thin) solid var(--rule);
+  }
+  .case-nav__list {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 8px var(--margin);
+    scrollbar-width: none;
+    scroll-padding-inline: var(--margin);
+  }
+  .case-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+  .case-nav__link {
+    padding: 6px 12px 6px 8px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .case-nav .case-icon {
+    width: 20px;
+    height: 20px;
+  }
+  /* Room for the bar when a link jumps to a section. */
+  .case__section,
+  .case__tldr {
+    scroll-margin-top: 124px;
+  }
+}
+
+/* Desktop and tablet: a floating column of icons on the left; names slide out on hover or focus. */
+@media (min-width: 600px) {
+  .case-nav {
+    position: fixed;
+    top: 50%;
+    left: 12px;
+    z-index: 9;
+    translate: -8px -50%;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity var(--dur-state) var(--ease-pen),
+      translate var(--dur-state) var(--ease-pen);
+  }
+  .case-nav.is-shown {
+    translate: 0 -50%;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .case-nav__list {
+    display: grid;
+    gap: 2px;
+    padding: 6px;
+    background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
+    border: var(--line-thin) solid rgb(var(--shadow-ink) / 0.55);
+    border-radius: 999px;
+    box-shadow:
+      0 1px 0 rgb(var(--shadow-ink) / 0.08),
+      0 14px 24px -14px rgb(var(--shadow-ink) / 0.35);
+  }
+  .case-nav__link {
+    position: relative;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+  /* The section name, as a paper tag beside the icon. */
+  .case-nav__label {
+    position: absolute;
+    left: calc(100% + 14px);
+    top: 50%;
+    padding: 4px 10px;
+    background: var(--paper);
+    border: var(--line-thin) solid var(--ink);
+    border-radius: 8px;
+    color: var(--ink);
+    font-size: 14px;
+    white-space: nowrap;
+    translate: -4px -50%;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity var(--dur-micro) var(--ease-pen),
+      translate var(--dur-micro) var(--ease-pen);
+  }
+  .case-nav__link:hover .case-nav__label,
+  .case-nav__link:focus-visible .case-nav__label {
+    translate: 0 -50%;
+    opacity: 1;
+  }
+  @media (hover: hover) {
+    .case-nav__link:not([aria-current='true']):hover {
+      background: rgb(var(--shadow-ink) / 0.06);
+    }
+  }
+  /* Keep the case study clear of the nav column. */
+  .case .container {
+    padding-left: max(var(--margin), calc(80px - max(0px, (100vw - var(--content-max) - 2 * var(--margin)) / 2)));
+  }
+}
