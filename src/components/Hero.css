@@ -782,13 +782,17 @@
     gap: 0;
   }
   .hero__polaroid {
-    order: 2;
+    order: 1;
     width: 56%;
     justify-self: center;
     margin-block: 8px;
   }
   .hero__title {
-    order: 1;
+    order: 2;
+  }
+  /* Phones skip the intro paragraph: polaroid, headline, role line, buttons. */
+  .hero__copy {
+    display: none;
   }
   .hero__support {
     order: 3;
@@ -811,5 +815,33 @@
 @media (min-width: 1200px) {
   .hero__br {
     display: inline;
+  }
+}
+
+/* Phones open on a start screen: the polaroid drops in first (0-0.6s), then the headline (0.6-1s), then the role line
+   and buttons; the nav and the rest of the page fade in from 1.3s, so the whole site is in by 1.8s (see global.css). */
+@media (max-width: 599px) {
+  .hero__polaroid {
+    animation-delay: 0ms;
+  }
+  .hero__title .display {
+    --at: 600ms;
+    --dur: 400ms;
+  }
+  .hero__role {
+    --at: 900ms;
+    --dur: 400ms;
+  }
+  .hero__actions {
+    --at: 1100ms;
+    --dur: 400ms;
+  }
+  /* Everything in the hero sits on the centre line. */
+  .hero__title,
+  .hero__support {
+    text-align: center;
+  }
+  .hero__actions {
+    justify-content: center;
   }
 }
