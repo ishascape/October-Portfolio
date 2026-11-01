@@ -10,6 +10,7 @@ import { SketchDefs } from './components/Sketch'
 import { Cursor } from './components/Cursor'
 import { caseStudies } from './data/content'
 import type { Page } from './links'
+import './styles/editorial-type.css'
 
 // Each page is its own HTML file (pre-rendered at build time), so crawlers and AI tools
 // read the full content without running any JavaScript.
@@ -25,7 +26,7 @@ export function App({ page }: { page: Page }) {
         Skip to content
       </a>
       <Nav onHome={!study} />
-      <main id="main">
+      <main id="main" className={study ? undefined : 'type-editorial'}>
         {study ? (
           <>
             <CaseStudy id={study.id} />
