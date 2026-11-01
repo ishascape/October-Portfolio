@@ -328,6 +328,10 @@
   .field-notes {
     grid-template-columns: repeat(2, minmax(0, 1fr)); /* two equal columns, 80px apart */
     column-gap: 80px;
+    align-items: center; /* the text sits on the same centre line as the polaroid stack */
+  }
+  .field-notes__copy {
+    padding-bottom: 80px; /* the page arrows under the stack are 80px tall; centre on the stack alone */
   }
 }
 
