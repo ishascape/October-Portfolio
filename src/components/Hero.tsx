@@ -24,15 +24,15 @@ export function Hero() {
                 <span className="hero__line">I turn complex product problems into business growth.</span>
               </h1>
               <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>Product strategy to shipped experiences ·</span>{' '}
-                <span>AI &amp; marketplaces</span>
+                <span>Senior Product Designer ·</span> <span>Strategy to shipped product ·</span>{' '}
+                <span>B2B SaaS, AI &amp; marketplaces</span>
               </p>
             </div>
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  I work across discovery, design and delivery to build products that customers want and businesses
-                  need.
+                  I bring customer insight, data and business goals together to design, ship and improve products people
+                  use and businesses grow from.
                 </p>
               </div>
               <div className="hero__actions">
