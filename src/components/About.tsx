@@ -64,16 +64,6 @@ export function About() {
               both.
             </p>
             <p className="about__mantra">Understand the space. Challenge the brief. Design for the people using it.</p>
-            <p>
-              <strong>Complex systems, made simple.</strong> Four host tools became one platform.
-            </p>
-            <p>
-              <strong>Commercial outcomes.</strong> £500k+ from a Gift Subscription MVP. 28% less churn on guest booking
-              journeys.
-            </p>
-            <p>
-              <strong>Speed through ambiguity.</strong> New-city launch planning cut from 12+ weeks to 2.
-            </p>
           </div>
         </div>
 
