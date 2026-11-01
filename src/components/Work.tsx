@@ -57,12 +57,6 @@ export function Work() {
           ))}
         </ol>
 
-        <p className="work__footer">
-          Also shipped: a Gift Subscription MVP that made £500k+ in year one, 5× free-trial conversion at Findmypast,
-          and AI research agents that cut new-city launch planning at HeadBox from 12+ weeks to 2. Happy to walk through
-          any of them.
-        </p>
-
         <AiPrinciples />
       </div>
     </section>
