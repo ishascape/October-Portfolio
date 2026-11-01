@@ -1,17 +1,17 @@
 // The blue crayon from the Selected work heading. On hover (or, on touch screens, when it scrolls into view)
-// it turns into a rocket, tips upright, blasts off and flies into Saturn. Drawn in the same flat blue marker style.
+// it turns into a rocket, blasts off and flies into Saturn. Drawn in the same flat blue marker style.
 export function RocketCrayon() {
   return (
-    <svg className="rk" viewBox="0 0 44 20" aria-hidden="true">
-      {/* Saturn, straight above the crayon, so it never reaches into the heading text. */}
+    <svg className="rk" viewBox="0 0 84 20" aria-hidden="true">
+      {/* Saturn, up and to the right of the rocket, in space the icon box reserves so it never touches the heading text. */}
       <g className="rk__saturn">
-        <g transform="translate(30 -18) rotate(-20)">
+        <g transform="translate(70 -5.6) rotate(-20)">
           <ellipse className="rk__ring" cx="0" cy="0" rx="9" ry="2.4" />
           <circle className="rk__planet" cx="0" cy="0" r="5.5" />
           <path className="rk__ring-front" d="M-5.4 1.9 Q0 2.9 5.4 1.9" />
         </g>
       </g>
-      <circle className="rk__burst" cx="30" cy="-18" r="5.5" />
+      <circle className="rk__burst" cx="70" cy="-5.6" r="5.5" />
 
       <g transform="rotate(-18 22 10)">
         <g className="rk__crayon">
