@@ -52,12 +52,12 @@
 .hero__smile .smile__mouth--smirk {
   transition: opacity 140ms var(--ease-pen);
 }
-.hero__polaroid:hover .smile__eye--open,
-.hero__polaroid:hover .smile__mouth--grin {
+.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__eye--open,
+.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__mouth--grin {
   opacity: 0;
 }
-.hero__polaroid:hover .smile__eye--wink,
-.hero__polaroid:hover .smile__mouth--smirk {
+.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__eye--wink,
+.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__mouth--smirk {
   opacity: 1;
 }
 
@@ -695,7 +695,7 @@
   animation: none;
 }
 @media (hover: hover) {
-  .hero__polaroid:hover {
+  .hero__polaroid:hover:not(:has(.hero__step:hover)) {
     rotate: 0deg;
     box-shadow:
       0 1px 0 rgb(var(--shadow-ink) / 0.08),
@@ -734,8 +734,8 @@
   border-bottom: var(--line-thin) solid var(--ink);
   border-right: var(--line-thin) solid var(--ink);
 }
-.hero__polaroid:hover .hero__polaroid-photo::before,
-.hero__polaroid:hover .hero__polaroid-photo::after {
+.hero__polaroid:hover:not(:has(.hero__step:hover)) .hero__polaroid-photo::before,
+.hero__polaroid:hover:not(:has(.hero__step:hover)) .hero__polaroid-photo::after {
   opacity: 1;
 }
 .hero__polaroid .hero__hello {
@@ -1026,13 +1026,9 @@
   stroke: var(--icon-gray);
   transition: stroke var(--dur-micro) var(--ease-pen);
 }
-.hero__step:hover .case-icon .f,
-.hero__step:focus-visible .case-icon .f,
 .hero__step.is-open .case-icon .f {
   fill: var(--marker);
 }
-.hero__step:hover .case-icon .o,
-.hero__step:focus-visible .case-icon .o,
 .hero__step.is-open .case-icon .o {
   stroke: var(--marker);
 }
@@ -1041,8 +1037,6 @@
   outline-offset: -4px;
   border-radius: 12px;
 }
-.hero__step:hover,
-.hero__step:focus-visible,
 .hero__step.is-open {
   z-index: 3;
 }
@@ -1117,23 +1111,13 @@
   right: 0;
   translate: 0 4px;
 }
-.hero__step:hover .hero__step-tip,
-.hero__step:focus-visible .hero__step-tip,
 .hero__step.is-open .hero__step-tip {
   opacity: 1;
   translate: -50% 0;
 }
-.hero__step--0:hover .hero__step-tip,
-.hero__step--0:focus-visible .hero__step-tip,
 .hero__step--0.is-open .hero__step-tip,
-.hero__step--5:hover .hero__step-tip,
-.hero__step--5:focus-visible .hero__step-tip,
 .hero__step--5.is-open .hero__step-tip,
-.hero__step--2:hover .hero__step-tip,
-.hero__step--2:focus-visible .hero__step-tip,
 .hero__step--2.is-open .hero__step-tip,
-.hero__step--3:hover .hero__step-tip,
-.hero__step--3:focus-visible .hero__step-tip,
 .hero__step--3.is-open .hero__step-tip {
   translate: 0 0;
 }
@@ -1188,50 +1172,24 @@
   }
 }
 
-/* Each icon acts out its step while its tooltip is showing (hover, keyboard focus or a tap), twice, never with reduced motion. */
+/* Each icon acts out its step, twice, while its tooltip is showing. Never with reduced motion. */
 @media (prefers-reduced-motion: no-preference) {
-  .hero__step--0.is-open .case-icon,
-  .hero__step--0:focus-visible .case-icon {
+  .hero__step--0.is-open .case-icon {
     animation: hs-draw 700ms ease-in-out 2;
   }
-  .hero__step--1.is-open .case-icon,
-  .hero__step--1:focus-visible .case-icon {
+  .hero__step--1.is-open .case-icon {
     animation: hs-snap 600ms cubic-bezier(0.3, 0.7, 0.2, 1) 2;
   }
-  .hero__step--2.is-open .case-icon,
-  .hero__step--2:focus-visible .case-icon {
+  .hero__step--2.is-open .case-icon {
     animation: hs-pour 800ms ease-in-out 2;
   }
-  .hero__step--3.is-open .case-icon,
-  .hero__step--3:focus-visible .case-icon {
+  .hero__step--3.is-open .case-icon {
     animation: hs-weigh 900ms ease-in-out 2;
   }
-  .hero__step--4.is-open .case-icon,
-  .hero__step--4:focus-visible .case-icon {
+  .hero__step--4.is-open .case-icon {
     animation: hs-glow 800ms ease-in-out 2;
   }
-  .hero__step--5.is-open .case-icon,
-  .hero__step--5:focus-visible .case-icon {
-    animation: hs-launch 700ms cubic-bezier(0.5, 0, 0.3, 1) 2;
-  }
-}
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .hero__step--0:hover .case-icon {
-    animation: hs-draw 700ms ease-in-out 2;
-  }
-  .hero__step--1:hover .case-icon {
-    animation: hs-snap 600ms cubic-bezier(0.3, 0.7, 0.2, 1) 2;
-  }
-  .hero__step--2:hover .case-icon {
-    animation: hs-pour 800ms ease-in-out 2;
-  }
-  .hero__step--3:hover .case-icon {
-    animation: hs-weigh 900ms ease-in-out 2;
-  }
-  .hero__step--4:hover .case-icon {
-    animation: hs-glow 800ms ease-in-out 2;
-  }
-  .hero__step--5:hover .case-icon {
+  .hero__step--5.is-open .case-icon {
     animation: hs-launch 700ms cubic-bezier(0.5, 0, 0.3, 1) 2;
   }
 }
