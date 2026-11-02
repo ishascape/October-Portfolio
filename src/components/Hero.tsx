@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CaseIcon, type CaseIconName } from './CaseIcons'
 import { contact } from '../data/content'
 import portrait from '../assets/ashni-portrait.webp'
@@ -11,7 +11,7 @@ const process: { icon: CaseIconName; name: string; line: string }[] = [
   { icon: 'matching', name: 'Connect', line: 'Fit customer needs to business goals' },
   { icon: 'experiments', name: 'Test', line: 'Run experiments to learn what works' },
   { icon: 'tradeoffs', name: 'Decide', line: 'Weigh the trade-offs and make the call' },
-  { icon: 'reflections', name: 'Learn', line: 'Turn what I find into insight' },
+  { icon: 'reflections', name: 'Learn', line: 'Turn Research and data findings into insights' },
   { icon: 'mvp', name: 'Ship', line: 'Launch the first version and measure it' },
 ]
 
@@ -30,6 +30,35 @@ function keepTipOnScreen(button: Element | null) {
 export function Hero() {
   // Touch screens have no hover, so a tap on an icon opens its tooltip; tapping elsewhere closes it.
   const [openStep, setOpenStep] = useState<number | null>(null)
+  const pointerType = useRef('')
+  // The lightbulb's intro: wait, pulse once, show its tooltip for 2s, then stop. Any click or tap, or touching an icon, ends it.
+  const [intro, setIntro] = useState<'wait' | 'pulse' | 'tip' | 'done'>('wait')
+  useEffect(() => {
+    if (intro === 'done') return
+    const next = {
+      wait: () => setIntro('pulse'),
+      pulse: () => {
+        setOpenStep(4)
+        setIntro('tip')
+      },
+      tip: () => {
+        setOpenStep((o) => (o === 4 ? null : o))
+        setIntro('done')
+      },
+    }[intro]
+    const timer = window.setTimeout(next, { wait: 1400, pulse: 1200, tip: 2000 }[intro])
+    const stop = () => setIntro('done')
+    document.addEventListener('pointerdown', stop)
+    document.addEventListener('keydown', stop)
+    return () => {
+      window.clearTimeout(timer)
+      document.removeEventListener('pointerdown', stop)
+      document.removeEventListener('keydown', stop)
+    }
+  }, [intro])
+  useEffect(() => {
+    if (openStep !== null) keepTipOnScreen(document.querySelector(`.hero__step--${openStep}`))
+  }, [openStep])
   useEffect(() => {
     if (openStep === null) return
     const close = (e: Event) => {
@@ -117,15 +146,24 @@ export function Hero() {
               <button
                 key={step.icon}
                 type="button"
-                className={openStep === i ? `hero__step hero__step--${i} is-open` : `hero__step hero__step--${i}`}
+                className={`hero__step hero__step--${i}${openStep === i ? ' is-open' : ''}${i === 4 && (intro === 'pulse' || intro === 'tip') ? ' is-nudge' : ''}`}
                 aria-label={`${step.name}: ${step.line}`}
                 aria-expanded={openStep === i}
-                onClick={(e) => {
-                  keepTipOnScreen(e.currentTarget)
-                  setOpenStep(openStep === i ? null : i)
+                onPointerDown={(e) => (pointerType.current = e.pointerType)}
+                onPointerEnter={(e) => {
+                  if (e.pointerType !== 'mouse') return
+                  setIntro('done')
+                  setOpenStep(i)
                 }}
-                onPointerEnter={(e) => keepTipOnScreen(e.currentTarget)}
-                onFocus={(e) => keepTipOnScreen(e.currentTarget)}
+                onPointerLeave={(e) => e.pointerType === 'mouse' && setOpenStep((o) => (o === i ? null : o))}
+                onFocus={(e) => e.currentTarget.matches(':focus-visible') && setOpenStep(i)}
+                onBlur={() => setOpenStep((o) => (o === i ? null : o))}
+                onClick={() => {
+                  // Touch toggles; mouse and keyboard already opened it, so a click keeps it open.
+                  const touch = pointerType.current === 'touch' || pointerType.current === 'pen'
+                  pointerType.current = ''
+                  setOpenStep((o) => (touch && o === i ? null : i))
+                }}
               >
                 <CaseIcon name={step.icon} />
                 <span className="hero__step-tip" aria-hidden="true">
