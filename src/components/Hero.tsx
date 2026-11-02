@@ -31,6 +31,31 @@ export function Hero() {
   // Touch screens have no hover, so a tap on an icon opens its tooltip; tapping elsewhere closes it.
   const [openStep, setOpenStep] = useState<number | null>(null)
   const pointerType = useRef('')
+  // The lightbulb's intro: wait, pulse once, show its tooltip for 2s, then stop. Any click or tap, or touching an icon, ends it.
+  const [intro, setIntro] = useState<'wait' | 'pulse' | 'tip' | 'done'>('wait')
+  useEffect(() => {
+    if (intro === 'done') return
+    const next = {
+      wait: () => setIntro('pulse'),
+      pulse: () => {
+        setOpenStep(4)
+        setIntro('tip')
+      },
+      tip: () => {
+        setOpenStep((o) => (o === 4 ? null : o))
+        setIntro('done')
+      },
+    }[intro]
+    const timer = window.setTimeout(next, { wait: 1400, pulse: 1200, tip: 2000 }[intro])
+    const stop = () => setIntro('done')
+    document.addEventListener('pointerdown', stop)
+    document.addEventListener('keydown', stop)
+    return () => {
+      window.clearTimeout(timer)
+      document.removeEventListener('pointerdown', stop)
+      document.removeEventListener('keydown', stop)
+    }
+  }, [intro])
   useEffect(() => {
     if (openStep !== null) keepTipOnScreen(document.querySelector(`.hero__step--${openStep}`))
   }, [openStep])
@@ -121,11 +146,15 @@ export function Hero() {
               <button
                 key={step.icon}
                 type="button"
-                className={openStep === i ? `hero__step hero__step--${i} is-open` : `hero__step hero__step--${i}`}
+                className={`hero__step hero__step--${i}${openStep === i ? ' is-open' : ''}${i === 4 && (intro === 'pulse' || intro === 'tip') ? ' is-nudge' : ''}`}
                 aria-label={`${step.name}: ${step.line}`}
                 aria-expanded={openStep === i}
                 onPointerDown={(e) => (pointerType.current = e.pointerType)}
-                onPointerEnter={(e) => e.pointerType === 'mouse' && setOpenStep(i)}
+                onPointerEnter={(e) => {
+                  if (e.pointerType !== 'mouse') return
+                  setIntro('done')
+                  setOpenStep(i)
+                }}
                 onPointerLeave={(e) => e.pointerType === 'mouse' && setOpenStep((o) => (o === i ? null : o))}
                 onFocus={(e) => e.currentTarget.matches(':focus-visible') && setOpenStep(i)}
                 onBlur={() => setOpenStep((o) => (o === i ? null : o))}

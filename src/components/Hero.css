@@ -1127,11 +1127,11 @@
   z-index: 201;
 }
 
-/* The lightbulb is the nudge: blue from the start, with a soft ring that pulses a few times after the print lands. */
-.hero__step--4 .case-icon .f {
+/* The lightbulb is the nudge: when the page loads it goes blue and sends out one ring, then its tooltip shows for 2s. */
+.hero__step--4.is-nudge .case-icon .f {
   fill: var(--marker);
 }
-.hero__step--4 .case-icon .o {
+.hero__step--4.is-nudge .case-icon .o {
   stroke: var(--marker);
 }
 .hero__step--4::before {
@@ -1144,8 +1144,8 @@
   pointer-events: none;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .hero__step--4::before {
-    animation: hs-pulse 1.6s ease-out 1.6s 5;
+  .hero__step--4.is-nudge::before {
+    animation: hs-pulse 1.2s ease-out 1;
   }
 }
 @keyframes hs-pulse {
