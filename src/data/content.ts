@@ -140,7 +140,7 @@ export const caseStudies: CaseStudy[] = [
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
     slug: 'tree-assist',
-    video: { src: taVideo, poster: taVideoPoster, background: '#5fa48f' }, // the clip's green, so nothing flashes
+    video: { src: taVideo, poster: taVideoPoster, background: '#60a38e' }, // the clip's green, so nothing flashes
     images: [
       { src: taDesktop, alt: 'The Findmypast family tree on desktop with a next-steps checklist on the canvas' },
       { src: taPhones, alt: 'Five phones showing the TreeAssist onboarding on the Findmypast mobile site' },
