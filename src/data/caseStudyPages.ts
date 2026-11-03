@@ -6,7 +6,7 @@ import type { DecisionSketch } from '../components/DecisionFork'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
-import vfHero from '../assets/venue-finder-hero.webp'
+import vfHero from '../assets/venue-finder-card-poster.webp'
 import vfHeroVideo from '../assets/venue-finder-card.mp4'
 import vfConcierge from '../assets/venue-finder-concierge.webp'
 import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
@@ -114,10 +114,10 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     id: 'venue-finder',
     heroImage: {
       src: vfHero,
-      alt: "A hand holding a phone and tapping a Venue Finder venue card. The card shows a Spotlight tag, Responds fast, a photo of Junsei, a yakitori restaurant in Marylebone, a short description, and I'm interested and Not for me buttons.",
-      width: 1536,
-      height: 1024,
-      video: vfHeroVideo, // plays on a loop; the image above is the fallback poster
+      alt: "A phone showing a Venue Finder venue card. The card shows a Spotlight tag, Responds fast, a photo of Junsei, a yakitori restaurant in Marylebone, a short description, and I'm interested and Not for me buttons.",
+      width: 1440,
+      height: 1200,
+      video: vfHeroVideo, // plays on a loop; the image above (your 6:5 poster) is the fallback
     },
     kicker: 'HeadBox · Demand side',
     subtitle: 'AI venue matching that lifted qualified enquiries 30% on a two-sided events marketplace.',
