@@ -202,14 +202,22 @@
 .theme-toggle__track svg {
   position: relative;
   z-index: 1;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
+  overflow: visible;
+  transition: color var(--dur-state) var(--ease-pen);
+}
+/* Solid shapes: the sun is a filled disc with short rays, the moon a filled crescent. */
+.theme-toggle__track svg circle,
+.theme-toggle__moon path {
+  fill: currentColor;
+  stroke: none;
+}
+.theme-toggle__sun path {
   fill: none;
-  stroke: var(--marker);
-  stroke-width: 1.4;
+  stroke: currentColor;
+  stroke-width: 1.6;
   stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: stroke var(--dur-state) var(--ease-pen), fill var(--dur-state) var(--ease-pen);
 }
 .theme-toggle__knob {
   position: absolute;
@@ -221,19 +229,22 @@
   background: var(--marker);
   transition: transform var(--dur-state) var(--ease-pen);
 }
-/* Light: knob under the sun. Dark: knob slides under the moon. */
-.theme-toggle__sun {
-  stroke: var(--paper);
+/* Light: the knob sits under the sun, so the sun is paper-coloured and the moon blue. */
+.theme-toggle .theme-toggle__sun {
+  color: var(--paper);
 }
+.theme-toggle .theme-toggle__moon {
+  color: var(--marker);
+}
+/* Dark: the knob slides under the moon. */
 .theme-toggle[aria-pressed='true'] .theme-toggle__knob {
   transform: translateX(24px);
 }
 .theme-toggle[aria-pressed='true'] .theme-toggle__sun {
-  stroke: var(--marker);
+  color: var(--marker);
 }
 .theme-toggle[aria-pressed='true'] .theme-toggle__moon {
-  stroke: var(--paper);
-  fill: var(--paper);
+  color: var(--paper);
 }
 .theme-toggle:focus-visible {
   outline: 2px solid var(--marker);

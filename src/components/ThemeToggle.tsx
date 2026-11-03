@@ -44,12 +44,18 @@ export function ThemeToggle() {
       title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <span className="theme-toggle__track" aria-hidden="true">
+        {/* Solid, slightly tilted shapes, like the case study icons. The one under the knob is paper-coloured. */}
         <svg className="theme-toggle__sun" viewBox="0 0 16 16">
-          <circle cx="8" cy="8" r="3" />
-          <path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.3 1.3M11.3 11.3l1.3 1.3M12.6 3.4l-1.3 1.3M4.7 11.3l-1.3 1.3" />
+          <g transform="rotate(-10 8 8)">
+            <circle cx="8" cy="8" r="3.1" />
+            <path d="M8 1.4v2M8 12.6v2M1.4 8h2M12.6 8h2M3.3 3.3l1.4 1.4M11.3 11.3l1.4 1.4M12.7 3.3l-1.4 1.4M4.7 11.3l-1.4 1.4" />
+          </g>
         </svg>
         <svg className="theme-toggle__moon" viewBox="0 0 16 16">
-          <path d="M13 9.6A5.5 5.5 0 0 1 6.4 3 5.5 5.5 0 1 0 13 9.6Z" />
+          <g transform="rotate(-10 8 8)">
+            <path d="M13.2 9.8A5.9 5.9 0 0 1 6.2 2.8 5.9 5.9 0 1 0 13.2 9.8Z" />
+            <circle cx="10.6" cy="3.4" r="0.9" />
+          </g>
         </svg>
         <span className="theme-toggle__knob" />
       </span>
