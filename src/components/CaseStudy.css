@@ -4,7 +4,6 @@
     linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
     linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
   background-size: 24px 24px;
-  border-bottom: var(--line-thin) solid var(--ink);
 }
 
 .case__sheet {
@@ -143,7 +142,6 @@
 .case__tldr {
   scroll-margin-top: 72px;
   padding-block: var(--space-6);
-  border-bottom: var(--line-thin) solid var(--ink);
 }
 .case__ps {
   display: grid;
@@ -301,7 +299,7 @@
 .case__experiments h3 {
   font-weight: 400;
   padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .case__experiments dl {
   display: grid;
@@ -526,7 +524,7 @@
 .case__decisions h3 {
   font-weight: 400;
   padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .case__decisions dl,
 .case__moment dl {
@@ -565,7 +563,7 @@
   font-weight: 400;
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .case__moment dl > div {
   display: grid;

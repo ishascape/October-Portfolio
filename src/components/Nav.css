@@ -3,7 +3,7 @@
   top: 0;
   z-index: 10;
   background: var(--paper);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
   padding-top: env(safe-area-inset-top);
 }
 /* Solid paper above the nav, so nothing scrolls into view behind the status bar. */
@@ -227,7 +227,7 @@
   justify-content: space-between;
   align-items: center;
   min-height: 56px;
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .nav__menu ol a {
   display: flex;
