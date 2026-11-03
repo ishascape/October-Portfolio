@@ -6,6 +6,7 @@
     24px 24px,
     360px 360px;
   background-blend-mode: multiply;
+  border-bottom: var(--line-thin) solid var(--marker); /* divides the dotted header from the case study body */
 }
 
 .case__sheet {
