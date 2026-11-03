@@ -18,7 +18,7 @@ import vfDesktop from '../assets/vf-card-desktop.webp'
 import hqVideo from '../assets/hosthq-card.mp4'
 import hqVideoPoster from '../assets/hosthq-card-poster.webp' // the still frame is the fallback
 import vfVideo from '../assets/venue-finder-card.mp4'
-import vfVideoPoster from '../assets/venue-finder-hero.webp' // the case study hero image is the fallback
+import vfVideoPoster from '../assets/venue-finder-card-poster.webp'
 import vfSuggestions from '../assets/vf-v2-suggestions.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
