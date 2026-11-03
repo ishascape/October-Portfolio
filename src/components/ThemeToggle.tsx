@@ -54,7 +54,6 @@ export function ThemeToggle() {
         <svg className="theme-toggle__moon" viewBox="0 0 16 16">
           <g transform="rotate(-10 8 8)">
             <path d="M13.2 9.8A5.9 5.9 0 0 1 6.2 2.8 5.9 5.9 0 1 0 13.2 9.8Z" />
-            <circle cx="10.6" cy="3.4" r="0.9" />
           </g>
         </svg>
         <span className="theme-toggle__knob" />

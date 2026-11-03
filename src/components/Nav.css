@@ -194,7 +194,7 @@
   justify-content: space-between;
   width: 52px;
   height: 28px;
-  padding: 0 7px;
+  padding: 0 5px; /* icon centres line up with the knob's two resting centres */
   border: var(--line-thin) solid var(--marker);
   border-radius: 999px;
   background: var(--paper);
@@ -208,7 +208,7 @@
   transition: color var(--dur-state) var(--ease-pen);
 }
 /* Solid shapes: the sun is a filled disc with short rays, the moon a filled crescent. */
-.theme-toggle__track svg circle,
+.theme-toggle__sun circle,
 .theme-toggle__moon path {
   fill: currentColor;
   stroke: none;
