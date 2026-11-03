@@ -7,6 +7,7 @@ import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
 import vfHero from '../assets/venue-finder-hero.webp'
+import vfHeroVideo from '../assets/venue-finder-card.mp4'
 import vfConcierge from '../assets/venue-finder-concierge.webp'
 import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
@@ -95,7 +96,7 @@ export interface CaseStudyPage {
   id: CaseStudyId
   // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
   // under the first section instead of the header.
-  heroImage?: { src: string; alt: string; width: number; height: number }
+  heroImage?: { src: string; alt: string; width: number; height: number; video?: string }
   kicker: string
   subtitle: string
   meta: { label: string; value: string }[]
@@ -116,6 +117,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       alt: "A hand holding a phone and tapping a Venue Finder venue card. The card shows a Spotlight tag, Responds fast, a photo of Junsei, a yakitori restaurant in Marylebone, a short description, and I'm interested and Not for me buttons.",
       width: 1536,
       height: 1024,
+      video: vfHeroVideo, // plays on a loop; the image above is the fallback poster
     },
     kicker: 'HeadBox · Demand side',
     subtitle: 'AI venue matching that lifted qualified enquiries 30% on a two-sided events marketplace.',

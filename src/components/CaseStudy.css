@@ -89,6 +89,15 @@
   width: 100%;
   height: auto;
 }
+.case__hero-image--video {
+  background: #af211a; /* the clip's red, so the frame never flashes white */
+}
+.case__hero-image--video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  object-fit: cover; /* the 3:2 poster is cropped to the clip's shape */
+}
 .case__plan {
   padding-block: var(--space-4) var(--space-5);
 }

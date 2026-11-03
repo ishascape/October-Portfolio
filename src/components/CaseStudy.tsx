@@ -1,3 +1,4 @@
+import { HeroVideo } from './HeroVideo'
 import { caseHref, homeHref } from '../links'
 import { useEffect, useState } from 'react'
 import { Lightbox } from './Lightbox'
@@ -116,15 +117,19 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               }
             >
               {page.heroImage ? (
-                <figure className="case__hero-image">
-                  <img
-                    src={page.heroImage.src}
-                    alt={page.heroImage.alt}
-                    width={page.heroImage.width}
-                    height={page.heroImage.height}
-                    fetchPriority="high"
-                    decoding="async"
-                  />
+                <figure className={`case__hero-image${page.heroImage.video ? ' case__hero-image--video' : ''}`}>
+                  {page.heroImage.video ? (
+                    <HeroVideo src={page.heroImage.video} poster={page.heroImage.src} label={page.heroImage.alt} />
+                  ) : (
+                    <img
+                      src={page.heroImage.src}
+                      alt={page.heroImage.alt}
+                      width={page.heroImage.width}
+                      height={page.heroImage.height}
+                      fetchPriority="high"
+                      decoding="async"
+                    />
+                  )}
                 </figure>
               ) : (
                 planFigure

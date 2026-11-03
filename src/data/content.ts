@@ -16,7 +16,7 @@ import vfPhone from '../assets/vf-card-phone.webp'
 import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
 import vfVideo from '../assets/venue-finder-card.mp4'
-import vfVideoPoster from '../assets/venue-finder-card-poster.webp'
+import vfVideoPoster from '../assets/venue-finder-hero.webp' // the case study hero image is the fallback
 import vfSuggestions from '../assets/vf-v2-suggestions.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
