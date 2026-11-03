@@ -6,6 +6,7 @@ import type { DecisionSketch } from '../components/DecisionFork'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
+import vfInHand from '../assets/venue-finder-in-hand.webp'
 import vfHero from '../assets/venue-finder-hero.webp'
 import vfHeroVideo from '../assets/venue-finder-card.mp4'
 import vfConcierge from '../assets/venue-finder-concierge.webp'
@@ -77,6 +78,7 @@ export interface Section {
     height: number
     bordered?: boolean
   } // a real screenshot; plainCaption sets the caption in the normal font
+  imageAfter?: { src: string; alt: string; width: number; height: number } // a full-width image below the image above, no caption
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
   planImageTop?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // above the third, with a handwritten caption below
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
@@ -301,6 +303,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           caption: 'Initial recommendation card designs',
           width: 1492,
           height: 514,
+        },
+        imageAfter: {
+          src: vfInHand,
+          alt: 'A hand tapping the Venue Finder recommendation card on a phone, showing the Junsei venue with Spotlight and Responds fast tags and I’m interested and Not for me buttons.',
+          width: 1536,
+          height: 1024,
         },
       },
     ],

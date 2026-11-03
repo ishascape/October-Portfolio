@@ -385,6 +385,18 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   </figcaption>
                 </figure>
               )}
+              {s.imageAfter && (
+                <figure className="case__figure case__figure--image">
+                  <img
+                    src={s.imageAfter.src}
+                    alt={s.imageAfter.alt}
+                    width={s.imageAfter.width}
+                    height={s.imageAfter.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              )}
               {s.figures?.map((f) => (
                 <figure key={f} className="case__figure">
                   <div className="case__figure-frame" aria-hidden="true">
