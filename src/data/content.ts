@@ -16,6 +16,8 @@ import vfPhone from '../assets/vf-card-phone.webp'
 import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
 import hqVideo from '../assets/hosthq-card.mp4'
+import taVideo from '../assets/treeassist-card.mp4'
+import taVideoPoster from '../assets/treeassist-card-poster.webp' // the still frame is the fallback
 import hqVideoPoster from '../assets/hosthq-card-poster.webp' // the still frame is the fallback
 import vfVideo from '../assets/venue-finder-card.mp4'
 import vfVideoPoster from '../assets/venue-finder-hero.webp' // the case study hero image is the fallback
@@ -138,6 +140,7 @@ export const caseStudies: CaseStudy[] = [
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
     slug: 'tree-assist',
+    video: { src: taVideo, poster: taVideoPoster, background: '#5fa48f' }, // the clip's green, so nothing flashes
     images: [
       { src: taDesktop, alt: 'The Findmypast family tree on desktop with a next-steps checklist on the canvas' },
       { src: taPhones, alt: 'Five phones showing the TreeAssist onboarding on the Findmypast mobile site' },
