@@ -59,6 +59,25 @@
   --tap: 44px;
 }
 
+/* Dark mode: the same drawing, on a dark surface. Set by the navbar toggle (or the system setting) as
+   data-theme="dark" on <html>. Product screenshots and prototypes keep their own light screens. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --surface: #121416;
+  --paper: #1b1e21;
+  --paper-shade: #23272b;
+  --ink: #eceeef;
+  --graphite: #a4abb1;
+  --rule: #33393e;
+  --marker: #7aa5ee;
+  --paper-deep: #181b1e;
+  --marker-wash: rgb(122 165 238 / 0.16);
+  --grid-line: 51 57 62;
+  --dot: 92 100 107;
+  --shadow-ink: 0 0 0;
+  --sheet-lift: #3a4046;
+}
+
 /* No warm grain over the page, and the Selected work sheet is flat. The hero keeps its watercolour relief. */
 body::after {
   display: none;

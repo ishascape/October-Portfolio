@@ -2,6 +2,7 @@ import { sectionHref } from '../links'
 import { useEffect, useRef, useState } from 'react'
 import { contact } from '../data/content'
 import { sheetTop, NAV_HEIGHT } from '../sheetNav'
+import { ThemeToggle } from './ThemeToggle'
 import './Nav.css'
 
 const sections = [
@@ -67,6 +68,7 @@ export function Nav({ onHome }: { onHome: boolean }) {
           Ashni Dave
         </a>
 
+        <div className="nav__end">
         <nav aria-label="Main" className="nav__links">
           <ul>
             {sections
@@ -88,9 +90,12 @@ export function Nav({ onHome }: { onHome: boolean }) {
           </ul>
         </nav>
 
+        <ThemeToggle />
+
         <button type="button" className="nav__menu-button label" onClick={() => menu.current?.showModal()}>
           Menu
         </button>
+        </div>
       </div>
 
       <dialog
