@@ -209,9 +209,7 @@ body::after {
   position: sticky;
   top: var(--stick-top, 0px);
   background-color: var(--surface);
-  box-shadow:
-    0 -1px 0 var(--ink),
-    0 -12px 24px -12px rgb(var(--shadow-ink) / 0.18);
+  box-shadow: 0 -12px 24px -12px rgb(var(--shadow-ink) / 0.18);
 }
 .paper-sheet:first-child {
   box-shadow: none;

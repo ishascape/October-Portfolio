@@ -251,7 +251,8 @@
   width: 100%;
   min-height: 56px;
   padding-inline: var(--space-3);
-  border-width: var(--line-building) 0 0;
+  border-width: var(--line-thin) 0 0;
+  border-color: var(--marker);
   /* The card's border is drawn outside this bar, so the bar's corners follow the card's inner curve: no sliver of paper. */
   border-radius: 0 0 calc(var(--radius) - var(--line-thin)) calc(var(--radius) - var(--line-thin));
 }

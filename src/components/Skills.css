@@ -1,7 +1,7 @@
 .skills__heading {
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-4);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .skills {
   display: grid;
