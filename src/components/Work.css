@@ -100,12 +100,7 @@
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background:
-    linear-gradient(to right, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px
-      24px,
-    linear-gradient(to bottom, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px
-      24px,
-    var(--paper-shade);
+  background: var(--paper-dots) 0 0 / 24px 24px, var(--paper-shade);
   border-bottom: var(--line-thin) solid var(--rule);
   border-radius: var(--radius) var(--radius) 0 0;
 }
@@ -267,7 +262,8 @@
   width: 100%;
   min-height: 56px;
   padding-inline: var(--space-3);
-  border-width: var(--line-building) 0 0;
+  border-width: var(--line-thin) 0 0;
+  border-color: var(--marker);
   /* The card's border is drawn outside this bar, so the bar's corners follow the card's inner curve: no sliver of paper. */
   border-radius: 0 0 calc(var(--radius) - var(--line-thin)) calc(var(--radius) - var(--line-thin));
 }
