@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { caseHref } from '../links'
 import { caseStudies } from '../data/content'
 import { CardCarousel } from './CardCarousel'
+import { CardVideo } from './CardVideo'
 import { AiPrinciples } from './AiPrinciples'
 import { RocketCrayon } from './RocketCrayon'
 import './Work.css'
@@ -36,7 +37,11 @@ export function Work() {
           {caseStudies.map((s) => (
             <li key={s.id}>
               <article className="card" aria-labelledby={`card-${s.id}`}>
-                <CardCarousel number={s.number} images={s.images} />
+                {s.video ? (
+                  <CardVideo src={s.video.src} poster={s.video.poster} />
+                ) : (
+                  <CardCarousel number={s.number} images={s.images} />
+                )}
 
                 <div className="card__body">
                   <p className="label card__meta">

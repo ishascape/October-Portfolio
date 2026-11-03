@@ -104,6 +104,17 @@
   border-bottom: var(--line-thin) solid var(--rule);
   border-radius: var(--radius) var(--radius) 0 0;
 }
+.card__image--video {
+  aspect-ratio: 6 / 5;
+  background: #af211a; /* the clip's own red, so the edges never flash paper while it loads */
+}
+.card__image--video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .card__image-note {
   color: var(--graphite);
 }

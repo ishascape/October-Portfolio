@@ -15,6 +15,8 @@ import hqFilter from '../assets/hosthq-card-filter.webp'
 import vfPhone from '../assets/vf-card-phone.webp'
 import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
+import vfVideo from '../assets/venue-finder-card.mp4'
+import vfVideoPoster from '../assets/venue-finder-hero.webp' // the case study hero image is the fallback
 import vfSuggestions from '../assets/vf-v2-suggestions.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
@@ -42,6 +44,7 @@ export interface CaseStudy {
   proposed: string
   slug: string // URL path, kept identical to the old site's
   images?: { src: string; alt: string; fit?: 'contain'; bg?: string }[] // 2–3 card carousel images; placeholders until Ashni sends them
+  video?: { src: string; poster: string } // a looping clip that replaces the carousel on the card
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -63,6 +66,7 @@ export const caseStudies: CaseStudy[] = [
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 27% more likely to book',
     slug: 'venue-finder',
+    video: { src: vfVideo, poster: vfVideoPoster },
     images: [
       {
         src: vfSuggestions,
