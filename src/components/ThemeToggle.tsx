@@ -13,21 +13,6 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setTheme(current())
-    // Follow the system setting until the visitor picks one themselves.
-    const mq = window.matchMedia('(prefers-color-scheme: dark)')
-    const onChange = () => {
-      let saved: string | null = null
-      try {
-        saved = localStorage.getItem(KEY)
-      } catch {
-        /* private mode */
-      }
-      if (saved) return
-      apply(mq.matches ? 'dark' : 'light')
-      setTheme(mq.matches ? 'dark' : 'light')
-    }
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
   }, [])
 
   function apply(t: Theme) {
