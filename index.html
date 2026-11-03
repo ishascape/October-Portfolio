@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!--head--><title>Ashni Dave · Senior Product Designer</title><!--/head-->
-    <meta name="theme-color" content="#F5F2EA" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <!-- Paper preview switch (temporary): ?paper=gray or ?paper=white picks the page tone and is remembered for the tab. Remove once chosen. -->
+    <script>
+      try {
+        var q = new URLSearchParams(location.search).get('paper')
+        if (q === 'gray' || q === 'white') sessionStorage.setItem('paper', q)
+        if (sessionStorage.getItem('paper') === 'gray') {
+          document.documentElement.setAttribute('data-paper', 'gray')
+          document.querySelector('meta[name=theme-color]').setAttribute('content', '#F4F5F6')
+        }
+      } catch (e) {}
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -54,7 +54,7 @@
     position: sticky;
     top: calc(57px + env(safe-area-inset-top)); /* just under the site header and its 1px rule */
     z-index: 9;
-    background: var(--paper);
+    background: var(--surface);
     border-bottom: var(--line-thin) solid var(--rule);
     overflow-x: clip; /* only the icon row scrolls sideways, never the page */
   }

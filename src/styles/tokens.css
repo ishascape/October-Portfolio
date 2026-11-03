@@ -2,15 +2,18 @@
 :root {
   /* Colour: drawing on paper, one accent */
   --radius: 16px; /* corner radius for buttons, cards and frames; Field notes polaroids stay square */
-  --paper: #f5f2ea;
-  --paper-shade: #ece7da;
+  /* Surfaces. --surface is the page and sheet colour; --paper is raised stuff on it (cards, polaroids, bars).
+     To retheme the paper, change only this block (and the [data-paper='gray'] block below). */
+  --surface: #ffffff;
+  --paper: #ffffff;
+  --paper-shade: #f4f4f4;
   --ink: #1c1b19;
-  --graphite: #615e58; /* darkened from #6B6862 so small text passes AA on paper */
-  --rule: #d8d2c4;
+  --graphite: #615e58; /* small text passes AA on every surface below */
+  --rule: #d6d6d6;
   --marker: #2f5fb3;
-  --paper-deep: #dcd9d2; /* paper, 10% darker: the Selected work sheet */
+  --paper-deep: #efefef; /* the Selected work sheet, a step darker than the page */
   --marker-wash: rgb(47 95 179 / 0.12);
-  --grid-line: 216 210 196; /* graph-paper lines, as rgb channels */
+  --grid-line: 224 224 224; /* graph-paper lines, as rgb channels */
   --shadow-ink: 28 27 25; /* shadow colour, as rgb channels */
   --sheet-lift: #fff; /* mixed 45% into paper for the raised cards */
 
@@ -51,6 +54,24 @@
   --dur-signature: 700ms;
 
   --tap: 44px;
+}
+
+/* Option B: a very light cool gray page with white cards on it. Chosen with ?paper=gray while we compare. */
+:root[data-paper='gray'] {
+  --surface: #f4f5f6;
+  --paper-shade: #eceeef;
+  --rule: #d9dcde;
+  --paper-deep: #e6e8ea;
+  --grid-line: 218 221 223;
+}
+
+/* No warm paper texture or grain: the surfaces are flat. */
+body::after {
+  display: none;
+}
+:root .hero,
+:root #work.paper-sheet {
+  background-image: none;
 }
 
 @media (min-width: 600px) {
