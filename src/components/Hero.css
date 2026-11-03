@@ -51,12 +51,12 @@
 .hero__smile .smile__mouth--smirk {
   transition: opacity 140ms var(--ease-pen);
 }
-.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__eye--open,
-.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__mouth--grin {
+.hero__card:hover .smile__eye--open,
+.hero__card:hover .smile__mouth--grin {
   opacity: 0;
 }
-.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__eye--wink,
-.hero__polaroid:hover:not(:has(.hero__step:hover)) .smile__mouth--smirk {
+.hero__card:hover .smile__eye--wink,
+.hero__card:hover .smile__mouth--smirk {
   opacity: 1;
 }
 
@@ -664,6 +664,9 @@
 .hero__polaroid {
   justify-self: end;
   width: 100%;
+}
+/* The print itself. Hover, tilt and flip happen here; the process icons are siblings of it, so they stay put. */
+.hero__card {
   padding: var(--space-3) var(--space-3) 12px;
   background: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
   border: var(--line-thin) solid rgb(var(--shadow-ink) / 0.55);
@@ -675,6 +678,15 @@
     rotate var(--dur-micro) var(--ease-pen),
     box-shadow var(--dur-micro) var(--ease-pen);
   animation: hero-polaroid-in 600ms cubic-bezier(0.2, 0.8, 0.2, 1) 1100ms backwards;
+}
+/* The icons fade in with the print (they no longer ride on it). */
+.hero__step {
+  animation: hero-step-in 600ms ease-out 1100ms backwards;
+}
+@keyframes hero-step-in {
+  from {
+    opacity: 0;
+  }
 }
 /* The polaroid drops in last, settling from a steeper tilt onto its 2deg rest. */
 @keyframes hero-polaroid-in {
@@ -690,11 +702,11 @@
   }
 }
 /* Its caption is part of the print, so it arrives with it rather than on its own. */
-.hero__polaroid .hero__hello {
+.hero__card .hero__hello {
   animation: none;
 }
 @media (hover: hover) {
-  .hero__polaroid:hover:not(:has(.hero__step:hover)) {
+  .hero__card:hover {
     rotate: 0deg;
     box-shadow:
       0 1px 0 rgb(var(--shadow-ink) / 0.08),
@@ -733,8 +745,8 @@
   border-bottom: var(--line-thin) solid var(--ink);
   border-right: var(--line-thin) solid var(--ink);
 }
-.hero__polaroid:hover:not(:has(.hero__step:hover)) .hero__polaroid-photo::before,
-.hero__polaroid:hover:not(:has(.hero__step:hover)) .hero__polaroid-photo::after {
+.hero__card:hover .hero__polaroid-photo::before,
+.hero__card:hover .hero__polaroid-photo::after {
   opacity: 1;
 }
 .hero__polaroid .hero__hello {
@@ -801,7 +813,8 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero__polaroid {
+  .hero__card,
+  .hero__step {
     animation: none;
   }
 }
@@ -820,7 +833,8 @@
 /* Phones open on a start screen: the polaroid drops in first (0-0.6s), then the headline (0.6-1s), then the buttons
    and role line; the nav and the rest of the page fade in from 1.3s, so the whole site is in by 1.8s (see global.css). */
 @media (max-width: 599px) {
-  .hero__polaroid {
+  .hero__card,
+  .hero__step {
     animation-delay: 0ms;
   }
   .hero__title .display {
@@ -881,14 +895,14 @@
   .hero__role {
     display: none; /* it lives on the back of the polaroid on phones */
   }
-  .hero__polaroid {
+  .hero__card {
     position: relative;
     transform-style: preserve-3d;
     transition:
       transform 600ms cubic-bezier(0.3, 0.7, 0.2, 1),
       rotate var(--dur-micro) var(--ease-pen);
   }
-  .hero__polaroid.is-flipped {
+  .hero__card.is-flipped {
     transform: rotateY(180deg);
   }
   .hero__polaroid-photo,
@@ -1009,7 +1023,6 @@
   background: none;
   color: var(--ink);
   cursor: pointer;
-  backface-visibility: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 .hero__step .case-icon {

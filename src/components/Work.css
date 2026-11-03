@@ -24,6 +24,16 @@
   line-height: 1.55;
   text-wrap: balance;
 }
+/* Phones: the line wraps in three, so the text box is cut to the width of its longest line. That closes the blank
+   gap between the words and the crayon. */
+@media (max-width: 600px) {
+  .work__heading {
+    gap: 8px;
+  }
+  .work__heading > span {
+    max-width: 11.8em;
+  }
+}
 .work__list {
   display: grid;
   gap: var(--space-4);
