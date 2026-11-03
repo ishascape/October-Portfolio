@@ -15,6 +15,8 @@ import hqFilter from '../assets/hosthq-card-filter.webp'
 import vfPhone from '../assets/vf-card-phone.webp'
 import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
+import hqVideo from '../assets/hosthq-card.mp4'
+import hqVideoPoster from '../assets/hosthq-card-poster.webp' // the still frame is the fallback
 import vfVideo from '../assets/venue-finder-card.mp4'
 import vfVideoPoster from '../assets/venue-finder-hero.webp' // the case study hero image is the fallback
 import vfSuggestions from '../assets/vf-v2-suggestions.webp'
@@ -44,7 +46,7 @@ export interface CaseStudy {
   proposed: string
   slug: string // URL path, kept identical to the old site's
   images?: { src: string; alt: string; fit?: 'contain'; bg?: string }[] // 2–3 card carousel images; placeholders until Ashni sends them
-  video?: { src: string; poster: string } // a looping clip that replaces the carousel on the card
+  video?: { src: string; poster: string; background?: string } // a looping clip that replaces the carousel on the card
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -103,6 +105,7 @@ export const caseStudies: CaseStudy[] = [
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
     slug: 'hosthq',
+    video: { src: hqVideo, poster: hqVideoPoster, background: '#ffce4b' }, // the clip's yellow, so nothing flashes red
     images: [
       {
         src: hqFilter,

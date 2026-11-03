@@ -38,7 +38,7 @@ export function Work() {
             <li key={s.id}>
               <article className="card" aria-labelledby={`card-${s.id}`}>
                 {s.video ? (
-                  <CardVideo src={s.video.src} poster={s.video.poster} />
+                  <CardVideo src={s.video.src} poster={s.video.poster} background={s.video.background} />
                 ) : (
                   <CardCarousel number={s.number} images={s.images} />
                 )}
