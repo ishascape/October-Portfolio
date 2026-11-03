@@ -13,7 +13,10 @@
   --marker: #2f5fb3;
   --paper-deep: #e6e8ea; /* the Selected work sheet, a step darker than the page */
   --marker-wash: rgb(47 95 179 / 0.12);
-  --grid-line: 218 221 223; /* graph-paper lines, as rgb channels */
+  --grid-line: 218 221 223; /* rule colour as rgb channels, for faint fills */
+  --dot: 165 171 176; /* dotted paper, as rgb channels */
+  --paper-dots: radial-gradient(circle, rgb(var(--dot) / 0.7) 1px, transparent 1.5px);
+  --watercolour: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='5' seed='11' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' surfaceScale='2.6' lighting-color='%23fff' result='l'%3E%3CfeDistantLight azimuth='225' elevation='58'/%3E%3C/feDiffuseLighting%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.16' intercept='0.86'/%3E%3CfeFuncG type='linear' slope='0.16' intercept='0.86'/%3E%3CfeFuncB type='linear' slope='0.16' intercept='0.86'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23w%29'/%3E%3C/svg%3E"); /* cold-press paper relief, multiplied over a surface */
   --shadow-ink: 28 27 25; /* shadow colour, as rgb channels */
   --sheet-lift: #fff; /* mixed 45% into paper for the raised cards */
 
@@ -56,11 +59,10 @@
   --tap: 44px;
 }
 
-/* No warm paper texture or grain: the surfaces are flat. */
+/* No warm grain over the page, and the Selected work sheet is flat. The hero keeps its watercolour relief. */
 body::after {
   display: none;
 }
-:root .hero,
 :root #work.paper-sheet {
   background-image: none;
 }
