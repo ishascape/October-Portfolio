@@ -251,9 +251,9 @@
 
 @media (max-width: 600px) {
   .rk {
-    width: 56px;
-    height: 13px;
-    margin-right: -14px; /* Saturn's room runs a little into the page margin so the line keeps its two-line wrap */
+    width: 96px; /* same size as on desktop, so the crayon sits proportionally beside the three lines */
+    height: 23px;
+    margin-right: -14px; /* Saturn's room runs a little into the page margin */
   }
 }
 @media (prefers-reduced-motion: reduce) {
