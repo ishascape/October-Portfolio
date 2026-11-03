@@ -19,10 +19,10 @@ export function useLoopWhenVisible() {
   return video
 }
 
-export function CardVideo({ src, poster }: { src: string; poster: string }) {
+export function CardVideo({ src, poster, background }: { src: string; poster: string; background?: string }) {
   const video = useLoopWhenVisible()
   return (
-    <div className="card__image card__image--video" aria-hidden="true">
+    <div className="card__image card__image--video" aria-hidden="true" style={background ? { background } : undefined}>
       <video ref={video} src={src} poster={poster} muted loop playsInline preload="metadata" tabIndex={-1} />
     </div>
   )
