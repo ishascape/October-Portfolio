@@ -28,11 +28,25 @@
   width: 32px;
   height: 32px;
   margin-bottom: 4px;
+  overflow: visible;
+}
+.ai-principles__icon .f {
+  fill: var(--marker);
+  stroke: none;
+}
+.ai-principles__icon .o,
+.ai-principles__icon .d {
   fill: none;
-  stroke: var(--marker);
-  stroke-width: 1.75;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+.ai-principles__icon .o {
+  stroke: var(--marker);
+  stroke-width: 2.4;
+}
+.ai-principles__icon .d {
+  stroke: var(--paper);
+  stroke-width: 1.7;
 }
 .ai-principles__title {
   font-size: 18px;
