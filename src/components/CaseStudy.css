@@ -1,9 +1,11 @@
 .case__header {
   padding-block: var(--space-4) var(--space-5);
-  background-image:
-    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
-  background-size: 24px 24px;
+  background-color: var(--surface);
+  background-image: var(--paper-dots), var(--watercolour);
+  background-size:
+    24px 24px,
+    360px 360px;
+  background-blend-mode: multiply;
   border-bottom: var(--line-thin) solid var(--ink);
 }
 

@@ -4,7 +4,7 @@
 .footer {
   position: relative;
   padding-block: 0;
-  background: var(--paper);
+  background: var(--surface);
   border-top: var(--line-thin) solid var(--ink);
 }
 

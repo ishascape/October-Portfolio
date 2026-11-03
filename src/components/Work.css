@@ -100,12 +100,7 @@
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background:
-    linear-gradient(to right, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px
-      24px,
-    linear-gradient(to bottom, rgb(var(--grid-line) / 0.6) var(--line-hair), transparent var(--line-hair)) 0 0 / 24px
-      24px,
-    var(--paper-shade);
+  background: var(--paper-dots) 0 0 / 24px 24px, var(--paper-shade);
   border-bottom: var(--line-thin) solid var(--rule);
   border-radius: var(--radius) var(--radius) 0 0;
 }
