@@ -92,8 +92,10 @@ export function Hero() {
             <div className="hero__support">
               <div className="hero__copy">
                 <p className="hero__lede">
-                  Connecting customer needs, business priorities and what's possible to build - from uncovering pain
-                  points to shipping solutions.
+                  I solve product problems where customer needs and commercial goals intersect. Whether that's balancing
+                  supply and demand in marketplaces, improving subscription conversion and retention, or streamlining B2B
+                  SaaS workflows, I understand the wider business ecosystem and design solutions that create value for
+                  everyone involved.
                 </p>
               </div>
               <div className="hero__actions">
