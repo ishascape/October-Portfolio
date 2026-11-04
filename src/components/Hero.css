@@ -922,7 +922,7 @@
     gap: 4px;
     margin-top: 2px;
     font-family: var(--font-sans);
-    font-size: 12px;
+    font-size: 14px;
     color: var(--graphite);
   }
   .hero__flip-hint {
