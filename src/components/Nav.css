@@ -252,59 +252,6 @@
   border-radius: 999px;
 }
 
-/* Paintbrush switch: a round button next to the sun and moon pill, filled blue when painting mode is on. */
-.paint-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--tap);
-  min-height: var(--tap);
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-.paint-toggle__disc {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border: var(--line-thin) solid var(--marker);
-  border-radius: 50%;
-  background: var(--paper);
-  transition: background-color var(--dur-state) var(--ease-pen);
-}
-.paint-toggle svg {
-  width: 18px;
-  height: 18px;
-  overflow: visible;
-}
-.paint-toggle__handle,
-.paint-toggle__tip {
-  fill: var(--marker);
-  transition: fill var(--dur-state) var(--ease-pen);
-}
-.paint-toggle__ferrule {
-  fill: var(--marker);
-  opacity: 0.55;
-}
-.paint-toggle[aria-pressed='true'] .paint-toggle__disc {
-  background: var(--marker);
-}
-.paint-toggle[aria-pressed='true'] .paint-toggle__handle,
-.paint-toggle[aria-pressed='true'] .paint-toggle__tip {
-  fill: var(--paper);
-}
-.paint-toggle[aria-pressed='true'] .paint-toggle__ferrule {
-  fill: var(--paper);
-  opacity: 0.6;
-}
-.paint-toggle:focus-visible {
-  outline: 2px solid var(--marker);
-  outline-offset: 2px;
-  border-radius: 50%;
-}
-
 .nav__links {
   display: none;
 }

@@ -1,8 +1,9 @@
-import { setTheme, useThemeState } from '../theme'
+import { setTheme, useSystemTheme, useThemeState } from '../theme'
 
 /** Sun/moon switch in the navbar. The first paint is set by a small script in index.html. */
 export function ThemeToggle() {
   const { theme } = useThemeState()
+  useSystemTheme()
 
   function toggle() {
     setTheme(theme === 'dark' ? 'light' : 'dark')

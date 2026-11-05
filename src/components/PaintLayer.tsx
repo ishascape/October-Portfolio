@@ -3,11 +3,12 @@ import { useThemeState } from '../theme'
 import './PaintLayer.css'
 
 /**
- * The light and the canvas for painting mode. One soft moonlight pool follows the pointer with a slow ease; on touch
+ * The light and the canvas for dark mode. One soft moonlight pool follows the pointer with a slow ease; on touch
  * screens and with reduced motion it rests near the top of the screen. Everything here ignores the pointer.
  */
 export function PaintLayer() {
-  const { paint } = useThemeState()
+  const { theme } = useThemeState()
+  const paint = theme === 'dark'
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

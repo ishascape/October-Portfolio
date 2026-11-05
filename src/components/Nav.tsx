@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import { contact } from '../data/content'
 import { sheetTop, NAV_HEIGHT } from '../sheetNav'
 import { ThemeToggle } from './ThemeToggle'
-import { PaintToggle } from './PaintToggle'
 import './Nav.css'
 
 const sections = [
@@ -91,7 +90,6 @@ export function Nav({ onHome }: { onHome: boolean }) {
           </ul>
         </nav>
 
-        <PaintToggle />
         <ThemeToggle />
 
         <button type="button" className="nav__menu-button label" onClick={() => menu.current?.showModal()}>
