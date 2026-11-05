@@ -1,36 +1,12 @@
-import { useEffect, useState } from 'react'
-
-type Theme = 'light' | 'dark'
-const KEY = 'theme'
-
-function current(): Theme {
-  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
-}
+import { setTheme, useSystemTheme, useThemeState } from '../theme'
 
 /** Sun/moon switch in the navbar. The first paint is set by a small script in index.html. */
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('light')
-
-  useEffect(() => {
-    setTheme(current())
-  }, [])
-
-  function apply(t: Theme) {
-    document.documentElement.dataset.theme = t
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', t === 'dark' ? '#121416' : '#F4F5F6')
-  }
+  const { theme } = useThemeState()
+  useSystemTheme()
 
   function toggle() {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark'
-    apply(next)
-    setTheme(next)
-    try {
-      localStorage.setItem(KEY, next)
-    } catch {
-      /* private mode */
-    }
+    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   const dark = theme === 'dark'

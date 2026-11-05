@@ -6,12 +6,14 @@
     <!--head--><title>Ashni Dave · Senior Product Designer</title><!--/head-->
     <meta name="theme-color" content="#F4F5F6" />
     <script>
-      /* Set the theme before first paint: dark only if the visitor chose it with the toggle. Light is the default. */
+      /* Set the theme before first paint: the visitor's saved choice from the toggle wins; otherwise follow the
+         system setting (dark when the device is in dark mode, light otherwise). */
       try {
         var t = localStorage.getItem('theme')
-        if (t === 'dark') {
+        var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (dark) {
           document.documentElement.dataset.theme = 'dark'
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#121416')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0b0e13')
         }
       } catch (e) {}
     </script>
