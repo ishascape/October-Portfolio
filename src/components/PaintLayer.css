@@ -1,0 +1,55 @@
+/* Painting mode: a moonlit oil painting. Only exists when <html data-paint="on">. */
+.paint-layer {
+  display: none;
+}
+:root[data-paint='on'] .paint-layer {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  --lx: 50vw;
+  --ly: 22vh;
+  animation: paint-in 700ms ease-out both;
+}
+@keyframes paint-in {
+  from {
+    opacity: 0;
+  }
+}
+/* Light: a cool pool of moonlight at the pointer, lifting what is under it. */
+:root[data-paint='on'] .paint-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 38vmax at var(--lx) var(--ly),
+    rgb(176 200 245 / 0.14),
+    rgb(120 150 210 / 0.05) 55%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+}
+/* Shadow: the room falls away from the light, never past 30 percent, so body text keeps AA contrast. */
+:root[data-paint='on'] .paint-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 70vmax at var(--lx) var(--ly), transparent 30%, rgb(4 6 10 / 0.3) 100%),
+    radial-gradient(ellipse at 50% 45%, transparent 55%, rgb(2 3 6 / 0.35) 130%);
+}
+/* Canvas: a fine weave plus long horizontal bristle streaks, very faint, laid over everything. */
+:root[data-paint='on'] body::after {
+  display: block;
+  opacity: 0.3;
+  mix-blend-mode: soft-light;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.35' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.75 0 0 0 0 0.8 0 0 0 0 0.9 0 0 0 1.1 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.8 0 0 0 0 0.85 0 0 0 0 0.95 0 0 0 0.5 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-paint='on'] .paint-layer {
+    animation: none;
+  }
+}

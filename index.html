@@ -9,7 +9,13 @@
       /* Set the theme before first paint: dark only if the visitor chose it with the toggle. Light is the default. */
       try {
         var t = localStorage.getItem('theme')
-        if (t === 'dark') {
+        var p = localStorage.getItem('paint')
+        if (p === 'on') {
+          /* Painting mode (the paintbrush) sits on top of dark. Also only when chosen. */
+          document.documentElement.dataset.theme = 'dark'
+          document.documentElement.dataset.paint = 'on'
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0b0e13')
+        } else if (t === 'dark') {
           document.documentElement.dataset.theme = 'dark'
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#121416')
         }
