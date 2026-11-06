@@ -925,11 +925,6 @@
     font-size: 14px;
     color: var(--graphite);
   }
-  .hero__flip-hint {
-    display: inline;
-    font-size: 16px;
-    color: var(--marker);
-  }
   /* The back of the print: plain paper with the role line in blue handwriting. */
   .hero__polaroid-back {
     position: absolute;
@@ -1299,5 +1294,104 @@
   }
   .hero__step--5 {
     top: 30%;
+  }
+}
+
+/* ---------- 6 Nov 2026: flip button outside the print, and a chrome thumbtack with a baby dragon ---------- */
+.hero__flip-btn {
+  display: none;
+}
+.hero__pin {
+  position: absolute;
+  z-index: 3;
+  top: -46px;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 2px rgb(var(--shadow-ink) / 0.35));
+  animation: hero-pin-in 500ms cubic-bezier(0.3, 1.4, 0.4, 1) 1500ms backwards;
+}
+.pin__body,
+.pin__head,
+.pin__tail,
+.pin__wing {
+  fill: var(--marker);
+  stroke: #1c1b19;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.pin__tail {
+  fill: none;
+}
+.pin__wing {
+  fill: color-mix(in srgb, var(--marker) 70%, #fff);
+}
+.pin__wing--far {
+  fill: color-mix(in srgb, var(--marker) 55%, #1c1b19);
+}
+.pin__horn {
+  fill: #f4d58a;
+  stroke: #1c1b19;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+.pin__eye {
+  fill: #1c1b19;
+}
+.pin__smile,
+.pin__spots {
+  fill: none;
+  stroke: #1c1b19;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+}
+.pin__spots {
+  stroke: rgb(255 255 255 / 0.6);
+}
+@keyframes hero-pin-in {
+  from {
+    opacity: 0;
+    translate: 0 -28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__pin {
+    animation: none;
+  }
+}
+@media (max-width: 599px) {
+  .hero__polaroid {
+    margin-bottom: 44px; /* room for the flip button under the print */
+  }
+  .hero__flip-btn {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    z-index: 2;
+    right: 4px;
+    bottom: -52px;
+    width: var(--tap);
+    height: var(--tap);
+    padding: 0;
+    border: var(--line-building) solid var(--marker);
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--marker);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    animation: hero-step-in 600ms ease-out 1300ms backwards;
+  }
+  .hero__flip-btn[aria-pressed='true'] {
+    background: var(--marker);
+    color: var(--paper);
+  }
+  .hero__flip-btn:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
   }
 }
