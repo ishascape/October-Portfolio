@@ -15,6 +15,12 @@ import hqFilter from '../assets/hosthq-card-filter.webp'
 import vfPhone from '../assets/vf-card-phone.webp'
 import vfJourney from '../assets/vf-card-journey.webp'
 import vfDesktop from '../assets/vf-card-desktop.webp'
+import hqVideo from '../assets/hosthq-card.mp4'
+import taVideo from '../assets/treeassist-card.mp4'
+import taVideoPoster from '../assets/treeassist-card-poster.webp' // the still frame is the fallback
+import hqVideoPoster from '../assets/hosthq-card-poster.webp' // the still frame is the fallback
+import vfVideo from '../assets/venue-finder-card.mp4'
+import vfVideoPoster from '../assets/venue-finder-card-poster.webp'
 import vfSuggestions from '../assets/vf-v2-suggestions.webp'
 import taPhones from '../assets/ta-card-phones.webp'
 import taDesktop from '../assets/ta-card-desktop.webp'
@@ -42,6 +48,7 @@ export interface CaseStudy {
   proposed: string
   slug: string // URL path, kept identical to the old site's
   images?: { src: string; alt: string; fit?: 'contain'; bg?: string }[] // 2–3 card carousel images; placeholders until Ashni sends them
+  video?: { src: string; poster: string; background?: string } // a looping clip that replaces the carousel on the card
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -59,10 +66,11 @@ export const caseStudies: CaseStudy[] = [
     supporting: ['Guests who shortlisted venues were 27% more likely to book', 'New paid Spotlight boost for hosts'],
     system:
       'Guests, hosts, Marketing, account managers · brief-to-lead workflow · AI parsing and automated lead routing',
-    tags: ['Marketplace', 'Lead quality', 'New revenue line'],
+    tags: ['Marketplace', 'AI recommendation engine', 'Lead quality', 'New revenue line'],
     existing: '13-step brief builder · 83% drop-off',
     proposed: 'AI-assisted venue finder · 27% more likely to book',
     slug: 'venue-finder',
+    video: { src: vfVideo, poster: vfVideoPoster },
     images: [
       {
         src: vfSuggestions,
@@ -99,6 +107,7 @@ export const caseStudies: CaseStudy[] = [
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
     slug: 'hosthq',
+    video: { src: hqVideo, poster: hqVideoPoster, background: '#ffce4b' }, // the clip's yellow, so nothing flashes red
     images: [
       {
         src: hqFilter,
@@ -131,6 +140,7 @@ export const caseStudies: CaseStudy[] = [
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
     slug: 'tree-assist',
+    video: { src: taVideo, poster: taVideoPoster, background: '#60a38e' }, // the clip's green, so nothing flashes
     images: [
       { src: taDesktop, alt: 'The Findmypast family tree on desktop with a next-steps checklist on the canvas' },
       { src: taPhones, alt: 'Five phones showing the TreeAssist onboarding on the Findmypast mobile site' },

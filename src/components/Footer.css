@@ -4,8 +4,7 @@
 .footer {
   position: relative;
   padding-block: 0;
-  background: var(--paper);
-  border-top: var(--line-thin) solid var(--ink);
+  background: var(--surface);
 }
 
 .titlesheet {

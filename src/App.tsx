@@ -7,6 +7,8 @@ import { Footer } from './components/Footer'
 import { CaseStudy } from './components/CaseStudy'
 import { useSheetStack } from './useSheetStack'
 import { SketchDefs } from './components/Sketch'
+import { Cursor } from './components/Cursor'
+import { PaintLayer } from './components/PaintLayer'
 import { caseStudies } from './data/content'
 import type { Page } from './links'
 
@@ -19,6 +21,8 @@ export function App({ page }: { page: Page }) {
   return (
     <>
       <SketchDefs />
+      <Cursor />
+      <PaintLayer />
       <a className="skip-link" href="#main">
         Skip to content
       </a>

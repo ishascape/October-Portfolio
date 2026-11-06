@@ -1,0 +1,265 @@
+/* Crayon to rocket to Saturn. One 6s timeline; the crayon is at rest until it is triggered.
+   Hover plays it as a loop on devices with a mouse; touch screens play it once when the heading scrolls into view. */
+.rk {
+  flex: none;
+  width: 99px; /* the crayon is 52px wide; the rest of the box is room for Saturn */
+  height: 24px;
+  overflow: visible;
+}
+.crayon__body,
+.crayon__cap,
+.crayon__tip {
+  fill: var(--marker);
+}
+.crayon__cap {
+  opacity: 0.75;
+}
+.crayon__band,
+.crayon__zigzag {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rk__rocket,
+.rk__saturn,
+.rk__burst {
+  opacity: 0;
+}
+.rk__crayon,
+.rk__saturn {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* At rest the crayon points down and to the left, at the full stop of the line. */
+.rk__crayon {
+  transform: rotate(180deg);
+}
+.rk__rocket {
+  transform-origin: 22px 10px;
+}
+.rk__flame {
+  fill: var(--marker);
+  opacity: 0.55;
+  transform-origin: 3px 10px;
+  transform: scaleX(0);
+}
+.rk__fin {
+  fill: var(--marker);
+  opacity: 0.75;
+}
+.rk__window {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.2;
+}
+.rk__ring {
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 1.4;
+}
+.rk__planet {
+  fill: var(--marker);
+}
+.rk__ring-front {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+.rk__burst {
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 1.2;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes rk-crayon {
+  0%,
+  6% {
+    opacity: 1;
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1);
+  }
+  20% {
+    opacity: 1;
+    transform: rotate(360deg) scale(1.12);
+  }
+  22%,
+  94% {
+    opacity: 0;
+    transform: rotate(360deg) scale(0.6);
+  }
+  95% {
+    opacity: 0;
+    transform: rotate(180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+}
+@keyframes rk-rocket {
+  0%,
+  18% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  22% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  26%,
+  38% {
+    opacity: 1;
+    transform: none;
+  }
+  41% {
+    transform: translateX(-4px);
+  }
+  46% {
+    opacity: 1;
+    transform: translateX(-4px);
+    animation-timing-function: cubic-bezier(0.55, 0, 1, 0.7);
+  }
+  66% {
+    opacity: 1;
+    transform: translateX(25px);
+  }
+  69%,
+  100% {
+    opacity: 0;
+    transform: translateX(30px) scale(0.35);
+  }
+}
+@keyframes rk-flame {
+  0%,
+  22% {
+    transform: scaleX(0);
+  }
+  28%,
+  44% {
+    transform: scaleX(0.8);
+  }
+  36% {
+    transform: scaleX(1.05);
+  }
+  46%,
+  66% {
+    transform: scaleX(2.2);
+  }
+  69%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+@keyframes rk-saturn {
+  0%,
+  28% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  38%,
+  66% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  69% {
+    transform: scale(1.3);
+  }
+  74%,
+  92% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  97%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+@keyframes rk-burst {
+  0%,
+  65% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  67% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}
+
+@media (hover: hover) {
+  .work__heading:hover .rk__crayon,
+  .work__heading:hover .rk__rocket,
+  .work__heading:hover .rk__flame,
+  .work__heading:hover .rk__saturn,
+  .work__heading:hover .rk__burst {
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .work__heading:hover .rk__crayon {
+    animation-name: rk-crayon;
+  }
+  .work__heading:hover .rk__rocket {
+    animation-name: rk-rocket;
+  }
+  .work__heading:hover .rk__flame {
+    animation-name: rk-flame;
+  }
+  .work__heading:hover .rk__saturn {
+    animation-name: rk-saturn;
+  }
+  .work__heading:hover .rk__burst {
+    animation-name: rk-burst;
+  }
+}
+/* Touch screens: play once each time the heading scrolls into view. */
+.work__heading.is-inview .rk__crayon,
+.work__heading.is-inview .rk__rocket,
+.work__heading.is-inview .rk__flame,
+.work__heading.is-inview .rk__saturn,
+.work__heading.is-inview .rk__burst {
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+.work__heading.is-inview .rk__crayon {
+  animation-name: rk-crayon;
+}
+.work__heading.is-inview .rk__rocket {
+  animation-name: rk-rocket;
+}
+.work__heading.is-inview .rk__flame {
+  animation-name: rk-flame;
+}
+.work__heading.is-inview .rk__saturn {
+  animation-name: rk-saturn;
+}
+.work__heading.is-inview .rk__burst {
+  animation-name: rk-burst;
+}
+
+@media (max-width: 600px) {
+  .rk {
+    width: 96px; /* same size as on desktop, so the crayon sits proportionally beside the three lines */
+    height: 23px;
+    margin-right: -14px; /* Saturn's room runs a little into the page margin */
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rk *,
+  .work__heading:hover .rk *,
+  .work__heading.is-inview .rk * {
+    animation: none !important;
+  }
+}

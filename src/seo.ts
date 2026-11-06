@@ -8,8 +8,6 @@ import llmsBrief from './data/llms.md?raw'
 
 const NAME = 'Ashni Dave'
 const JOB = 'Senior Product Designer'
-const TAGLINE =
-  "I'm a product designer blending design, strategy and commercial thinking to make complex products simpler, smarter and more successful."
 const SUMMARY = `${NAME} is a ${JOB}, currently based in Sydney, Australia, working on B2B SaaS, marketplaces and AI products. ${availability.headline.replace("I'm", 'She is')}`
 
 const pathFor = (page: Page) => (page === 'home' ? '/' : `/${page.caseSlug}`)
@@ -61,13 +59,13 @@ export function headFor(page: Page) {
   const title = found ? `${found.study.title}, a case study by ${NAME}` : `${NAME} · ${JOB}`
   const description = found
     ? `${found.detail.subtitle} ${found.study.role}.`
-    : `${NAME}, ${JOB} currently based in Sydney, Australia, for B2B SaaS, marketplaces and AI products. ${TAGLINE} ${availability.short}.`
+    : "I'm a product designer who loves connecting the dots between what people need, what businesses want and what's possible to build. From the first big question to the final shipped experience."
 
   // Link-preview cards (1200x630) live in public/og, one per page, named after the page.
   const image = `${SITE_URL}/og/${page === 'home' ? 'home' : page.caseSlug}.jpg`
   const imageAlt = found
     ? `${found.study.title} case study by ${NAME}: ${found.detail.subtitle}`
-    : `${NAME}, ${JOB} in Sydney: a portrait beside the headline I turn complex product problems into business growth.`
+    : `${NAME}, ${JOB} in Sydney: the headline I turn complex product problems into business growth, on a watercolour paper background.`
 
   const graph: object[] = [
     person,
@@ -117,6 +115,7 @@ export function headFor(page: Page) {
     `<meta property="og:image:height" content="630" />`,
     `<meta property="og:image:alt" content="${esc(imageAlt)}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:description" content="${esc(description)}" />`,
     `<meta name="twitter:image" content="${image}" />`,
     `<meta name="author" content="${NAME}" />`,
     `<script type="application/ld+json">${jsonLd}</script>`,

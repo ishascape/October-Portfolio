@@ -3,38 +3,44 @@ import './AiPrinciples.css'
 
 // How Ashni designs AI products. Every line is sourced from a case study page or the CV; never add a claim here
 // that isn't in one of them.
-// Line icons in brand blue, one per principle.
+// Hand-drawn icons in the same style as the case study menu icons: solid brand-blue shapes, slightly tilted,
+// with paper-coloured detail lines. Class "f" is a blue fill, "o" a blue line, "d" a paper detail line.
 const icons = {
   // A person with a loop arrow around them: a human in the loop.
   human: (
-    <>
-      <circle cx="16" cy="11" r="3.5" />
-      <path d="M10 22.5 c0 -3.5 2.7 -6 6 -6 s6 2.5 6 6" />
-      <path d="M26.5 9.5 A12 12 0 1 0 28 16" />
-      <path d="M28.6 5.8 l-1.9 3.9 l-4 -1.6" />
-    </>
+    <g transform="rotate(-5 16 16)">
+      <circle className="f" cx="16" cy="12" r="4.2" />
+      <path className="f" d="M8.8 24 c0 -4.6 3.2 -7.4 7.2 -7.4 s7.2 2.8 7.2 7.4 Z" />
+      <path className="d" d="M12.6 21.6 q3.4 -1.8 6.8 0" />
+      <g className="aip-loop">
+        <path className="o" d="M26.2 9.2 A12.2 12.2 0 1 0 28.2 16" />
+        <path className="f" d="M29.4 4.6 l-0.6 6.2 l-5.6 -2.6 Z" />
+      </g>
+    </g>
   ),
   // A shield with a tick: guardrails.
   shield: (
-    <>
-      <path d="M16 4 l9.5 3.5 v7.5 c0 6 -4.2 10 -9.5 13 c-5.3 -3 -9.5 -7 -9.5 -13 v-7.5 Z" />
-      <path d="M11.8 16 l3 3 l5.6 -6" />
-    </>
+    <g transform="rotate(-6 16 16)">
+      <path className="f" d="M16 3 l10.5 3.9 v8.4 c0 6.6 -4.6 11 -10.5 14.2 c-5.9 -3.2 -10.5 -7.6 -10.5 -14.2 v-8.4 Z" />
+      <path className="d" d="M10.8 15.8 l3.8 3.8 l6.6 -7.2" />
+    </g>
   ),
   // An hourglass: designing the wait.
   hourglass: (
-    <>
-      <path d="M9 4.5 h14 M9 27.5 h14" />
-      <path d="M10.5 4.5 c0 6 5.5 8 5.5 11.5 s-5.5 5.5 -5.5 11.5 M21.5 4.5 c0 6 -5.5 8 -5.5 11.5 s5.5 5.5 5.5 11.5" />
-      <path d="M12.8 25.5 c1 -2 2.2 -3 3.2 -3 s2.2 1 3.2 3" />
-    </>
+    <g transform="rotate(8 16 16)">
+      <rect className="f" x="7" y="3" width="18" height="3.2" rx="1.2" />
+      <rect className="f" x="7" y="25.8" width="18" height="3.2" rx="1.2" />
+      <path className="f" d="M9.6 6.2 h12.8 c0 5.2 -3.6 7.4 -5.2 9.8 c1.6 2.4 5.2 4.6 5.2 9.8 h-12.8 c0 -5.2 3.6 -7.4 5.2 -9.8 c-1.6 -2.4 -5.2 -4.6 -5.2 -9.8 Z" />
+      <path className="d" d="M12.4 9 h7.2 M12.6 24.2 q3.4 -3.6 6.8 0" />
+    </g>
   ),
   // Sparkles: AI in the process.
   sparkle: (
-    <>
-      <path d="M14 5 c0.8 5.2 2.8 7.2 8 8 c-5.2 0.8 -7.2 2.8 -8 8 c-0.8 -5.2 -2.8 -7.2 -8 -8 c5.2 -0.8 7.2 -2.8 8 -8 Z" />
-      <path d="M24 19 c0.4 2.6 1.4 3.6 4 4 c-2.6 0.4 -3.6 1.4 -4 4 c-0.4 -2.6 -1.4 -3.6 -4 -4 c2.6 -0.4 3.6 -1.4 4 -4 Z" />
-    </>
+    <g transform="rotate(-6 16 16) translate(-2 -2.5) scale(1.12)">
+      <path className="f aip-big" d="M13.5 3.5 c0.9 5.8 3.1 8 9 9 c-5.9 1 -8.1 3.2 -9 9 c-0.9 -5.8 -3.1 -8 -9 -9 c5.9 -1 8.1 -3.2 9 -9 Z" />
+      <path className="f aip-small" d="M24.2 19 c0.5 3 1.5 4 4.5 4.5 c-3 0.5 -4 1.5 -4.5 4.5 c-0.5 -3 -1.5 -4 -4.5 -4.5 c3 -0.5 4 -1.5 4.5 -4.5 Z" />
+      <path className="d" d="M10.6 9.4 q0.8 -2 2.6 -2.8" />
+    </g>
   ),
 }
 
@@ -46,16 +52,16 @@ const principles: {
   link?: { slug: string; hash: string; text: string }
 }[] = [
   {
-    icon: 'human',
-    title: 'Know when not to use AI, introducing a human in the loop.',
-    body: "Venue Finder only made recommendations where we had 200+ venues. Elsewhere it didn't force matches, and briefs over £50k went to a human concierge.",
-    link: { slug: 'venue-finder', hash: 'edge-cases', text: 'Venue Finder edge cases' },
-  },
-  {
     icon: 'shield',
     title: 'Always define the guardrails.',
     body: 'Matches needed a 0.85 similarity score, and paid Spotlight placements were capped at 2 per brief, so paying venues never outranked relevance.',
     link: { slug: 'venue-finder', hash: 'matching', text: 'Venue Finder matching' },
+  },
+  {
+    icon: 'human',
+    title: 'Know when not to use AI, introducing a human in the loop.',
+    body: "Venue Finder only made recommendations where we had 200+ venues. Elsewhere it didn't force matches, and briefs over £50k went to a human concierge.",
+    link: { slug: 'venue-finder', hash: 'edge-cases', text: 'Venue Finder edge cases' },
   },
   {
     icon: 'hourglass',
@@ -83,7 +89,7 @@ export function AiPrinciples() {
       <ol className="ai-principles__list">
         {principles.map((p) => (
           <li key={p.title} className="ai-principles__item">
-            <svg className="ai-principles__icon" viewBox="0 0 32 32" aria-hidden="true">
+            <svg className={`ai-principles__icon ai-principles__icon--${p.icon}`} viewBox="0 0 32 32" aria-hidden="true">
               {icons[p.icon]}
             </svg>
             <h3 className="ai-principles__title">{p.title}</h3>

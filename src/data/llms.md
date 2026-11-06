@@ -4,7 +4,8 @@
 
 ## Summary
 
-- Role: Senior Product Designer, based in Sydney, Australia.
+- Role: Senior Product Designer, based in Sydney, Australia. Originally from London, moved to Sydney in 2026.
+- Positioning: brings customer insight, discovery, data and business goals together to design, ship and improve products that people love to use, from strategy to shipped product.
 - Looking for: Senior Product Designer roles in Sydney, permanent or contract.
 - Focus: complex B2B SaaS platforms, two-sided marketplaces, growth and monetisation, AI-assisted products.
 - Strengths: systems thinking (architecture background), end-to-end UX/UI, research and discovery, experimentation and A/B testing, commercial problem-solving, working with Product and Engineering.
@@ -19,7 +20,7 @@
 
 ## Case studies
 
-Each case study states the role, team and context. Results are published on the case study pages. Team results are reported as team results, not individual attribution.
+Each case study states the role, team and context, and has a floating section nav (summary, problem, research, experiments, decisions and more). The site frames the three as designing for conversion, supply growth and activation. Results below match the case study pages and the CV. Team results are reported as team results, not individual attribution.
 
 ### Venue Finder - HeadBox (demand side)
 
@@ -28,7 +29,8 @@ https://ashnidave.com/venue-finder
 - Context: two-sided venue marketplace. Guests had to complete a long briefing flow, and venue hosts received low-quality leads.
 - Role: sole product designer, working with 4 engineers.
 - What was designed: a replacement for the 13-step briefing flow, an AI-assisted discovery experience, and a paid Spotlight placement model that balances guest intent, host lead quality and marketplace revenue.
-- Outcome on the site: +30% qualified inbound enquiries.
+- Outcomes on the site: +30% qualified inbound enquiries; guests who shortlisted venues themselves were 27% more likely to book; a new paid Spotlight placement revenue line for hosts. Starting point: 83% of guests dropped off in the 13-step flow.
+- Timescale: 2 months, 2-week experiment cycles.
 
 ### HostHQ - HeadBox (supply side)
 
@@ -37,7 +39,8 @@ https://ashnidave.com/hosthq
 - Context: four fragmented host-facing products consolidated into one B2B platform for venue partners.
 - Role: Senior Product Designer. Owned the focus-group research, consolidation strategy, MVP scope, information architecture and workflow redesign. Worked with stakeholders including platform clients, the CEO, CTO, Head of Marketing and Head of Venue Sales.
 - Framing: a product architecture and business problem, not only a navigation problem.
-- Outcomes are published on the case study page as reported project outcomes.
+- Outcomes on the site: 55+ new One Platform clients in 3 months; +32% hosts reporting closed bookings; -25% navigation support tickets.
+- Timescale: 3 months, 0 to 1, discovery to full release.
 
 ### TreeAssist - Findmypast
 
@@ -46,7 +49,17 @@ https://ashnidave.com/tree-assist
 - Context: onboarding for a family-tree product, where many new users left before reaching value.
 - Role: Product Designer, working with the Lead Product Designer, a PM, data science and engineering, in 2-week experiment cycles.
 - What was designed: AI-assisted onboarding that suggests tasks and hints, tested through A/B experiments.
-- Outcomes are published on the case study page as team A/B experiment results.
+- Outcomes on the site (team A/B experiment results): +18% free-trial starts; +8% trial-to-subscription conversion; +26% users building trees with 10+ people; -13% onboarding drop-off. Starting point: 41% of new users left before reaching value, after 8 onboarding forms; the redesign cut this to 3 forms with AI-suggested relatives.
+- Timescale: 2 months, 2-week experiment cycles.
+
+## How I use AI
+
+The site has a section, "How I design AI products", with these principles:
+
+- Know when not to use AI, introducing a human in the loop.
+- Always define the guardrails.
+- Design the wait.
+- AI in my process: this website was designed and built with Claude Code; Claude and Cursor are used to rapidly prototype ideas, and AI helps synthesise requirements, analyse data, research competitors and streamline engineering handovers. AI helps me move faster and explore further. The judgement stays human.
 
 ## Experience
 

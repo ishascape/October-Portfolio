@@ -1,0 +1,117 @@
+/* The blue illustrated cursor. Only switched on by Cursor.tsx for mouse users; everyone else keeps the normal cursor. */
+html.cc-on,
+html.cc-on * {
+  cursor: none !important;
+}
+.cc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms var(--ease-pen);
+}
+.cc.is-visible {
+  opacity: 1;
+}
+.cc svg {
+  position: absolute;
+  width: 28px;
+  max-width: none;
+  height: 28px;
+  overflow: visible;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  /* A paper-coloured edge keeps the blue cursor visible over blue buttons. */
+  filter: drop-shadow(1.2px 0 0 var(--paper)) drop-shadow(-1.2px 0 0 var(--paper)) drop-shadow(0 1.2px 0 var(--paper))
+    drop-shadow(0 -1.2px 0 var(--paper)) drop-shadow(0 1px 2px rgb(0 0 0 / 0.25));
+}
+.cc .f {
+  fill: var(--marker);
+  stroke: var(--marker);
+  stroke-width: 1.4;
+}
+.cc .d {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.6;
+}
+/* Hotspots: the arrow tip and the fingertip sit on the real pointer position. */
+.cc__arrow {
+  left: -4px;
+  top: -3px;
+  transform-origin: 4px 3px;
+  animation: cc-nudge 2.8s ease-in-out infinite;
+}
+.cc__hand {
+  left: -12px;
+  top: -3px;
+  transform-origin: 12px 3px;
+  opacity: 0;
+  transform: scale(0.6);
+}
+.cc.is-hand .cc__arrow {
+  opacity: 0;
+  animation: none;
+}
+.cc.is-hand .cc__hand {
+  opacity: 1;
+  animation:
+    cc-pop 260ms var(--ease-pen) both,
+    cc-tap 1.3s 260ms ease-in-out infinite;
+}
+.cc.is-down .cc__arrow {
+  transform: scale(0.88);
+}
+.cc.is-down.is-hand .cc__hand {
+  animation: none;
+  transform: translateY(2px) scale(0.9);
+}
+/* The arrow sways a touch while it waits. */
+@keyframes cc-nudge {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-6deg);
+  }
+}
+/* The hand pops in from the fingertip. */
+@keyframes cc-pop {
+  0% {
+    transform: scale(0.6) rotate(-12deg);
+  }
+  60% {
+    transform: scale(1.12) rotate(4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+/* Then the finger taps, over and over, as if it is asking to be clicked. */
+@keyframes cc-tap {
+  0%,
+  55%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  70% {
+    transform: translateY(-3px) rotate(-3deg);
+  }
+  85% {
+    transform: translateY(1px) rotate(1deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc__arrow,
+  .cc.is-hand .cc__hand {
+    animation: none;
+  }
+  .cc.is-hand .cc__hand {
+    transform: none;
+  }
+}

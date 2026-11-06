@@ -6,7 +6,9 @@ import type { DecisionSketch } from '../components/DecisionFork'
 import hosthqHero from '../assets/hosthq-hero.webp'
 import hosthqBeforeAfter from '../assets/hosthq-before-after.webp'
 import vfCardDesigns from '../assets/venue-finder-card-designs.webp'
-import vfHero from '../assets/venue-finder-hero.webp'
+import vfInHand from '../assets/venue-finder-in-hand.webp'
+import vfHero from '../assets/venue-finder-card-poster.webp'
+import vfHeroVideo from '../assets/venue-finder-card.mp4'
 import vfConcierge from '../assets/venue-finder-concierge.webp'
 import vfV1Disruptive from '../assets/vf-v1-disruptive.webp'
 import vfBriefLifecycle from '../assets/venue-finder-brief-lifecycle.webp'
@@ -76,6 +78,7 @@ export interface Section {
     height: number
     bordered?: boolean
   } // a real screenshot; plainCaption sets the caption in the normal font
+  imageAfter?: { src: string; alt: string; width: number; height: number } // a full-width image below the image above, no caption
   planImage?: { src: string; alt: string; width: number; height: number; bordered?: boolean; transparent?: boolean } // a full-width image under this section
   planImageTop?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // above the third, with a handwritten caption below
   planImage3?: { src: string; alt: string; caption: string; width: number; height: number; bordered?: boolean } // a third, below the second
@@ -95,12 +98,13 @@ export interface CaseStudyPage {
   id: CaseStudyId
   // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
   // under the first section instead of the header.
-  heroImage?: { src: string; alt: string; width: number; height: number }
+  heroImage?: { src: string; alt: string; width: number; height: number; video?: string }
   kicker: string
   subtitle: string
   meta: { label: string; value: string }[]
   problem: string
   solution: string
+  hypothesis: { if: string; then: string; when: string } // shown under Problem and Bet in the summary
   impact: Metric[]
   // Discreet line under the impact figures saying how far to trust them.
   impactNote?: string
@@ -112,13 +116,13 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     id: 'venue-finder',
     heroImage: {
       src: vfHero,
-      alt: "A hand holding a phone and tapping a Venue Finder venue card. The card shows a Spotlight tag, Responds fast, a photo of Junsei, a yakitori restaurant in Marylebone, a short description, and I'm interested and Not for me buttons.",
-      width: 1536,
-      height: 1024,
+      alt: "A phone showing a Venue Finder venue card. The card shows a Spotlight tag, Responds fast, a photo of Junsei, a yakitori restaurant in Marylebone, a short description, and I'm interested and Not for me buttons.",
+      width: 1440,
+      height: 1200,
+      video: vfHeroVideo, // plays on a loop; the image above (your 6:5 poster) is the fallback
     },
     kicker: 'HeadBox · Demand side',
-    subtitle:
-      'AI venue matching that lifted qualified enquiries 30% on a two-sided events marketplace. Sole designer, 4 engineers, 2 months.',
+    subtitle: 'AI venue matching that lifted qualified enquiries 30% on a two-sided events marketplace.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
       { label: 'Team', value: '4 engineers' },
@@ -129,6 +133,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       'Low-quality leads were costing HeadBox paying venues. Guests filled 13 steps before seeing a venue and 83% dropped off. Hosts got vague briefs and Lead Feed churn hit 55%.',
     solution:
       'Judge success on lead quality, not volume. Guests describe their event and see matched venues straight away. Ranking blends relevance with Spotlight, a paid boost hosts add to their subscription, which opened a new revenue line.',
+    hypothesis: {
+      if: 'we enable guests to discover and shortlist relevant venues independently, rather than relying on lengthy briefs and manual matching',
+      then: 'we will increase qualified booking enquiries and improve the value delivered to paying hosts',
+      when: 'guests can identify suitable venues and express clear booking intent with less friction',
+    },
     impact: [
       { value: '+30%', label: 'Qualified inbound enquiries' },
       { value: '27%', label: 'More likely to book when guests shortlisted venues themselves' },
@@ -295,6 +304,12 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           width: 1492,
           height: 514,
         },
+        imageAfter: {
+          src: vfInHand,
+          alt: 'A hand tapping the Venue Finder recommendation card on a phone, showing the Junsei venue with Spotlight and Responds fast tags and I’m interested and Not for me buttons.',
+          width: 1536,
+          height: 1024,
+        },
       },
     ],
   },
@@ -324,6 +339,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       'Hosts came to HeadBox for leads but ran their business elsewhere. Our platform was four products with confusing navigation and inconsistent data. We were shipping our org chart.',
     solution:
       'Research before redesign, then structure before polish. One platform built around hosts’ jobs, shipped before peak season, with 3D Studio, full reporting and mobile deferred.',
+    hypothesis: {
+      if: 'we consolidate lead management, proposals and reporting into a single workflow built around how hosts operate',
+      then: 'we will improve enquiry-to-booking conversion and strengthen host retention',
+      when: 'hosts can manage their entire booking pipeline efficiently without switching between disconnected tools',
+    },
     impact: [
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
@@ -500,6 +520,11 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       '41% of new users left before reaching value. Onboarding asked for 8 forms, then showed a blank family tree.',
     solution:
       'Deliver value before asking for data. AI relative suggestions and guided steps replaced form-filling, tested in 2-week cycles. Onboarding went from 8 forms to 3.',
+    hypothesis: {
+      if: 'we reduce onboarding friction and help new users discover meaningful family connections earlier',
+      then: 'we will increase activation, trial starts and paid subscription conversion',
+      when: 'users experience the value of building their family tree before encountering significant effort or commitment',
+    },
     impact: [
       { value: '+18%', label: 'Free-trial starts' },
       { value: '+8%', label: 'Trial-to-subscription conversion' },

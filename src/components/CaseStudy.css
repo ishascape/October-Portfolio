@@ -1,19 +1,19 @@
 .case__header {
   padding-block: var(--space-4) var(--space-5);
-  background-image:
-    linear-gradient(to right, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair)),
-    linear-gradient(to bottom, rgb(var(--grid-line) / 0.4) var(--line-hair), transparent var(--line-hair));
-  background-size: 24px 24px;
-  border-bottom: var(--line-thin) solid var(--ink);
+  background-color: var(--surface);
+  background-image: var(--paper-dots), var(--watercolour);
+  background-size:
+    24px 24px,
+    360px 360px;
+  background-blend-mode: multiply;
+  border-bottom: var(--line-thin) solid var(--marker); /* divides the dotted header from the case study body */
 }
 
 .case__sheet {
   display: flex;
   justify-content: space-between;
   gap: var(--space-3);
-  padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
-  margin-bottom: var(--space-5);
+  margin-bottom: 24px; /* gap to the kicker line below */
 }
 .case__sheet a {
   text-decoration: none;
@@ -90,6 +90,15 @@
   width: 100%;
   height: auto;
 }
+.case__hero-image--video {
+  background: #af211a; /* the clip's red, so the frame never flashes white */
+}
+.case__hero-image--video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  object-fit: cover; /* the 3:2 poster is cropped to the clip's shape */
+}
 .case__plan {
   padding-block: var(--space-4) var(--space-5);
 }
@@ -143,8 +152,8 @@
 /* ---------- TL;DR ---------- */
 
 .case__tldr {
+  scroll-margin-top: 72px;
   padding-block: var(--space-6);
-  border-bottom: var(--line-thin) solid var(--ink);
 }
 .case__ps {
   display: grid;
@@ -153,6 +162,7 @@
 }
 .case__ps > div {
   display: grid;
+  align-content: start; /* body copy sits straight under its title, never stretched down the row */
   gap: var(--space-2);
   max-width: var(--measure);
 }
@@ -160,6 +170,10 @@
 .case__impact-label {
   font-weight: 400;
   color: var(--graphite);
+}
+/* Fixed 16px from a section title to its body copy: 8px grid gap + 8px here. */
+.case__ps h2 {
+  margin-bottom: var(--space-2);
 }
 .case__impact-label {
   margin-bottom: var(--space-3);
@@ -173,8 +187,6 @@
   display: grid;
   gap: var(--space-1);
   align-content: start;
-  padding-top: var(--space-3);
-  border-top: var(--line-building) solid var(--ink);
   color: var(--marker);
 }
 .case__impact-value {
@@ -299,7 +311,7 @@
 .case__experiments h3 {
   font-weight: 400;
   padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .case__experiments dl {
   display: grid;
@@ -524,7 +536,7 @@
 .case__decisions h3 {
   font-weight: 400;
   padding-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .case__decisions dl,
 .case__moment dl {
@@ -563,7 +575,7 @@
   font-weight: 400;
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-2);
-  border-bottom: var(--line-thin) solid var(--ink);
+  border-bottom: var(--line-thin) solid var(--marker);
 }
 .case__moment dl > div {
   display: grid;

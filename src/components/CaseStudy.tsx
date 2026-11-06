@@ -1,3 +1,4 @@
+import { HeroVideo } from './HeroVideo'
 import { caseHref, homeHref } from '../links'
 import { useEffect, useState } from 'react'
 import { Lightbox } from './Lightbox'
@@ -15,6 +16,8 @@ import { DecisionFork } from './DecisionFork'
 import { VenueShiftDiagram, VenueRankingDiagram, VenueProblemDiagram, VenueExperienceTrio } from './VenueFlows'
 import { VenueGapsFlow } from './VenueGapsFlow'
 import './CaseStudy.css'
+import { CaseNav } from './CaseNav'
+import { iconFor } from './CaseIcons'
 
 // The Key product moments prototype is a separate page in an iframe. With reduced motion it is swapped for a still.
 function VenuePrototype() {
@@ -92,7 +95,9 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
       <header className="case__header">
         <div className="container">
           <p className="label case__sheet">
-            <a href={homeHref('#work')}>← Selected work</a>
+            <a className="case__back" href={homeHref('#work')}>
+              ← Back to case studies
+            </a>
           </p>
 
           <div className="case__intro">
@@ -112,15 +117,19 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               }
             >
               {page.heroImage ? (
-                <figure className="case__hero-image">
-                  <img
-                    src={page.heroImage.src}
-                    alt={page.heroImage.alt}
-                    width={page.heroImage.width}
-                    height={page.heroImage.height}
-                    fetchPriority="high"
-                    decoding="async"
-                  />
+                <figure className={`case__hero-image${page.heroImage.video ? ' case__hero-image--video' : ''}`}>
+                  {page.heroImage.video ? (
+                    <HeroVideo src={page.heroImage.video} poster={page.heroImage.src} label={page.heroImage.alt} />
+                  ) : (
+                    <img
+                      src={page.heroImage.src}
+                      alt={page.heroImage.alt}
+                      width={page.heroImage.width}
+                      height={page.heroImage.height}
+                      fetchPriority="high"
+                      decoding="async"
+                    />
+                  )}
                 </figure>
               ) : (
                 planFigure
@@ -138,19 +147,34 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
         </div>
       </header>
 
-      <section className="case__tldr" aria-label="Summary">
+      <CaseNav
+        items={[
+          { id: 'summary', label: 'Summary', icon: 'summary' },
+          ...page.sections.map((s) => ({
+            id: sectionId(s.label),
+            label: s.label.replace(/^\d+\s*·\s*/, ''),
+            icon: iconFor(s.label),
+          })),
+        ]}
+      />
+
+      <section id="summary" className="case__tldr" aria-label="Summary">
         <div className="container">
           <div className="case__ps">
             <div>
               <h2 className="label">Problem</h2>
               <p>{page.problem}</p>
             </div>
-            <div>
-              <h2 className="label">Bet</h2>
-              <p>{page.solution}</p>
+            <div className="case__hypothesis">
+              <h2 className="label">Product hypothesis</h2>
+              {(['if', 'then', 'when'] as const).map((k) => (
+                <p key={k}>
+                  <strong>{k.toUpperCase()}</strong> {page.hypothesis[k]}
+                </p>
+              ))}
             </div>
           </div>
-          <h2 className="label case__impact-label">Result</h2>
+          <h2 className="label case__impact-label">Outcomes</h2>
           <ul className="case__impact">
             {page.impact.map((m) => (
               <li key={m.label}>
@@ -359,6 +383,18 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
                   <figcaption className={s.image.plainCaption ? 'case__caption-plain' : 'annotation'}>
                     {s.image.caption}
                   </figcaption>
+                </figure>
+              )}
+              {s.imageAfter && (
+                <figure className="case__figure case__figure--image">
+                  <img
+                    src={s.imageAfter.src}
+                    alt={s.imageAfter.alt}
+                    width={s.imageAfter.width}
+                    height={s.imageAfter.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
               )}
               {s.figures?.map((f) => (

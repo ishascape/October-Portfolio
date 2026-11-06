@@ -1,16 +1,49 @@
+import { useEffect, useRef } from 'react'
 import { education, fieldNotes, revisions } from '../data/content'
 import { Skills } from './Skills'
 import { FieldStrip } from './FieldStrip'
 import './About.css'
 
+// Winks twice, then rests in the wink, each time the face scrolls into view while scrolling up.
+function useWinkOnScrollUp(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    let lastY = window.scrollY
+    let goingUp = false
+    const onScroll = () => {
+      goingUp = window.scrollY < lastY
+      lastY = window.scrollY
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && goingUp) {
+          el.classList.remove('is-winking')
+          void el.offsetWidth // restart the animation
+          el.classList.add('is-winking')
+        }
+      },
+      { threshold: 0.6 },
+    )
+    io.observe(el)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      io.disconnect()
+    }
+  }, [ref])
+}
+
 export function About() {
+  const winkRef = useRef<HTMLSpanElement>(null)
+  useWinkOnScrollUp(winkRef)
   return (
     <section id="about" className="section about paper-sheet" aria-labelledby="about-heading">
       <div className="container">
         <div className="about__intro">
           <div className="about__title">
-            {/* A pen-drawn face above the heading. On hover it winks, smirks and flashes a sparkle. */}
-            <span className="about__wink" aria-hidden="true">
+            {/* A pen-drawn face above the heading. It winks on hover, and twice when it scrolls into view going up. */}
+            <span className="about__wink" aria-hidden="true" ref={winkRef}>
               <svg className="wink" viewBox="0 0 40 30">
                 <path className="wink__eye" d="M12 5.5 v6" />
                 <path className="wink__eye wink__eye--open" d="M26 5.5 v6" />
@@ -31,16 +64,6 @@ export function About() {
               both.
             </p>
             <p className="about__mantra">Understand the space. Challenge the brief. Design for the people using it.</p>
-            <p>
-              <strong>Complex systems, made simple.</strong> Four host tools became one platform.
-            </p>
-            <p>
-              <strong>Commercial outcomes.</strong> £500k+ from a Gift Subscription MVP. 28% less churn on guest booking
-              journeys.
-            </p>
-            <p>
-              <strong>Speed through ambiguity.</strong> New-city launch planning cut from 12+ weeks to 2.
-            </p>
           </div>
         </div>
 
@@ -88,6 +111,10 @@ export function About() {
           </tbody>
         </table>
 
+        <div className="about__expertise">
+          <Skills />
+        </div>
+
         <div className="field-notes">
           <div className="field-notes__copy">
             <h3 className="display field-notes__heading">Field notes</h3>
@@ -106,10 +133,6 @@ export function About() {
           <div className="field-notes__figures">
             <FieldStrip notes={fieldNotes} label="Field notes" />
           </div>
-        </div>
-
-        <div className="about__expertise">
-          <Skills />
         </div>
       </div>
     </section>
