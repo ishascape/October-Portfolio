@@ -925,11 +925,6 @@
     font-size: 14px;
     color: var(--graphite);
   }
-  .hero__flip-hint {
-    display: inline;
-    font-size: 16px;
-    color: var(--marker);
-  }
   /* The back of the print: plain paper with the role line in blue handwriting. */
   .hero__polaroid-back {
     position: absolute;

@@ -131,12 +131,7 @@ export function Hero() {
                   <path className="smile__mouth smile__mouth--grin" d="M9.5 14 C12 18.5 20 18.5 22.5 13.6" />
                   <path className="smile__mouth smile__mouth--smirk" d="M9.8 16.2 C13 18.4 19 18.2 23.6 12.4" />
                 </svg>
-                <span className="hero__caption-role">
-                  Senior Product Designer
-                  <span className="hero__flip-hint" aria-hidden="true">
-                    ↻
-                  </span>
-                </span>
+                <span className="hero__caption-role">Senior Product Designer</span>
               </figcaption>
               <div className="hero__polaroid-back annotation">
                 <p>Senior Product Designer</p>
