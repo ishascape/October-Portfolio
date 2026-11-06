@@ -365,79 +365,79 @@
 .dragon--peek {
   rotate: -3deg;
 }
+/* Light mode is line art: a paper fill with brand-blue lines and blue eyes. Dark mode flips it back to solid blue with
+   paper details, like the case study icons. */
 .dragon__art {
-  --d: var(--marker);
-  --dl: var(--marker);
-  --ds: var(--paper);
-  fill: var(--marker);
-  stroke: none;
+  --fill: var(--paper);
+  --line: var(--marker);
+  --edge: var(--marker);
+  --edge-h: var(--marker);
+  --edge-w: 2;
+  --tail-w: 2.4;
+  --far-wing: color-mix(in srgb, var(--marker) 16%, var(--paper));
+  fill: var(--fill);
+  stroke: var(--edge);
+  stroke-width: var(--edge-w);
   stroke-linejoin: round;
   stroke-linecap: round;
 }
-.d-body {
-  fill: var(--marker);
+:root[data-theme='dark'] .dragon__art {
+  --fill: var(--marker);
+  --line: var(--paper);
+  --edge: transparent;
+  --edge-h: var(--paper);
+  --edge-w: 0;
+  --tail-w: 7;
+  --far-wing: color-mix(in srgb, var(--marker) 72%, var(--paper));
 }
-/* Horns and fins get a thin paper edge, so they read as separate from the head. */
+.d-body {
+  fill: var(--fill);
+}
 .d-horn,
 .d-fin {
-  fill: var(--marker);
-  stroke: var(--paper);
-  stroke-width: 1.6;
+  fill: var(--fill);
+  stroke: var(--edge-h);
+  stroke-width: 1.8;
 }
 .d-wing > path:first-child {
-  fill: var(--marker);
+  fill: var(--fill);
 }
 .d-wing--far > path:first-child {
-  opacity: 0.72;
+  fill: var(--far-wing);
 }
 .d-vein,
-.d-line {
+.d-line,
+.d-belly,
+.d-ear {
   fill: none;
-  stroke: var(--paper);
-  stroke-width: 1.5;
-}
-.d-belly {
-  fill: none;
-  stroke: var(--paper);
+  stroke: var(--line);
   stroke-width: 1.5;
 }
 .d-snout,
 .d-cheek,
-.d-tongue {
-  display: none;
-}
-.d-ear {
-  fill: none;
-  stroke: var(--paper);
-  stroke-width: 1.5;
-}
+.d-tongue,
 .d-tuft {
   display: none;
 }
 .d-tail {
   fill: none;
   stroke: var(--marker);
-  stroke-width: 7;
+  stroke-width: var(--tail-w);
 }
-.d-eye {
-  fill: var(--paper);
+.d-eye,
+.d-nostril,
+.d-mouth,
+.d-toe {
+  fill: var(--line);
+  stroke: none;
 }
 .d-glint {
-  fill: var(--marker);
+  fill: var(--fill);
+  stroke: none;
   r: 2.7;
 }
 .d-glint[r='1'] {
   display: none;
-}
-.d-nostril {
-  fill: var(--paper);
-}
-.d-mouth {
-  fill: var(--paper);
-  stroke: none;
-}
-.d-toe {
-  fill: var(--paper);
 }
 .d-crumb {
   fill: var(--paper);
@@ -455,31 +455,31 @@
 /* Sizes and places. Each svg is placed so a known point of the drawing lands on a known point of the card. */
 /* Bite: the dragon sits in a scalloped nibble out of the top-right corner (a mask on the card). */
 .card--bite {
-  --bite: radial-gradient(circle 44px at 100% 0, #0000 97%, #000);
-  --bite-1: radial-gradient(circle 18px at calc(100% - 58px) 0, #0000 97%, #000);
-  --bite-2: radial-gradient(circle 18px at 100% 58px, #0000 97%, #000);
-  --bite-3: radial-gradient(circle 15px at calc(100% - 38px) 32px, #0000 97%, #000);
+  --bite: radial-gradient(circle 22px at 100% 0, #0000 97%, #000);
+  --bite-1: radial-gradient(circle 9px at calc(100% - 29px) 0, #0000 97%, #000);
+  --bite-2: radial-gradient(circle 9px at 100% 29px, #0000 97%, #000);
+  --bite-3: radial-gradient(circle 7.5px at calc(100% - 19px) 16px, #0000 97%, #000);
   -webkit-mask: var(--bite), var(--bite-1), var(--bite-2), var(--bite-3);
   -webkit-mask-composite: source-in;
   mask: var(--bite), var(--bite-1), var(--bite-2), var(--bite-3);
   mask-composite: intersect;
 }
 .dragon--bite {
-  width: 140px;
-  top: -106px;
-  right: -34px;
+  width: 70px;
+  top: -53px;
+  right: -17px;
 }
 /* Peek: over the top edge, left third. The paws sit on the edge. */
 .dragon--peek {
-  width: 120px;
-  top: -92px;
+  width: 60px;
+  top: -46px;
   left: 14%;
 }
 /* Fly: over the top-left corner, tail trailing off it. */
 .dragon--fly {
-  width: 150px;
-  top: -112px;
-  left: -34px;
+  width: 75px;
+  top: -56px;
+  left: -17px;
 }
 @media (prefers-reduced-motion: no-preference) {
   .dragon__chew {
@@ -516,26 +516,53 @@
 }
 @media (max-width: 599px) {
   .dragon--bite {
-    width: 112px;
-    top: -86px;
-    right: -16px;
+    width: 56px;
+    top: -43px;
+    right: -8px;
   }
   .dragon--peek {
-    width: 96px;
-    top: -74px;
+    width: 48px;
+    top: -37px;
   }
   .dragon--fly {
-    width: 120px;
-    top: -90px;
-    left: -10px;
+    width: 60px;
+    top: -45px;
+    left: -5px;
   }
 }
 /* The overhanging dragons need a little more air above their cards. */
 .work__list > li:nth-child(n + 2) {
-  margin-top: 56px;
+  margin-top: 36px;
 }
 
 /* Dragons can overhang the card sides; never let them make the page scroll sideways. */
 #work {
   overflow-x: clip;
+}
+
+/* the Japanese dragon: a thick blue ribbon with a paper-coloured core in light mode, so it reads as an outline */
+.d-ribbon,
+.d-ribbon-in {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.d-ribbon {
+  stroke: var(--marker);
+  stroke-width: 16;
+}
+.d-ribbon--thin {
+  stroke-width: 10;
+}
+.d-ribbon-in {
+  stroke: var(--fill);
+  stroke-width: 12.5;
+}
+.d-ribbon-in--thin {
+  stroke-width: 6.5;
+}
+.d-whisker {
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 1.5;
 }
