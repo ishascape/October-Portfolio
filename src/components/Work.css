@@ -40,6 +40,7 @@
 }
 /* Cards in a row share one height and width; the call to action sits on the bottom edge. */
 .work__list > li {
+  position: relative;
   display: grid;
 }
 
@@ -346,4 +347,199 @@
   .card__cta .button {
     border-radius: 0 0 var(--radius) 0;
   }
+}
+
+/* ---------- 6 Nov 2026: baby dragons on the case study cards ---------- */
+.dragon {
+  position: absolute;
+  z-index: 2;
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 3px rgb(var(--shadow-ink) / 0.22));
+}
+.dragon__art {
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  fill: none;
+}
+.dragon__art--blue {
+  --d: #8fb0ea;
+  --dl: #c6d8f6;
+}
+.dragon__art--coral {
+  --d: #f4958a;
+  --dl: #fac9c2;
+}
+.dragon__art--gold {
+  --d: #f4c95d;
+  --dl: #fae6a6;
+}
+.d-body {
+  fill: var(--d);
+}
+.d-belly {
+  fill: #fff3d6;
+  stroke: none;
+}
+.d-wing {
+  fill: var(--dl);
+}
+.d-wing--far {
+  fill: color-mix(in srgb, var(--d) 70%, #1c1b19);
+}
+.d-horn {
+  fill: #fff3d6;
+  stroke-width: 1.4;
+}
+.d-spikes {
+  stroke: var(--d);
+  stroke-width: 3;
+}
+.d-tail {
+  stroke-width: 3.2;
+  stroke: var(--d);
+  paint-order: stroke;
+}
+.d-eye {
+  fill: #1c1b19;
+  stroke: none;
+}
+.d-glint {
+  fill: #fff;
+  stroke: none;
+}
+.d-white {
+  fill: #fff;
+  stroke-width: 1.4;
+}
+.d-cheek {
+  fill: #f08a9a;
+  stroke: none;
+  opacity: 0.7;
+}
+.d-line {
+  fill: none;
+  stroke-width: 1.6;
+}
+.d-mouth {
+  fill: #5a2530;
+  stroke-width: 1.4;
+}
+.d-crumb {
+  fill: #fff;
+  stroke-width: 1.4;
+}
+.d-trail {
+  stroke-dasharray: 2 5;
+  opacity: 0.55;
+}
+
+/* Bite: a scalloped nibble out of the top-right corner, with the dragon's head in the hole. The corner of the
+   svg (100, 60 in its 140x116 box) sits on the card corner. */
+.card--bite {
+  --bite: radial-gradient(circle 44px at 100% 0, #0000 97%, #000);
+  --bite-1: radial-gradient(circle 18px at calc(100% - 58px) 0, #0000 97%, #000);
+  --bite-2: radial-gradient(circle 18px at 100% 58px, #0000 97%, #000);
+  --bite-3: radial-gradient(circle 15px at calc(100% - 38px) 32px, #0000 97%, #000);
+  -webkit-mask: var(--bite), var(--bite-1), var(--bite-2), var(--bite-3);
+  -webkit-mask-composite: source-in;
+  mask: var(--bite), var(--bite-1), var(--bite-2), var(--bite-3);
+  mask-composite: intersect;
+}
+.dragon--bite {
+  top: -77px;
+  right: -51px;
+  width: 180px;
+}
+/* Peek: over the top edge, left third. The svg's bottom (y 60 of 66) meets the card's top edge. */
+.dragon--peek {
+  top: -78px;
+  left: 14%;
+  width: 150px;
+}
+/* Fly: along the top edge from the top-left corner, tail trailing off the corner. */
+.dragon--fly {
+  top: -80px;
+  left: -44px;
+  width: 200px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dragon__chew {
+    transform-box: fill-box;
+    transform-origin: 80% 80%;
+    animation: dragon-chew 900ms ease-in-out infinite;
+  }
+  .dragon__flap {
+    transform-box: fill-box;
+    transform-origin: 90% 100%;
+    animation: dragon-flap 700ms ease-in-out infinite alternate;
+  }
+  .dragon--fly {
+    animation: dragon-bob 2.4s ease-in-out infinite alternate;
+  }
+  .dragon__look {
+    animation: dragon-look 5s ease-in-out infinite;
+  }
+}
+@keyframes dragon-chew {
+  50% {
+    transform: rotate(-5deg) translate(1px, -1px);
+  }
+}
+@keyframes dragon-flap {
+  to {
+    transform: rotate(12deg) scaleY(0.82);
+  }
+}
+@keyframes dragon-bob {
+  to {
+    translate: 4px -6px;
+  }
+}
+@keyframes dragon-look {
+  0%,
+  40% {
+    translate: 0 0;
+  }
+  50%,
+  80% {
+    translate: -2px 0;
+  }
+  90%,
+  100% {
+    translate: 0 0;
+  }
+}
+@media (max-width: 599px) {
+  .dragon--bite {
+    width: 130px;
+    top: -56px;
+    right: -37px;
+  }
+  .dragon--peek {
+    width: 110px;
+    top: -57px;
+  }
+  .dragon--fly {
+    width: 150px;
+    top: -60px;
+    left: -16px;
+  }
+  /* The overhanging dragons need a little more air above their cards. */
+  .work__list > li:nth-child(n + 2) {
+    margin-top: 40px;
+  }
+}
+@media (min-width: 600px) {
+  .work__list > li:nth-child(n + 2) {
+    margin-top: 40px;
+  }
+}
+
+/* Dragons can overhang the card sides; never let them make the page scroll sideways. */
+#work {
+  overflow-x: clip;
 }

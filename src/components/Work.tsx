@@ -3,6 +3,7 @@ import { caseHref } from '../links'
 import { caseStudies } from '../data/content'
 import { CardCarousel } from './CardCarousel'
 import { CardVideo } from './CardVideo'
+import { CardDragon, type DragonKind } from './CardDragon'
 import { AiPrinciples } from './AiPrinciples'
 import { RocketCrayon } from './RocketCrayon'
 import './Work.css'
@@ -21,6 +22,9 @@ function usePlayOnView(ref: React.RefObject<HTMLElement | null>) {
   }, [ref])
 }
 
+// One baby dragon per case study card: a bite out of the corner, a peek over the edge, a flight across a corner.
+const dragons: Record<string, DragonKind> = { 'venue-finder': 'bite', hosthq: 'peek', treeassist: 'fly' }
+
 export function Work() {
   const headingRef = useRef<HTMLHeadingElement>(null)
   usePlayOnView(headingRef)
@@ -36,7 +40,12 @@ export function Work() {
         <ol className="work__list">
           {caseStudies.map((s) => (
             <li key={s.id}>
-              <article className="card" aria-labelledby={`card-${s.id}`}>
+              {/* Outside the article, so the bite mask on the card does not clip the dragon. */}
+              {dragons[s.id] && <CardDragon kind={dragons[s.id]} />}
+              <article
+                className={dragons[s.id] ? `card card--${dragons[s.id]}` : 'card'}
+                aria-labelledby={`card-${s.id}`}
+              >
                 {s.video ? (
                   <CardVideo src={s.video.src} poster={s.video.poster} background={s.video.background} />
                 ) : (
