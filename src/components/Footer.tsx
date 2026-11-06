@@ -3,19 +3,6 @@ import { availability, contact } from '../data/content'
 import { KeyPlan } from './KeyPlan'
 import './Footer.css'
 
-function AiLink() {
-  return (
-    <a href={`${import.meta.env.BASE_URL}llms.txt`} className="footer__ai">
-      {/* A line-drawn robot head. */}
-      <svg viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M10 2.5 v2.5 M4 7.5 h12 a1.5 1.5 0 0 1 1.5 1.5 v6 a1.5 1.5 0 0 1 -1.5 1.5 h-12 a1.5 1.5 0 0 1 -1.5 -1.5 v-6 a1.5 1.5 0 0 1 1.5 -1.5 Z M7.5 11 v1.5 M12.5 11 v1.5 M1 11 v2.5 M19 11 v2.5" />
-        <circle cx="10" cy="2.5" r="1" />
-      </svg>
-      Hey AI, read me <span aria-hidden="true">↗</span>
-    </a>
-  )
-}
-
 // On the home page the footer is the drawing's title sheet; case studies get only the sign-off bar: a key plan on the left, the legend and sign-off on the right.
 export function Footer({ onHome }: { onHome: boolean }) {
   const linkedinHandle = contact.linkedin?.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
@@ -125,9 +112,6 @@ export function Footer({ onHome }: { onHome: boolean }) {
                               </a>
                             </li>
                           )}
-                          <li>
-                            <AiLink />
-                          </li>
                         </ul>
                       </nav>
                     </dd>
@@ -173,13 +157,6 @@ export function Footer({ onHome }: { onHome: boolean }) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
-      {!onHome && (
-        <div className="container">
-          <div className="footer__bar footer__bar--plain">
-            <AiLink />
           </div>
         </div>
       )}

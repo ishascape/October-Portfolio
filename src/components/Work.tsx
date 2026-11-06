@@ -46,7 +46,7 @@ export function Work() {
                 <div className="card__body">
                   <p className="label card__meta">
                     <span>{s.company}</span>
-                    <span className="card__outcome">{s.outcome}</span>
+                    <span className="card__outcome" data-nosnippet>{s.outcome}</span>
                   </p>
                   <h3 id={`card-${s.id}`} className="card__title">
                     <a href={caseHref(s.slug)} className="card__link">
@@ -56,12 +56,12 @@ export function Work() {
                   <p className="card__summary">{s.summary}</p>
 
                   <p className="card__metric">
-                    <span className="card__metric-value">{s.leadMetric.value}</span>
-                    <span className="label">{s.leadMetric.label}</span>
+                    <span className="card__metric-value" data-nosnippet>{s.leadMetric.value}</span>
+                    <span className="label" data-nosnippet>{s.leadMetric.label}</span>
                   </p>
                   <ul className="card__supporting">
                     {s.supporting.map((m) => (
-                      <li key={m}>{m}</li>
+                      <li key={m}><span data-nosnippet>{m}</span></li>
                     ))}
                   </ul>
 

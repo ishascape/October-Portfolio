@@ -12,7 +12,7 @@ Copy, claims and case study depth are pitched at **a Senior Product Designer at 
 - **Never invent** an achievement, metric, quote or screenshot. If a figure isn't in the CV or a case study page, it doesn't go on the site.
 - Figures as they stand: Venue Finder **+30%** qualified inbound enquiries (not +33%); **38 countries** (not 39); the **-28% churn** belongs to the guest booking journeys work, not HostHQ. Never use a match-rate figure.
 - Every AI principle and expertise point must trace to a case study page or the CV (there's a comment in `AiPrinciples.tsx` saying so).
-- Never mention visa sponsorship anywhere: site, metadata or `llms.txt`.
+- Never mention visa sponsorship anywhere: site or metadata.
 
 ## Mechanics
 

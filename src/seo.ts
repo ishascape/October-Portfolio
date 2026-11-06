@@ -1,10 +1,9 @@
 import { availability, capabilities, caseStudies, contact } from './data/content'
 import { caseStudyPages } from './data/caseStudyPages'
 import { SITE_URL, type Page } from './links'
-import llmsBrief from './data/llms.md?raw'
 
 // Everything a search engine or AI assistant reads about the site: per-page meta, JSON-LD,
-// sitemap, robots.txt and llms.txt. All of it is built from the same content data as the pages.
+// sitemap and robots.txt. All of it is built from the same content data as the pages.
 
 const NAME = 'Ashni Dave'
 const JOB = 'Senior Product Designer'
@@ -128,10 +127,8 @@ export function sitemap() {
 }
 
 export function robots() {
-  return `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
-}
-
-// A plain-text brief for AI assistants (https://llmstxt.org), written by Ashni in src/data/llms.md.
-export function llmsTxt() {
-  return llmsBrief
+  // Normal search crawlers stay allowed. These AI training and answer crawlers are asked to stay away (best effort).
+  const aiBots = ['Google-Extended', 'GPTBot', 'ClaudeBot', 'PerplexityBot', 'CCBot', 'Applebot-Extended']
+  const optOut = aiBots.map((bot) => `User-agent: ${bot}\nDisallow: /\n`).join('\n')
+  return `User-agent: *\nAllow: /\n\n${optOut}\nSitemap: ${SITE_URL}/sitemap.xml\n`
 }
