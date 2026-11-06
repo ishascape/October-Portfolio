@@ -141,55 +141,11 @@ export function Hero() {
               <button
                 type="button"
                 className="hero__flip"
-                aria-hidden="true"
-                tabIndex={-1}
+                aria-pressed={flipped}
+                aria-label={flipped ? 'Flip the polaroid back to the photo' : 'Flip the polaroid to read my role'}
                 onClick={() => setFlipped((f) => !f)}
               />
             </div>
-            {/* The flip control sits outside the print (phones only), so it never reads as part of the card. */}
-            <button
-              type="button"
-              className="hero__flip-btn"
-              aria-pressed={flipped}
-              aria-label={flipped ? 'Flip the polaroid back to the photo' : 'Flip the polaroid to read my role'}
-              onClick={() => setFlipped((f) => !f)}
-            >
-              <span aria-hidden="true">↻</span>
-            </button>
-            {/* A chrome thumbtack with a baby dragon on top, holding the print to the page. */}
-            <svg className="hero__pin" viewBox="0 0 64 76" aria-hidden="true" focusable="false">
-              <defs>
-                <radialGradient id="pin-chrome" cx="35%" cy="30%" r="75%">
-                  <stop offset="0" stopColor="#ffffff" />
-                  <stop offset="0.35" stopColor="#c9d0d8" />
-                  <stop offset="0.7" stopColor="#7d8791" />
-                  <stop offset="1" stopColor="#4a525b" />
-                </radialGradient>
-                <linearGradient id="pin-needle" x1="0" x2="1">
-                  <stop offset="0" stopColor="#e8ecf0" />
-                  <stop offset="1" stopColor="#6c757e" />
-                </linearGradient>
-              </defs>
-              {/* baby dragon, sitting on the dome */}
-              <g className="pin__dragon">
-                <path className="pin__tail" d="M44 40 C56 40 58 28 52 25 C55 31 50 34 44 34" />
-                <path className="pin__wing" d="M25 29 L15 14 L24 19 L27 9 L33 25 Z" />
-                <path className="pin__wing pin__wing--far" d="M36 28 L46 14 L38 19 L36 10 L31 25 Z" />
-                <ellipse className="pin__body" cx="32" cy="34" rx="12" ry="8.5" />
-                <circle className="pin__head" cx="25" cy="23" r="7.5" />
-                <path className="pin__horn" d="M21 17.5 L19 11.5 L24.5 16 Z M28 16 L29.5 10.5 L31.5 17 Z" />
-                <circle className="pin__eye" cx="22.8" cy="22.4" r="1.4" />
-                <circle className="pin__eye pin__eye--far" cx="28" cy="22.4" r="1.4" />
-                <path className="pin__smile" d="M22 26.4 Q25 28.6 28.5 26.2" />
-                <path className="pin__spots" d="M30 27.5 L33.5 24.5 M35 29.5 L38 26.5 M39 33 L41.5 30.5" />
-              </g>
-              {/* chrome dome, collar and needle */}
-              <ellipse cx="32" cy="46.5" rx="19" ry="5.5" fill="#3d444c" opacity="0.28" />
-              <path d="M13 44 C13 36 21 33 32 33 C43 33 51 36 51 44 C51 49 43 51.5 32 51.5 C21 51.5 13 49 13 44 Z" fill="url(#pin-chrome)" />
-              <path d="M19 40 C22 36.5 27 35.5 31 35.5" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity="0.9" />
-              <rect x="24" y="50" width="16" height="6" rx="2" fill="url(#pin-chrome)" />
-              <path d="M30 56 H34 L32.8 70 L32 73 L31.2 70 Z" fill="url(#pin-needle)" />
-            </svg>
             {process.map((step, i) => (
               <button
                 key={step.icon}
