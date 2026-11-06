@@ -1,6 +1,6 @@
 // Case-study pages, rebuilt from the live ashnidave.com pages (read 14 Oct 2026).
 // The CV is the source of truth (Ashni, 15 Oct 2026). Venue Finder match-rate claims are left out, and
-// the CV's "-28% churn" belongs to the guest booking journeys work, so it is not shown on HostHQ.
+// the CV's "-28% churn" was first kept off HostHQ; Ashni asked for it on HostHQ as "-28% subscription churn in Q1" (6 Nov 2026).
 import type { CaseStudyId } from './content'
 import type { DecisionSketch } from '../components/DecisionFork'
 import hosthqHero from '../assets/hosthq-hero.webp'
@@ -347,7 +347,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     impact: [
       { value: '55+', label: 'New One Platform clients in 3 months' },
       { value: '+32%', label: 'Hosts reporting closed bookings' },
-      { value: '-25%', label: 'Navigation support tickets' },
+      { value: '-28%', label: 'Subscription churn in Q1' },
     ],
     impactNote: 'Team outcomes from the One Platform launch.',
     sections: [
