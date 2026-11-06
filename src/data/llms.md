@@ -39,7 +39,7 @@ https://ashnidave.com/hosthq
 - Context: four fragmented host-facing products consolidated into one B2B platform for venue partners.
 - Role: Senior Product Designer. Owned the focus-group research, consolidation strategy, MVP scope, information architecture and workflow redesign. Worked with stakeholders including platform clients, the CEO, CTO, Head of Marketing and Head of Venue Sales.
 - Framing: a product architecture and business problem, not only a navigation problem.
-- Outcomes on the site: 55+ new One Platform clients in 3 months; +32% hosts reporting closed bookings; -25% navigation support tickets.
+- Outcomes on the site: 55+ new One Platform clients in 3 months; +32% hosts reporting closed bookings; -28% subscription churn in Q1.
 - Timescale: 3 months, 0 to 1, discovery to full release.
 
 ### TreeAssist - Findmypast

@@ -99,8 +99,8 @@ export const caseStudies: CaseStudy[] = [
     district: 'HeadBox',
     role: 'Senior Product Designer · 3 months, discovery to release',
     outcome: 'Supply growth',
-    leadMetric: { value: '55+', label: 'new One Platform clients in 3 months' },
-    supporting: ['+32% hosts reporting closed bookings', '-25% navigation support tickets'],
+    leadMetric: { value: '-28%', label: 'subscription churn in Q1' },
+    supporting: ['55+ new One Platform clients in 3 months', '+32% hosts reporting closed bookings'],
     system:
       'Hosts, leadership, Sales, Support · four product lines rebuilt around host workflows · proposals, dashboards and reporting in one place',
     tags: ['B2B SaaS', 'Supply growth', 'Platform consolidation'],
