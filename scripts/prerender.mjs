@@ -1,4 +1,4 @@
-// Renders every page to static HTML after the client build, plus sitemap, robots and llms.txt.
+// Renders every page to static HTML after the client build, plus sitemap and robots.txt.
 // Usage: node scripts/prerender.mjs <client outDir> <ssr outDir>
 import { readFileSync, writeFileSync, rmSync } from 'node:fs'
 import { join, resolve } from 'node:path'
@@ -18,5 +18,4 @@ for (const page of server.pages()) {
 }
 writeFileSync(join(outDir, 'sitemap.xml'), server.sitemap())
 writeFileSync(join(outDir, 'robots.txt'), server.robots())
-writeFileSync(join(outDir, 'llms.txt'), server.llmsTxt())
 rmSync(ssrDir, { recursive: true, force: true })

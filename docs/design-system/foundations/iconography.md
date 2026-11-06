@@ -65,7 +65,7 @@ Direction arrows are text, not icons, so they inherit type size and colour:
 |---|---|
 | ↓ | Scrolls down this page ("Explore my work ↓") |
 | → | Goes to another page on the site ("Read case study →") |
-| ↗ | Opens something outside the site or a file (Resume, LinkedIn, llms.txt) |
+| ↗ | Opens something outside the site or a file (Resume, LinkedIn) |
 | ← → | Previous and next in a pile or deck |
 | ↻ | Hint that the polaroid turns over (phone) |
 | ✓ | Confirmation ("Copied ✓") |

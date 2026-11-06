@@ -299,25 +299,6 @@
   justify-content: flex-end;
   padding-block: var(--space-3);
 }
-.footer__ai {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  text-decoration: none;
-  transition: color 150ms;
-}
-.footer__ai svg {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.4;
-  stroke-linecap: round;
-}
-.footer__ai:hover,
-.footer__ai:focus-visible {
-  color: var(--marker);
-}
 
 @media (min-width: 900px) {
   .titlesheet__frame {

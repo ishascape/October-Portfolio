@@ -178,12 +178,12 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
           <ul className="case__impact">
             {page.impact.map((m) => (
               <li key={m.label}>
-                <span className="case__impact-value">{m.value}</span>
-                <span className="label">{m.label}</span>
+                <span className="case__impact-value" data-nosnippet>{m.value}</span>
+                <span className="label" data-nosnippet>{m.label}</span>
               </li>
             ))}
           </ul>
-          {page.impactNote && <p className="case__impact-note">{page.impactNote}</p>}
+          {page.impactNote && <p className="case__impact-note"><span data-nosnippet>{page.impactNote}</span></p>}
         </div>
       </section>
 
