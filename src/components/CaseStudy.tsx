@@ -102,10 +102,15 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
 
           <div className="case__intro">
             <div className="case__titles">
-              <p className="label case__kicker">{page.kicker}</p>
               <h1 id="case-title" className="display" tabIndex={-1}>
                 {study.title}
               </h1>
+              <p className="case__company">
+                Company:{' '}
+                <a href={page.company.url} target="_blank" rel="noopener noreferrer">
+                  {page.company.name}
+                </a>
+              </p>
               <p className="case__subtitle">{page.subtitle}</p>
             </div>
 
