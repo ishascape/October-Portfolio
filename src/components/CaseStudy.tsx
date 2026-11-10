@@ -535,11 +535,13 @@ export function CaseStudy({ id }: { id: CaseStudyId }) {
               </span>
             )}
             <span className="case__next-text">
-              <span className="label">Next case study</span>
-              <span className="case__next-title">
-                {next.title} <span aria-hidden="true">→</span>
-              </span>
+              <span className="case__next-title">{next.title}</span>
               <span className="case__next-summary">{next.summary}</span>
+              <span className="case__next-cta">
+                <span className="button">
+                  Next case study <span aria-hidden="true">→</span>
+                </span>
+              </span>
             </span>
           </a>
         </div>
