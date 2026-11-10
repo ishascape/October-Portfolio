@@ -99,7 +99,7 @@ export interface CaseStudyPage {
   // A real product image for the page header. When set, the existing/proposed plan drawing moves to sit
   // under the first section instead of the header.
   heroImage?: { src: string; alt: string; width: number; height: number; video?: string }
-  kicker: string
+  company: { name: string; url: string } // shown under the title, linking to the company's homepage
   subtitle: string
   meta: { label: string; value: string }[]
   problem: string
@@ -121,7 +121,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       height: 1200,
       video: vfHeroVideo, // plays on a loop; the image above (your 6:5 poster) is the fallback
     },
-    kicker: 'HeadBox · Demand side',
+    company: { name: 'HeadBox', url: 'https://www.headbox.com' },
     subtitle: 'AI venue matching that lifted qualified enquiries 30% on a two-sided events marketplace.',
     meta: [
       { label: 'Role', value: 'Sole product designer' },
@@ -322,7 +322,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       width: 1800,
       height: 654,
     },
-    kicker: 'HeadBox · Supply side',
+    company: { name: 'HeadBox', url: 'https://www.headbox.com' },
     subtitle:
       'Four host tools merged into one platform, with 55+ new clients in 3 months. I set the consolidation strategy and scoped the MVP with stakeholders up to CEO and CTO.',
     meta: [
@@ -507,7 +507,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       width: 1800,
       height: 1111,
     },
-    kicker: 'Findmypast · Activation',
+    company: { name: 'Findmypast', url: 'https://www.findmypast.co.uk' },
     subtitle:
       'Three onboarding experiments that lifted free-trial starts 18% and paid conversion 8% for a family history subscription. I owned UI and experiment design.',
     meta: [

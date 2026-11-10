@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-bottom: 24px; /* gap to the kicker line below */
+  margin-bottom: 24px; /* gap to the title below */
 }
 .case__sheet a {
   text-decoration: none;
@@ -32,7 +32,10 @@
   gap: var(--space-3);
   align-content: end;
 }
-.case__kicker {
+.case__company {
+  color: var(--graphite);
+}
+.case__company a {
   color: var(--marker);
 }
 .case__subtitle {
