@@ -7,7 +7,7 @@ import './Footer.css'
 export function Footer({ onHome }: { onHome: boolean }) {
   const linkedinHandle = contact.linkedin?.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
   return (
-    <footer className="footer">
+    <footer className={onHome ? 'footer type-editorial' : 'footer'}>
       {onHome && (
         <div className="titlesheet titlesheet--blueprint">
           <div className="container">

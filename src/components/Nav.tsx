@@ -46,7 +46,7 @@ export function Nav({ onHome }: { onHome: boolean }) {
   }, [onHome])
 
   return (
-    <header className="nav">
+    <header className={onHome ? 'nav type-editorial' : 'nav'}>
       <div className="container nav__inner">
         <a className="nav__name" href={sectionHref('top', onHome)}>
           {/* A solid blue mountain, like the section icons. On hover a climber walks up the left slope and plants a flag. */}
