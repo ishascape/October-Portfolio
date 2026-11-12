@@ -464,6 +464,13 @@
   transform: none;
   box-shadow: none;
 }
+/* The button is part of the card, so it doesn't pop on its own. */
+.case__next-cta .button:hover,
+.case__next-cta .button:focus-visible,
+.case__next-cta .button:active {
+  transform: none;
+  box-shadow: none;
+}
 .case__next-link:hover .case__next-cta .button,
 .case__next-link:focus-visible .case__next-cta .button {
   background: var(--ink);
