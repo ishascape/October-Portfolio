@@ -54,7 +54,8 @@
   background: var(--paper);
   transition:
     border-color var(--dur-micro) var(--ease-pen),
-    box-shadow var(--dur-micro) var(--ease-pen);
+    box-shadow var(--dur-micro) var(--ease-pen),
+    transform var(--dur-micro) var(--ease-pen);
 }
 .card::before,
 .card::after {
@@ -82,6 +83,21 @@
 .card:focus-within {
   border-color: var(--ink);
   box-shadow: 0 0 0 0.5px var(--ink);
+}
+/* Shadow pop (tokens.css): the whole card lifts, the CTA bar inside it goes with it. */
+@media (hover: hover) {
+  .card:hover {
+    transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+    box-shadow: 0 0 0 0.5px var(--ink), var(--shadow-pop);
+  }
+}
+.card:focus-within {
+  transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+  box-shadow: 0 0 0 0.5px var(--ink), var(--shadow-pop);
+}
+.card:active {
+  transform: none;
+  box-shadow: 0 0 0 0.5px var(--ink), var(--shadow-pop-pressed);
 }
 .card:hover::before,
 .card:hover::after,
@@ -280,6 +296,12 @@
 .card__cta .button::before,
 .card__cta .button::after {
   display: none;
+}
+/* The CTA bar is part of the card, so it doesn't pop on its own. */
+.card__cta .button:hover,
+.card__cta .button:focus-visible,
+.card__cta .button:active {
+  transform: none;
 }
 /* The CTA reads as a secondary button until the card is hovered, then becomes primary. */
 .card:hover .card__cta .button,

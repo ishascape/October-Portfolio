@@ -250,6 +250,11 @@
 }
 
 /* Forced states: the same declarations as the real :hover and :focus-visible rules. */
+.button.ds-hover,
+.button.ds-focus {
+  transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+  box-shadow: var(--shadow-pop);
+}
 .button.ds-hover {
   background: var(--color-interactive-primary-bg-hover);
   border-color: var(--color-interactive-primary-bg-hover);
@@ -267,7 +272,8 @@
 }
 .card.ds-hover {
   border-color: var(--color-border-strong);
-  box-shadow: 0 0 0 0.5px var(--color-border-strong);
+  box-shadow: 0 0 0 0.5px var(--color-border-strong), var(--shadow-pop);
+  transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
 }
 .card.ds-hover::before,
 .card.ds-hover::after {
