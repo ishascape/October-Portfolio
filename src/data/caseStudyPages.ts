@@ -509,7 +509,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
     },
     company: { name: 'Findmypast', url: 'https://www.findmypast.co.uk' },
     subtitle:
-      'Three onboarding experiments that lifted free-trial starts 18% and paid conversion 8% for a family history subscription. I owned UI and experiment design.',
+      'Three onboarding experiments that taught new users the product and family history research in small steps, lifting free-trial starts 18% and paid conversion 8% for a family history subscription. I owned UI and experiment design.',
     meta: [
       { label: 'Role', value: 'Product Designer, embedded in core product squad' },
       { label: 'Team', value: 'PM, data science and engineering' },
@@ -517,9 +517,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       { label: 'Timescale', value: '2 months, 2-week experiment cycles' },
     ],
     problem:
-      '41% of new users left before reaching value. Onboarding asked for 8 forms, then showed a blank family tree.',
+      '41% of new users left before reaching value. Onboarding asked for 8 forms, then showed a blank family tree that assumed the research know-how only experienced genealogists had.',
     solution:
-      'Deliver value before asking for data. AI relative suggestions and guided steps replaced form-filling, tested in 2-week cycles. Onboarding went from 8 forms to 3.',
+      'Deliver value first, then teach in chunks. Progressive disclosure introduced the product and historical research one task at a time, each a little harder than the last, with AI relative suggestions replacing form-filling. Tested in 2-week cycles, onboarding went from 8 forms to 3.',
     hypothesis: {
       if: 'we reduce onboarding friction and help new users discover meaningful family connections earlier',
       then: 'we will increase activation, trial starts and paid subscription conversion',
@@ -539,15 +539,19 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
         heading: 'Value arrived too late.',
         body: [
           'Business goal: stronger early activation, to lift free-trial starts and subscriptions. User goal: reach something valuable before the admin wore them out.',
+          'Underneath was a knowledge gap. Experienced genealogists knew how to read records and grow a tree. New users did not, and onboarding expected them to learn it all before they saw anything worth keeping.',
         ],
       },
       {
         label: '02 · Experiments',
         heading: 'Three experiments, two weeks each.',
+        body: [
+          'Each experiment introduced one more piece of the product and of historical research, starting with the easiest task and getting harder as users completed each one.',
+        ],
         experiments: [
           {
             name: 'Experiment 1 · Reveal immediate value',
-            intent: 'Show value straight after sign-up.',
+            intent: 'Show value straight after sign-up, with the simplest task: find yourself.',
             change: 'Used sign-up details to surface a likely birth record (British or Irish ancestry).',
             result: '60% of users accepted the suggested task.',
             image: {
@@ -559,7 +563,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             name: 'Experiment 2 · Guide the next action',
-            intent: 'Reduce confusion after onboarding.',
+            intent: 'Reduce confusion after onboarding, with the next step up: your closest relatives.',
             change: 'Suggested mothers and spouses on the tree canvas.',
             result: 'Hint engagement rose 32%, and trees grew more.',
             image: {
@@ -571,7 +575,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             name: 'Experiment 3 · Interactive onboarding',
-            intent: 'Reach the core product faster.',
+            intent: 'Reach the core product faster, and learn tree building by doing it.',
             change:
               'Cut onboarding from 8 forms to 3, then moved users into AI-assisted tree building with suggested relatives.',
             result: 'Onboarding drop-off fell 13%, and activation rose.',
@@ -598,7 +602,7 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
           },
           {
             title: 'Advanced users',
-            text: 'Experienced genealogists reached advanced search and editing more slowly.',
+            text: 'Progressive disclosure held back advanced search and editing, so experienced genealogists reached them more slowly.',
           },
         ],
       },
@@ -638,9 +642,9 @@ export const caseStudyPages: Record<CaseStudyId, CaseStudyPage> = {
       },
       {
         label: '06 · Reflections',
-        heading: 'Deliver value before asking for data.',
+        heading: 'Deliver value first, teach in chunks.',
         body: [
-          'Designing for momentum can unlock engagement and monetisation. Next: a personalised task list on the tree canvas to guide the free trial.',
+          'Designing for momentum, and teaching the domain as users go, can unlock engagement and monetisation. Next: a personalised task list on the tree canvas to guide the free trial.',
         ],
       },
     ],

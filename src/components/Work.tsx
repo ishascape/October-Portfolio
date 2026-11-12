@@ -66,7 +66,7 @@ export function Work() {
                   </ul>
 
                   <ul className="card__tags label" aria-label="Tags">
-                    {s.tags.slice(0, 3).map((t) => (
+                    {s.tags.slice(0, s.cardTagCount ?? 3).map((t) => (
                       <li key={t}>{t}</li>
                     ))}
                   </ul>
