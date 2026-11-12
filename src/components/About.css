@@ -279,32 +279,6 @@
   height: 100%;
   object-fit: cover;
 }
-/* Crop marks at the corners, drawn in on hover like a print being trimmed. */
-.figure__photo::before,
-.figure__photo::after {
-  content: '';
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  opacity: 0;
-  transition: opacity var(--dur-micro) var(--ease-pen);
-}
-.figure__photo::before {
-  top: -6px;
-  left: -6px;
-  border-top: var(--line-thin) solid var(--ink);
-  border-left: var(--line-thin) solid var(--ink);
-}
-.figure__photo::after {
-  bottom: -6px;
-  right: -6px;
-  border-bottom: var(--line-thin) solid var(--marker);
-  border-right: var(--line-thin) solid var(--ink);
-}
-.figure:hover .figure__photo::before,
-.figure:hover .figure__photo::after {
-  opacity: 1;
-}
 .figure figcaption {
   color: var(--graphite);
   transition: color var(--dur-micro) var(--ease-pen);

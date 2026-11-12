@@ -57,28 +57,6 @@
     box-shadow var(--dur-micro) var(--ease-pen),
     transform var(--dur-micro) var(--ease-pen);
 }
-.card::before,
-.card::after {
-  /* Registration marks, shown on hover */
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  opacity: 0;
-  transition: opacity var(--dur-micro) var(--ease-pen);
-}
-.card::before {
-  top: -7px;
-  left: -7px;
-  border-top: var(--line-building) solid var(--ink);
-  border-left: var(--line-building) solid var(--ink);
-}
-.card::after {
-  bottom: -7px;
-  right: -7px;
-  border-bottom: var(--line-building) solid var(--ink);
-  border-right: var(--line-building) solid var(--ink);
-}
 .card:hover,
 .card:focus-within {
   border-color: var(--ink);
@@ -98,12 +76,6 @@
 .card:active {
   transform: none;
   box-shadow: 0 0 0 0.5px var(--ink), var(--shadow-pop-pressed);
-}
-.card:hover::before,
-.card:hover::after,
-.card:focus-within::before,
-.card:focus-within::after {
-  opacity: 1;
 }
 
 .card__link {
@@ -293,10 +265,6 @@
   /* The card's border is drawn outside this bar, so the bar's corners follow the card's inner curve: no sliver of paper. */
   border-radius: 0 0 calc(var(--radius) - var(--line-thin)) calc(var(--radius) - var(--line-thin));
 }
-.card__cta .button::before,
-.card__cta .button::after {
-  display: none;
-}
 /* The CTA bar is part of the card, so it doesn't pop on its own. */
 .card__cta .button:hover,
 .card__cta .button:focus-visible,
@@ -312,12 +280,6 @@
   /* Runs the black out under the card's own border so no hairline of paper shows at the curved corners. */
   box-shadow: 0 0 0 1px var(--ink);
   clip-path: inset(0 -1px -1px -1px);
-}
-.card:hover .card__cta .button::before,
-.card:hover .card__cta .button::after,
-.card:focus-within .card__cta .button::before,
-.card:focus-within .card__cta .button::after {
-  opacity: 1;
 }
 
 /* The arrow stays put on hover; only the button colour changes. */
