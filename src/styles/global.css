@@ -157,7 +157,11 @@ body::after {
   background: transparent;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color var(--dur-micro) var(--ease-pen), color var(--dur-micro) var(--ease-pen);
+  transition:
+    background-color var(--dur-micro) var(--ease-pen),
+    color var(--dur-micro) var(--ease-pen),
+    transform var(--dur-micro) var(--ease-pen),
+    box-shadow var(--dur-micro) var(--ease-pen);
 }
 /* Hover: the same registration corners as the cards, in a lighter grey. */
 .button {
@@ -199,6 +203,22 @@ body::after {
   background: var(--marker);
   border-color: var(--marker);
   color: var(--paper);
+}
+/* Shadow pop (tokens.css): lift on hover or keyboard focus, settle on press. Hover only where a real pointer can hover,
+   so a tap on a phone doesn't leave the button stuck up. */
+@media (hover: hover) {
+  .button:hover {
+    transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+    box-shadow: var(--shadow-pop);
+  }
+}
+.button:focus-visible {
+  transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+  box-shadow: var(--shadow-pop);
+}
+.button:active {
+  transform: none;
+  box-shadow: var(--shadow-pop-pressed);
 }
 
 /* ---------- Sheet stack ----------

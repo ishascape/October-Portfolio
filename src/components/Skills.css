@@ -104,10 +104,28 @@
   background: var(--paper);
   font-size: 18px;
   cursor: pointer;
+  transition:
+    transform var(--dur-micro) var(--ease-pen),
+    box-shadow var(--dur-micro) var(--ease-pen);
 }
 .deck__button:disabled {
   opacity: 0.3;
   cursor: default;
+}
+/* Shadow pop (tokens.css); a disabled arrow stays flat. */
+@media (hover: hover) {
+  .deck__button:hover:not(:disabled) {
+    transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+    box-shadow: var(--shadow-pop);
+  }
+}
+.deck__button:focus-visible:not(:disabled) {
+  transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+  box-shadow: var(--shadow-pop);
+}
+.deck__button:active:not(:disabled) {
+  transform: none;
+  box-shadow: var(--shadow-pop-pressed);
 }
 
 /* On wider screens the drawing leads, with its points listed underneath. */
