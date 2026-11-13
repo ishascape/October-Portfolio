@@ -38,4 +38,4 @@ Target: **WCAG 2.2 AA** on every page.
 - 44px targets for anything tappable
 - Name, role and state exposed (native element first, ARIA second)
 - Works with reduced motion, at 200% zoom and at 320px wide
-- Contrast checked against the table, including on deep paper and tints
+- Contrast checked against the table in both light and dark mode, including on deep paper and tints

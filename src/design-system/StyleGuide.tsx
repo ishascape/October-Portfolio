@@ -7,6 +7,7 @@ import { Skills } from '../components/Skills'
 import { FieldStrip } from '../components/FieldStrip'
 import { ModeSwitch } from '../components/ModeSwitch'
 import { CardCarousel } from '../components/CardCarousel'
+import { CardVideo } from '../components/CardVideo'
 import { SketchDefs } from '../components/Sketch'
 import type { PlanMode } from '../components/SitePlan'
 import { caseStudies, fieldNotes, revisions } from '../data/content'
@@ -61,10 +62,17 @@ function Specimen({ label, children, wide }: { label: string; children: ReactNod
   )
 }
 
-// Reads a custom property's live value, so the swatches show what the CSS actually says.
+// Reads a custom property's live value, so the swatches show what the CSS actually says. Re-reads when the theme
+// toggle in the nav flips light and dark, so the values always match the mode on screen.
 function useVar(name: string) {
   const [v, setV] = useState('')
-  useEffect(() => setV(getComputedStyle(document.documentElement).getPropertyValue(name).trim()), [name])
+  useEffect(() => {
+    const read = () => setV(getComputedStyle(document.documentElement).getPropertyValue(name).trim())
+    read()
+    const watch = new MutationObserver(read)
+    watch.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => watch.disconnect()
+  }, [name])
   return v
 }
 
@@ -81,28 +89,32 @@ function Swatch({ token, cssVar, note }: { token: string; cssVar: string; note?:
   )
 }
 
+// Third column: the primitive in tokens.css each semantic token aliases.
 const surfaces = [
-  ['color.surface.page', '--color-surface-page', 'paper.200'],
-  ['color.surface.sunken', '--color-surface-sunken', 'paper.300'],
-  ['color.surface.deep', '--color-surface-deep', 'paper.400'],
-  ['color.surface.raised', '--color-surface-raised', 'paper.100'],
-  ['color.surface.inverse', '--color-surface-inverse', 'ink.900'],
-  ['color.surface.accent-subtle', '--color-surface-accent-subtle', 'marker 12%'],
+  ['color.surface.page', '--color-surface-page', '--surface: page, nav, sheets'],
+  ['color.surface.card', '--color-surface-card', '--paper: cards, bars'],
+  ['color.surface.sunken', '--color-surface-sunken', '--paper-shade: wells'],
+  ['color.surface.deep', '--color-surface-deep', '--paper-deep: Selected work'],
+  ['color.surface.raised', '--color-surface-raised', 'sheet-lift 45% into paper: prints'],
+  ['color.surface.inverse', '--color-surface-inverse', '--ink: primary button'],
+  ['color.surface.accent-subtle', '--color-surface-accent-subtle', '--marker-wash'],
 ]
 const content = [
-  ['color.text.primary', '--color-text-primary', 'ink.900'],
-  ['color.text.secondary', '--color-text-secondary', 'ink.600'],
-  ['color.text.accent', '--color-text-accent', 'marker.500'],
-  ['color.text.accent-on-subtle', '--color-text-accent-on-subtle', 'marker.700'],
-  ['color.border.subtle', '--color-border-subtle', 'paper.500'],
-  ['color.border.focus', '--color-border-focus', 'marker.500'],
+  ['color.text.primary', '--color-text-primary', '--ink'],
+  ['color.text.secondary', '--color-text-secondary', '--graphite'],
+  ['color.text.accent', '--color-text-accent', '--marker'],
+  ['color.text.accent-on-subtle', '--color-text-accent-on-subtle', 'marker 700 (light), --marker (dark)'],
+  ['color.border.subtle', '--color-border-subtle', '--rule: resting card edge'],
+  ['color.border.divider', '--color-border-divider', '--marker: 1px dividers'],
+  ['color.border.focus', '--color-border-focus', '--marker'],
+  ['elevation.pop colour', '--pop-ink', 'ink (light), dimmed moonlight (dark)'],
 ]
 
 const typeRoles: { token: string; style: CSSProperties; sample: string; hand?: boolean }[] = [
   {
     token: 'type.display.hero · 700',
     style: { fontSize: 'var(--type-display-hero)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em' },
-    sample: 'I turn complex product problems into business growth.',
+    sample: 'I design products that help people make better decisions.',
   },
   {
     token: 'type.display.statement · 500',
@@ -180,6 +192,11 @@ const easings = [
   ['motion.easing.glide', 'var(--motion-easing-glide)', 'Hero title glide'],
 ]
 
+// The same chip rule as Work.tsx: drop any chip that repeats the badge, then show cardTagCount (3 by default).
+function cardTags(s: (typeof caseStudies)[number]) {
+  return s.tags.filter((t) => t !== s.outcome).slice(0, s.cardTagCount ?? 3)
+}
+
 export function StyleGuide() {
   const [moved, setMoved] = useState(false)
   const [heroKey, setHeroKey] = useState(0)
@@ -200,7 +217,7 @@ export function StyleGuide() {
             <h1 className="display">Design system</h1>
             <p className="ds-block__intro">
               The real components from ashnidave.com, with their states. Written guidance lives in{' '}
-              <code className="ds-code">docs/design-system/</code> in the repo. Forced states (hover, focus) are
+              <code className="ds-code">docs/design-system/</code> in the repo. Forced states (hover, focus, pressed) are
               labelled; everything else is live, so hover and tab through it.
             </p>
             <nav aria-label="Style guide sections">
@@ -218,7 +235,7 @@ export function StyleGuide() {
         <Block
           id="colour"
           title="Colour"
-          intro="Semantic tokens, resolved live from the CSS. Paper carries hierarchy; marker blue is rationed."
+          intro="Semantic tokens, resolved live from the CSS. A cool gray page with white cards; marker blue is rationed. Flip the sun and moon switch in the nav to see the moonlit dark values."
         >
           <h3 className="label ds-sub">Surfaces</h3>
           <ul className="ds-swatches">
@@ -274,7 +291,7 @@ export function StyleGuide() {
         <Block
           id="lines"
           title="Lines, shape, elevation"
-          intro="Pen weights carry hierarchy. UI is rounded, paper is square. Only lifted paper casts a shadow."
+          intro="Pen weights carry hierarchy. UI is rounded, paper is square. Lifted paper casts a soft shadow; things you can press cast a hard shadow pop on hover and focus."
         >
           <div className="ds-row">
             {[
@@ -299,6 +316,30 @@ export function StyleGuide() {
               <span className="ds-shape" style={{ borderRadius: 0 }} />
             </Specimen>
           </div>
+          <h3 className="label ds-sub">Divider</h3>
+          <Specimen label="border.divider: 1px marker blue, the only full-width rule (nav, section and case study header edges)" wide>
+            <span className="ds-divider" />
+          </Specimen>
+          <h3 className="label ds-sub">Shadow pop: buttons, case study cards, next case study card, deck arrows</h3>
+          <div className="ds-row">
+            {(
+              [
+                ['Rest', ''],
+                ['Hover or focus: lifts 2px up-left, 5px hard shadow', 'ds-pop--up'],
+                ['Pressed: settles into a 1px shadow', 'ds-pop--pressed'],
+              ] as const
+            ).map(([l, c]) => (
+              <Specimen key={l} label={l}>
+                <span className={`ds-pop ${c}`} />
+              </Specimen>
+            ))}
+          </div>
+          <p className="ds-note">
+            Hover pops only where a real pointer can hover, so a tap never leaves a card stuck up. Keyboard focus always
+            pops. With reduced motion the shadow still appears but nothing moves. The hover corner marks were removed on
+            13 Nov 2026; do not bring them back.
+          </p>
+          <h3 className="label ds-sub">Paper shadows</h3>
           <div className="ds-row">
             {['--elevation-paper', '--elevation-paper-hover', '--elevation-paper-lifted'].map((e) => (
               <Specimen key={e} label={e.replace('--', '').replace('-', '.')}>
@@ -338,13 +379,20 @@ export function StyleGuide() {
         <Block
           id="buttons"
           title="Buttons"
-          intro="Primary and secondary. Hover turns them marker blue; hover and focus both show registration marks. One primary per view."
+          intro="Primary and secondary. Hover turns them marker blue and pops them up off the page; keyboard focus pops them too, with the blue focus ring. Pressing settles them back. One primary per view."
         >
           <div className="ds-grid">
-            {(['', 'ds-hover', 'ds-focus'] as const).map((state) => (
+            {(['', 'ds-hover', 'ds-focus', 'ds-pressed'] as const).map((state) => (
               <div key={state} className="ds-state">
                 <p className="label ds-muted">
-                  {state === '' ? 'Default (live)' : state === 'ds-hover' ? 'Hover (forced)' : 'Focus (forced)'}
+                  {
+                    {
+                      '': 'Default (live)',
+                      'ds-hover': 'Hover (forced)',
+                      'ds-focus': 'Focus (forced)',
+                      'ds-pressed': 'Pressed (forced)',
+                    }[state]
+                  }
                 </p>
                 <div className="ds-stack">
                   <a className={`button button--primary ${state}`} href="#buttons">
@@ -373,22 +421,45 @@ export function StyleGuide() {
               <span aria-hidden="true">→</span>
             </button>
           </div>
+          <div className="ds-row">
+            {(
+              [
+                ['Deck arrow: hover (forced)', 'ds-hover'],
+                ['Deck arrow: pressed (forced)', 'ds-pressed'],
+                ['Disabled: stays flat, 30% opacity', ''],
+              ] as const
+            ).map(([l, c]) => (
+              <Specimen key={l} label={l}>
+                <button type="button" className={`deck__button ${c}`} aria-label={l} disabled={c === ''} tabIndex={-1}>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </Specimen>
+            ))}
+          </div>
         </Block>
 
-        <Block id="chips" title="Chips and links">
+        <Block
+          id="chips"
+          title="Chips and links"
+          intro="Each case study card has one outcome badge and a row of chips. A chip never repeats the badge: chips name other skills or scan keywords from the case study. Three chips by default; a card can show more (TreeAssist shows five). Live from content.ts, with the same filter as the home page."
+        >
+          <div className="ds-row ds-row--chips">
+            {caseStudies.map((s) => (
+              <Specimen key={s.id} label={`${s.title}: badge, then ${cardTags(s).length} chips`}>
+                <div className="ds-chips">
+                  <p className="label card__meta">
+                    <span className="card__outcome">{s.outcome}</span>
+                  </p>
+                  <ul className="card__tags label">
+                    {cardTags(s).map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              </Specimen>
+            ))}
+          </div>
           <div className="ds-row">
-            <Specimen label="Outcome pill">
-              <p className="label card__meta">
-                <span className="card__outcome">{study.outcome}</span>
-              </p>
-            </Specimen>
-            <Specimen label="Tags (max 3)">
-              <ul className="card__tags label">
-                {study.tags.slice(0, 3).map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-            </Specimen>
             <Specimen label="Accent link">
               <a className="ai-principles__link" href="#chips">
                 Venue Finder edge cases <span aria-hidden="true">→</span>
@@ -400,9 +471,12 @@ export function StyleGuide() {
         <Block
           id="nav"
           title="Nav"
-          intro="The real nav sits at the top of this page. Hover a link to see the dimension line; under 600px it becomes Menu and a full-screen drawing list."
+          intro="The real nav sits at the top of this page: the blue mountain and name, the links, the sun and moon theme switch, and a 1px marker-blue rule along its foot. Hover a link to see the dimension line; under 600px the links become Menu and a full-screen drawing list."
         >
-          <p className="ds-note">Current section uses aria-current="location" and keeps the dimension line drawn.</p>
+          <p className="ds-note">
+            Current section uses aria-current="location" and keeps the dimension line drawn. The theme switch follows
+            the device's light or dark setting until the visitor picks; their choice is saved and wins.
+          </p>
         </Block>
 
         <Block
@@ -421,14 +495,18 @@ export function StyleGuide() {
         <Block
           id="case-card"
           title="Case study card"
-          intro="Mirrors the markup in Work.tsx with real data. Hover or tab into the live card to run the carousel."
+          intro="Mirrors the markup in Work.tsx with real data: a 6:5 looping clip on top (side by side from 900px), the badge, title, lead metric and chips. Hover or tab into the live card to see it pop."
         >
           <div className="ds-cards">
             {(['', 'ds-hover'] as const).map((state) => (
               <div key={state}>
                 <p className="label ds-muted ds-state-label">{state ? 'Hover (forced)' : 'Default (live)'}</p>
                 <article className={`card ${state}`} aria-labelledby={`ds-card-${state || 'live'}`}>
-                  <CardCarousel number={study.number} images={study.images} />
+                  {study.video ? (
+                    <CardVideo src={study.video.src} poster={study.video.poster} background={study.video.background} />
+                  ) : (
+                    <CardCarousel number={study.number} images={study.images} />
+                  )}
                   <div className="card__body">
                     <p className="label card__meta">
                       <span>{study.company}</span>
@@ -450,7 +528,7 @@ export function StyleGuide() {
                       ))}
                     </ul>
                     <ul className="card__tags label" aria-label="Tags">
-                      {study.tags.slice(0, 3).map((t) => (
+                      {cardTags(study).map((t) => (
                         <li key={t}>{t}</li>
                       ))}
                     </ul>

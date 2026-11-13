@@ -156,6 +156,36 @@
   height: 32px;
   border-radius: var(--radius-pill);
 }
+.ds-divider {
+  display: block;
+  width: 100%;
+  margin-block: 32px;
+  border-top: var(--line-thin) solid var(--color-border-divider);
+}
+.ds-pop {
+  display: block;
+  width: 120px;
+  height: 64px;
+  border: var(--line-building) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
+}
+.ds-pop--up {
+  transform: translate(calc(-1 * var(--elevation-pop-lift)), calc(-1 * var(--elevation-pop-lift)));
+  box-shadow: var(--elevation-pop);
+}
+.ds-pop--pressed {
+  box-shadow: var(--elevation-pop-pressed);
+}
+.ds-row--chips {
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+.ds-chips {
+  width: 100%;
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
 .ds-paper {
   display: block;
   width: 120px;
@@ -264,6 +294,20 @@
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
+.button.ds-pressed {
+  transform: none;
+  box-shadow: var(--elevation-pop-pressed);
+  background: var(--color-interactive-primary-bg-hover);
+  border-color: var(--color-interactive-primary-bg-hover);
+  color: var(--color-interactive-primary-text);
+}
+.deck__button.ds-hover {
+  transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
+  box-shadow: var(--shadow-pop);
+}
+.deck__button.ds-pressed {
+  box-shadow: var(--shadow-pop-pressed);
+}
 .card.ds-hover {
   border-color: var(--color-border-strong);
   box-shadow: 0 0 0 0.5px var(--color-border-strong), var(--shadow-pop);
@@ -273,4 +317,10 @@
   background: var(--color-surface-inverse);
   border-color: var(--color-surface-inverse);
   color: var(--color-text-inverse);
+  box-shadow: 0 0 0 1px var(--ink);
+  clip-path: inset(0 -1px -1px -1px);
+}
+/* Dark mode: the moonlit rim stays on top of the pop, as in tokens.css. */
+:root[data-theme='dark'] .card.ds-hover {
+  box-shadow: inset 0 1px 0 rgb(176 200 245 / 0.14), 0 0 0 0.5px var(--ink), var(--shadow-pop);
 }

@@ -4,22 +4,25 @@
 
 ## Overview
 
-A sticky paper bar with Ashni's name and the four places on the site. The current section is marked the way a drawing marks a dimension.
+A sticky paper bar with Ashni's name, the four places on the site and the light/dark switch. The current section is marked the way a drawing marks a dimension.
 
 ## Anatomy
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ ⛰ Ashni Dave                    Work   About   Contact  Resume ↗ │  56px, paper
-└━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┘  1px ink rule
+│ ▲ Ashni Dave          Work   About   Contact  Resume ↗  (☀|☾) │  56px, page gray
+└──────────────────────────────────────────────────────────────┘  1px marker-blue rule
                                   ╲───╱  dimension line under current
 ```
 
-1. **Bar**: sticky at top, `z-index: 10`, paper background, `line.thin` ink bottom edge, safe-area padding. Solid paper extends above it so nothing shows behind a phone status bar.
-2. **Wordmark**: mountain line icon (28×20, 1.6 stroke) and "Ashni Dave" in 600 weight, marker blue. Links to the top of the home page.
+1. **Bar**: sticky at top, `z-index: 10`, `surface.page` background, 1px `border.divider` (marker blue) bottom edge, safe-area padding. Solid page colour extends above it so nothing shows behind a phone status bar.
+2. **Wordmark**: solid blue mountain icon (30×24, paper-coloured snow line; a climber walks up and plants a flag on hover) and "Ashni Dave" in 600 weight, marker blue. Links to the top of the home page.
 3. **Links** (≥ 600px): Work, About, Contact, Resume ↗, `space.4` apart.
 4. **Dimension line**: 1px marker rule with 45° end ticks, under the hovered or current link.
-5. **Menu button** (< 600px): "Menu" in label style, 44px target.
+5. **Theme switch**: a 52×28 pill track with a 1px marker outline on `surface.card`, a solid sun and moon, and a knob that slides over the active one. 44px target. `aria-pressed` is true in dark mode.
+6. **Menu button** (< 600px): "Menu" in label style, 44px target.
+
+Pending, not on main yet: draft PR #123 adds "Senior Product Designer" beside the name (graphite, 14px, after a short blue rule, from 900px up) and removes the hero eyebrow. Update this page when it merges.
 
 ## Variants
 
@@ -33,7 +36,8 @@ A sticky paper bar with Ashni's name and the four places on the site. The curren
 | Element | Default | Hover | Focus | Current |
 |---|---|---|---|---|
 | Link | Ink, no line | Dimension line draws in, 260ms | System ring | Dimension line shown, `aria-current="location"` |
-| Wordmark | Marker | No change | System ring | n/a |
+| Wordmark | Marker | Climber walks up the mountain and plants a flag | System ring | n/a |
+| Theme switch | Knob over the sun (light) | n/a | 2px marker ring around the track | Knob over the moon, `aria-pressed="true"` |
 
 Current section is worked out from each sheet's position in the flow, not intersection, because sticky sheets overlap. Scrolled to the bottom always marks Contact.
 
@@ -64,7 +68,8 @@ On phones the nav fades in at 1.3s as part of the start screen ([motion](../foun
 | Token | Value |
 |---|---|
 | `nav.height` | 56px (`NAV_HEIGHT` in `sheetNav.ts`) |
-| `nav.border` | `line.thin` `color.border.strong` |
+| `nav.border` | `line.thin` `color.border.divider` |
+| `nav.surface` | `color.surface.page` |
 | `nav.wordmark.color` | `color.text.accent` |
 | `nav.indicator.color` | `color.border.accent` |
 | `nav.indicator.duration` | 260ms `pen` |

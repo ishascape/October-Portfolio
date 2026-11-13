@@ -1,6 +1,6 @@
 # Findings and proposals
 
-What the audit found in the code on 1 Nov 2026, and what to do about it. **Nothing here has been applied.** Each item changes CSS that is live, so each needs Ashni's go-ahead. All of them are refactors that should produce zero visible change, apart from P6 and P7, which are design calls.
+What the audit found in the code on 1 Nov 2026, and what to do about it. Rechecked on 13 Nov 2026 against the cool gray palette, dark mode, the shadow pop and the removal of the corner marks: items those changes settled are marked done. **Nothing else here has been applied.** Each item changes CSS that is live, so each needs Ashni's go-ahead. All of them are refactors that should produce zero visible change, apart from P6 and P7, which are design calls.
 
 Priority: **P1** do first, unlocks the rest · **P2** worth doing · **P3** tidy-up.
 
@@ -10,7 +10,7 @@ Priority: **P1** do first, unlocks the rest · **P2** worth doing · **P3** tidy
 | P2 | Seven breakpoints | Consolidate to four | Small layout shifts at a few widths, checked one by one | S |
 | P2 | Hard-coded colours in chrome | Replace with semantic tokens | None | S |
 | P2 | Motion values hard-coded | Use motion tokens | None | S |
-| P2 | Paper print, registration marks and box bullet are copy-pasted | Shared utilities | None | S |
+| P2 | Paper print, box bullet and shadow pop rules are copy-pasted | Shared utilities | None | S |
 | P2 | States not designed | Define disabled, hover and loading where missing | Only where adopted | S |
 | P3 | Caveat used for a functional label | Move deck counter to Poppins | Yes, small | XS |
 | P3 | Footer uses 10px uppercase labels | Keep or change | Only if changed | XS |
@@ -54,7 +54,8 @@ Each change moves a layout switch by up to 100px, so it needs a quick visual che
 |---|---|---|
 | `#fff` | `CaseStudy.css` (hero image, figure ground, HQ prototype) | `--color-surface-media` |
 | `rgba(0,0,0,0.12)` fallback | `CaseStudy.css:640` | `--color-border-subtle` |
-| `rgb(97 94 88 / 0.45)` | `global.css` registration marks, `Hero.css` chips | `--color-border-registration` |
+| `rgb(97 94 88 / 0.45)` | `Hero.css` chips | `--color-border-soft` |
+| Moonlit rim `rgb(176 200 245 / 0.14)` | `tokens.css` dark card rules (repeated 4 times) | a `--card-rim` token in the dark block |
 | `#1f4a99` | `TreeAssistFlow.css` | `--color-text-accent-on-subtle` |
 | `rgb(0 0 0 / 0.7)` | `Lightbox.css` | `--color-surface-scrim` |
 | Blueprint values | `Footer.css` | `[data-theme='blueprint']` |
@@ -72,8 +73,7 @@ Product colours inside reproductions (`VenueFinderPrototype`, `VenueFlows`, `Boo
 | Pattern | Copies | Proposal |
 |---|---|---|
 | Raised paper print (surface, border, shadow) | Polaroid, field notes print, expertise grid card, expertise deck paper, polaroid back | `.paper-print` utility or a `--elevation-paper` token in each |
-| Registration marks (`::before`/`::after` L-corners) | Button, case card | `.has-registration` utility with size and colour tokens |
-| Crop marks | Polaroid photo, field notes photo | `.has-crop-marks` utility |
+| Shadow pop (hover, focus, active, `hover: hover` guard) | Button, case card, next case study card, deck arrows | `.pops` utility, so a new pressable thing gets all three states and the touch guard at once |
 | Box bullet | Case card supporting, case study list | `.list-box` utility |
 | Graph paper background | Case card image, case study header | `--texture-graph` token |
 
@@ -83,11 +83,11 @@ Also: extract `CaseCard` from `Work.tsx` into its own component so the style gui
 
 | Component | Missing | Proposal |
 |---|---|---|
-| Button | Disabled | 0.3 opacity, `cursor: default`, no hover, no registration marks (matches icon button) |
+| Button | Disabled | 0.3 opacity, `cursor: default`, no hover, no pop (matches icon button) |
 | Button | Loading | Don't add until something on the site waits |
-| Button | Active / pressed | Keep as hover. A pressed state adds little on a portfolio |
-| Icon button | Hover | Ink fill, paper glyph, 150ms (mirrors the button hover in ink, not blue, so it stays quiet) |
-| Mode switch | Hover | Registration marks, like buttons |
+| Button | Active / pressed | **Done 13 Nov 2026:** settles into a 1px shadow (`--shadow-pop-pressed`) |
+| Icon button | Hover | **Done 13 Nov 2026:** shadow pop, like buttons |
+| Mode switch | Hover | Shadow pop, like buttons |
 
 These are design decisions, so they are Ashni's call.
 

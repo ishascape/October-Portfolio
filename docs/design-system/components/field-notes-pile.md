@@ -20,7 +20,7 @@ Life outside work as a loose pile of prints on a desk. Pick one up to read it; p
 ```
 
 1. **Print**: `surface.raised`, `border.raised`, `elevation.paper`, square corners, `space.3` padding
-2. **Photo**: natural ratio, crop marks on hover; or a dashed placeholder frame ("Fig. 3")
+2. **Photo**: natural ratio; or a dashed placeholder frame ("Fig. 3")
 3. **Group label**: `type.label`, graphite
 4. **Caption**: `type.annotation`, graphite → ink on hover
 5. **Deck nav**: previous and next [icon buttons](button.md#icon-button), centre [text button](button.md#text-button)
@@ -32,7 +32,7 @@ Scatter positions come from each print's index (golden angle), so the pile never
 | State | Print |
 |---|---|
 | Default | Scattered, 60% scale, rotated |
-| Hover | Shadow deepens (`elevation.paper-hover`), crop marks, caption to ink |
+| Hover | Shadow deepens (`elevation.paper-hover`), caption to ink |
 | Focus | 2px ink ring at 4px |
 | Open | Straight, 100%, on top, `elevation.paper-lifted`, `aria-expanded="true"` |
 | Put back | Returns to its scatter position on top of the pile |

@@ -51,24 +51,28 @@ Adopting `semantic.css` across the site is a separate, approved-first step. See 
 
 | Token | Value | Current CSS | Notes |
 |---|---|---|---|
-| `color.paper.100` | `#faf8f3` | `color-mix(in srgb, var(--sheet-lift) 45%, var(--paper))` | Raised paper: polaroid, field notes prints, expertise cards |
-| `color.paper.200` | `#f5f2ea` | `--paper` | The page |
-| `color.paper.300` | `#ece7da` | `--paper-shade` | Sunken: fact cells, figure frames, image wells |
-| `color.paper.400` | `#dcd9d2` | `--paper-deep` | The Selected work sheet |
-| `color.paper.500` | `#d8d2c4` | `--rule` | Hairlines and resting card borders |
-| `color.ink.900` | `#1c1b19` | `--ink` | Text, structure, primary button |
-| `color.ink.600` | `#615e58` | `--graphite` | Secondary text (darkened from #6b6862 for AA) |
+| `color.paper.100` | `#ffffff` / dark `#141922` | `--paper` | Cards, bars, polaroid and print stock |
+| `color.paper.200` | `#f4f5f6` / dark `#0b0e13` | `--surface` | The page, nav and paper sheets |
+| `color.paper.300` | `#eceeef` / dark `#1b212b` | `--paper-shade` | Sunken: fact cells, figure frames, image wells |
+| `color.paper.400` | `#e6e8ea` / dark `#0f1319` | `--paper-deep` | The Selected work sheet |
+| `color.paper.500` | `#d9dcde` / dark `#2a3340` | `--rule` | Hairlines and resting card borders |
+| `color.ink.900` | `#1c1b19` / dark `#e9eef6` | `--ink` | Text, structure, primary button |
+| `color.ink.600` | `#615e58` / dark `#b0bac8` | `--graphite` | Secondary text |
 | `color.ink.alpha.55` | `rgb(28 27 25 / 0.55)` | `rgb(var(--shadow-ink) / 0.55)` | Edge of raised paper |
-| `color.graphite.alpha.45` | `rgb(97 94 88 / 0.45)` | hard-coded | Registration marks, chips |
-| `color.marker.500` | `#2f5fb3` | `--marker` | The accent |
-| `color.marker.700` | `#1f4a99` | hard-coded in `TreeAssistFlow.css` | Marker text on a marker tint (passes 4.5:1) |
-| `color.marker.alpha.12` | `rgb(47 95 179 / 0.12)` | `--marker-wash` | Accent tint |
+| `color.graphite.alpha.45` | `rgb(97 94 88 / 0.45)` | hard-coded in `Hero.css` | Hero chips |
+| `color.marker.500` | `#2f5fb3` / dark `#8fb0ea` | `--marker` | The accent and the 1px dividers |
+| `color.marker.700` | `#1f4a99` | hard-coded in `TreeAssistFlow.css` | Marker text on a marker tint (light mode) |
+| `color.marker.alpha.12` | `rgb(47 95 179 / 0.12)` / dark `rgb(143 176 234 / 0.16)` | `--marker-wash` | Accent tint |
+| `color.pop` | ink / dark `rgb(143 176 234 / 0.55)` | `--pop-ink` | Shadow pop colour |
 | `color.blueprint.600` | `#1d4e89` | `--blueprint` in `Footer.css` | Cyanotype sheet |
 | `color.blueprint.050` | `#f2f6fb` | hard-coded in `Footer.css` | White linework on blueprint |
 | `color.white` | `#ffffff` | `--sheet-lift`, `#fff` | Behind cut-out screenshots |
 | `color.black.alpha.70` | `rgb(0 0 0 / 0.7)` | hard-coded in `Lightbox.css` | Scrim |
-| `color.grid` | `216 210 196` (channels) | `--grid-line` | Graph-paper lines |
-| `color.shadow` | `28 27 25` (channels) | `--shadow-ink` | Shadow colour |
+| `color.dot` | `165 171 176` / dark `84 98 118` (channels) | `--dot`, `--paper-dots` | Dotted paper |
+| `color.grid` | `218 221 223` / dark `42 51 64` (channels) | `--grid-line` | Faint fills and grids |
+| `color.shadow` | `28 27 25` / dark `0 0 0` (channels) | `--shadow-ink` | Soft shadow colour |
+
+Dark values come from `:root[data-theme='dark']` in `tokens.css`. The site follows the device setting until the visitor picks with the nav switch.
 
 **Product colours** (only inside reproductions of client UI, never in the portfolio chrome):
 
@@ -136,6 +140,16 @@ The top of the scale grows on larger screens so sections breathe; the small step
 | `motion.duration.signature` | 700ms | `--dur-signature` |
 | `motion.stagger` | 70ms | hard-coded (card fan) |
 
+### Shadow pop
+
+| Token | Value | Current CSS |
+|---|---|---|
+| `pop.offset` | 5px | `--pop-offset` |
+| `pop.lift` | 2px (0px with reduced motion) | `--pop-lift` |
+| `pop.ink` | ink / dark: marker at 55% | `--pop-ink` |
+| `shadow.pop` | `5px 5px 0 0 pop.ink` | `--shadow-pop` |
+| `shadow.pop-pressed` | `1px 1px 0 0 pop.ink` | `--shadow-pop-pressed` |
+
 ### Layout and breakpoints
 
 | Token | Value |
@@ -161,10 +175,11 @@ Defined in `src/styles/semantic.css`. The right-hand column is what each resolve
 
 | Token | Resolves to | Use |
 |---|---|---|
-| `color.surface.page` | `paper.200` | Default sheet background |
+| `color.surface.page` | `paper.200` (`--surface`) | The page, nav and every paper sheet |
+| `color.surface.card` | `paper.100` (`--paper`) | Cards, CTA bars, the theme switch track |
 | `color.surface.sunken` | `paper.300` | Fact cells, image wells, placeholder frames, title sheet |
 | `color.surface.deep` | `paper.400` | A sheet that needs to sit back (Selected work) |
-| `color.surface.raised` | `paper.100` | Paper lifted off the page: polaroid, prints, expertise cards |
+| `color.surface.raised` | `paper.100` (white mixed into paper; lighter than cards in dark) | Paper lifted off the page: polaroid, prints, expertise cards |
 | `color.surface.inverse` | `ink.900` | Primary button, dark quote, skip link |
 | `color.surface.accent-subtle` | `marker.alpha.12` | Outcome pill, callout, row hover, next-study hover |
 | `color.surface.media` | `white` | Only behind screenshots cut out on white |
@@ -176,9 +191,9 @@ Defined in `src/styles/semantic.css`. The right-hand column is what each resolve
 |---|---|---|
 | `color.text.primary` | `ink.900` | Body, headings |
 | `color.text.secondary` | `ink.600` | Meta, captions, labels, table dates |
-| `color.text.inverse` | `paper.200` | On `surface.inverse` |
-| `color.text.accent` | `marker.500` | Metrics, kicker, current link, margin notes |
-| `color.text.accent-on-subtle` | `marker.700` | Accent text sitting on `surface.accent-subtle` |
+| `color.text.inverse` | `paper.100` | On `surface.inverse` |
+| `color.text.accent` | `marker.500` | Metrics, case study Company link, current link, margin notes |
+| `color.text.accent-on-subtle` | `marker.700` (dark: `marker.500`) | Accent text sitting on `surface.accent-subtle` |
 | `color.icon.primary` | `ink.900` | Line drawings, list boxes |
 | `color.icon.secondary` | `ink.600` | Fine linework |
 | `color.icon.accent` | `marker.500` | Blue line icons, crayon, wink, axes |
@@ -190,8 +205,9 @@ Defined in `src/styles/semantic.css`. The right-hand column is what each resolve
 | `color.border.strong` | `ink.900` | Sheet edges, nav rule, buttons, hovered card, quotes |
 | `color.border.subtle` | `paper.500` | Resting card edge, hairline schedules |
 | `color.border.raised` | `ink.alpha.55` | Edge of raised paper |
-| `color.border.registration` | `graphite.alpha.45` | Button registration marks, chips |
+| `color.border.soft` | `graphite.alpha.45` | Hero chips (was `border.registration`; the marks it drew were removed) |
 | `color.border.accent` | `marker.500` | Callout bar, nav dimension line |
+| `color.border.divider` | `marker.500`, 1px | Nav foot, section and case study header edges, card CTA top |
 | `color.border.focus` | `marker.500` | Focus ring |
 | `color.border.placeholder` | `ink.600` (dashed) | Empty image frames |
 
@@ -199,10 +215,10 @@ Defined in `src/styles/semantic.css`. The right-hand column is what each resolve
 
 | Token | Rest | Hover / focus | Pressed | Disabled |
 |---|---|---|---|---|
-| `color.interactive.primary.bg` | `ink.900` | `marker.500` | `marker.500` | not defined yet |
-| `color.interactive.primary.text` | `paper.200` | `paper.200` | `paper.200` | |
+| `color.interactive.primary.bg` | `ink.900` | `marker.500` + `elevation.pop` | `marker.500` + `elevation.pop-pressed` | not defined yet |
+| `color.interactive.primary.text` | `paper.100` | `paper.100` | `paper.100` | |
 | `color.interactive.secondary.bg` | transparent | `marker.500` | `marker.500` | |
-| `color.interactive.secondary.text` | `ink.900` | `paper.200` | `paper.200` | |
+| `color.interactive.secondary.text` | `ink.900` | `paper.100` | `paper.100` | |
 | `color.interactive.secondary.border` | `ink.900` | `marker.500` | | |
 | `color.interactive.icon-button.disabled-opacity` | | | | 0.3 (`.deck__button:disabled`) |
 
@@ -248,6 +264,8 @@ Defined in `src/styles/semantic.css`. The right-hand column is what each resolve
 | Token | Value | Use |
 |---|---|---|
 | `elevation.0` | none | Flat paper, cards at rest (cards use a border, not a shadow) |
+| `elevation.pop` | `shadow.pop`, element lifts `pop.lift` up-left | Hover (real pointers only) and keyboard focus of buttons, home case cards, next case study card, deck arrows |
+| `elevation.pop-pressed` | `shadow.pop-pressed`, no lift | The same elements while pressed |
 | `elevation.sheet` | `0 -1px 0 ink, 0 -12px 24px -12px shadow/0.18` | Paper sheet edge as it slides over the one below |
 | `elevation.paper` | `0 1px 0 shadow/0.08, 0 14px 24px -14px shadow/0.35` | Raised paper at rest |
 | `elevation.paper-hover` | `0 1px 0 shadow/0.08, 0 20px 30px -14px shadow/0.5` | Raised paper under the pointer |
@@ -257,7 +275,7 @@ Defined in `src/styles/semantic.css`. The right-hand column is what each resolve
 
 | Token | Value | Use |
 |---|---|---|
-| `motion.state` | `micro` + `pen` | Hover colour, registration marks, crop marks |
+| `motion.state` | `micro` + `pen` | Hover colour, shadow pop lift |
 | `motion.reveal` | `state` + `pen` | Carousel cross-fade, switch thumb |
 | `motion.paper` | `paper` + `settle` | Piles, decks, FLIP between layouts |
 | `motion.entrance` | `entrance` + `enter` | Hero copy, polaroid drop |
@@ -275,20 +293,20 @@ Component tokens exist where a component is themed or tuned on its own. Each is 
 | | `button.padding-x` | `space.4` (8px on phone hero) |
 | | `button.border-width` | `line.building` |
 | | `button.radius` | `radius.md` |
-| | `button.registration.size / offset` | 10px / -6px |
+| | `button.hover-shadow` | `elevation.pop` |
 | Case card | `case-card.border.rest` | `color.border.subtle` |
 | | `case-card.border.hover` | `color.border.strong` |
 | | `case-card.radius` | `radius.md` |
-| | `case-card.media.ratio` | 16 / 10 (stacked) |
+| | `case-card.media.ratio` | 6 / 5 (stacked; fills the 7fr column side by side) |
 | | `case-card.columns` | 7fr 5fr (≥ 900px) |
-| | `case-card.registration.size / offset` | 12px / -7px |
+| | `case-card.hover-shadow` | 0.5px ink ring + `elevation.pop` |
+| | `case-card.tag-count` | 3 by default (`cardTagCount`), never repeating the badge |
 | | `case-card.cta.height` | 56px |
 | Polaroid | `polaroid.surface` | `color.surface.raised` |
 | | `polaroid.border` | `color.border.raised` |
 | | `polaroid.padding` | 16px 16px 12px |
 | | `polaroid.rotate.rest / hover` | 2deg / 0deg |
 | | `polaroid.photo.ratio` | 4 / 5 |
-| | `polaroid.crop-mark.size` | 14px |
 | Paper print (field notes) | `print.pile.scale` | 0.6 |
 | | `print.pile.rotate` | -11deg to +11deg |
 | Expertise card | `expertise.drawing.max` | 120px (150px in deck) |

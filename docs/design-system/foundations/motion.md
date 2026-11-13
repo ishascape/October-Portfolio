@@ -26,7 +26,7 @@ Things move like paper on a desk: a quick start, a soft landing, no bounce, no l
 
 | Token | Value | Used for |
 |---|---|---|
-| `motion.duration.micro` | 150ms | Hover, focus, registration and crop marks, polaroid tilt |
+| `motion.duration.micro` | 150ms | Hover, focus, shadow pop lift, polaroid tilt |
 | `motion.duration.state` | 280ms | Carousel cross-fade, switch thumb |
 | `motion.duration.entrance` | 400ms | Each hero text element |
 | `motion.duration.paper` | 480ms | Field notes pile, FLIP moves |
@@ -68,11 +68,15 @@ On phones the lede is hidden and the role line moves to the back of the polaroid
 
 | Component | Trigger | What moves | Timing |
 |---|---|---|---|
-| Button | Hover, focus | Fill to marker; registration marks fade in | 150ms `pen` |
+| Button | Hover, focus, press | Fill to marker; lifts 2px up-left into a hard 5px shadow; settles to 1px on press | 150ms `pen` |
 | Nav link | Hover, current section | Dimension line draws left to right (`clip-path`) | 260ms `pen` |
-| Case card | Hover, focus within | Edge to ink, registration marks, CTA becomes primary | 150ms `pen` |
-| Case card carousel | Hover or focus on the card | Slides cross-fade every 1.6s; returns to slide 1 on leave | 280ms `pen` |
-| Polaroid | Hover (pointer devices) | Straightens 2° → 0°, shadow deepens, crop marks appear, smile winks | 150ms; wink 140ms |
+| Case card | Hover, focus within, press | Edge to ink, whole card lifts into the shadow pop, CTA becomes primary | 150ms `pen` |
+| Case card clip | On screen | Muted 6:5 loop plays while visible, pauses off screen; poster only under reduced motion | n/a |
+| Case card carousel (fallback) | Hover or focus on the card | Slides cross-fade every 1.6s; returns to slide 1 on leave | 280ms `pen` |
+| Next case study card | Hover, focus, press | Marker wash, lifts into the shadow pop | 150ms `pen` |
+| Deck arrows | Hover, focus, press | Lift into the shadow pop; disabled stays flat | 150ms `pen` |
+| Theme switch | Click | Knob slides between sun and moon; the page swaps to the moonlit palette | `pen` |
+| Polaroid | Hover (pointer devices) | Straightens 2° → 0°, shadow deepens, smile winks | 150ms; wink 140ms |
 | Polaroid | Tap (phone) | Flips over in 3D to show the role line | 600ms `(0.3, 0.7, 0.2, 1)` |
 | Field notes pile | Click, Enter, Space, arrows | Print lifts out, straightens, scales up; returns on second click or Esc | 480ms `settle` |
 | Expertise cards | Scroll into view (desktop) | Rise 40px from 94% and fan into the grid, 70ms apart | 700ms `settle` |
