@@ -43,7 +43,7 @@ export interface CaseStudy {
   leadMetric: { value: string; label: string }
   supporting: string[]
   system: string
-  tags: string[]
+  tags: string[] // never repeat the outcome badge here: the card shows both
   cardTagCount?: number // how many tags the home card shows, 3 by default
   existing: string
   proposed: string
@@ -104,7 +104,7 @@ export const caseStudies: CaseStudy[] = [
     supporting: ['55+ new One Platform clients in 3 months', '+32% hosts reporting closed bookings'],
     system:
       'Hosts, leadership, Sales, Support · four product lines rebuilt around host workflows · proposals, dashboards and reporting in one place',
-    tags: ['B2B SaaS', 'Supply growth', 'Platform consolidation'],
+    tags: ['B2B SaaS', 'Information architecture', 'Platform consolidation'],
     existing: 'Lead Feed · PowerHost · HeadBox for Business · 3D Studio',
     proposed: 'One Platform',
     slug: 'hosthq',
@@ -138,7 +138,7 @@ export const caseStudies: CaseStudy[] = [
     leadMetric: { value: '+18%', label: 'free-trial starts' },
     supporting: ['+8% trial-to-subscription conversion', '-13% onboarding drop-off'],
     system: 'PM, data science, engineering · sign-up-to-subscription funnel · record matching replaces manual entry',
-    tags: ['Education', 'AI smart matching', 'Activation', 'Subscription', 'Experimentation'],
+    tags: ['Education', 'AI smart matching', 'Progressive disclosure', 'Subscription', 'Experimentation'],
     cardTagCount: 5, // shows all five chips on the card
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
