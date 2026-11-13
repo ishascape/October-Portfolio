@@ -44,6 +44,7 @@ export interface CaseStudy {
   supporting: string[]
   system: string
   tags: string[]
+  cardTagCount?: number // how many tags the home card shows, 3 by default
   existing: string
   proposed: string
   slug: string // URL path, kept identical to the old site's
@@ -128,7 +129,8 @@ export const caseStudies: CaseStudy[] = [
     id: 'treeassist',
     number: '03',
     title: 'TreeAssist',
-    summary: '41% of new users quit before seeing value. Three experiments cut onboarding from 8 forms to 3.',
+    summary:
+      '41% of new users quit before seeing value. I closed the knowledge gap with experienced researchers by teaching in small steps, and cut onboarding from 8 forms to 3.',
     company: 'Findmypast',
     district: 'Findmypast',
     role: 'Product Designer · 2 months, 2-week experiment cycles',
@@ -136,7 +138,8 @@ export const caseStudies: CaseStudy[] = [
     leadMetric: { value: '+18%', label: 'free-trial starts' },
     supporting: ['+8% trial-to-subscription conversion', '-13% onboarding drop-off'],
     system: 'PM, data science, engineering · sign-up-to-subscription funnel · record matching replaces manual entry',
-    tags: ['Subscription', 'Activation', 'Experimentation'],
+    tags: ['Education', 'AI smart matching', 'Activation', 'Subscription', 'Experimentation'],
+    cardTagCount: 5, // shows all five chips on the card
     existing: '8 onboarding forms · blank tree · 41% dropped off before value',
     proposed: '3 forms + AI-suggested relatives',
     slug: 'tree-assist',
