@@ -6,7 +6,7 @@ Case study pages are composed from a small set of blocks. Sections choose blocks
 
 ## Page order
 
-1. **Header**: sheet bar, kicker, title, subtitle, hero visual and fact block, on graph paper
+1. **Header**: back link, title, Company line, subtitle, hero visual and fact block, on dotted paper with a watercolour relief
 2. **TL;DR**: problem and solution side by side, impact row
 3. **Sections**: rail and body, each with optional lists, callouts, quotes, experiments, decisions, moments, figures, prototypes
 4. **Next study**
@@ -18,10 +18,10 @@ Case study pages are composed from a small set of blocks. Sections choose blocks
 
 | Part | Spec |
 |---|---|
-| Background | 24px graph paper (hairline, `color.grid` at 40%), 1px ink bottom rule |
-| Sheet bar | `type.label` row on a 1px ink rule: back link left, sheet reference right; links turn marker on hover |
-| Kicker | `type.label`, marker |
+| Background | `surface.page` with 24px dotted paper and the watercolour relief, 1px marker-blue bottom divider |
+| Back link | `type.label` "← Back to case studies"; turns marker on hover |
 | Title | `.display` (`h1`) |
+| Company line | Under the title, graphite: "Company:" then the company name as a marker link to its site (opens in a new tab). Replaced the kicker eyebrow above the title |
 | Subtitle | `type.subtitle`, capped at `size.measure` |
 | Visual | Product image on white, or a native drawing in a 1px ink frame, max 640px |
 
@@ -114,10 +114,12 @@ The decision log: the decision is the headline, the rest is a schedule.
 
 | Property | Spec |
 |---|---|
-| Container | 1px ink frame, `space.4` padding (`space.5` ≥ 1024), whole block is a link |
-| Layout | Stacked; 5fr image / 7fr text ≥ 1024 |
-| Hover | `surface.accent-subtle` |
-| Title | `type.heading.card` |
+| Container | 1px ink frame, `radius.md` corners that clip the image and button, whole block is a link |
+| Layout | Stacked: 16:10 image edge to edge on top; 5fr image / 7fr text ≥ 1024 |
+| Text | Title in `type.heading.card` (no arrow beside it), summary in graphite, `space.4` padding (`space.5` ≥ 1024) |
+| Button | "Next case study →" fills the foot of the card, edge to edge, 56px, 1px top border; it doesn't pop on its own and turns ink when the card is hovered or focused |
+| Hover and focus | `surface.accent-subtle` wash, lifts 2px up-left with `elevation.pop` (hover on real pointers only) |
+| Pressed | `elevation.pop-pressed` |
 
 ## Do and don't
 

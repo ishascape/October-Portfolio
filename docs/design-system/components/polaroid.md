@@ -10,19 +10,18 @@ Ashni's portrait as a print, in the same paper language as the field notes. It's
 
 ```
    ┌────────────────────────┐   raised paper, 1px ink-55% edge, paper shadow
-   │ ┌╴                    │   crop marks (hover)
+   │                        │
    │ │                    │ │
    │ │      photo 4:5      │ │
    │ │                    │ │
-   │                    ╶┘ │
+   │                        │
    │ Hi! I'm Ashni ☺        │   Caveat 28px + smile line icon
-   │ Senior Product Designer ↻ │  phone only: 12px graphite role + flip hint
+   │ Senior Product Designer │  phone only: 12px graphite role (no flip icon; tap the print to flip)
    └────────────────────────┘   rotated 2°
 ```
 
 1. **Print**: `surface.raised`, `border.raised`, `elevation.paper`, 16/16/12px padding, square corners, `rotate: 2deg`
 2. **Photo**: 4:5, `object-fit: cover`, eager, `fetchpriority="high"`
-3. **Crop marks**: 14px ink L-corners at -6px, hidden at rest
 4. **Caption**: "Hi! I'm Ashni" in Caveat 28px (22px phone) with a smile drawn in blue line
 5. **Back** (phone): same paper; role line in Caveat 26px marker, centred
 6. **Flip button** (phone): invisible full-size button over the print
@@ -32,7 +31,7 @@ Ashni's portrait as a print, in the same paper language as the field notes. It's
 | State | Pointer devices | Phone |
 |---|---|---|
 | Default | Rotated 2°, paper shadow | Rotated 2° |
-| Hover | Straightens to 0°, shadow deepens, crop marks appear, smile winks and smirks | n/a |
+| Hover | Straightens to 0°, shadow deepens, smile winks and smirks (no crop marks since 13 Nov 2026) | n/a |
 | Focus | n/a (not interactive on desktop) | 2px ink ring at 4px on the flip button |
 | Flipped | n/a | `rotateY(180deg)` over 600ms, back shows role line; `aria-pressed="true"` |
 | Loading | Drops in at 1.1s from -24px and 8° | Drops in at 0s |
@@ -41,7 +40,7 @@ Ashni's portrait as a print, in the same paper language as the field notes. It's
 
 | Width | Behaviour |
 |---|---|
-| < 600px | First thing on screen, 80% width, centred. Role line moves from under the headline to the back of the print; a ↻ hint sits on the front. Tap to flip. |
+| < 600px | First thing on screen, 80% width, centred. The role sits on the caption and on the back of the print. Tap the print to flip it. |
 | ≥ 600px | Right column of the hero, justified to the end. Hover interactions only on `(hover: hover)` devices. |
 
 ## Accessibility

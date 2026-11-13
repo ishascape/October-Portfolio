@@ -4,22 +4,21 @@
 
 ## Overview
 
-Buttons start an action or take someone somewhere they asked to go. There are two emphasis levels. On hover both turn marker blue and show registration marks, the drawing convention for "this is the one you're choosing".
+Buttons start an action or take someone somewhere they asked to go. There are two emphasis levels. On hover both turn marker blue and pop up off the page: the button lifts 2px up and left and a hard, unblurred shadow appears down and to the right. Pressing settles it back into the shadow.
 
 ## Anatomy
 
 ```
-  ┌╴                         registration mark (hover/focus)
   ╭─────────────────────────╮
   │  Label   [glyph]        │  1.5px ink border, 16px radius, 44px min height
-  ╰─────────────────────────╯
-                          ╶┘  registration mark
+  ╰─────────────────────────╯█  shadow pop (hover/focus): 5px hard offset,
+    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀     button lifted 2px up-left
 ```
 
 1. **Container**: inline-flex, `button.height` 44px minimum, `space.4` horizontal padding
 2. **Label**: inherits type (body size), sentence case
 3. **Glyph** (optional): ↓ ↗ → in an `aria-hidden` span, `space.2` from the label
-4. **Registration marks**: two 10px L-corners at -6px, `color.border.registration`, hidden at rest
+4. **Shadow pop**: `elevation.pop` (5px 5px, no blur, `--pop-ink`), hidden at rest. No corner marks: they were removed on 13 Nov 2026.
 
 ## Variants
 
@@ -27,7 +26,7 @@ Buttons start an action or take someone somewhere they asked to go. There are tw
 |---|---|---|---|
 | **Primary** | `.button.button--primary` | Ink fill, paper text | The one action you most want on a screen: "Explore my work ↓", the email copy button |
 | **Secondary** | `.button` | Transparent, ink border and text | Everything else: "View resume ↗", "Email me", "LinkedIn ↗" |
-| **Card CTA** | `.card__cta .button` | Full-width foot of the card, top border only, no registration marks | Inside a case study card only. Reads as secondary at rest and becomes primary when the card is hovered or focused. |
+| **Card CTA** | `.card__cta .button` | Full-width foot of the card, 1px marker-blue top border only. Doesn't pop on its own: the whole card pops and the bar goes with it | Inside a case study card only. Reads as secondary at rest and becomes primary when the card is hovered or focused. |
 | **Copy** | `.button--primary.contact__copy` | Primary, address on the left, "Copy" hint at 70% on the right | Contact. Becomes "Copied ✓" for 2s. Falls back to `mailto:` if the clipboard is unavailable. |
 
 Rule: **one primary per view.** The hero has one, Contact has one.
@@ -45,9 +44,10 @@ Rule: **one primary per view.** The hero has one, Contact has one.
 | State | Primary | Secondary | Notes |
 |---|---|---|---|
 | Default | Ink bg, paper text | Transparent bg, ink border and text | |
-| Hover | Marker bg and border, paper text, registration marks | Same as primary hover | 150ms `pen` |
-| Focus visible | 2px marker outline at 3px, plus registration marks | Same | Marks appear on `:focus-visible` too |
-| Active | Same as hover | Same as hover | No pressed style today |
+| Hover | Marker bg and border, paper text, lifts 2px up-left, `elevation.pop` | Same as primary hover | 150ms `pen`. Only on devices with a real pointer (`hover: hover`), so a tap never leaves a button stuck up |
+| Focus visible | 2px marker outline at 3px, lifts, `elevation.pop` | Same | Keyboard focus always pops |
+| Active (pressed) | Back in place, `elevation.pop-pressed` (1px) | Same | Marker fill stays while the pointer is over it |
+| Reduced motion | Shadow appears, no lift | Same | `--pop-lift: 0px` |
 | Disabled | **Not defined** | **Not defined** | No live button is ever disabled. Proposal: 0.3 opacity, `cursor: default`, no hover (matches icon button) |
 | Loading | **Not defined** | **Not defined** | Nothing on the site waits. Don't add one without a real wait. |
 | Success (copy) | "Copied ✓" in label style | n/a | Announced in a polite live region |
@@ -86,9 +86,9 @@ Verb first, sentence case, two or three words, then the direction glyph: ↓ in-
 | `button.padding-x` | `space.4` |
 | `button.border-width` | `line.building` (1.5px) |
 | `button.radius` | `radius.md` (16px) |
-| `button.registration.size` | 10px |
-| `button.registration.offset` | -6px |
-| `button.registration.color` | `color.border.registration` |
+| `button.hover-shadow` | `elevation.pop` (`--shadow-pop`) |
+| `button.pressed-shadow` | `elevation.pop-pressed` (`--shadow-pop-pressed`) |
+| `button.lift` | `pop.lift` (2px) |
 | `button.primary.bg` / `.hover` | `color.interactive.primary.bg` / `.bg-hover` |
 | `button.secondary.border` | `color.interactive.secondary.border` |
 | `button.transition` | `motion.state` |
@@ -105,15 +105,16 @@ A round 44px button holding a single arrow glyph, used to step through the exper
 |---|---|
 | Size | `size.tap` × `size.tap`, `radius.round` |
 | Border | `line.thin` ink |
-| Background | `color.surface.page` |
+| Background | `color.surface.card` |
 | Glyph | 18px ← or → in an `aria-hidden` span |
 
 | State | Spec |
 |---|---|
 | Default | As above |
-| Hover | No change today |
-| Focus | System focus ring |
-| Disabled | 0.3 opacity, `cursor: default` (first and last card of the deck) |
+| Hover | Lifts 2px up-left, `elevation.pop` (real pointers only) |
+| Focus | System focus ring, plus the pop |
+| Pressed | `elevation.pop-pressed` |
+| Disabled | 0.3 opacity, `cursor: default`, stays flat (first and last card of the deck) |
 
 Always give it an `aria-label` ("Previous", "Next page").
 

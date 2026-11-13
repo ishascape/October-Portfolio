@@ -8,8 +8,9 @@
    that swaps the primitives (the blueprint footer) must re-declare the semantic layer to pick them up. */
 :root,
 [data-theme] {
-  /* Surfaces */
-  --color-surface-page: var(--paper);
+  /* Surfaces. The page is the cool gray --surface; cards and other raised things are --paper (white in light mode). */
+  --color-surface-page: var(--surface);
+  --color-surface-card: var(--paper);
   --color-surface-sunken: var(--paper-shade);
   --color-surface-deep: var(--paper-deep);
   --color-surface-raised: color-mix(in srgb, var(--sheet-lift) 45%, var(--paper));
@@ -32,8 +33,9 @@
   --color-border-strong: var(--ink);
   --color-border-subtle: var(--rule);
   --color-border-raised: rgb(var(--shadow-ink) / 0.55);
-  --color-border-registration: rgb(97 94 88 / 0.45);
+  --color-border-soft: rgb(97 94 88 / 0.45); /* light graphite: hero chips */
   --color-border-accent: var(--marker);
+  --color-border-divider: var(--marker); /* 1px marker-blue hairline: nav, section and header dividers, card CTA top */
   --color-border-focus: var(--marker);
   --color-border-placeholder: var(--graphite);
 
@@ -85,6 +87,11 @@
   --radius-none: 0;
 
   /* Elevation */
+  /* Shadow pop: a hard, unblurred offset shadow on hover and keyboard focus of things you can press (buttons, home
+     case cards, next case study card, deck arrows). Ink in light mode, dimmed moonlight in dark. */
+  --elevation-pop: var(--shadow-pop);
+  --elevation-pop-pressed: var(--shadow-pop-pressed);
+  --elevation-pop-lift: var(--pop-lift);
   --elevation-sheet: 0 -1px 0 var(--ink), 0 -12px 24px -12px rgb(var(--shadow-ink) / 0.18);
   --elevation-paper: 0 1px 0 rgb(var(--shadow-ink) / 0.08), 0 14px 24px -14px rgb(var(--shadow-ink) / 0.35);
   --elevation-paper-hover: 0 1px 0 rgb(var(--shadow-ink) / 0.08), 0 20px 30px -14px rgb(var(--shadow-ink) / 0.5);
@@ -107,9 +114,15 @@
   --focus-offset: 3px;
 }
 
+/* Dark mode: the fixed marker 700 would sink into the moonlit wash, so accent text on a tint uses the light marker. */
+:root[data-theme='dark'] {
+  --color-text-accent-on-subtle: var(--marker);
+}
+
 /* The cyanotype sheet used by the home-page footer, expressed as a theme. Not applied anywhere on the live site:
    the footer still sets these values itself in Footer.css. */
 [data-theme='blueprint'] {
+  --surface: #1d4e89;
   --paper: #1d4e89;
   --paper-shade: #1d4e89;
   --ink: #f2f6fb;

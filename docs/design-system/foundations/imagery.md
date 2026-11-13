@@ -39,7 +39,7 @@ Decorative images (the sketch overlay, carousel slides that repeat the card's te
 | Device | Use with |
 |---|---|
 | Polaroid print (raised paper, square corners, caption) | Photos of Ashni and field notes |
-| Crop marks on hover | Photographs only |
-| Graph-paper well | Card images and contain-fit screens |
+| Dotted-paper well | Carousel card images and contain-fit screens |
+| 6:5 looping clip | Home case card media (poster frame as fallback) |
 | 1px ink border (`--bordered`) | Screens whose edge would otherwise disappear into paper |
 | White ground (`surface.media`) | Screens cut out on white |
