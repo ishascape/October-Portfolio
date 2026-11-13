@@ -66,9 +66,12 @@ export function Work() {
                   </ul>
 
                   <ul className="card__tags label" aria-label="Tags">
-                    {s.tags.slice(0, s.cardTagCount ?? 3).map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
+                    {s.tags
+                      .filter((t) => t !== s.outcome) // a chip never repeats the badge
+                      .slice(0, s.cardTagCount ?? 3)
+                      .map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
                   </ul>
 
                   <p className="card__cta" aria-hidden="true">
