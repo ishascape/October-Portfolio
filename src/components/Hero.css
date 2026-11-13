@@ -723,32 +723,6 @@
   height: 100%;
   object-fit: cover;
 }
-/* Crop marks at two corners, like the Field notes prints; they draw in on hover. */
-.hero__polaroid-photo::before,
-.hero__polaroid-photo::after {
-  content: '';
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  opacity: 0;
-  transition: opacity var(--dur-micro) var(--ease-pen);
-}
-.hero__polaroid-photo::before {
-  top: -6px;
-  left: -6px;
-  border-top: var(--line-thin) solid var(--ink);
-  border-left: var(--line-thin) solid var(--ink);
-}
-.hero__polaroid-photo::after {
-  bottom: -6px;
-  right: -6px;
-  border-bottom: var(--line-thin) solid var(--ink);
-  border-right: var(--line-thin) solid var(--ink);
-}
-.hero__card:hover .hero__polaroid-photo::before,
-.hero__card:hover .hero__polaroid-photo::after {
-  opacity: 1;
-}
 .hero__polaroid .hero__hello {
   width: auto;
   margin: 0;

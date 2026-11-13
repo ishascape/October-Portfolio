@@ -264,20 +264,10 @@
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
-.button.ds-hover::before,
-.button.ds-hover::after,
-.button.ds-focus::before,
-.button.ds-focus::after {
-  opacity: 1;
-}
 .card.ds-hover {
   border-color: var(--color-border-strong);
   box-shadow: 0 0 0 0.5px var(--color-border-strong), var(--shadow-pop);
   transform: translate(calc(-1 * var(--pop-lift)), calc(-1 * var(--pop-lift)));
-}
-.card.ds-hover::before,
-.card.ds-hover::after {
-  opacity: 1;
 }
 .card.ds-hover .card__cta .button {
   background: var(--color-surface-inverse);
