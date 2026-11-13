@@ -33,6 +33,28 @@
   text-decoration: none;
   letter-spacing: -0.01em;
 }
+/* Role next to the name, after a short blue rule. Hidden below 900px, where the links and toggle need the room
+   (on phones the role is on the polaroid in the hero). */
+.nav__role {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--graphite);
+}
+.nav__role::before {
+  content: '';
+  width: var(--line-thin);
+  height: 16px;
+  background: var(--marker);
+}
+@media (min-width: 900px) {
+  .nav__role {
+    display: inline-flex;
+  }
+}
 /* A solid blue mountain in the same style as the section icons: blue shapes with paper-coloured detail. */
 .nav__icon {
   width: 30px;

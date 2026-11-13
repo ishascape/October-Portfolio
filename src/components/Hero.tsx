@@ -82,9 +82,6 @@ export function Hero() {
         <div className="hero__intro">
           <div className="hero__text">
             <div className="hero__title">
-              <p className="hero__role">
-                <span>Senior Product Designer ·</span> <span>SaaS, Marketplaces &amp; AI</span>
-              </p>
               <h1 id="hero-heading" className="display">
                 <span className="hero__line">I design products that help people make better decisions.</span>
               </h1>

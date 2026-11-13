@@ -66,6 +66,7 @@ export function Nav({ onHome }: { onHome: boolean }) {
             </g>
           </svg>
           Ashni Dave
+          <span className="nav__role">Senior Product Designer</span>
         </a>
 
         <div className="nav__end">

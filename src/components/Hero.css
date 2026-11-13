@@ -225,9 +225,6 @@
   .hero__title .hero__hello {
     font-size: 32px;
   }
-  .hero .hero__role {
-    font-size: 16px; /* the longest role phrase must fit a 390px screen on one line */
-  }
   /* Role line to the buttons: 24px. */
   .hero__intro {
     gap: 24px;
@@ -241,17 +238,6 @@
   .hero .hero__title h1.display {
     font-size: var(--text-display);
   }
-}
-
-/* Role line under the headline. */
-.hero__role {
-  margin: 0 0 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--graphite);
-}
-.hero__role span {
-  white-space: nowrap; /* wraps between the dots, never leaves one orphaned */
 }
 
 /* Two columns from tablet up: the copy block is centred against the card stack on the right.
@@ -302,7 +288,6 @@
    (0.6-1.1s) as the copy comes into focus, then the polaroid drops in (1.1-1.7s). */
 .hero__hello,
 .hero__title .display,
-.hero__role,
 .hero__copy > *,
 .hero__actions,
 .hero__piece {
@@ -314,10 +299,6 @@
 }
 .hero__title .display {
   --at: 0ms;
-  --dur: 400ms;
-}
-.hero__role {
-  --at: 150ms;
   --dur: 400ms;
 }
 .hero__copy > :nth-child(1) {
@@ -336,7 +317,6 @@
   --at: 1140ms;
   --dur: 400ms;
 }
-.hero__role,
 .hero__copy > *,
 .hero__actions {
   animation-name: hero-blur-in;
@@ -450,8 +430,7 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__hello,
   .hero__title .display,
-  .hero__role,
-  .hero__copy > *,
+    .hero__copy > *,
   .hero__actions,
   .hero__piece,
   .hero__title,
@@ -819,10 +798,6 @@
     --at: 900ms;
     --dur: 400ms;
   }
-  .hero__role {
-    --at: 1100ms;
-    --dur: 400ms;
-  }
   /* Buttons sit straight under the headline, above the role line, side by side and the same width. */
   .hero__title,
   .hero__support {
@@ -846,10 +821,6 @@
     font-size: 14px;
     white-space: nowrap;
   }
-  .hero__role {
-    order: 4;
-    margin-top: 0;
-  }
   /* Everything in the hero sits on the centre line. */
   .hero__intro {
     text-align: center;
@@ -866,9 +837,6 @@
   display: none;
 }
 @media (max-width: 599px) {
-  .hero__role {
-    display: none; /* it lives on the back of the polaroid on phones */
-  }
   .hero__card {
     position: relative;
     transform-style: preserve-3d;
